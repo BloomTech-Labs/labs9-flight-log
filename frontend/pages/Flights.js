@@ -1,9 +1,10 @@
-import Navigation from '../components/Navigation';
+import Layout from "../components/Layout";
 const FlightList = () => (
+  <Layout>
     <div>
-      <Navigation />
       <p>Hello from flightList Next.js</p>
     </div>
-  );
-  
-  export default FlightList;
+  </Layout>
+);
+
+export default FlightList;

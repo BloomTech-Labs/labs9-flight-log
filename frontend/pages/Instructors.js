@@ -1,9 +1,10 @@
-import Navigation from '../components/Navigation';
+import Layout from "../components/Layout";
 const InstructorList = () => (
+  <Layout>
     <div>
-      <Navigation />
       <p>Hello from instructorList Next.js</p>
     </div>
-  );
-  
-  export default InstructorList;
+  </Layout>
+);
+
+export default InstructorList;
