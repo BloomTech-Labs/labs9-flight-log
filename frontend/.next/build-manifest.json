@@ -11,10 +11,6 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/Billing": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/Settings": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
