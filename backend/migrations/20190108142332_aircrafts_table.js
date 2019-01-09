@@ -4,7 +4,7 @@ exports.up = function(knex, Promise) {
     aircrafts.string('make')
     aircrafts.string('model')
     aircrafts.string('tailNumber')
-    aircrafts.foriegn('flightID').references('flights.id')
+    aircrafts.integer('flightID').references('flights.id')
   })
   
 };
