@@ -1,0 +1,59 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "external \"react\"": 0,
+      "multi ./pages/index.js": 1,
+      "node_modules/next/dist/build/webpack/loaders/next-babel-loader.js??ref--4!pages/index.js": 2,
+      "multi node_modules/next/dist/pages/_app.js": 3,
+      "node_modules/next/dist/pages/_app.js": 4,
+      "external \"next/app\"": 5,
+      "multi node_modules/next/dist/pages/_error.js": 6,
+      "node_modules/next/dist/pages/_error.js": 7,
+      "external \"next/error\"": 8,
+      "multi node_modules/next/dist/pages/_document.js": 9,
+      "node_modules/next/dist/pages/_document.js": 10,
+      "external \"next/document\"": 11
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11
+    }
+  },
+  "chunks": {
+    "byName": {
+      "static\\yQ9Aggu4v~uUz1bbzZxyJ\\pages\\index.js": 0,
+      "static\\yQ9Aggu4v~uUz1bbzZxyJ\\pages\\_app.js": 1,
+      "static\\yQ9Aggu4v~uUz1bbzZxyJ\\pages\\_error.js": 2,
+      "static\\yQ9Aggu4v~uUz1bbzZxyJ\\pages\\_document.js": 3,
+      "static\\orl7QiFV~I5Gahr8eIPzN\\pages\\index.js": 4,
+      "static\\orl7QiFV~I5Gahr8eIPzN\\pages\\_app.js": 5,
+      "static\\orl7QiFV~I5Gahr8eIPzN\\pages\\_error.js": 6,
+      "static\\orl7QiFV~I5Gahr8eIPzN\\pages\\_document.js": 7,
+      "static\\t5RguwGP7UHcFo6XnP9vu\\pages\\index.js": 0,
+      "static\\t5RguwGP7UHcFo6XnP9vu\\pages\\_app.js": 1,
+      "static\\t5RguwGP7UHcFo6XnP9vu\\pages\\_error.js": 2,
+      "static\\t5RguwGP7UHcFo6XnP9vu\\pages\\_document.js": 3,
+      "static\\H3Gr_4BRVIBSbjJ29kyOm\\pages\\index.js": 4,
+      "static\\H3Gr_4BRVIBSbjJ29kyOm\\pages\\_app.js": 5,
+      "static\\H3Gr_4BRVIBSbjJ29kyOm\\pages\\_error.js": 6,
+      "static\\H3Gr_4BRVIBSbjJ29kyOm\\pages\\_document.js": 7
+    },
+    "bySource": {},
+    "usedIds": [
+      4,
+      5,
+      6,
+      7
+    ]
+  }
+}
