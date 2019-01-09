@@ -1,9 +1,10 @@
-import Navigation from '../components/Navigation';
+import Layout from "../components/Layout";
 const Settings = () => (
+  <Layout>
     <div>
-      <Navigation />
       <p>Hello from settings Next.js</p>
     </div>
-  );
-  
-  export default Settings;
+  </Layout>
+);
+
+export default Settings;

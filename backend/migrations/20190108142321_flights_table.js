@@ -1,4 +1,3 @@
-
 exports.up = function(knex, Promise) {
   knex.schema.dropTableIfExists('flights').then(() => {
     return knex.schema.createTable('flights', flights => {
@@ -34,5 +33,5 @@ exports.up = function(knex, Promise) {
 //scale The total number of digits after the decimal point in a number.
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('flights')
+  return knex.schema.dropTableIfExists("flights");
 };
