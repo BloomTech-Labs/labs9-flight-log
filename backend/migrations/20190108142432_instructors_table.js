@@ -1,4 +1,5 @@
 exports.up = function(knex, Promise) {
+
   knex.schema.dropTableIfExists('instructors').then(() => {
     return knex.schema.createTable('instructors', instructors => {
     instructors.string('name').notNullable()
