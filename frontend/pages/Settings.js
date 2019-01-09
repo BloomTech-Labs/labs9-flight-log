@@ -1,10 +1,10 @@
 import Layout from "../components/Layout";
-const Index = () => (
+const Settings = () => (
   <Layout>
     <div>
-      <p>Hello Next.js</p>
+      <p>Hello from settings Next.js</p>
     </div>
   </Layout>
 );
 
-export default Index;
+export default Settings;
