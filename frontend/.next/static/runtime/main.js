@@ -5706,7 +5706,11 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
+<<<<<<< HEAD
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\Steve\\Documents\\Development\\Lambda\\Labs\\labs9-flight-log\\frontend\\.next");
+=======
       (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\Quan\\Desktop\\labs9-flight-log\\frontend\\.next");
+>>>>>>> 2768f3c32e6a49ab471e261d974c152ee789b788
       return error;
     }
   };
@@ -17946,7 +17950,11 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
+module.exports = __webpack_require__(/*! C:\Users\Steve\Documents\Development\Lambda\Labs\labs9-flight-log\frontend\node_modules\next\dist\client\next-dev */"./node_modules/next/dist/client/next-dev.js");
+=======
 module.exports = __webpack_require__(/*! C:\Users\Quan\Desktop\labs9-flight-log\frontend\node_modules\next\dist\client\next-dev */"./node_modules/next/dist/client/next-dev.js");
+>>>>>>> 2768f3c32e6a49ab471e261d974c152ee789b788
 
 
 /***/ }),
