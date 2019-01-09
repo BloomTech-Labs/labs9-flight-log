@@ -1,10 +1,10 @@
 import Layout from "../components/Layout";
-const Billing = () => (
+const Settings = () => (
   <Layout>
     <div>
-      <p>Hello from billing Next.js</p>
+      <p>Hello from settings Next.js</p>
     </div>
   </Layout>
 );
 
-export default Billing;
+export default Settings;
