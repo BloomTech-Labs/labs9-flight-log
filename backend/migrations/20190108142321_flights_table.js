@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('flights', flights => {
-
+    flights.increments('id').primary()
     flights.date('flightDate')
     flights.string('flightName', 32).notNullable()
     flights.string('airports')
