@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "dev": "next",
-    "build": "next build",
+    "build": "next build && next export",
     "start": "next start"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/core": "^3.8.2",
+    "@material-ui/icons": "^3.0.2",
+    "@material-ui/styles": "^3.0.0-alpha.7",
     "next": "^7.0.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0"
