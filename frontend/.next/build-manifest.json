@@ -11,11 +11,31 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
+    "/Settings": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/index": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/Flights": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/Aircraft": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
+    "/Instructors": [
+      "static/runtime/webpack.js",
+      "static/runtime/main.js"
+    ],
     "/Billing": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/Settings": [
+    "/": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]

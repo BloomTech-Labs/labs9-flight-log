@@ -1,9 +1,10 @@
-import Navigation from '../components/Navigation';
+import Layout from "../components/Layout";
 const Billing = () => (
+  <Layout>
     <div>
-      <Navigation />
       <p>Hello from billing Next.js</p>
     </div>
-  );
-  
-  export default Billing;
+  </Layout>
+);
+
+export default Billing;

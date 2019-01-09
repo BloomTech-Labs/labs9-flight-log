@@ -2,9 +2,19 @@
 
 module.exports = {
   development: {
-    client: "sqlite3",
+    client: 'mysql',
+    version: '5.6.41',
+
     connection: {
-      filename: "./dev.sqlite3"
+      host: 'labs9groupproject.c7dtwc22pwxk.us-east-1.rds.amazonaws.com',
+      port: '3306',
+      user: 'flightlogapp',
+      password: '58eOTNzy',
+      database: 'labs9flightlog',
+    },
+    pool: {
+      min: 2,
+      max: 10,
     },
     useNullAsDefault: true
   },
