@@ -1,23 +1,22 @@
-
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('pilots', pilots => {
-    pilots.increments('id').primary()
+  return knex.schema.createTable("pilots", pilots => {
+    pilots.increments("id").primary(); //primary key
+    //username
     pilots
-      .string('username', 16)
+      .string("username", 16)
       .unique()
       .notNullable();
-    pilots.boolean('isLoggedIn');
-    pilots.boolean('isPaid');
-    pilots
-      .string('password', 16)
-      .notNullable();
-
-  }) 
+    //isLoggedIn
+    pilots.boolean("isLoggedIn");
+    //isPaid
+    pilots.boolean("isPaid");
+    //password //limited to 16 for the project
+    pilots.string("password", 16).notNullable();
+  });
 };
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('pilots')
-  
+  return knex.schema.dropTableIfExists("pilots");
 };
 
 //commented by w.e.
