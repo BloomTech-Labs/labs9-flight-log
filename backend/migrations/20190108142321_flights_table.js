@@ -1,25 +1,24 @@
-
 exports.up = function(knex, Promise) {
-  return knex.schema.createTable('flights', flights => {
-    flights.increments('id').primary()
-    flights.date('flightDate')
-    flights.string('flightName', 32).notNullable()
-    flights.string('airports')
-    flights.boolean('crossCountry')
-    flights.integer('numOfLandings')
-    flights.float('dayHours', 3, 2)
-    flights.float('nightHours', 3, 2)
-    flights.float('actInstruments', 3, 2)
-    flights.float('simInstruments', 3, 2)
-    flights.float('groundTrainer', 3, 2)
+  return knex.schema.createTable("flights", flights => {
+    flights.increments("id").primary();
+    flights.date("flightDate");
+    flights.string("flightName", 32).notNullable();
+    flights.string("airports");
+    flights.boolean("crossCountry");
+    flights.integer("numOfLandings");
+    flights.float("dayHours", 3, 2);
+    flights.float("nightHours", 3, 2);
+    flights.float("actInstruments", 3, 2);
+    flights.float("simInstruments", 3, 2);
+    flights.float("groundTrainer", 3, 2);
     //pic (pilot in command) float
-    flights.float('pilotInCommand', 3, 2)
+    flights.float("pilotInCommand", 3, 2);
     //dual rec. (dual received) float
-    flights.float('dualReceived', 3, 2)
-    flights.float('total', 3, 2)
-    flights.text('remarks', 512)
-    flights.foreign('pilotID').references('pilots.id')
-  })
+    flights.float("dualReceived", 3, 2);
+    flights.float("total", 3, 2);
+    flights.text("remarks", 512);
+    flights.integer("pilotID").references("pilots.id");
+  });
 };
 
 //float
@@ -27,5 +26,5 @@ exports.up = function(knex, Promise) {
 //scale The total number of digits after the decimal point in a number.
 
 exports.down = function(knex, Promise) {
-  return knex.schema.dropTableIfExists('flights')
+  return knex.schema.dropTableIfExists("flights");
 };
