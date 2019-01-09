@@ -6,7 +6,7 @@ exports.up = function(knex, Promise) {
     instructors.text('notes', 512)
     instructors.text('ratings', 256)
     instructors.text('contactInfo', 512)
-    instructors.foreign('flightID').references('flight.id')
+    instructors.integer('flightID').references('flights.id')
   })
 };
 

@@ -18,7 +18,7 @@ exports.up = function(knex, Promise) {
     flights.float('dualReceived', 3, 2)
     flights.float('total', 3, 2)
     flights.text('remarks', 512)
-    flights.foreign('pilotID').references('pilots.id')
+    flights.integer('pilotID').references('pilots.id')
   })
 };
 
