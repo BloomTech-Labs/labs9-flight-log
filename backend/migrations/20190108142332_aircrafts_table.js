@@ -1,5 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("aircrafts", aircrafts => {
+    aircrafts.increments("id").primary();
     aircrafts.string("make");
     aircrafts.string("model");
     aircrafts.string("tailNumber");

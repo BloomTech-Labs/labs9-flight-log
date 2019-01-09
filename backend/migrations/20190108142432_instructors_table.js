@@ -1,5 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("instructors", instructors => {
+    instructors.increments("id").primary();
     //instructorname string NN
     instructors.string("name").notNullable();
     //licensenumber string(14) NN
