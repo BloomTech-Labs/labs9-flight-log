@@ -9,3 +9,5 @@ mkdir pages
 updated pkg.json file scripts
 
 created .gitignore file
+
+Edit .gitignore to include .next and out folders

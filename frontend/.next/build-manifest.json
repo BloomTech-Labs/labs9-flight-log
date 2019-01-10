@@ -1,43 +1,50 @@
 {
-  "devFiles": [
-    "static/development/dll/dll_0a5735af42686c2a38b2.js"
-  ],
+  "devFiles": [],
   "pages": {
-    "/_app": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+    "/Aircraft": [
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ],
-    "/_error": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/Settings": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
-    "/index": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+    "/billing": [
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ],
     "/Flights": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ],
-    "/Aircraft": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+    "/index": [
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ],
     "/Instructors": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ],
-    "/Billing": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+    "/Settings": [
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
+    ],
+    "/_app": [
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
+    ],
+    "/_error": [
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ],
     "/": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
+      "static/runtime/webpack-42652fa8b82c329c0559.js",
+      "static/chunks/commons.d53c32424c510b61f070.js",
+      "static/runtime/main-eb82511d0817e1061fd2.js"
     ]
   }
 }
