@@ -1,11 +1,11 @@
 
 exports.seed = function (knex, Promise) {
   // Deletes ALL existing entries
-  return knex("aircraft")
+  return knex("aircrafts")
     .del()
     .then(function () {
       // Inserts seed entries
-      return knex("aircraft").insert([
+      return knex("aircrafts").insert([
         {
           "id": 1,
           "tailNumber": 43795,
