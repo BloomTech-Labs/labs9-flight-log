@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 5);
+/******/ 	return __webpack_require__(__webpack_require__.s = 6);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -283,10 +283,10 @@ var Navigation = function Navigation() {
 
 /***/ }),
 
-/***/ "./pages/Settings.js":
-/*!***************************!*\
-  !*** ./pages/Settings.js ***!
-  \***************************/
+/***/ "./pages/Instructors.js":
+/*!******************************!*\
+  !*** ./pages/Instructors.js ***!
+  \******************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -295,11 +295,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _components_Layout__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Layout */ "./components/Layout.js");
-var _jsxFileName = "C:\\Users\\Quan\\Desktop\\labs9-flight-log\\frontend\\pages\\Settings.js";
+var _jsxFileName = "C:\\Users\\Quan\\Desktop\\labs9-flight-log\\frontend\\pages\\Instructors.js";
 
 
 
-var Settings = function Settings() {
+var InstructorList = function InstructorList() {
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layout__WEBPACK_IMPORTED_MODULE_1__["default"], {
     __source: {
       fileName: _jsxFileName,
@@ -318,21 +318,21 @@ var Settings = function Settings() {
       lineNumber: 5
     },
     __self: this
-  }, "Hello from settings Next.js")));
+  }, "Hello from instructorList Next.js")));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Settings);
+/* harmony default export */ __webpack_exports__["default"] = (InstructorList);
 
 /***/ }),
 
-/***/ 5:
-/*!*********************************!*\
-  !*** multi ./pages/Settings.js ***!
-  \*********************************/
+/***/ 6:
+/*!************************************!*\
+  !*** multi ./pages/Instructors.js ***!
+  \************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! ./pages/Settings.js */"./pages/Settings.js");
+module.exports = __webpack_require__(/*! ./pages/Instructors.js */"./pages/Instructors.js");
 
 
 /***/ }),
@@ -371,4 +371,4 @@ module.exports = require("terser");
 /***/ })
 
 /******/ });
-//# sourceMappingURL=Settings.js.map
+//# sourceMappingURL=Instructors.js.map
