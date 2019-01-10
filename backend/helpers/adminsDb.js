@@ -1,14 +1,14 @@
-const adminsDb= require('../dbConfig');
+const dB= require('../dbConfig');
 const table= 'admins';
-module.exports={
-    get:()=>adminsDb(table),
-    insert: (admins)=>adminsDb(table).insert(admins),
-    update: (id, admins)=>{
-        adminsDb(table).where("id",id).update(admins)
-    },
-    remove: id =>{
-        adminsDb("table")
-        .where("id",id)
+module.exports = {
+    get: () => dB(table),
+    insert: data => dB(table).insert(data),
+    update: (id, data) =>
+      dB(table)
+        .where("id", id)
+        .update(data),
+    remove: id =>
+      dB(table)
+        .where("id", id)
         .del()
-    }
-}
+  };
