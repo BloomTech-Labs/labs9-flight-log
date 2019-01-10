@@ -15289,7 +15289,7 @@ var InstructorList = function InstructorList() {
 
 /***/ }),
 
-/***/ 7:
+/***/ 6:
 /*!************************************!*\
   !*** multi ./pages/Instructors.js ***!
   \************************************/
@@ -15314,5 +15314,5 @@ module.exports = dll_831a3634f66cb1dada0c;
 
 /***/ })
 
-},[[7,"static/runtime/webpack.js"]]]));;
+},[[6,"static/runtime/webpack.js"]]]));;
 //# sourceMappingURL=Instructors.js.map

@@ -112,11 +112,7 @@ module.exports = __webpack_require__(/*! next/error */ "next/error")
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-module.exports = __webpack_require__(/*! C:\Users\Steve\Documents\Development\Lambda\Labs\labs9-flight-log\frontend\node_modules\next\dist\pages\_error.js */"./node_modules/next/dist/pages/_error.js");
-=======
 module.exports = __webpack_require__(/*! C:\Users\Quan\Desktop\labs9-flight-log\frontend\node_modules\next\dist\pages\_error.js */"./node_modules/next/dist/pages/_error.js");
->>>>>>> 2768f3c32e6a49ab471e261d974c152ee789b788
 
 
 /***/ }),
