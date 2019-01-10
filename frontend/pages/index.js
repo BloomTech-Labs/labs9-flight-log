@@ -7,12 +7,13 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import FlightTheme from '../components/theme';
 
 
 const styles = theme => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: FlightTheme.palette.primary.light,
     },
   },
   Button: {
