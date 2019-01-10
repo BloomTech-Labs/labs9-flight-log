@@ -1,22 +1,21 @@
 // Update with your config settings.
-require('dotenv').config();
-
+require("dotenv").config();
 
 module.exports = {
   development: {
-    client: 'mysql',
-    version: '5.6.41',
+    client: "mysql",
+    version: "5.6.41",
 
     connection: {
       host: process.env.HOST,
-      port: '3306',
+      port: "3306",
       user: process.env.USER,
       password: process.env.PASS,
-      database: 'labs9flightlog',
+      database: "labs9flightlog"
     },
     pool: {
       min: 2,
-      max: 10,
+      max: 10
     },
     useNullAsDefault: true
   },
