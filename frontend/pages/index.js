@@ -47,8 +47,14 @@ const styles = theme => ({
   },
 });
 
+
+
 function Landing(props) {
   const { classes } = props;
+
+  componentDidMount() {
+    console.log('this asdfasd')
+  }
 
   return (
     <React.Fragment>
