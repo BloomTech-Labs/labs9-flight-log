@@ -1,4 +1,6 @@
 // Update with your config settings.
+require('dotenv').config();
+
 
 module.exports = {
   development: {
@@ -6,10 +8,10 @@ module.exports = {
     version: '5.6.41',
 
     connection: {
-      host: 'labs9groupproject.c7dtwc22pwxk.us-east-1.rds.amazonaws.com',
+      host: process.env.HOST,
       port: '3306',
-      user: 'flightlogapp',
-      password: '58eOTNzy',
+      user: process.env.USER,
+      password: process.env.PASS,
       database: 'labs9flightlog',
     },
     pool: {
