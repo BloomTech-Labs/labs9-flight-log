@@ -62,3 +62,4 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "there was an error deleting the pilot" });
   }
 });
+module.exports=router
