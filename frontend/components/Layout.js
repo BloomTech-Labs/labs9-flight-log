@@ -1,11 +1,29 @@
 import Navigation from "../components/Navigation";
 import { AST_PropAccess } from "terser";
-const Layout = (props) => {
+import Grid from '@material-ui/core/Grid';
+import { withStyles } from '@material-ui/core/styles';
+import PropTypes from 'prop-types';
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+});
+
+function Layout(props) {
+  const { classes } = props;
+// const Layout = (props) => {
   return (
     <div>
-      <Navigation />
-      {props.children}
+      <Grid container spacing={24}>
+        <Navigation />
+        {props.children}
+      </Grid>
     </div>
   );
 };
-export default Layout;
+
+Layout.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(Layout);
