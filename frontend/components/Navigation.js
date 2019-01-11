@@ -33,7 +33,7 @@ function Navigation(props) {
       <Link href='/Flights'><MenuItem className={classes.button}>Flights</MenuItem></Link>
       <Link href='/Aircraft'><MenuItem className={classes.button}>Aircraft</MenuItem></Link>
       <Link href='/Instructors'><MenuItem className={classes.button}>Instructors</MenuItem></Link>
-      <Link href='/billing'><MenuItem className={classes.button}>Billing</MenuItem></Link>
+      <Link href='/Billing'><MenuItem className={classes.button}>Billing</MenuItem></Link>
       <Link href='/Settings'><MenuItem className={classes.button}>Settings</MenuItem></Link>
       </MenuList>
     </div>
