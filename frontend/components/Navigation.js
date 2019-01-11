@@ -35,6 +35,7 @@ function Navigation(props) {
       <Link href='/Instructors'><MenuItem className={classes.button}>Instructors</MenuItem></Link>
       <Link href='/Billing'><MenuItem className={classes.button}>Billing</MenuItem></Link>
       <Link href='/Settings'><MenuItem className={classes.button}>Settings</MenuItem></Link>
+      <Link href='/Pilots'><MenuItem className={classes.button}>Pilots</MenuItem></Link>
       </MenuList>
     </div>
   );
