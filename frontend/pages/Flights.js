@@ -3,10 +3,10 @@ import Layout from "../components/Layout";
 import React from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+// import AppBar from '@material-ui/core/AppBar';
+// import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Toolbar from '@material-ui/core/Toolbar';
+// import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -14,11 +14,11 @@ import Fab from '@material-ui/core/Fab';
 
 
 const styles = theme => ({
-  '@global': {
-    body: {
-      backgroundColor: theme.palette.common.white,
-    },
-  },
+  // '@global': {
+  //   body: {
+  //     backgroundColor: theme.palette.common.white,
+  //   },
+  // },
   fab: {
     margin: theme.spacing.unit,
     [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
@@ -30,15 +30,15 @@ const styles = theme => ({
   },
   AddIcon: {
   },
-  Button: {
-    marginRight: "15px",
-  },
-  appBar: {
-    position: 'relative',
-  },
-  toolbarTitle: {
-    flex: 1,
-  },
+  // Button: {
+  //   marginRight: "15px",
+  // },
+  // appBar: {
+  //   position: 'relative',
+  // },
+  // toolbarTitle: {
+  //   flex: 1,
+  // },
   layout: {
     display: 'flex',
     width: 'auto',
@@ -72,7 +72,7 @@ function Landing(props) {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar position="static" color="default" className={classes.appBar}>
+      {/* <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Insert Name/Logo Here
@@ -81,7 +81,7 @@ function Landing(props) {
             Sign Out
           </Button>
         </Toolbar>
-      </AppBar>
+      </AppBar> */}
       <Layout>
       <main className={classes.layout}>
         {/* Hero unit */}
@@ -119,3 +119,5 @@ export default withStyles(styles)(Landing);
 // );
 
 // export default FlightList;
+
+
