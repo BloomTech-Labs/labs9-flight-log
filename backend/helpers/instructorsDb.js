@@ -1,14 +1,15 @@
-const dB= require('../dbConfig');
-const table= 'instructors';
+const db = require("../dbConfig");
+const table = "instructors";
+
 module.exports = {
-    get: () => dB(table),
-    insert: data => dB(table).insert(data),
-    update: (id, data) =>
-      dB(table)
-        .where("id", id)
-        .update(data),
-    remove: id =>
-      dB(table)
-        .where("id", id)
-        .del()
-  };
+  get: () => db(table),
+  insert: instructor => db(table).insert(instructor),
+  update: (id, instructor) =>
+    db(table)
+      .where("id", id)
+      .update(instructor),
+  remove: id =>
+    db(table)
+      .where("id", id)
+      .del()
+};
