@@ -4,7 +4,8 @@
   "description": "Cloud based flight logs for pilots",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install --prefix backend && npm install --prefix frontend"
+    "postinstall": "npm install --prefix backend && npm install --prefix frontend",
+    "start": "node /backend/server.js"
   },
   "repository": {
     "type": "git",
