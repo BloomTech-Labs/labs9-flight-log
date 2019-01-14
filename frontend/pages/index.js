@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import FlightTheme from '../components/theme';
+import Link from 'next/link';
 
 
 const styles = theme => ({
@@ -48,16 +49,6 @@ const styles = theme => ({
   },
 });
 
-// Initialize Firebase
-const config = {
-  apiKey: "AIzaSyCP-EjmMT_X7izYqnqN2UgGqJFpb-wOoKM",
-  authDomain: "lab9-flightlogs.firebaseapp.com",
-  databaseURL: "https://lab9-flightlogs.firebaseio.com",
-  projectId: "lab9-flightlogs",
-  storageBucket: "lab9-flightlogs.appspot.com",
-  messagingSenderId: "491408929287"
-};
-firebase.initializeApp(config);
 
 function Landing(props) {
   const { classes } = props;
@@ -71,9 +62,9 @@ function Landing(props) {
             Insert Name/Logo Here
           </Typography>
           <Button className={classes.Button}>Sign Up </Button>
-          <Button color="primary" variant="outlined">
+          <Link href='/SignIn'><Button color="primary" variant="outlined">
             Sign In
-          </Button>
+          </Button></Link>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>

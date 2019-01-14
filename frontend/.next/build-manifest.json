@@ -11,11 +11,11 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/Settings": [
+    "/index": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/Pilots": [
+    "/": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ]
