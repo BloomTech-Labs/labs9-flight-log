@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import FlightTheme from '../components/theme';
+import Link from 'next/link';
 
 
 const styles = theme => ({
@@ -48,6 +49,7 @@ const styles = theme => ({
   },
 });
 
+
 function Landing(props) {
   const { classes } = props;
 
@@ -60,9 +62,9 @@ function Landing(props) {
             Insert Name/Logo Here
           </Typography>
           <Button className={classes.Button}>Sign Up </Button>
-          <Button color="primary" variant="outlined">
+          <Link href='/SignIn'><Button color="primary" variant="outlined">
             Sign In
-          </Button>
+          </Button></Link>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
