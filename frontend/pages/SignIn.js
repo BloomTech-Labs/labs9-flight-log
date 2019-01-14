@@ -1,5 +1,6 @@
 import React from "react";
 import AuthenticationForm from "../components/AuthenticationForm";
+import firebase from 'firebase';
 class SignIn extends React.Component {
   constructor(props) {
     super(props);

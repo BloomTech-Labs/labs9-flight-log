@@ -7,12 +7,12 @@ const AuthenticationForm = (props) => {
         <input
           name="username"
           placeholder="Username"
-          onChanges={props.handleChanges}
+          onChange={props.handleChanges}
         />
          <input
-          name="username"
-          placeholder="Username"
-          onChanges={props.handleChanges}
+          name="password"
+          placeholder="password"
+          onChange={props.handleChanges}
         />
         <button onClick={props.handleSubmit}>Sign In</button>
       </form>
