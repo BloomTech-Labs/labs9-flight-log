@@ -28,3 +28,6 @@ server.use("/instructors", instructors);
 server.use("/flights", flights);
 
 server.listen(9000, () => console.log("api running..."));
+
+//needed for tests
+module.exports = { server };
