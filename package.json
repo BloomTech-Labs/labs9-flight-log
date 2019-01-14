@@ -4,7 +4,7 @@
   "description": "Cloud based flight logs for pilots",
   "main": "index.js",
   "scripts": {
-    "postinstall": "yarn install --prefix backend && yarn install --prefix frontend",
+    "postinstall": "node install --prefix backend && node install --prefix frontend",
     "start": "yarn start backend/server.js"
   },
   "repository": {
