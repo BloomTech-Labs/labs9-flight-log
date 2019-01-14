@@ -3,10 +3,7 @@
   "version": "0.1.0",
   "description": "Cloud based flight logs for pilots",
   "main": "index.js",
-  "scripts": {
-    "postinstall": "yarn install --prefix backend && yarn install --prefix frontend",
-    "start": "yarn start backend/server.js"
-  },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Lambda-School-Labs/labs9-flight-log.git"
