@@ -15,6 +15,7 @@ const AuthenticationForm = (props) => {
           onChange={props.handleChanges}
         />
         <button onClick={props.handleSubmit}>Sign In</button>
+        <button onClick={props.fbLogin}>Log in with Facebook</button>
       </form>
     </div>
   );
