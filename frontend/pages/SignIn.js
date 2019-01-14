@@ -1,7 +1,9 @@
 import React from "react";
 import AuthenticationForm from "../components/AuthenticationForm";
 import firebase from "firebase";
-import { app, facebook, google,email } from '../components/config/fire';
+import fire from '../components/config/fire';
+const facebook= new firebase.auth.FacebookAuthProvider();
+const google= new firebase.auth.GoogleAuthProvider();
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
@@ -21,13 +23,15 @@ class SignIn extends React.Component {
     });
   };
   authWithFacebook(){
-    app.auth().signInWithPopup(facebook).then(()=>console.log('hey it works')).catch(()=>console.log('you are death, start over'))
+    fire.auth().signInWithPopup(facebook).then(()=>console.log('hey it works')).catch(()=>console.log('you are death, start over'))
   }
-
+  authWithGoogle(){
+    fire.auth().signInWithPopup(google).then(()=>console.log('hey it works')).catch(()=>console.log('you are death, start over'))
+  }
   render() {
     return (
       <div>
-        <AuthenticationForm handleChanges={this.handleChanges} fbLogin={this.authWithFacebook}/>
+        <AuthenticationForm handleChanges={this.handleChanges} fbLogin={this.authWithFacebook} googleLogin={this.authWithFacebook}/>
       </div>
     );
   }

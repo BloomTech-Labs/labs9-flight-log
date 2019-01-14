@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import * as firebase from 'firebase';
 // Initialize Firebase
 const config = {
     apiKey: "AIzaSyCP-EjmMT_X7izYqnqN2UgGqJFpb-wOoKM",
@@ -8,8 +8,4 @@ const config = {
     storageBucket: "lab9-flightlogs.appspot.com",
     messagingSenderId: "491408929287"
   };
-const fire= firebase.initializeApp(config);
-const facebook= new firebase.auth.FacebookAuthProvider();
-const email= new firebase.auth.EmailAuthProvider();
-const google= new firebase.auth.GoogleAuthProvider();
-export {fire, base, facebook, email,google};
+  export default !firebase.apps.length ? firebase.initializeApp(config) : firebase.app();

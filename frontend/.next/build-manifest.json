@@ -11,10 +11,6 @@
       "static/runtime/webpack.js",
       "static/runtime/main.js"
     ],
-    "/SignUp": [
-      "static/runtime/webpack.js",
-      "static/runtime/main.js"
-    ],
     "/SignIn": [
       "static/runtime/webpack.js",
       "static/runtime/main.js"
