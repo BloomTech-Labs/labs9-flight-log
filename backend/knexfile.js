@@ -11,23 +11,6 @@ module.exports = {
     },
     useNullAsDefault: true
   },
-  // development: {
-  //   client: "mysql",
-  //   version: "5.6.41",
-
-  //   connection: {
-  //     host: process.env.HOST,
-  //     port: process.env.PORT,
-  //     user: process.env.USER,
-  //     password: process.env.PASS,
-  //     database: "labs9flightlog"
-  //   },
-  //   pool: {
-  //     min: 2,
-  //     max: 10
-  //   },
-  //   useNullAsDefault: true
-  // },
   production: {
     client: "pg",
     connection: dbConnection, // can be and object or a string
