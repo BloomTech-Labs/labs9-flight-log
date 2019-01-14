@@ -1,14 +1,15 @@
-const pilotsDb = require("../dbConfig");
+const db = require("../dbConfig");
+const table = "pilots";
 
 module.exports = {
-  get: () => pilotsDb("pilots"),
-  insert: pilot => pilotsDb("pilots").insert(pilot),
+  get: () => db(table),
+  insert: pilot => db(table).insert(pilot),
   update: (id, pilot) =>
-    pilotsDb("pilots")
+    db(table)
       .where("id", id)
       .update(pilot),
   remove: id =>
-    pilotsDb("pilots")
+    db(table)
       .where("id", id)
       .del()
 };

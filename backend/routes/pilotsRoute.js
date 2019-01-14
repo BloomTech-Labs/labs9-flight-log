@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
-const pilotsRoute = require("../helpers/pilotsDb");
-
+const pilotsDb = require("../helpers/pilotsDb");
 
 //get route
 router.get("/", async (req, res) => {
   try {
-    const pilots = pilotsRoute.get();
+    const pilots = await pilotsDb.get();
     res.status(200).json(pilots);
   } catch (error) {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
@@ -16,12 +15,13 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const { username, password } = req.body;
   if (!username) {
-    res.status(400).json({ error: "please input username" });
-  } else if (!password) {
-    res.status(400).json({ error: "please input password" });
+    return res.status(400).json({ error: "please input username" });
+  }
+  if (!password) {
+    return res.status(400).json({ error: "please input password" });
   }
   try {
-    const pilot = await pilotsRoute.insert({ username, password });
+    const pilot = await pilotsDb.insert({ username, password });
     res.status(201).json(pilot);
   } catch (error) {
     res.status(500).json({ error: "there was an error creating a pilot" });
@@ -32,12 +32,13 @@ router.put("/:id", async (req, res) => {
   const id = req.params.id;
   const { username, password } = req.body;
   if (!username) {
-    res.status(400).json({ error: "please input username" });
-  } else if (!password) {
-    res.status(400).json({ error: "please input password" });
+    return res.status(400).json({ error: "please input username" });
+  }
+  if (!password) {
+    return res.status(400).json({ error: "please input password" });
   }
   try {
-    const pilot = await pilotsRoute.update(id, { username, password });
+    const pilot = await pilotsDb.update(id, { username, password });
     if (!pilot) {
       res
         .status(404)
@@ -52,7 +53,7 @@ router.put("/:id", async (req, res) => {
 router.delete("/:id", async (req, res) => {
   const id = req.params.id;
   try {
-    const pilot = await pilotsRoute.remove(id);
+    const pilot = await pilotsDb.remove(id);
     if (!pilot) {
       res
         .status(404)
@@ -63,4 +64,4 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "there was an error deleting the pilot" });
   }
 });
-module.exports=router
+module.exports = router;
