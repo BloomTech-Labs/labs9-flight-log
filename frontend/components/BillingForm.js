@@ -4,24 +4,24 @@ const BillingForm = (props) => {
     <div>
       <form onSubmit={props.handleSumbit}>
         //cc number 16
-        <input 
+        <input
           name="ccard"
           placeholder="CC#"
           onChange={props.changeHandler}
         />
 
         //exp date 4
-        <input 
+        <input
           name="expdate"
           placeholder="EXP"
           onChange={props.changeHandler}
         />
 
         //cvv num 3
-        <input 
-        name="cvv"
-        placeholder="CVV"
-        onChange={props.changeHandler}
+        <input
+          name="cvv"
+          placeholder="CVV"
+          onChange={props.changeHandler}
         />
 
         //TODO checkbox 1 yr sub or 1 month sub
