@@ -16,18 +16,27 @@ module.exports = {
     useNullAsDefault: true
   },
   production: {
-    client: "pg",
-    connection: dbConnection, // can be and object or a string
-    pool: {
-      min: 2,
-      max: 10
+    // client: "pg",
+    // connection: dbConnection, // can be and object or a string
+    // pool: {
+    //   min: 2,
+    //   max: 10
+    // },
+    // migrations: {
+    //   tableName: "knex_migrations",
+    //   directory: './migrations'
+    // },
+    // seeds: {
+    //   directory: './seeds'
+    // }
+    client: "mysql",
+    connection: {
+      host: process.env.HOST,
+      port: '3306',
+      user: process.env.USER,
+      password: process.env.PASS,
+      database: 'labs9flightlog'
     },
-    migrations: {
-      tableName: "knex_migrations",
-      directory: './migrations'
-    },
-    seeds: {
-      directory: './seeds'
-    }
+    useNullAsDefault: true
   }
 };
