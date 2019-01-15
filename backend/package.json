@@ -5,7 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "jest --watch --verbose",
-    "start": "node server.js"
+    "start": "node server.js",
+    "server": "nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +15,6 @@
     "dotenv": "^6.2.0",
     "express": "^4.16.4",
     "knex": "^0.16.3",
-    "mysql": "^2.16.0",
     "node": "^11.6.0",
     "nodemon": "^1.18.9",
     "sqlite3": "^4.0.6"

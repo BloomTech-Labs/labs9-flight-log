@@ -8,6 +8,8 @@ const aircrafts = require("./routes/aircraftsRoute");
 const instructors = require("./routes/instructorsRoute");
 const flights = require("./routes/flightsRoute");
 
+const port = process.env.PORT || 9000;
+
 // const db = require("./dbConfig");
 
 server.use(express.json());
@@ -27,7 +29,7 @@ server.use("/aircrafts", aircrafts);
 server.use("/instructors", instructors);
 server.use("/flights", flights);
 
-server.listen(9000, () => console.log("api running..."));
+server.listen(port, () => console.log(`api running on ${port}...`));
 
 //needed for tests
 module.exports = { server };

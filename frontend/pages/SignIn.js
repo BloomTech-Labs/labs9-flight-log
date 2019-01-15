@@ -4,6 +4,7 @@ import firebase from "firebase";
 import fire from "../components/config/fire";
 const facebook = new firebase.auth.FacebookAuthProvider();
 const google = new firebase.auth.GoogleAuthProvider();
+
 class SignIn extends React.Component {
   constructor(props) {
     super(props);
