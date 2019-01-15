@@ -1,10 +1,33 @@
+import React, {Component} from 'react';
 import Layout from "../components/Layout";
-const Billing = () => (
-  <Layout>
-    <div>
-      <p>Hello from billing Next.js</p>
-    </div>
-  </Layout>
-);
+import BillingForm from "../components/BillingForm"
 
-export default Billing;
+
+export default class Billing extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      ccard: "",
+      expdate: "",
+      cvv: "",
+    }
+  }
+
+  changeHandler = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  };
+
+  //handleSubmit
+
+  render() {
+    return (
+      <Layout>
+        <div>
+          <BillingForm changeHandler={this.changeHandler} />
+        </div>
+    </Layout>
+    );
+  }
+}

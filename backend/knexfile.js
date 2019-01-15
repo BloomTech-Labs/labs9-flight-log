@@ -5,9 +5,13 @@ const dbConnection = process.env.DATABASE_URL;
 
 module.exports = {
   development: {
-    client: "sqlite3",
+    client: "mysql",
     connection: {
-      filename: "./dev.sqlite3"
+      host: process.env.HOST,
+      port: '3306',
+      user: process.env.USER,
+      password: process.env.PASS,
+      database: 'labs9flightlog'
     },
     useNullAsDefault: true
   },
