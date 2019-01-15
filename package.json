@@ -1,4 +1,31 @@
 {
+  "name": "flight log backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/server.js",
+  "scripts": {
+    "test": "jest --watch --verbose",
+    "start": "node ./backend/server.js",
+    "server": "nodemon ./backend/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "knex": "^0.16.3",
+    "node": "^11.6.0",
+    "nodemon": "^1.18.9",
+    "sqlite3": "^4.0.6"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0",
+    "supertest": "^3.3.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "engines": {
     "node": "10.13.0",
     "npm": "6.4.1",
