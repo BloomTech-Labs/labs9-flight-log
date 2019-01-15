@@ -15,8 +15,6 @@ const AuthenticationForm = (props) => {
           onChange={props.handleChanges}
         />
         <button onClick={props.handleSubmit}>Sign In</button>
-        <button onClick={props.fbLogin}>Facebook</button>
-        <button onClick={props.googleLogin}>Google</button>
       </form>
     </div>
   );
