@@ -1,6 +1,4 @@
 {
-
-  "name": "backend",
   "name": "labs9-flight-log",
   "version": "1.0.0",
   "description": "",
@@ -9,6 +7,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^6.2.0",
+    "eslint-config-airbnb": "^17.1.0",
     "express": "^4.16.4",
     "knex": "^0.16.3",
     "node": "^11.6.0",
