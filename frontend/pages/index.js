@@ -61,7 +61,7 @@ function Landing(props) {
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Insert Name/Logo Here
           </Typography>
-          <Button className={classes.Button}>Sign Up </Button>
+          <Link href='/SignUp'><Button className={classes.Button}>Sign Up </Button></Link>
           <Link href='/SignIn'><Button color="primary" variant="outlined">
             Sign In
           </Button></Link>
