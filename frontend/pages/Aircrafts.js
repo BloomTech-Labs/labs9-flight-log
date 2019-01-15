@@ -1,7 +1,8 @@
 import Layout from "../components/Layout";
 import React, { Component } from "react";
 import axios from "axios";
-
+import AircraftC from "../components/aircrafts/AircraftC";
+import AircraftE from "../components/aircrafts/AircraftE";
 // const AircraftList = () => (
 //   <Layout>
 //     <div>
@@ -15,17 +16,31 @@ import axios from "axios";
 class AircraftsList extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      aircraftsList: []
+    };
   }
   componentDidMount() {
     axios.get("http://localhost:9000/aircrafts").then(response => {
       console.table(response.data);
+      this.setState({ aircraftsList: response.data });
     });
   }
   render() {
     return (
       <Layout>
         <div>Hello from AircraftsList page</div>
+        <h1>aircrafts list:</h1>
+        <div>
+          {this.state.aircraftsList.map(aircraft => (
+            <h3>
+              make: {aircraft.make}, model: {aircraft.model}, tail number:{" "}
+              {aircraft.tailNumber}
+            </h3>
+          ))}
+        </div>
+        {/* <AircraftC /> */}
+        {/* <AircraftE /> */}
       </Layout>
     );
   }
