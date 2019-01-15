@@ -19,6 +19,7 @@
     "firebaseui": "^3.5.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^7.0.2",
+    "re-base": "^4.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-firebaseui": "^3.1.2"
