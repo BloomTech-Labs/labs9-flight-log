@@ -1,37 +1,37 @@
+import React, {Component} from 'react';
+import {CardElement, injectStripe} from 'react-stripe-elements';
 
-const BillingForm = (props) => {
-  return (
-    <div>
-      <form onSubmit={props.handleSumbit}>
-        //cc number 16
-        <input 
-          name="ccard"
-          placeholder="CC#"
-          onChange={props.changeHandler}
-        />
+class CheckoutForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {complete: false}
+    this.submit = this.submit.bind(this);
+  }
 
-        //exp date 4
-        <input 
-          name="expdate"
-          placeholder="EXP"
-          onChange={props.changeHandler}
-        />
+  async submit(ev) {
+    // User clicked submit
+    let {token} = await this.props.stripe.createToken({name: "Name"});
+    let response = await fetch("/charge", {
+      method: "POST",
+      headers: {"Content-Type": "text/plain"},
+      body: token.id
+    });
 
-        //cvv num 3
-        <input 
-        name="cvv"
-        placeholder="CVV"
-        onChange={props.changeHandler}
-        />
+    if (response.ok) console.log("Purchase Complete!")
+  }
 
-        //TODO checkbox 1 yr sub or 1 month sub
+  render() {
+    if (this.state.complete) return <h1>Purchase Complete</h1>;
 
-        //buy now button
-        <button onClick={props.handleSumbit}>Buy Now</button>
+    return (
+      <div className="checkout">
+        <p>Would you like to complete the purchase?</p>
+        <CardElement />
+        <button onClick={this.submit}>Send</button>
+      </div>
+    );
+  }
+}
 
-      </form>
-    </div>
-  );
-};
-
-export default BillingForm;
+export default injectStripe(CheckoutForm);
+//export default injectStripe(CheckoutForm);
