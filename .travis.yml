@@ -3,7 +3,7 @@ node_js:
   - "node"
 script:
   - cd frontend
-  - nvm install
+  - yarn install
   - next build
 deploy:
   provider: firebase
