@@ -41,7 +41,7 @@ class SignIn extends React.Component {
     fire
       .auth()
       .signInWithPopup(facebook)
-      .then(() => console.log("hey it works"))
+      .then((result) => console.log("hey it works",result))
       .catch(() => console.log("you are death, start over"));
   }
   signInWithGoogle = () => {
@@ -50,7 +50,7 @@ class SignIn extends React.Component {
       .auth()
       .signInWithPopup(provider)
       .then(function(result) {
-        console.log(result);
+        console.log(result.credential.idToken);
       })
       .catch(function(error) {
         const errorMessage = error.message;
