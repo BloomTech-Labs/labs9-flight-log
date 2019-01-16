@@ -2,7 +2,9 @@ language: node_js
 node_js:
   - "node"
 script:
-  -
+  - cd frontend
+  - yarn install
+  - next
 deploy:
   provider: firebase
   token:
