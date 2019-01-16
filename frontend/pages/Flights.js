@@ -1,4 +1,5 @@
 import Layout from "../components/Layout";
+import FlightForm from '../components/FlightsForm';
 
 import React from 'react';
 import classNames from 'classnames';
@@ -89,9 +90,10 @@ function Landing(props) {
         <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
             Add New Flight
           </Typography>
-        <Fab color="primary" aria-label="Add" className={classes.fab}>
+          <FlightForm style={{ flex: 1 }} />
+        {/* <Fab color="primary" aria-label="Add" className={classes.fab}>
           <AddIcon />
-        </Fab>
+        </Fab> */}
         </div>
         {/* End hero unit */}
       </main>
