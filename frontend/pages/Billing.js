@@ -1,33 +1,25 @@
 import React, {Component} from 'react';
+import {Elements, StripeProvider} from 'react-stripe-elements';
+import CheckoutForm from '../components/BillingForm';
 import Layout from "../components/Layout";
-import BillingForm from "../components/BillingForm"
 
-
-export default class Billing extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      ccard: "",
-      expdate: "",
-      cvv: "",
-    }
-  }
-
-  changeHandler = event => {
-    this.setState({
-      [event.target.name]: event.target.value
-    });
-  };
-
-  //handleSubmit
-
+class Billing extends Component {
   render() {
     return (
-      <Layout>
-        <div>
-          <BillingForm changeHandler={this.changeHandler} />
-        </div>
-    </Layout>
+      <div>Billing Page</div>
     );
   }
 }
+
+export default Billing;
+
+/* <Layout>
+<StripeProvider apiKey="pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q">
+  <div className="example">
+    <h1>React Stripe Elements Example</h1>
+    <Elements>
+      <CheckoutForm />
+    </Elements>
+  </div>
+</StripeProvider>
+</Layout> */
