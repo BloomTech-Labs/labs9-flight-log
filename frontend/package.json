@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@firebase/app-types": "0.x",
     "@material-ui/core": "^3.8.2",
     "@material-ui/icons": "^3.0.2",
     "@material-ui/styles": "^3.0.0-alpha.7",
@@ -18,10 +19,17 @@
     "firebase": "^5.7.3",
     "firebaseui": "^3.5.1",
     "isomorphic-unfetch": "^3.0.0",
+    "jss": "10.0.0-alpha.3",
     "next": "^7.0.2",
     "re-base": "^4.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
     "react-firebaseui": "^3.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.0"
   }
 }
