@@ -1,5 +1,6 @@
 const express = require("express");
 const server = express();
+const cors = require("cors");
 
 //import routes
 const admins = require("./routes/adminsRoute");
@@ -13,6 +14,7 @@ const port = process.env.PORT || 9000;
 // const db = require("./dbConfig");
 
 server.use(express.json());
+server.use(cors());
 
 server.get("/", (req, res) => {
   res.send("<h1>Server running</h1>");
