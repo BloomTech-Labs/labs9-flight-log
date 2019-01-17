@@ -1,6 +1,7 @@
 import React from "react";
 import AuthenticationForm from "../components/AuthenticationForm";
-import fire from '../components/config/fire'
+import fire from '../components/config/fire';
+import Router from 'next-router';
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
