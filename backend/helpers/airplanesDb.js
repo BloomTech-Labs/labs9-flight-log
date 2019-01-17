@@ -1,13 +1,13 @@
 const db = require("../dbConfig");
-const table = "aircrafts";
+const table = "airplanes";
 
 module.exports = {
   get: () => db(table),
-  insert: aircraft => db(table).insert(aircraft),
-  update: (id, aircraft) =>
+  insert: airplane => db(table).insert(airplane),
+  update: (id, airplane) =>
     db(table)
       .where("id", id)
-      .update(aircraft),
+      .update(airplane),
   remove: id =>
     db(table)
       .where("id", id)
