@@ -40,6 +40,16 @@ class SignIn extends React.Component {
         // ...
       });
   };
+  sendUid= ()=>{
+    fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+      // Send token to your backend via HTTPS
+      // ...
+      console.log(idToken)
+    }).catch(function(error) {
+      // Handle error
+      console.log(error)
+    });
+  }
   authWithFacebook() {
     fire
       .auth()
@@ -62,6 +72,14 @@ class SignIn extends React.Component {
         if (result) {
           Router.push("/Settings");
         }
+        fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+          // Send token to your backend via HTTPS
+          // ...
+          console.log(idToken)
+        }).catch(function(error) {
+          // Handle error
+          console.log(error)
+        });
       })
       .catch(function(error) {
         const errorMessage = error.message;
