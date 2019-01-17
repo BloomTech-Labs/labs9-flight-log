@@ -1,5 +1,6 @@
 exports.up = function(knex, Promise) {
   return knex.schema.createTable("instructors", instructors => {
+    //primary
     instructors.increments("id").primary();
     instructors.string("name").notNullable();
     instructors.string("licenseNum", 14).notNullable();
@@ -7,9 +8,9 @@ exports.up = function(knex, Promise) {
     instructors.text("ratings", 256);
     instructors.text("contactInfo", 512);
     instructors
-      .integer("flightID")
+      .integer("pilotsID")
       .unsigned()
-      .references("flights.id");
+      .references("pilots.id");
   });
 };
 
