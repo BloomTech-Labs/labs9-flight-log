@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import AircraftC from "../components/aircrafts/AircraftC";
 import AircraftE from "../components/aircrafts/AircraftE";
+import AirplaneForm from '../components/aircrafts/AirplaneForm'
 // const AircraftList = () => (
 //   <Layout>
 //     <div>
@@ -21,7 +22,7 @@ class AircraftsList extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:9000/aircrafts").then(response => {
+    axios.get("http://localhost:9000/airplanes").then(response => {
       console.table(response.data);
       this.setState({ aircraftsList: response.data });
     });
@@ -39,6 +40,7 @@ class AircraftsList extends Component {
             </h3>
           ))}
         </div>
+        <AirplaneForm />
         {/* <AircraftC /> */}
         {/* <AircraftE /> */}
       </Layout>
