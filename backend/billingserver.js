@@ -1,6 +1,8 @@
 const app = require("express")();
-const stripe = require("stripe")("sk_test_1rHlJ5Sv61Op6sGunV9pPA3u");
+const stripe = require("stripe")("pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q");
+const cors = require('cors')
 
+app.use(cors());
 app.use(require("body-parser").text());
 
 app.post("/charge", async (req, res) => {
