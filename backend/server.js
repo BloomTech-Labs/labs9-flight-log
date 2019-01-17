@@ -4,7 +4,7 @@ const server = express();
 //import routes
 const admins = require("./routes/adminsRoute");
 const pilots = require("./routes/pilotsRoute");
-const aircrafts = require("./routes/aircraftsRoute");
+const airplanes = require("./routes/airplanesRoute");
 const instructors = require("./routes/instructorsRoute");
 const flights = require("./routes/flightsRoute");
 
@@ -25,7 +25,7 @@ server.get("/", (req, res) => {
 // });
 server.use("/admins", admins);
 server.use("/pilots", pilots);
-server.use("/aircrafts", aircrafts);
+server.use("/airplanes", airplanes);
 server.use("/instructors", instructors);
 server.use("/flights", flights);
 
