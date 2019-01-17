@@ -24,7 +24,8 @@
     "re-base": "^4.0.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-firebaseui": "^3.1.2"
+    "react-firebaseui": "^3.1.2",
+    "react-stripe-elements": "^2.0.1"
   },
   "devDependencies": {
     "eslint": "^5.3.0",
