@@ -20,7 +20,7 @@ class Billing extends Component {
       // Take it out of your production code!
       setTimeout(() => {
         this.setState({
-          stripe: window.Stripe('pk_test_6pRNASCoBOKtIshFeQd4XMUh'),
+          stripe: window.Stripe('pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q'),
         });
       }, 500);
     };
