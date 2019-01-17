@@ -2,6 +2,7 @@ import React from "react";
 import AuthenticationForm from "../components/AuthenticationForm";
 import firebase from "firebase";
 import fire from "../components/config/fire";
+import Router from "next/router";
 const facebook = new firebase.auth.FacebookAuthProvider();
 const google = new firebase.auth.GoogleAuthProvider();
 
@@ -29,7 +30,9 @@ class SignIn extends React.Component {
       .signInWithEmailAndPassword(
         this.state.user.username,
         this.state.user.password
-      )
+      ).then((result)=>{
+        console.log(result)
+      })
       .catch(function(error) {
         // Handle Errors here.
         var errorCode = error.code;
@@ -41,7 +44,12 @@ class SignIn extends React.Component {
     fire
       .auth()
       .signInWithPopup(facebook)
-      .then(() => console.log("hey it works"))
+      .then(result => {
+        console.log("hey it works", result);
+        if (result) {
+          Router.push("/Settings");
+        }
+      })
       .catch(() => console.log("you are death, start over"));
   }
   signInWithGoogle = () => {
@@ -50,7 +58,10 @@ class SignIn extends React.Component {
       .auth()
       .signInWithPopup(provider)
       .then(function(result) {
-        console.log(result);
+        console.log(result.credential.idToken);
+        if (result) {
+          Router.push("/Settings");
+        }
       })
       .catch(function(error) {
         const errorMessage = error.message;
@@ -64,8 +75,16 @@ class SignIn extends React.Component {
           handleChanges={this.handleChanges}
         /> */}
         <form>
-          <input onChange={this.handleChanges} name='username' placeholder='username'/>
-          <input onChange={this.handleChanges} name='password' placeholder='password'/>
+          <input
+            onChange={this.handleChanges}
+            name="username"
+            placeholder="username"
+          />
+          <input
+            onChange={this.handleChanges}
+            name="password"
+            placeholder="password"
+          />
           <button onClick={this.handleSubmit}>Sign in</button>
         </form>
         <button onClick={this.signInWithGoogle}>Google</button>
