@@ -13,7 +13,7 @@ const Pilots = props => (
 );
 
 Pilots.getInitialProps = async function() {
-  const res = await fetch("http://localhost:9000/pilots");
+  const res = await fetch("https://labs9-flight-log.herokuapp.com/pilots");
   const data = await res.json();
   console.log(`Fetched ${data.length} records`);
 
