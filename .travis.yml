@@ -1,10 +1,15 @@
 language: node_js
 node_js:
   - "node"
+  - "6"
+  - "4"
+cache:
+  directories:
+    - ./frontend/node_modules
 script:
   - cd frontend
   - yarn install
-  - next
+  - next build
 deploy:
   provider: firebase
   token:
