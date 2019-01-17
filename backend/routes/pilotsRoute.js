@@ -1,9 +1,12 @@
 const express = require("express");
 const router = express.Router();
 const pilotsDb = require("../helpers/pilotsDb");
+const admin = require('../config/admin');
+
 
 //get route
 router.get("/", async (req, res) => {
+  const token= req.token;
   try {
     const pilots = await pilotsDb.get();
     res.status(200).json(pilots);
@@ -27,6 +30,30 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "there was an error creating a pilot" });
   }
 });
+decoder= (req, res, next)=>{
+  const token= req.header;
+  admin.auth().verifyIdToken(token)
+  .then(function(decodedToken) {
+    var uid = decodedToken.uid;
+    
+  }).catch(function(error) {
+    // Handle error
+  });
+}
+
+router.post('/', async(req, res)=>{
+  const token= req.header;
+  admin.auth().verifyIdToken(token)
+  .then((decodedToken)=>{
+    const UID= decodedToken.uid;
+    const firstName='test';
+    const lastName='test';
+    const isPaid=true;
+    pilotsDb.insert({firstName, lastName, isPaid, UID})
+  })
+  
+
+})
 //put route
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
