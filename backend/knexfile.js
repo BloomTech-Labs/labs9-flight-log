@@ -1,42 +1,44 @@
 // Update with your config settings.
-require("dotenv").config();
-
-const dbConnection = process.env.DATABASE_URL;
 
 module.exports = {
+
   development: {
-    client: "mysql",
+    client: 'sqlite3',
     connection: {
-      host: process.env.HOST,
-      port: '3306',
-      user: process.env.USER,
-      password: process.env.PASS,
-      database: 'labs9flightlog'
-    },
-    useNullAsDefault: true
+      filename: './dev.sqlite3'
+    }
   },
-  production: {
-    // client: "pg",
-    // connection: dbConnection, // can be and object or a string
-    // pool: {
-    //   min: 2,
-    //   max: 10
-    // },
-    // migrations: {
-    //   tableName: "knex_migrations",
-    //   directory: './migrations'
-    // },
-    // seeds: {
-    //   directory: './seeds'
-    // }
-    client: "mysql",
+
+  staging: {
+    client: 'postgresql',
     connection: {
-      host: process.env.HOST,
-      port: '3306',
-      user: process.env.USER,
-      password: process.env.PASS,
-      database: 'labs9flightlog'
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
     },
-    useNullAsDefault: true
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
+
+  production: {
+    client: 'postgresql',
+    connection: {
+      database: 'my_db',
+      user:     'username',
+      password: 'password'
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
   }
+
 };
