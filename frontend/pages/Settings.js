@@ -24,6 +24,22 @@ class Settings extends Component {
       console.log(result, 'success')
     }).catch(error=> console.log(error,'failure'))
   }
+  componentDidMount(){
+    console.log('mounted')
+    fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+      console.log(idToken,'idToken')
+      let headers={"token":idToken}
+      let data= {
+        "firstName":"axiosTest",
+        "lastName":"axios"
+      }
+      axios.post("https://labs9-flight-log.herokuapp.com/pilots", {headers:headers})
+      console.log(idToken)
+    }).catch(function(error) {
+      // Handle error
+      console.log(error)
+    });
+  }
   render() {
     return (
       <Layout>

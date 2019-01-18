@@ -3,6 +3,7 @@ import AuthenticationForm from "../components/AuthenticationForm";
 import fire from "../components/config/fire";
 import Router from "next-router";
 import axios from 'axios';
+import Link from 'next/link';
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -33,16 +34,7 @@ class SignUp extends React.Component {
         console.log(error, "nope dude, youve gone goof");
       });
   };
-  componentDidMount(){
-    fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      let headers={'token':idToken}
-      axios.post("https://labs9-flight-log.herokuapp.com/pilots", {headers:headers})
-      console.log(idToken)
-    }).catch(function(error) {
-      // Handle error
-      console.log(error)
-    });
-  }
+ 
   render() {
     return (
       <div>
@@ -58,7 +50,7 @@ class SignUp extends React.Component {
               placeholder="password"
               onChange={this.handleChanges}
             />
-            <button onClick={this.createUser}>Sign Up</button>
+            <Link href='/Settings'><button onClick={this.createUser}>Sign Up</button></Link>
           </form>
         </div>
       </div>
