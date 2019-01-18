@@ -6,7 +6,7 @@ const Pilots = props => (
     <h1>Pilots</h1>
     <ul>
       {props.pilots.map(pilot => (
-        <li key={pilot.id}>{pilot.username}</li>
+        <li key={pilot.id}>{pilot.firstName}</li>
       ))}
     </ul>
   </Layout>
