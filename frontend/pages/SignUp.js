@@ -50,7 +50,7 @@ class SignUp extends React.Component {
               placeholder="password"
               onChange={this.handleChanges}
             />
-            <Link href='/Settings'><button onClick={this.createUser}>Sign Up</button></Link>
+            <button onClick={this.createUser}>Sign Up</button>
           </form>
         </div>
       </div>
