@@ -54,6 +54,10 @@ const styles = theme => ({
     open: false,
     aircraft: '',
     instructor: '',
+    flight: '',
+    airport: '',
+    remarks: '',
+    sel: '',
     labelWidth: 0,
   };
 
@@ -62,6 +66,12 @@ const styles = theme => ({
 //             labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
 //         });
 //     }
+  editFormHandler = e => {
+    console.log(e.target.name, e.target.value);
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  }
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -93,17 +103,25 @@ const styles = theme => ({
           <DialogContent > 
           <TextField
               autoFocus
+              type="text"
               margin="dense"
               id="name"
               label="Name This Flight"
+              value={this.state.flight}
+              onChange={this.editFormHandler}
+              required
               fullWidth
               variant="outlined"
             />
              <TextField
               autoFocus
+              type="text"
               margin="dense"
               id="name"
               label="Airports Visited"
+              value={this.state.airport}
+              onChange={this.editFormHandler}
+              required
               fullWidth
               variant="outlined"
             />
@@ -111,16 +129,16 @@ const styles = theme => ({
                 <h1>SKYVECTOR HERE</h1>
             </div>
                 <FormControl className={classes.formControl}>
-                <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
-                <Select
-                    native
-                    value={this.state.aircraft}
-                    onChange={this.handleChange('aircraft')}
-                    inputProps={{
-                    name: 'aircraft',
-                    id: 'aircraft-native-simple',
-                    }}
-                >
+                  <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
+                  <Select
+                      native
+                      value={this.state.aircraft}
+                      onChange={this.handleChange('aircraft')}
+                      inputProps={{
+                      name: 'aircraft',
+                      id: 'aircraft-native-simple',
+                      }}
+                  >
                     <option value="" />
                 </Select>
                 </FormControl>
@@ -144,6 +162,8 @@ const styles = theme => ({
                     margin="dense"
                     id="name"
                     label="Remarks, Procedures, Maneuvers"
+                    value={this.state.remarks}
+                    onChange={this.editFormHandler}
                     fullWidth
                     variant="outlined"
                     />
@@ -152,6 +172,8 @@ const styles = theme => ({
                     margin="dense"
                     id="name"
                     label="Airplane SEL"
+                    value={this.state.sel}
+                    onChange={this.editFormHandler}
                     // fullWidth
                     variant="outlined"
                     />

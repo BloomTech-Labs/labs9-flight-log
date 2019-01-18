@@ -12,6 +12,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
+import Paper from '@material-ui/core';
 
 
 const styles = theme => ({
@@ -67,33 +68,20 @@ const styles = theme => ({
   },
 });
 
-function Landing(props) {
+function Flights(props) {
   const { classes } = props;
 
   return (
     <React.Fragment>
       <CssBaseline />
-      {/* <AppBar position="static" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            Insert Name/Logo Here
-          </Typography>
-          <Button color="primary" variant="outlined">
-            Sign Out
-          </Button>
-        </Toolbar>
-      </AppBar> */}
       <Layout>
       <main className={classes.layout}>
         {/* Hero unit */}
         <div className={classes.heroContent}>
-        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+        <Typography component="h1" variant="h2" align="center" color="textPrimary" >
             Add New Flight
           </Typography>
           <FlightForm style={{ flex: 1 }} />
-        {/* <Fab color="primary" aria-label="Add" className={classes.fab}>
-          <AddIcon />
-        </Fab> */}
         </div>
         {/* End hero unit */}
       </main>
@@ -106,11 +94,11 @@ function Landing(props) {
   );
 }
 
-Landing.propTypes = {
+Flights.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Landing);
+export default withStyles(styles)(Flights);
 
 // const FlightList = () => (
 //   <Layout>
