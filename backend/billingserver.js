@@ -4,8 +4,14 @@ const app = require("express")();
 const stripe = require("stripe")(process.env.SAPIKEY);
 const cors = require('cors')
 
+const port = process.env.PORT || 8000;
+
 app.use(cors());
 app.use(require("body-parser").text());
+
+server.get("/", (req, res) => {
+  res.send("<h1>Server running</h1>");
+});
 
 app.post("/charge", async (req, res) => {
   console.log(req.body)
@@ -24,6 +30,6 @@ app.post("/charge", async (req, res) => {
   }
 });
 
-app.listen(8000, () => console.log("Listening on port 8000"));
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 //to run: node billingserver.js
