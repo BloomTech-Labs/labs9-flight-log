@@ -22,7 +22,7 @@ class InstructorsList extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:9000/instructors").then(response => {
+    axios.get("https://labs9-flight-log.herokuapp.com/instructors").then(response => {
       console.table(response.data);
       this.setState({ instructorsList: response.data });
     });

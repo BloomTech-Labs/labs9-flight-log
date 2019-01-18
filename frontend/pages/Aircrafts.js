@@ -22,7 +22,7 @@ class AircraftsList extends Component {
     };
   }
   componentDidMount() {
-    axios.get("http://localhost:9000/airplanes").then(response => {
+    axios.get("https://labs9-flight-log.herokuapp.com/airplanes").then(response => {
       console.table(response.data);
       this.setState({ aircraftsList: response.data });
     });
