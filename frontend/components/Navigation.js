@@ -50,6 +50,9 @@ function Navigation(props) {
         <Link href="/Pilots">
           <MenuItem className={classes.button}>Pilots</MenuItem>
         </Link>
+        <Link href="/Flights1">
+          <MenuItem className={classes.button}> Flights1</MenuItem>
+        </Link>
       </MenuList>
     </div>
   );
