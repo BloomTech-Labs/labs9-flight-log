@@ -1,9 +1,10 @@
+//require("dotenv").config();
+
 import React, {Component} from 'react';
 import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm from '../components/BillingForm';
 import Layout from "../components/Layout";
 
-//'pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q'
 
 class Billing extends Component {
   constructor() {
