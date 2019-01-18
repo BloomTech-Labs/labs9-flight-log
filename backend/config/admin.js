@@ -1,4 +1,4 @@
-import * as admin from 'firebase-admin';
+const admin = require('firebase-admin');
 admin.initializeApp({
     credential: admin.credential.cert({
         "type": "service_account",
@@ -13,5 +13,5 @@ admin.initializeApp({
         "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-eyma0%40lab9-flightlogs.iam.gserviceaccount.com"    
     })
 })
-const admin= admin;
-export default admin;
+
+module.exports= admin
