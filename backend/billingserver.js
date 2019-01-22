@@ -10,7 +10,7 @@ app.use(cors());
 app.use(require("body-parser").text());
 
 server.get("/", (req, res) => {
-  res.send("<h1>Server running</h1>");
+  res.send("<h1>Billing Server running</h1>");
 });
 
 app.post("/charge", async (req, res) => {
