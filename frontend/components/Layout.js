@@ -32,28 +32,38 @@ const styles = theme => ({
   
 });
 
-function Layout(props) {
-  const { classes } = props;
-// const Layout = (props) => {
-  return (
-    <React.Fragment>
-     <CssBaseline />
-     <AppBar position="static" color="default" className={classes.appBar}>
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              Insert Name/Logo Here
-            </Typography>
-            <Button variant= "outlined">
-              Sign Out
-            </Button>
-          </Toolbar>
-        </AppBar>
-      <Grid container spacing={24}>
-        <Navigation />
-        {props.children}
-      </Grid>
-    </React.Fragment>
-  );
+
+class Layout extends Component {
+  constructor() {
+    super();
+    this.state = {
+      aircraftsList: []
+    };
+  }
+
+  render() {
+    const { classes } = props;
+  // const Layout = (props) => {
+    return (
+      <React.Fragment>
+      <CssBaseline />
+      <AppBar position="static" color="default" className={classes.appBar}>
+            <Toolbar>
+              <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+                Insert Name/Logo Here
+              </Typography>
+              <Button variant= "outlined">
+                Sign Out
+              </Button>
+            </Toolbar>
+          </AppBar>
+        <Grid container spacing={24}>
+          <Navigation />
+          {props.children}
+        </Grid>
+      </React.Fragment>
+    );
+  };
 };
 
 Layout.propTypes = {
