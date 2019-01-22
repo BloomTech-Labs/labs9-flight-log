@@ -37,7 +37,7 @@ class Layout extends Component {
   constructor() {
     super();
     this.state = {
-      aircraftsList: []
+      
     };
   }
 
