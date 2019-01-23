@@ -1,12 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const pilotsDb = require("../helpers/pilotsDb");
-const admin = require('../config/admin');
-
+const admin = require("../config/admin");
 
 //get route
 router.get("/", async (req, res) => {
-  const token= req.token;
+  const token = req.token;
   try {
     const pilots = await pilotsDb.get();
     res.status(200).json(pilots);
@@ -14,20 +13,22 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
   }
 });
-function decode(req,res,next){
-  const token= req.headers.token;
-  admin.auth().verifyIdToken(token)
-  .then((decodedToken)=>{
-   req.body.UID= decodedToken.uid
-   console.log(req.body.UID,'req.body.UID')
-   next();
-  })
-  
+//middleware
+function decode(req, res, next) {
+  const token = req.headers.token;
+  admin
+    .auth()
+    .verifyIdToken(token)
+    .then(decodedToken => {
+      req.body.UID = decodedToken.uid;
+      console.log(req.body.UID, "req.body.UID");
+      next();
+    });
 }
 //post route
-router.post("/", decode,async (req, res) => {
-  const { firstName, lastName} = req.body;
-  const UID= req.body.UID;
+router.post("/", async (req, res) => {
+  const { firstName, lastName } = req.body;
+  // const UID = req.body.UID;
   // const token= req.headers.token;
   // console.log(token, 'here is the token from front end')
   // let UID= '';
@@ -36,21 +37,20 @@ router.post("/", decode,async (req, res) => {
   //   UID= decodedToken.uid;
   //   console.log(UID, 'this is UID');
   //   return UID
-  console.log(UID,'decoded UID')
-  if (!firstName) {
-    return res.status(400).json({ error: "please input firstName" });
-  }
-  if (!lastName) {
-    return res.status(400).json({ error: "please input lastName" });
-  }
+  // console.log(UID, "decoded UID");
+  // if (!firstName) {
+  //   return res.status(400).json({ error: "please input firstName" });
+  // }
+  // if (!lastName) {
+  //   return res.status(400).json({ error: "please input lastName" });
+  // }
   try {
-    const pilot = await pilotsDb.insert({ firstName, lastName, UID});
+    const pilot = await pilotsDb.insert({ firstName, lastName, UID });
     res.status(201).json(pilot);
   } catch (error) {
     res.status(500).json({ error: "there was an error creating a pilot" });
   }
-
-  })
+});
 
 //put route
 router.put("/:id", async (req, res) => {
