@@ -5,8 +5,8 @@ import {Elements, StripeProvider} from 'react-stripe-elements';
 import CheckoutForm from '../Module Components/billings/BillingForm';
 import Layout from "../Header component/Layout";
 
-
-class Billing extends Component {
+//DO NOT DELETE COMMENTED CODE -we
+/* class Billing extends Component {
   constructor() {
     super();
     this.state = {stripe: null}
@@ -42,6 +42,23 @@ class Billing extends Component {
       </Layout>
     );
   }
-}
+} */
+
+class Billing extends Component {
+  render() {
+    return (
+      <Layout>
+      <StripeProvider apiKey="pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q">
+        <div className="example">
+          <h1>Billing</h1>
+          <Elements>
+            <CheckoutForm />
+          </Elements>
+        </div>
+      </StripeProvider>
+      </Layout>
+    );
+  }
+};
 
 export default Billing;
