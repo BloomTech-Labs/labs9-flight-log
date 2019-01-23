@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -54,7 +54,7 @@ function Landing(props) {
   const { classes } = props;
 
   return (
-    <React.Fragment>
+    <Fragment>
       <CssBaseline />
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
@@ -83,7 +83,7 @@ function Landing(props) {
       <footer className={classNames(classes.footer, classes.layout)}>
       </footer>
       {/* End footer */}
-    </React.Fragment>
+    </Fragment>
   );
 }
 

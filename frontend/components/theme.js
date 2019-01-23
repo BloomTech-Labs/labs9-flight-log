@@ -16,6 +16,10 @@ const palette = {
     };
 const themeName = 'FlightTheme'
 
+const typography = createMuiTheme({
+  typography: {
+    useNextVariants: true,
+  },
+});
 
-
-  export default createMuiTheme({ palette, themeName });
+  export default createMuiTheme({ palette, themeName, typography });
