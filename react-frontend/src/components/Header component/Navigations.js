@@ -20,6 +20,9 @@ const styles = theme => ({
   },
   input: {
     display: "none"
+  },
+  Link: {
+    textDecoration: "none",
   }
 });
 
@@ -28,29 +31,37 @@ function Navigation(props) {
 
   return (
     <div>
-      <MenuList className={classes.root} elevation={1}>
-        <Link to='/'></Link>
+      <MenuList  className={classes.root} elevation={1}>
+        <Link to='/' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Home</MenuItem>
-     
-        <Link to ='/Flights'></Link>
+        </Link>
+
+        <Link to ='/Flights' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Flights</MenuItem>
-        <Link to ='/Aircrafts'></Link>
+          </Link>
 
+        <Link to ='/Aircrafts' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Aircrafts</MenuItem>
-          <Link to ='/Instructors'></Link>
+          </Link>
+
+          <Link to ='/Instructors' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Instructors</MenuItem>
-          <Link to ='/Billing'></Link>
+          </Link>
 
+          <Link to ='/Billing' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Billing</MenuItem>
+          </Link>
 
-          <Link to ='/Setting'></Link>
+          <Link to ='/Settings' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Settings</MenuItem>
-          <Link to ='/Pilots'></Link>
+          </Link>
 
+          <Link to ='/Pilots' style={{ textDecoration: 'none' }}>
           <MenuItem className={classes.button}>Pilots</MenuItem>
-
+          </Link>
 
           <MenuItem className={classes.button}>Flights1</MenuItem>
+
 
       </MenuList>
     </div>
