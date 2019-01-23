@@ -19,6 +19,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
+import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
 
 const styles = theme => ({
     root: {
@@ -91,9 +93,14 @@ const styles = theme => ({
     return (
         
         <div className={classes.root}>
+        <Card className={classes.card}>
+            <Typography variant="h6" color="inherit" noWrap>
+              Add Flight
+            </Typography>
         <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
           <AddIcon />
         </Fab>
+        </Card>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
