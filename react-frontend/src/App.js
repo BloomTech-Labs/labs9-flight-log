@@ -9,7 +9,8 @@ import Instructors from './components/Pages/Instructors';
 import Landing from './components/Pages/Landing';
 import Settings from './components/Pages/Settings';
 import SignUp from './components/Pages/SignUp';
-import {Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 class App extends Component {
   render() {
     return (

@@ -1,19 +1,31 @@
 import Layout from "../Header component/Layout";
 import React, { Component } from "react";
 import axios from "axios";
-// import InstructorC from "../components/instructors/InstructorC";
-// import InstructorE from "../components/instructors/InstructorE";
+import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardMedia from '@material-ui/core/CardMedia';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
 
-// const InstructorList = () => (
-//   <Layout>
-//     <div>
-//       <p>Hello from instructorList Next.js</p>
-//     </div>
-//   </Layout>
-// );
+const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  control: {
+    padding: theme.spacing.unit * 2,
+  },
+  card: {
+    maxWidth: 345,
+    // marginBottom: 20,
+    // minWidth: 200,
+  },
+  media: {
+    height: 140,
+  },
+});
 
-//import instructors, this component will allow users to perform crud operations on instructors
-//get all instructors refernced by user id/name, create, update, delete
 class InstructorsList extends Component {
   constructor() {
     super();
@@ -28,24 +40,34 @@ class InstructorsList extends Component {
     });
   }
   render() {
+    const { classes } = this.props;
+
     return (
-      <Layout>
-        <div>Hello from InstructorsList page</div>
-        <h1>instructors list:</h1>
-        <div>
-          {this.state.instructorsList.map(instructor => (
-            <h3>
-              name: {instructor.name}, licNo: {instructor.licenseNum}, contact:{" "}
-              {instructor.contactInfo}, notes: {instructor.notes}, ratings:{" "}
-              {instructor.ratings}
-            </h3>
-          ))}
-        </div>
-        {/* <InstructorC /> */}
-        {/* <InstructorE /> */}
-      </Layout>
+      <React.Fragment>
+        <Layout>
+          <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
+            <div>
+              {this.state.instructorsList.map(instructor => (
+                <Grid item lg={2} sm={1}>
+                  <Card className={classes.card}>
+                    <CardContent>
+                      <Typography gutterBottom variant="h5" component="h2">name: {instructor.name}</Typography>
+                      <Typography gutterBottom variant="h5" component="h2">licNo: {instructor.licenseNum}</Typography>
+                      <Typography gutterBottom variant="h5" component="h2">contact:{" "}{instructor.contactInfo}</Typography>
+                      <Typography gutterBottom variant="h5" component="h2">notes: {instructor.notes}</Typography>
+                      <Typography gutterBottom variant="h5" component="h2">ratings:{" "}{instructor.ratings}</Typography>
+                    </CardContent>
+                  </Card>
+                </Grid>
+              ))}
+            </div>
+            {/* <InstructorC /> */}
+            {/* <InstructorE /> */}
+          </Grid>
+        </Layout>
+      </React.Fragment>
     );
   }
 }
 
-export default InstructorsList;
+export default withStyles(styles)(InstructorsList);
