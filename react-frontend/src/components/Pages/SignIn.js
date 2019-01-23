@@ -1,6 +1,6 @@
 import React from "react";
 import firebase from "firebase";
-import fire from "../components/config/fire";
+import fire from "../Config/fire";
 const facebook = new firebase.auth.FacebookAuthProvider();
 
 
@@ -55,7 +55,9 @@ class SignIn extends React.Component {
       .then(result => {
         console.log("hey it works", result);
         if (result) {
-          Router.push("/Settings");
+          // Router.push("/Settings");
+          // history.push("/Settings")
+          console.log('firebase facebook')
         }
       })
       .catch(() => console.log("you are death, start over"));
@@ -68,7 +70,8 @@ class SignIn extends React.Component {
       .then(function(result) {
         console.log(result.credential.idToken);
         if (result) {
-          Router.push("/Settings");
+          // router.push("/Settings")
+          console.log('firebase works')
         }
         fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
           // Send token to your backend via HTTPS
