@@ -30,26 +30,31 @@ class SignIn extends React.Component {
       .signInWithEmailAndPassword(
         this.state.user.username,
         this.state.user.password
-      ).then((result)=>{
-        console.log(result)
+      )
+      .then(result => {
+        console.log(result);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
         // ...
       });
   };
-  sendUid= ()=>{
-    fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      // Send token to your backend via HTTPS
-      // ...
-      console.log(idToken)
-    }).catch(function(error) {
-      // Handle error
-      console.log(error)
-    });
-  }
+  sendUid = () => {
+    fire
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        // Send token to your backend via HTTPS
+        // ...
+        console.log(idToken);
+      })
+      .catch(function (error) {
+        // Handle error
+        console.log(error);
+      });
+  };
   authWithFacebook() {
     fire
       .auth()
@@ -67,21 +72,25 @@ class SignIn extends React.Component {
     fire
       .auth()
       .signInWithPopup(provider)
-      .then(function(result) {
+      .then(function (result) {
         console.log(result.credential.idToken);
         if (result) {
           Router.push("/Settings");
         }
-        fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-          // Send token to your backend via HTTPS
-          // ...
-          console.log(idToken)
-        }).catch(function(error) {
-          // Handle error
-          console.log(error)
-        });
+        // fire
+        //   .auth()
+        //   .currentUser.getIdToken(/* forceRefresh */ true)
+        //   .then(function (idToken) {
+        //     // Send token to your backend via HTTPS
+        //     // ...
+        //     console.log("token in signin", idToken);
+        //   })
+        //   .catch(function (error) {
+        //     // Handle error
+        //     console.log(error);
+        //   });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         const errorMessage = error.message;
         console.log(errorMessage);
       });
