@@ -1,8 +1,8 @@
 import React from "react";
 import firebase from "firebase";
 import fire from "../Config/fire";
+import axios from "axios";
 const facebook = new firebase.auth.FacebookAuthProvider();
-
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -28,8 +28,9 @@ class SignIn extends React.Component {
       .signInWithEmailAndPassword(
         this.state.user.username,
         this.state.user.password
-      ).then((result)=>{
-        console.log(result)
+      )
+      .then(result => {
+        console.log(result);
       })
       .catch(function(error) {
         // Handle Errors here.
@@ -38,16 +39,20 @@ class SignIn extends React.Component {
         // ...
       });
   };
-  sendUid= ()=>{
-    fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      // Send token to your backend via HTTPS
-      // ...
-      console.log(idToken)
-    }).catch(function(error) {
-      // Handle error
-      console.log(error)
-    });
-  }
+  sendUid = () => {
+    fire
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function(idToken) {
+        // Send token to your backend via HTTPS
+        // ...
+        console.log(idToken);
+      })
+      .catch(function(error) {
+        // Handle error
+        console.log(error);
+      });
+  };
   authWithFacebook() {
     fire
       .auth()
@@ -57,30 +62,39 @@ class SignIn extends React.Component {
         if (result) {
           // Router.push("/Settings");
           // history.push("/Settings")
-          console.log('firebase facebook')
+          console.log("firebase facebook");
         }
       })
       .catch(() => console.log("you are death, start over"));
   }
   signInWithGoogle = () => {
+    console.log("this in google modal", this);
     const provider = new firebase.auth.GoogleAuthProvider();
+    const history = this.props.history;
     fire
       .auth()
       .signInWithPopup(provider)
       .then(function(result) {
         console.log(result.credential.idToken);
         if (result) {
+          console.log(this);
+          history.push("/Flights");
           // router.push("/Settings")
-          console.log('firebase works')
+          console.log("firebase works");
         }
-        fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-          // Send token to your backend via HTTPS
-          // ...
-          console.log(idToken)
-        }).catch(function(error) {
-          // Handle error
-          console.log(error)
-        });
+        fire
+          .auth()
+          .currentUser.getIdToken(/* forceRefresh */ true)
+          .then(function(idToken) {
+            // Send token to your backend via HTTPS
+            // ...
+            console.log("idtoken", idToken);
+            // this.props.history.push("/settings");
+          })
+          .catch(function(error) {
+            // Handle error
+            console.log(error);
+          });
       })
       .catch(function(error) {
         const errorMessage = error.message;
