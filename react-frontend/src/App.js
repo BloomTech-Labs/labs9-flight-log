@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import './App.css';
 import Layout from './components/Header component/Layout';
@@ -11,50 +12,22 @@ import Settings from './components/Pages/Settings';
 import SignUp from './components/Pages/SignUp';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
     return (
       <div className="App">
-       <Route
-          exact
-          path="/"
-          render={() => <Landing />}
-        />
-        <Route
-          exact
-          path="/Aircrafts"
-          render={() => <Aircrafts />}
-        />
-        <Route
-          exact
-          path="/Billing"
-          render={() => <Billing />}
-        />
-        <Route
-          exact
-          path="/Instructors"
-          render={() => <Instructors />}
-        />
-        <Route
-          exact
-          path="/Settings"
-          render={() => <Settings />}
-        />
-        <Route
-          exact
-          path="/SignIn"
-          render={() => <SignIn />}
-        />
-        <Route
-          exact
-          path="/SignUp"
-          render={() => <SignUp />}
-        />
-         <Route
-          exact
-          path="/Flights"
-          render={() => <Flights />}
-        />
+        <Route exact path="/" render={() => <Landing />} />
+        <Route exact path="/Aircrafts" render={() => <Aircrafts />} />
+        <Route exact path="/Billing" render={() => <Billing />} />
+        <Route exact path="/Instructors" render={() => <Instructors />} />
+        <Route exact path="/Settings" render={() => <Settings />} />
+        <Route exact path="/SignIn" render={props => <SignIn {...props} />} />
+        <Route exact path="/SignUp" render={props => <SignUp {...props} />} />
+        <Route exact path="/Flights" render={() => <Flights />} />
       </div>
     );
   }
