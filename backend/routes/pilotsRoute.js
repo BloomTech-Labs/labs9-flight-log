@@ -15,7 +15,8 @@ router.get("/", async (req, res) => {
 });
 //middleware
 function decode(req, res, next) {
-  const token = req.headers.token;
+  console.log(req.body.token);
+  const token = req.body.token;
   admin
     .auth()
     .verifyIdToken(token)
@@ -26,9 +27,9 @@ function decode(req, res, next) {
     });
 }
 //post route
-router.post("/", async (req, res) => {
+router.post("/", decode, async (req, res) => {
   const { firstName, lastName } = req.body;
-  // const UID = req.body.UID;
+  const UID = req.body.UID;
   // const token= req.headers.token;
   // console.log(token, 'here is the token from front end')
   // let UID= '';
@@ -45,6 +46,7 @@ router.post("/", async (req, res) => {
   //   return res.status(400).json({ error: "please input lastName" });
   // }
   try {
+    console.log("hello");
     const pilot = await pilotsDb.insert({ firstName, lastName, UID });
     res.status(201).json(pilot);
   } catch (error) {
