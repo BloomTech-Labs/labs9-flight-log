@@ -73,8 +73,6 @@ class SignUp extends React.Component {
       .then(function(result) {
         if (result) {
           console.log("result", result);
-          history.push("/Flights");
-          const headers = { token: result.credential.idToken };
           // router.push("/Settings")
           // axios.get("http://localhost:9000/pilots").then(response => {
           //   console.log(response);
@@ -84,8 +82,15 @@ class SignUp extends React.Component {
           //   lastName: "somethingElse"
           // token:
           // };
-          console.log("headers", headers);
-          axios.post("http://localhost:9000/pilots", headers);
+          // console.log("headers", headers);
+          fire
+            .auth()
+            .currentUser.getIdToken(/* forceRefresh */ true)
+            .then(function(idToken) {
+              const headers = { token: idToken };
+              axios.post("http://localhost:9000/pilots", headers);
+              history.push("/Flights");
+            });
         }
       })
       .catch(function(error) {
