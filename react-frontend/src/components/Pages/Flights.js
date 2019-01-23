@@ -62,8 +62,9 @@ class Flights extends Component {
                 Add New Flight
               </Typography> */}
                 <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
+                <FlightForm/>
                   {this.state.flightsList.map(flight => (
-              <Grid item lg={2} sm={1} md={2}>
+              <Grid item lg={2} xs={10} sm={6} md={4}>
                     <Card className={classes.card}>
                       <CardActionArea>
                       <CardMedia
@@ -81,7 +82,7 @@ class Flights extends Component {
                     </Card>
               </Grid>
                   ))}
-              <FlightForm style={{ flex: 1 }} />
+
             </Grid>
             </div>
             {/* End hero unit */}
