@@ -1,10 +1,8 @@
 import React from "react";
-import AuthenticationForm from "../components/AuthenticationForm";
 import firebase from "firebase";
 import fire from "../components/config/fire";
-import Router from "next/router";
 const facebook = new firebase.auth.FacebookAuthProvider();
-const google = new firebase.auth.GoogleAuthProvider();
+
 
 class SignIn extends React.Component {
   constructor(props) {
