@@ -1,8 +1,8 @@
 import Layout from "../Header component/Layout";
 import React, { Component } from "react";
 import axios from "axios";
-import AircraftC from "../Module Components/aircrafts/AircraftC";
-import AircraftE from "../Module Components/aircrafts/AircraftE";
+// import AircraftC from "../Module Components/aircrafts/AircraftC";
+// import AircraftE from "../Module Components/aircrafts/AircraftE";
 import AirplaneForm from '../Module Components/aircrafts/AirplaneForm'
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,7 +13,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { CssBaseline } from "@material-ui/core";
-import Paper from '@material-ui/core/Paper';
+// import Paper from '@material-ui/core/Paper';
 // const AircraftList = () => (
 //   <Layout>
 //     <div>
@@ -81,8 +81,8 @@ class AircraftsList extends Component {
                     </Card>
               </Grid>
                   ))}
+                  <AirplaneForm />
             </Grid>
-          <AirplaneForm />
           </div>
           {/* <AircraftC /> */}
           {/* <AircraftE /> */}
