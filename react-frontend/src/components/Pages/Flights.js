@@ -1,5 +1,5 @@
-import Layout from "../components/Layout";
-import FlightForm from '../components/FlightsForm';
+import Layout from "../Header component/Layout";
+import FlightForm from "../Module Components/flights/FlightsForm";
 
 import React from 'react';
 import classNames from 'classnames';

@@ -1,8 +1,8 @@
-import Layout from "../components/Layout";
+import Layout from "../Header component/Layout";
 import React, { Component } from "react";
 import axios from "axios";
-import InstructorC from "../components/instructors/InstructorC";
-import InstructorE from "../components/instructors/InstructorE";
+// import InstructorC from "../components/instructors/InstructorC";
+// import InstructorE from "../components/instructors/InstructorE";
 
 // const InstructorList = () => (
 //   <Layout>

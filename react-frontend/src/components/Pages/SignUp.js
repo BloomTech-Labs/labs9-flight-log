@@ -1,9 +1,7 @@
 import React from "react";
-import AuthenticationForm from "../components/AuthenticationForm";
-import fire from "../components/config/fire";
-import Router from "next-router";
+import fire from "../Config/fire";
 import axios from 'axios';
-import Link from 'next/link';
+import {Link} from 'react-router-dom';
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
@@ -50,7 +48,7 @@ class SignUp extends React.Component {
               placeholder="password"
               onChange={this.handleChanges}
             />
-            <Link href='/Settings'><button onClick={this.createUser}>Sign Up</button></Link>
+            <Link to='/Settings'><button onClick={this.createUser}>Sign Up</button></Link>
           </form>
         </div>
       </div>

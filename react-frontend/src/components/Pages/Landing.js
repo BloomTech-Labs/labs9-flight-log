@@ -7,8 +7,8 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-import FlightTheme from '../components/theme';
-import Link from 'next/link';
+import FlightTheme from "../Styles/theme"
+import {Link} from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -61,8 +61,8 @@ function Landing(props) {
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
             Insert Name/Logo Here
           </Typography>
-          <Link href='/SignUp'><Button className={classes.Button}>Sign Up </Button></Link>
-          <Link href='/SignIn'><Button color="primary" variant="outlined">
+          <Link to='/SignUp'><Button className={classes.Button}>Sign Up </Button></Link>
+          <Link to='/SignIn'><Button color="primary" variant="outlined">
             Sign In
           </Button></Link>
         </Toolbar>
