@@ -21,20 +21,6 @@ import Paper from '@material-ui/core';
 
 
 const styles = theme => ({
-  // '@global': {
-  //   body: {
-  //     backgroundColor: theme.palette.common.white,
-  //   },
-  // },
-  fab: {
-    margin: theme.spacing.unit,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 75,
-      height: 75,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
   AddIcon: {
   },
   control: {
@@ -42,46 +28,11 @@ const styles = theme => ({
   },
   card: {
     maxWidth: 345,
-    // marginBottom: 20,
-    // minWidth: 200,
   },
   media: {
     height: 140,
   },
-  // Button: {
-  //   marginRight: "15px",
-  // },
-  // appBar: {
-  //   position: 'relative',
-  // },
-  // toolbarTitle: {
-  //   flex: 1,
-  // },
-  layout: {
-    display: 'flex',
-    width: 'auto',
-    marginLeft: theme.spacing.unit * 3,
-    marginRight: theme.spacing.unit * 3,
-    [theme.breakpoints.up(900 + theme.spacing.unit * 3 * 2)]: {
-      width: 900,
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  },
-  heroContent: {
-    maxWidth: 600,
-    display: "flex",
-    justifyContent: 'center',
-    flexDirection: 'column',
-    margin: theme.spacing.unit * 14,
-    // marginTop: '120px',
-    padding: `${theme.spacing.unit * 0}px 0 ${theme.spacing.unit * 0}px`,
-  },
-  footer: {
-    marginTop: theme.spacing.unit * 8,
-    borderTop: `1px solid ${theme.palette.divider}`,
-    padding: `${theme.spacing.unit * 6}px 0`,
-  },
+
 });
 
 class Flights extends Component {
@@ -112,7 +63,7 @@ class Flights extends Component {
               </Typography> */}
                 <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
                   {this.state.flightsList.map(flight => (
-              <Grid item lg={5} sm={1} md={2}>
+              <Grid item lg={2} sm={1} md={2}>
                     <Card className={classes.card}>
                       <CardActionArea>
                       <CardMedia
@@ -123,7 +74,7 @@ class Flights extends Component {
                         <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">{flight.flightName}</Typography>
                         <Typography gutterBottom variant="h5" component="h2">{flight.airports}</Typography> 
-                        <Typography gutterBottom variant="h5" component="h2">{flight.SEL}</Typography> 
+                        <Typography gutterBottom variant="h5" component="h2">{flight.SEL}</Typography>
                         <Typography gutterBottom variant="h5" component="h2">{flight.flightDate}</Typography> 
                         </CardContent>
                       </CardActionArea>
@@ -136,10 +87,6 @@ class Flights extends Component {
             {/* End hero unit */}
           </main>
           </Layout>
-          {/* Footer */}
-          <footer className={classNames(classes.footer, classes.layout)}>
-          </footer>
-          {/* End footer */}
         </React.Fragment>
        );
       }
