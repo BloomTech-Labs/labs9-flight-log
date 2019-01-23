@@ -3,9 +3,9 @@ node_js:
   - "node"
 cache:
   directories:
-    - ./frontend/node_modules
+    - ./react-frontend/node_modules
 script:
-  - cd frontend
+  - cd react-frontend
   - yarn install
   - yarn build
 install:
