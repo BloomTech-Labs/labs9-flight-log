@@ -1,0 +1,38 @@
+import React from "react";
+import fire from "../Config/fire";
+import firebase from "firebase";
+import axios from "axios";
+
+class HOC extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: ""
+    };
+  }
+  componentDidMount() {
+    fire
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function(idToken) {
+        console.log("idToken", idToken);
+        const body = { token: idToken };
+        axios
+          .post("http://localhost:9000/pilots/signin", body)
+          .then(response => {
+            console.log("response.data", response.data);
+
+            this.setState({ token: response.data.UID });
+          });
+      });
+    //   .then(console.log("after"), this.props.updateUID(this.state.token));
+    // console.log("rightbefore");
+    // console.log("rightbefore");
+    //  this.props.updateUID(this.state.token);
+  }
+  render() {
+    return <div />;
+  }
+}
+
+export default HOC;

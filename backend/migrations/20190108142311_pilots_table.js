@@ -13,7 +13,7 @@ exports.up = function(knex, Promise) {
     pilots.string("lastName");
     //isPaid for paid subscriber
     pilots.boolean("isPaid");
-    pilots.string("UID");
+    pilots.string("UID").unique();
   });
 };
 

@@ -67,28 +67,22 @@ class SignUp extends React.Component {
     console.log("this in google modal", this);
     const provider = new firebase.auth.GoogleAuthProvider();
     const history = this.props.history;
+    let name;
     fire
       .auth()
       .signInWithPopup(provider)
       .then(function(result) {
         if (result) {
           console.log("result", result);
-          // router.push("/Settings")
-          // axios.get("http://localhost:9000/pilots").then(response => {
-          //   console.log(response);
-          // });
-          // const user = {
-          //   firstName: "something",
-          //   lastName: "somethingElse"
-          // token:
-          // };
-          // console.log("headers", headers);
+          name = result.user.displayName;
+          console.log(name);
           fire
             .auth()
             .currentUser.getIdToken(/* forceRefresh */ true)
             .then(function(idToken) {
-              const headers = { token: idToken };
-              axios.post("http://localhost:9000/pilots", headers);
+              console.log(idToken, name);
+              const body = { token: idToken, firstName: name };
+              axios.post("http://localhost:9000/pilots", body);
               history.push("/Flights");
             });
         }
