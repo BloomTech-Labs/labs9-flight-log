@@ -10,21 +10,23 @@ class HOC extends React.Component {
       token: ""
     };
   }
-  componentDidMount() {
-    fire
-      .auth()
-      .currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function(idToken) {
-        console.log("idToken", idToken);
-        const body = { token: idToken };
-        axios
-          .post("http://localhost:9000/pilots/signin", body)
-          .then(response => {
-            console.log("response.data", response.data);
 
-            this.setState({ token: response.data.UID });
-          });
-      });
+  componentDidMount() {
+    console.log("this1", this);
+    // fire
+    //   .auth()
+    //   .currentUser.getIdToken(/* forceRefresh */ true)
+    //   .then(function(idToken) {
+    //     console.log("idToken", idToken);
+    //     const body = { token: idToken };
+    //     axios
+    //       .post("http://localhost:9000/pilots/signin", body)
+    //       .then(response => {
+    //         console.log("response.data", response.data);
+
+    // this.setState({ token: token });
+    //   });
+    //   })
     //   .then(console.log("after"), this.props.updateUID(this.state.token));
     // console.log("rightbefore");
     // console.log("rightbefore");

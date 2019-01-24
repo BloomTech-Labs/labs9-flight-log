@@ -76,22 +76,28 @@ class SignIn extends React.Component {
       .signInWithPopup(provider)
       .then(function(result) {
         if (result) {
-          console.log("result", result);
-          // fire
-          //   .auth()
-          //   .currentUser.getIdToken(/* forceRefresh */ true)
-          //   .then(function(idToken) {
-          //     const body = { idToken };
-          //     axios.get("http://localhost:9000/pilots", body).then(response => {
-          //       console.log(response.data);
-          //     });
-          history.push("/HOC");
-          // console.log("idtoken", idToken);
-          // })
-          // .catch(function(error) {
-          //   // Handle error
-          //   console.log(error);
-          // });
+          console.log("result", result, result.credential.idToken);
+          fire
+            .auth()
+            .currentUser.getIdToken(/* forceRefresh */ true)
+            .then(function(idToken) {
+              const body = idToken;
+              console.log("idToken", idToken);
+              axios
+                .get("http://localhost:9000/pilots/signin", {
+                  params: { token: body }
+                })
+                .then(response => {
+                  console.log(response.data);
+                  localStorage.setItem("user", response.data);
+                });
+              history.push("/HOC");
+              // console.log("idtoken", idToken);
+              // })
+              // .catch(function(error) {
+              //   // Handle error
+              //   console.log(error);
+            });
         }
       })
       .catch(function(error) {
