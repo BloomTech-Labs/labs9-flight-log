@@ -20,18 +20,20 @@ class App extends Component {
       UID: ""
     };
   }
+
   updateUID = UID => {
     this.setState({
       UID: UID
     });
   };
+
   render() {
     return (
       <div className="App">
         <Route exact path="/" render={() => <Landing />} />
         <Route exact path="/Aircrafts" render={() => <Aircrafts />} />
         <Route exact path="/Billing" render={() => <Billing />} />
-        <Route exact path="/Instructors" render={() => <Instructors />} />
+        <Route exact path="/Instructors" render={props => <Instructors {...props} />} />
         <Route exact path="/Settings" render={() => <Settings />} />
         <Route exact path="/SignIn" render={props => <SignIn {...props} />} />
         <Route exact path="/SignUp" render={props => <SignUp {...props} />} />
