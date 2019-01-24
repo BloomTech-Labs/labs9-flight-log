@@ -108,7 +108,8 @@ class InstructorForm extends React.Component {
             instructorRatings: ""
           }
         )
-        this.props.history.push(`/instructors`);
+        this.props.history.push('/');
+        this.props.history.push('/instructors');
       }
       )
       .catch(error => console.log(error));
@@ -155,6 +156,16 @@ class InstructorForm extends React.Component {
               variant="outlined"
             />
             <TextField
+              type="string"
+              id="contactInfo"
+              name="instructorContactInformation"
+              label="Contact"
+              value={this.state.instructorContactInformation}
+              onChange={this.editFormHandler}
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
               type="text"
               id="notes"
               name="instructorNotes"
@@ -163,16 +174,6 @@ class InstructorForm extends React.Component {
               onChange={this.editFormHandler}
               multiline
               rows="4"
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="contactInfo"
-              name="instructorContactInformation"
-              label="Contact"
-              value={this.state.instructorContactInformation}
-              onChange={this.editFormHandler}
               fullWidth
               variant="outlined"
             />

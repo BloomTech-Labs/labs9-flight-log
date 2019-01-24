@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
 // eslint-disable-next-line
-import { BrowserRouter as Router, Route } from'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -50,8 +50,8 @@ class InstructorsList extends Component {
       .then(response => {
         console.table(response.data);
         this.setState({ instructorsList: response.data });
-      }
-    );
+      });
+    console.log("Here we are Again?")
   }
 
 
@@ -65,7 +65,7 @@ class InstructorsList extends Component {
           <div>
             <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
               <Grid item lg={4} md={6} sm={12}>
-                <InstructorForm {...this.props} /> 
+                <InstructorForm {...this.props} />
               </Grid>
 
               {this.state.instructorsList.map(instructor => (
