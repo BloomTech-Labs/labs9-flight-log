@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import "./App.css";
-import Layout from "./components/Header component/Layout";
-import SignIn from "./components/Pages/SignIn";
-import Aircrafts from "./components/Pages/Aircrafts";
-import Billing from "./components/Pages/Billing";
-import Flights from "./components/Pages/Flights";
-import Instructors from "./components/Pages/Instructors";
-import Landing from "./components/Pages/Landing";
-import Settings from "./components/Pages/Settings";
-import SignUp from "./components/Pages/SignUp";
+import React, { Component } from 'react';
+import './App.css';
+import Layout from './components/Header component/Layout';
+import SignIn from './components/Pages/SignIn';
+import Aircrafts from './components/Pages/Aircrafts';
+import Billing from './components/Pages/Billing';
+import Flights from './components/Pages/Flights';
+import Instructors from './components/Pages/Instructors';
+import Landing from './components/Pages/Landing';
+import Settings from './components/Pages/Settings';
+import SignUp from './components/Pages/SignUp';
 import HOC from "./components/Pages/HOC";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
