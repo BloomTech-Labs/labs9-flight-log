@@ -13,10 +13,10 @@ const flightsDb = require("../helpers/flightsDb");
 //       .json({ error: "there was an error retrieving the flights" });
 //   }
 // });
-router.get("/:id", async (req, res) => {
+router.get("/:UID", async (req, res) => {
   try {
-    console.log("req.params.id", req.params.id);
-    const flights = await flightsDb.get(req.params.id);
+    console.log("req.params.id", req.params.UID);
+    const flights = await flightsDb.get(req.params.UID);
     res.status(200).json(flights);
   } catch (error) {
     res

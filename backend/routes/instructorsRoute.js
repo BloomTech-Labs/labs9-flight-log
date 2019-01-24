@@ -13,10 +13,10 @@ const instructorsDb = require("../helpers/instructorsDb");
 //       .json({ error: "there was an error retrieving the instructors" });
 //   }
 // });
-router.get("/:id", async (req, res) => {
+router.get("/:UID", async (req, res) => {
   try {
-    console.log("req.params.id", req.params.id);
-    const instructors = await instructorsDb.get(req.params.id);
+    console.log("req.params.id", req.params.UID);
+    const instructors = await instructorsDb.get(req.params.UID);
     res.status(200).json(instructors);
   } catch (error) {
     res
