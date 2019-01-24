@@ -3,9 +3,9 @@ const table = "instructors";
 
 module.exports = {
   // get: () => db(table),
-  get: id => {
+  get: UID => {
     let query = db("instructors")
-      .join("pilots", "instructors.pilotsID", "=", "pilots.id")
+      .join("pilots", "instructors.pilotsUID", "=", "pilots.UID")
       .select(
         "instructors.id",
         "instructors.name",
@@ -14,7 +14,7 @@ module.exports = {
         "instructors.ratings",
         "instructors.contactInfo"
       )
-      .where("pilots.id", id);
+      .where("pilots.id", UID);
     return query;
   },
   insert: instructor => db(table).insert(instructor),

@@ -27,10 +27,9 @@ exports.up = function(knex, Promise) {
     flights.float("pilotInCommand", 3, 2); //pic (pilot in command) float
     //foreign key to pilot
     flights
-      .integer("pilotsID")
-      .unsigned()
+      .string("pilotsUID")
       .notNullable()
-      .references("pilots.id");
+      .references("pilots.UID");
     //foreign key to airplane
     flights
       .integer("airplanesID")

@@ -8,9 +8,9 @@ exports.up = function(knex, Promise) {
     instructors.text("ratings", 256);
     instructors.text("contactInfo", 512);
     instructors
-      .integer("pilotsID")
-      .unsigned()
-      .references("pilots.id");
+      .string("pilotsUID")
+      .notNullable()
+      .references("pilots.UID");
   });
 };
 
