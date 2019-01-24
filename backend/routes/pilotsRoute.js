@@ -4,7 +4,15 @@ const pilotsDb = require("../helpers/pilotsDb");
 const admin = require("../config/admin");
 
 //get route
-router.post("/signin", decode, async (req, res) => {
+router.get("/", async (req, res) => {
+  try {
+    const pilots = await pilotsDb.get();
+    res.status(200).json(pilots);
+  } catch (error) {
+    res.status(500).json({ error: "there was an error retrieving the pilots" });
+  }
+});
+router.get("/signin", decode1, async (req, res) => {
   console.log("req", req);
   const UID = req.body.UID;
   try {
@@ -16,7 +24,8 @@ router.post("/signin", decode, async (req, res) => {
 });
 //middleware
 function decode(req, res, next) {
-  console.log(req.body.token);
+  // console.log("req", req);
+  console.log("req.body", req.body);
   const token = req.body.token;
   admin
     .auth()
@@ -27,6 +36,18 @@ function decode(req, res, next) {
       next();
     });
 }
+function decode1(req, res, next) {
+  console.log("req", req.query.token);
+  const token = req.query.token;
+  admin
+    .auth()
+    .verifyIdToken(token)
+    .then(decodedToken => {
+      req.body.UID = decodedToken.uid;
+      next();
+    });
+}
+//end middleware
 //post route
 router.post("/", decode, async (req, res) => {
   const { firstName, lastName } = req.body;
