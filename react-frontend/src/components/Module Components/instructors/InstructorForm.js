@@ -10,6 +10,9 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import AddIcon from '@material-ui/icons/Add';
 import Fab from '@material-ui/core/Fab';
 import Typography from "@material-ui/core/Typography";
+import axios from 'axios';
+// eslint-disable-next-line
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -40,23 +43,26 @@ const styles = theme => ({
   },
 });
 
+const URL = "https://labs9-flight-log.herokuapp.com";
+const UID = localStorage.getItem("userID");
 
 class InstructorForm extends React.Component {
-  state = {
-    open: false,
-    instructorName: "",
-    instructorLicenseNumber: "",
-    instructorContactInformation: "",
-    instructorNotes: "",
-    instructorRatings: "",
-    labelWidth: 0
-  };
+  constructor(props) {
+    super(props);
 
-  //   componentDidMount() {
-  //         this.setState({
-  //             labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-  //         });
-  //     }
+
+    this.state = {
+      open: false,
+      instructorName: "",
+      instructorLicenseNumber: "",
+      instructorContactInformation: "",
+      instructorNotes: "",
+      instructorRatings: "",
+      labelWidth: 0
+    };
+  }
+
+
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
     this.setState({
@@ -74,6 +80,38 @@ class InstructorForm extends React.Component {
 
   handleClose = () => {
     this.setState({ open: false });
+  };
+
+  //submit add form
+  submitAddForm = (e) => {
+    e.preventDefault();
+    const newInstructor = {
+      name: this.state.instructorName,
+      licenseNum: this.state.instructorLicenseNumber,
+      notes: this.state.instructorNotes,
+      ratings: this.state.instructorRatings,
+      contactInfo: this.state.instructorContactInformation,
+      pilotsUID: UID
+    }
+    console.log("added");
+    axios
+      .post(`${URL}/instructors`, newInstructor)
+      .then(() => {
+        console.log(this.props);
+        this.setState(
+          {
+            open: false,
+            instructorName: "",
+            instructorLicenseNumber: "",
+            instructorContactInformation: "",
+            instructorNotes: "",
+            instructorRatings: ""
+          }
+        )
+        this.props.history.push(`/instructors`);
+      }
+      )
+      .catch(error => console.log(error));
   };
 
   render() {
@@ -96,11 +134,9 @@ class InstructorForm extends React.Component {
           <DialogTitle id="form-dialog-title">Edit / Create Instructor</DialogTitle>
           <DialogContent >
             <TextField
-              autoFocus
-              type="text"
-              margin="dense"
-              id="instructorName"
-              label="Instructors Name"
+              type="string"
+              name="instructorName"
+              label="Name"
               value={this.state.instructorName}
               onChange={this.editFormHandler}
               required
@@ -108,11 +144,10 @@ class InstructorForm extends React.Component {
               variant="outlined"
             />
             <TextField
-              autoFocus
-              type="text"
-              margin="dense"
-              id="instructorLicenseNumber"
-              label="Instructor's License Number"
+              type="string"
+              id="licenseNum"
+              name="instructorLicenseNumber"
+              label="License Number"
               value={this.state.instructorLicenseNumber}
               onChange={this.editFormHandler}
               required
@@ -120,46 +155,41 @@ class InstructorForm extends React.Component {
               variant="outlined"
             />
             <TextField
-              autoFocus
               type="text"
-              margin="dense"
-              id="instructorContactInformation"
-              label="Instructor's Contact Information"
-              value={this.state.instructorContactInformation}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              autoFocus
-              multiline
-              rows="4"
-              type="text"
-              margin="dense"
-              id="instructorNotes"
+              id="notes"
+              name="instructorNotes"
               label="Notes"
               value={this.state.instructorNotes}
               onChange={this.editFormHandler}
-              required
+              multiline
+              rows="4"
               fullWidth
               variant="outlined"
             />
             <TextField
-              autoFocus
-              type="text"
-              margin="dense"
-              id="instructorRatings"
+              type="string"
+              id="contactInfo"
+              name="instructorContactInformation"
+              label="Contact"
+              value={this.state.instructorContactInformation}
+              onChange={this.editFormHandler}
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              id="ratings"
+              name="instructorRatings"
               label="Ratings"
               value={this.state.instructorRatings}
               onChange={this.editFormHandler}
-              required
               fullWidth
               variant="outlined"
             />
 
+
             <DialogActions>
-              <Button onClick={this.handleClose} color="primary">
+              <Button onClick={this.submitAddForm} color="primary">
                 Save
               </Button>
             </DialogActions>

@@ -9,6 +9,8 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
+// eslint-disable-next-line
+import { BrowserRouter as Router, Route } from'react-router-dom';
 
 const styles = theme => ({
   root: {
@@ -32,22 +34,30 @@ const styles = theme => ({
 
   }
 });
+const UID = localStorage.getItem("userID");
 
 class InstructorsList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       instructorsList: []
     };
   }
+
   componentDidMount() {
-    axios.get("https://labs9-flight-log.herokuapp.com/instructors").then(response => {
-      console.table(response.data);
-      this.setState({ instructorsList: response.data });
-    });
+    axios
+      .get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`)
+      .then(response => {
+        console.table(response.data);
+        this.setState({ instructorsList: response.data });
+      }
+    );
   }
+
+
   render() {
     const { classes } = this.props;
+
 
     return (
       <React.Fragment>
@@ -55,7 +65,7 @@ class InstructorsList extends Component {
           <div>
             <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
               <Grid item lg={4} md={6} sm={12}>
-                <InstructorForm />
+                <InstructorForm {...this.props} /> 
               </Grid>
 
               {this.state.instructorsList.map(instructor => (
