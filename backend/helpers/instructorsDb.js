@@ -14,7 +14,7 @@ module.exports = {
         "instructors.ratings",
         "instructors.contactInfo"
       )
-      .where("pilots.id", UID);
+      .where("pilots.UID", UID);
     return query;
   },
   insert: instructor => db(table).insert(instructor),
