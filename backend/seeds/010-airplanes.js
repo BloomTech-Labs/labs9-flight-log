@@ -10,175 +10,200 @@ exports.seed = function(knex, Promise) {
           tailNumber: 43795,
           make: "Piper",
           model: "Cherokee",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 2,
           tailNumber: 11640,
           make: "Piper",
           model: "A320",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 3,
           tailNumber: 60411,
           make: "Beechcraft",
           model: "Cub",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 4,
           tailNumber: 12111,
           make: "Boeing",
           model: "A380",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 5,
           tailNumber: 6332,
           make: "Airbus",
           model: "172",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 6,
           tailNumber: 78251,
           make: "Piper",
           model: "777",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 7,
           tailNumber: 69603,
           make: "Beechcraft",
           model: "777",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 8,
           tailNumber: 48597,
           make: "Diamond",
           model: "152",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 9,
           tailNumber: 30178,
           make: "Piper",
           model: "182",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 10,
           tailNumber: 1809,
           make: "Beechcraft",
           model: "Cub",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 11,
           tailNumber: 98162,
           make: "Cessna",
           model: "A330",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 12,
           tailNumber: 96378,
           make: "Beechcraft",
           model: "A320",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 13,
           tailNumber: 52688,
           make: "Boeing",
           model: "747",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 14,
           tailNumber: 41642,
           make: "Cessna",
           model: "A320",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 15,
           tailNumber: 60884,
           make: "Piper",
           model: "Cherokee",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 16,
           tailNumber: 25004,
           make: "Boeing",
           model: "737",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 17,
           tailNumber: 65531,
           make: "Airbus",
           model: "182",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 18,
           tailNumber: 50075,
           make: "Cessna",
           model: "Cherokee",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 19,
           tailNumber: 26158,
           make: "Piper",
           model: "747",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 20,
           tailNumber: 81073,
           make: "Cessna",
           model: "A320",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 21,
           tailNumber: 9183,
           make: "Diamond",
           model: "182",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 22,
           tailNumber: 34104,
           make: "Boeing",
           model: "A320",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 23,
           tailNumber: 76324,
           make: "Piper",
           model: "Cherokee",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 24,
           tailNumber: 3506,
           make: "Piper",
           model: "Bonanza",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 25,
           tailNumber: 57260,
           make: "Airbus",
           model: "737",
-          category: "SEL"
+          category: "SEL",
+          pilotsID: 1
         },
         {
           id: 26,

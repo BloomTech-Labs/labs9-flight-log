@@ -25,8 +25,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 0.6,
-          airPlaneID: 1,
-          pilotID: 1
+          airPlanesID: 1,
+          pilotsID: 3
         },
         {
           id: 2,
@@ -48,8 +48,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 3.1,
-          airPlaneID: 1,
-          pilotID: 1
+          airPlanesID: 1,
+          pilotsID: 3
         },
         {
           id: 3,
@@ -71,8 +71,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 2.7,
-          airPlaneID: 1,
-          pilotID: 2
+          airPlanesID: 1,
+          pilotsID: 3
         },
         {
           id: 4,
@@ -94,8 +94,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 2.7,
-          airPlaneID: 1,
-          pilotID: 1
+          airPlanesID: 1,
+          pilotsID: 3
         },
         {
           id: 5,
@@ -117,8 +117,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 0.2,
-          airPlaneID: 1,
-          pilotID: 2
+          airPlanesID: 1,
+          pilotsID: 3
         },
         {
           id: 6,
@@ -140,8 +140,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 4.8,
-          airPlaneID: 1,
-          pilotID: 1
+          airPlanesID: 1,
+          pilotsID: 4
         },
         {
           id: 7,
@@ -163,8 +163,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 1.4,
-          airPlaneID: 1,
-          pilotID: 2
+          airPlanesID: 1,
+          pilotsID: 4
         },
         {
           id: 8,
@@ -186,8 +186,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 3.0,
-          airPlaneID: 1,
-          pilotID: 3
+          airPlanesID: 1,
+          pilotsID: 4
         },
         {
           id: 9,
@@ -209,8 +209,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 2.7,
-          airPlaneID: 1,
-          pilotID: 2
+          airPlanesID: 1,
+          pilotsID: 4
         },
         {
           id: 10,
@@ -232,8 +232,8 @@ exports.seed = function(knex, Promise) {
           asInstructor: 0,
           dualReceived: 0,
           pilotInCommand: 2.8,
-          airPlaneID: 1,
-          pilotID: 1
+          airPlanesID: 1,
+          pilotsID: 4
         }
       ]);
     });

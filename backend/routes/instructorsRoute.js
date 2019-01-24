@@ -3,9 +3,20 @@ const router = express.Router();
 const instructorsDb = require("../helpers/instructorsDb");
 
 //get route
-router.get("/", async (req, res) => {
+// router.get("/", async (req, res) => {
+//   try {
+//     const instructors = await instructorsDb.get();
+//     res.status(200).json(instructors);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "there was an error retrieving the instructors" });
+//   }
+// });
+router.get("/:id", async (req, res) => {
   try {
-    const instructors = await instructorsDb.get();
+    console.log("req.params.id", req.params.id);
+    const instructors = await instructorsDb.get(req.params.id);
     res.status(200).json(instructors);
   } catch (error) {
     res

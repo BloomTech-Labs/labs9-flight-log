@@ -3,9 +3,20 @@ const router = express.Router();
 const airplanesDb = require("../helpers/airplanesDb");
 
 //get route
-router.get("/", async (req, res) => {
+// router.get("/", async (req, res) => {
+//   try {
+//     const airplanes = await airplanesDb.get();
+//     res.status(200).json(airplanes);
+//   } catch (error) {
+//     res
+//       .status(500)
+//       .json({ error: "there was an error retrieving the airplanes" });
+//   }
+// });
+router.get("/:id", async (req, res) => {
   try {
-    const airplanes = await airplanesDb.get();
+    console.log("req.params.id", req.params.id);
+    const airplanes = await airplanesDb.get(req.params.id);
     res.status(200).json(airplanes);
   } catch (error) {
     res
