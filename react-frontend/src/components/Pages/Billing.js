@@ -2,7 +2,7 @@
 
 import React, {Component} from 'react';
 import {Elements, StripeProvider} from 'react-stripe-elements';
-import CheckoutForm from '../Module Components/billings/BillingForm';
+import BillingForm from '../Module Components/billings/BillingForm';
 import Layout from "../Header component/Layout";
 
 
@@ -35,7 +35,7 @@ class Billing extends Component {
           <div className="example">
             <h1>React Stripe Elements Example</h1>
             <Elements>
-              <CheckoutForm />
+              <BillingForm />
             </Elements>
           </div>
         </StripeProvider>
