@@ -12,7 +12,7 @@ class HOC extends React.Component {
   }
 
   componentDidMount() {
-    console.log("this1", this);
+    // console.log("this1", this);
     // fire
     //   .auth()
     //   .currentUser.getIdToken(/* forceRefresh */ true)
@@ -23,7 +23,6 @@ class HOC extends React.Component {
     //       .post("http://localhost:9000/pilots/signin", body)
     //       .then(response => {
     //         console.log("response.data", response.data);
-
     // this.setState({ token: token });
     //   });
     //   })
