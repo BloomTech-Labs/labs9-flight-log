@@ -55,8 +55,7 @@ class AirplaneForm extends Component {
     this.state = {
       open: false,
       tail: "",
-      files: [],
-      labelWidth: 0
+      files: []
     };
   }
 
@@ -123,13 +122,43 @@ class AirplaneForm extends Component {
               <option value="N" />
             </Select>
             <TextField
-              autoFocus
-              margin="dense"
-              id="name"
+              type="string"
+              name="tailNumber"
               label="Tail Number"
-              value={this.state.tail}
+              value={this.state.name}
               onChange={this.editFormHandler}
               required
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              name="make"
+              label="Airplane Make"
+              value={this.state.name}
+              onChange={this.editFormHandler}
+              required
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              name="model"
+              label="Airplane Model"
+              value={this.state.name}
+              onChange={this.editFormHandler}
+              required
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              name="category"
+              label="Airplane Category"
+              value={this.state.name}
+              onChange={this.editFormHandler}
+              required
+              fullWidth
               variant="outlined"
             />
             <DropzoneArea
@@ -138,7 +167,7 @@ class AirplaneForm extends Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.SubmitAddForm} color="primary">
               Save
             </Button>
           </DialogActions>
@@ -150,7 +179,8 @@ class AirplaneForm extends Component {
 
 export default withStyles(styles)(AirplaneForm);
 
-<TextField
+{
+  /* <TextField
   type="string"
   name="flightName"
   label="Flight Name"
@@ -159,4 +189,5 @@ export default withStyles(styles)(AirplaneForm);
   required
   fullWidth
   variant="outlined"
-/>;
+/>; */
+}
