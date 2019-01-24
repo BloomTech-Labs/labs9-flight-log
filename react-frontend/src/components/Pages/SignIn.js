@@ -34,8 +34,8 @@ class SignIn extends React.Component {
       })
       .catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
         // ...
       });
   };
@@ -75,26 +75,30 @@ class SignIn extends React.Component {
       .auth()
       .signInWithPopup(provider)
       .then(function(result) {
-        console.log(result.credential.idToken);
         if (result) {
-          console.log(this);
-          history.push("/Flights");
-          // router.push("/Settings")
-          console.log("firebase works");
+          console.log("result", result, result.credential.idToken);
+          fire
+            .auth()
+            .currentUser.getIdToken(/* forceRefresh */ true)
+            .then(function(idToken) {
+              const body = idToken;
+              console.log("idToken", idToken);
+              axios
+                .get("http://localhost:9000/pilots/signin", {
+                  params: { token: body }
+                })
+                .then(response => {
+                  console.log(response.data);
+                  localStorage.setItem("user", response.data);
+                });
+              history.push("/HOC");
+              // console.log("idtoken", idToken);
+              // })
+              // .catch(function(error) {
+              //   // Handle error
+              //   console.log(error);
+            });
         }
-        fire
-          .auth()
-          .currentUser.getIdToken(/* forceRefresh */ true)
-          .then(function(idToken) {
-            // Send token to your backend via HTTPS
-            // ...
-            console.log("idtoken", idToken);
-            // this.props.history.push("/settings");
-          })
-          .catch(function(error) {
-            // Handle error
-            console.log(error);
-          });
       })
       .catch(function(error) {
         const errorMessage = error.message;

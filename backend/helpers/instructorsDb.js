@@ -2,7 +2,21 @@ const db = require("../dbConfig");
 const table = "instructors";
 
 module.exports = {
-  get: () => db(table),
+  // get: () => db(table),
+  get: UID => {
+    let query = db("instructors")
+      .join("pilots", "instructors.pilotsUID", "=", "pilots.UID")
+      .select(
+        "instructors.id",
+        "instructors.name",
+        "instructors.licenseNum",
+        "instructors.notes",
+        "instructors.ratings",
+        "instructors.contactInfo"
+      )
+      .where("pilots.UID", UID);
+    return query;
+  },
   insert: instructor => db(table).insert(instructor),
   update: (id, instructor) =>
     db(table)

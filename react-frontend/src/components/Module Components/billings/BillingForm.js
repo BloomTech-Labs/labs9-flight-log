@@ -45,12 +45,13 @@ class BillingForm extends Component {
       purchase: amount
     });
 
-    if (response.ok) console.log("Purchase Complete!")
+    if (response.ok) this.setState({complete:true})
+    console.log("Purchase Complete!")
 
   }
 
   render() {
-    if (this.state.complete) return <h1>Purchase Complete</h1>;
+    if (this.state.complete) return <h1>Purchase Complete!</h1>;
 
     return (
       <div className="checkout">

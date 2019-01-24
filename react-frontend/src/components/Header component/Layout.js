@@ -27,40 +27,44 @@ const styles = theme => ({
     flex: 1,
   },
   button: {
-    marginRight: "15px", 
+    marginRight: "15px",
   },
-  
+
 });
 
 
 function Layout(props) {
-    const { classes } = props;
-    // const Layout = (props) => {
-    return (
-      <React.Fragment>
-        <CssBaseline />
-        <AppBar position="static" color="default" className={classes.appBar}>
-          <Toolbar>
-            <Typography
-              variant="h6"
-              color="inherit"
-              noWrap
-              className={classes.toolbarTitle}
-            >
-              Insert Name/Logo Here
+  const { classes } = props;
+  // const Layout = (props) => {
+  return (
+    <React.Fragment>
+      <CssBaseline />
+      <AppBar position="static" color="default" className={classes.appBar}>
+        <Toolbar>
+          <Typography
+            variant="h6"
+            color="inherit"
+            noWrap
+            className={classes.toolbarTitle}
+          >
+            Insert Name/Logo Here
             </Typography>
-            <Button variant="outlined">Sign Out</Button>
-          </Toolbar>
-        </AppBar>
-        <Grid container spacing={24}>
+          <Button variant="outlined">Sign Out</Button>
+        </Toolbar>
+      </AppBar>
+      <Grid container spacing={16} direction="row" justify="space-between" alignItems="stretch">
+        <Grid item xs={2}>
           <Navigation />
+        </Grid>
+        <Grid item xs={10}>
           {props.children}
         </Grid>
-      </React.Fragment>
-    );
-  }
-  
-  Layout.propTypes = {
-    classes: PropTypes.object.isRequired
-  };
-  export default withStyles(styles)(Layout);
+      </Grid>
+    </React.Fragment>
+  );
+}
+
+Layout.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+export default withStyles(styles)(Layout);

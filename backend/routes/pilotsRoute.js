@@ -5,7 +5,6 @@ const admin = require("../config/admin");
 
 //get route
 router.get("/", async (req, res) => {
-  const token = req.token;
   try {
     const pilots = await pilotsDb.get();
     res.status(200).json(pilots);
@@ -13,9 +12,20 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
   }
 });
+router.get("/signin", decode1, async (req, res) => {
+  console.log("req", req);
+  const UID = req.body.UID;
+  try {
+    const pilots = await pilotsDb.get().where("UID", UID);
+    res.status(200).json(pilots);
+  } catch (error) {
+    res.status(500).json({ error: "there was an error retrieving the pilots" });
+  }
+});
 //middleware
 function decode(req, res, next) {
-  console.log(req.body.token);
+  // console.log("req", req);
+  console.log("req.body", req.body);
   const token = req.body.token;
   admin
     .auth()
@@ -26,6 +36,18 @@ function decode(req, res, next) {
       next();
     });
 }
+function decode1(req, res, next) {
+  console.log("req", req.query.token);
+  const token = req.query.token;
+  admin
+    .auth()
+    .verifyIdToken(token)
+    .then(decodedToken => {
+      req.body.UID = decodedToken.uid;
+      next();
+    });
+}
+//end middleware
 //post route
 router.post("/", decode, async (req, res) => {
   const { firstName, lastName } = req.body;
@@ -46,7 +68,6 @@ router.post("/", decode, async (req, res) => {
   //   return res.status(400).json({ error: "please input lastName" });
   // }
   try {
-    console.log("hello");
     const pilot = await pilotsDb.insert({ firstName, lastName, UID });
     res.status(201).json(pilot);
   } catch (error) {
