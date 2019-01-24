@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Button from '@material-ui/core/Button';
@@ -21,6 +21,7 @@ import Select from '@material-ui/core/Select';
 import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     root: {
@@ -48,6 +49,12 @@ const styles = theme => ({
       menu: {
         width: 200,
       },
+      card: {
+        height: "329px",  
+        maxWidth: 345,
+        // marginBottom: 20,
+        // minWidth: 200,
+      }
   });
   
 
@@ -92,7 +99,8 @@ const styles = theme => ({
     const { classes } = this.props;
     return (
         
-        <div className={classes.root}>
+       <Fragment>
+        <Grid item lg={2} xs={10} sm={6} md={4}>
         <Card className={classes.card}>
             <Typography variant="h6" color="inherit" noWrap>
               Add Flight
@@ -101,6 +109,7 @@ const styles = theme => ({
           <AddIcon />
         </Fab>
         </Card>
+        </Grid>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -280,7 +289,7 @@ const styles = theme => ({
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Fragment>
     );
 }
  }

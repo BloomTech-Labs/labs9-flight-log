@@ -1,8 +1,16 @@
-import Layout from "../Header component/Layout";
 import React, { Component } from "react";
+import Layout from "../Header component/Layout";
+import AircraftView from '../Module Components/aircrafts/AircraftView'
 import axios from "axios";
 // import AircraftC from "../Module Components/aircrafts/AircraftC";
 // import AircraftE from "../Module Components/aircrafts/AircraftE";
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import Slide from '@material-ui/core/Slide';
 import AirplaneForm from '../Module Components/aircrafts/AirplaneForm'
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -13,6 +21,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { CssBaseline } from "@material-ui/core";
+import AricraftView from "../Module Components/aircrafts/AircraftView";
 // import Paper from '@material-ui/core/Paper';
 // const AircraftList = () => (
 //   <Layout>
@@ -41,14 +50,20 @@ const styles = theme => ({
   },
 });
 
+function aircraftView(props) {
+  return <AricraftView/>;
+}
+
 
 class AircraftsList extends Component {
   constructor() {
     super();
     this.state = {
-      aircraftsList: []
+      aircraftsList: [],
     };
   }
+
+
   componentDidMount() {
     axios.get("https://labs9-flight-log.herokuapp.com/airplanes").then(response => {
       console.table(response.data);
@@ -62,26 +77,28 @@ class AircraftsList extends Component {
         <Layout>
           <div>
             <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
-                  {this.state.aircraftsList.map(aircraft => (
-              <Grid item lg={2} sm={1} md={2}>
-                    <Card className={classes.card}>
-                      <CardActionArea>
+            <AirplaneForm />
+              {this.state.aircraftsList.map(aircraft => (
+                <Grid item lg={2} xs={10} sm={6} md={4}>
+                  <Card className={classes.card}>
+                    <CardActionArea>
+
                       <CardMedia
                         className={classes.media}
                         image="insert/img/here"
                         title="Aircraft Img"
-                        />
-                        <CardContent>
+                      />
+                      <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">{aircraft.make}</Typography>
-                        <Typography gutterBottom variant="h5" component="h2">{aircraft.model}</Typography> 
+                        <Typography gutterBottom variant="h5" component="h2">{aircraft.model}</Typography>
                         <Typography gutterBottom variant="h5" component="h2">{" "}
                           {aircraft.tailNumber}</Typography>
-                        </CardContent>
-                      </CardActionArea>
-                    </Card>
-              </Grid>
-                  ))}
-                  <AirplaneForm />
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </Grid>
+              ))}
+              
             </Grid>
           </div>
           {/* <AircraftC /> */}
