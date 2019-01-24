@@ -21,6 +21,7 @@ class Settings extends Component {
       name: ""
     };
   }
+
   signOut = () => {
     fire
       .auth()
@@ -47,6 +48,7 @@ class Settings extends Component {
     // });
     const name = localStorage.getItem("userName");
     this.setState({ name });
+
   }
   render() {
     return (

@@ -1,7 +1,7 @@
 import React from "react";
-import fire from "../Config/fire";
-import firebase from "firebase";
-import axios from "axios";
+// import fire from "../Config/fire";
+// import firebase from "firebase";
+// import axios from "axios";
 
 class HOC extends React.Component {
   constructor(props) {
