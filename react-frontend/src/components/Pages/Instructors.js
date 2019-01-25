@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
 import InstructorEdit from "../Module Components/instructors/InstructorEdit";
+import InstructorDelete from "../Module Components/instructors/InstructorDelete";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -135,7 +136,7 @@ class InstructorsList extends Component {
                           </Typography>
                         </div>
                         <InstructorEdit {...this.props} switcher={this.switcher} instructor={instructor} />
-
+                        <InstructorDelete id={instructor.id} switcher={this.switcher} />
                       </CardContent>
                   </Card>
                 </Grid>
