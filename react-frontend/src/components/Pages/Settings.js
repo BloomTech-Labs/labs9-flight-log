@@ -17,33 +17,43 @@ import fire from "../Config/fire";
 class Settings extends Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      name: ""
+    };
   }
-  signOut= ()=>{
-    fire.auth().signOut().then((result)=>{
-      console.log(result, 'success')
-    }).catch(error=> console.log(error,'failure'))
-  }
-  componentDidMount(){
-    console.log('mounted')
-    fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-      console.log(idToken,'idToken')
-      let headers={"token":idToken}
-      // let data= {
-      //   "firstName":"axiosTest",
-      //   "lastName":"axios"
-      // }
-      axios.post("https://labs9-flight-log.herokuapp.com/pilots", {headers:headers})
-      console.log(idToken)
-    }).catch(function(error) {
-      // Handle error
-      console.log(error)
-    });
+
+  signOut = () => {
+    fire
+      .auth()
+      .signOut()
+      .then(result => {
+        console.log(result, "success");
+      })
+      .catch(error => console.log(error, "failure"));
+  };
+  componentDidMount() {
+    // console.log('mounted')
+    // fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
+    //   console.log(idToken,'idToken')
+    //   let headers={"token":idToken}
+    //   let data= {
+    //     "firstName":"axiosTest",
+    //     "lastName":"axios"
+    //   }
+    //   axios.post("https://labs9-flight-log.herokuapp.com/pilots", {headers:headers})
+    //   console.log(idToken)
+    // }).catch(function(error) {
+    //   // Handle error
+    //   console.log(error)
+    // });
+    const name = localStorage.getItem("userName");
+    this.setState({ name });
+
   }
   render() {
     return (
       <Layout>
-        <p>Hello from settings Next.js!!!!!!!</p>
+        <p>Hello {this.state.name}</p>
         <button onClick={this.signOut}>signOut</button>
       </Layout>
     );

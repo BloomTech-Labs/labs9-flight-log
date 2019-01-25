@@ -13,7 +13,7 @@ import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
-import Grid from '@material-ui/core/Grid';
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   root: {
@@ -42,8 +42,8 @@ const styles = theme => ({
     width: 200
   },
   card: {
-    height: "290px",  
-    maxWidth: 345,
+    height: "290px",
+    maxWidth: 345
     // marginBottom: 20,
     // minWidth: 200,
   }
@@ -55,8 +55,7 @@ class AirplaneForm extends Component {
     this.state = {
       open: false,
       tail: "",
-      files: [],
-      labelWidth: 0
+      files: []
     };
   }
 
@@ -89,15 +88,19 @@ class AirplaneForm extends Component {
     const { classes } = this.props;
     return (
       <Fragment>
-    <Grid item lg={2} xs={10} sm={6} md={4}>
-        <Card className={classes.card} >
-          <Typography variant="h6" color="inherit" noWrap>
-            Add Aircraft
-          </Typography>
-          <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-            <AddIcon />
-          </Fab>
-        </Card>
+        <Grid item lg={2} xs={10} sm={6} md={4}>
+          <Card className={classes.card}>
+            <Typography variant="h6" color="inherit" noWrap>
+              Add Aircraft
+            </Typography>
+            <Fab
+              color="primary"
+              aria-label="Add"
+              onClick={this.handleClickOpen}
+            >
+              <AddIcon />
+            </Fab>
+          </Card>
         </Grid>
         <Dialog
           open={this.state.open}
@@ -119,13 +122,43 @@ class AirplaneForm extends Component {
               <option value="N" />
             </Select>
             <TextField
-              autoFocus
-              margin="dense"
-              id="name"
+              type="string"
+              name="tailNumber"
               label="Tail Number"
-              value={this.state.tail}
+              value={this.state.name}
               onChange={this.editFormHandler}
               required
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              name="make"
+              label="Airplane Make"
+              value={this.state.name}
+              onChange={this.editFormHandler}
+              required
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              name="model"
+              label="Airplane Model"
+              value={this.state.name}
+              onChange={this.editFormHandler}
+              required
+              fullWidth
+              variant="outlined"
+            />
+            <TextField
+              type="string"
+              name="category"
+              label="Airplane Category"
+              value={this.state.name}
+              onChange={this.editFormHandler}
+              required
+              fullWidth
               variant="outlined"
             />
             <DropzoneArea
@@ -134,7 +167,7 @@ class AirplaneForm extends Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleClose} color="primary">
+            <Button onClick={this.SubmitAddForm} color="primary">
               Save
             </Button>
           </DialogActions>
@@ -145,3 +178,16 @@ class AirplaneForm extends Component {
 }
 
 export default withStyles(styles)(AirplaneForm);
+
+{
+  /* <TextField
+  type="string"
+  name="flightName"
+  label="Flight Name"
+  value={this.state.name}
+  onChange={this.editFormHandler}
+  required
+  fullWidth
+  variant="outlined"
+/>; */
+}
