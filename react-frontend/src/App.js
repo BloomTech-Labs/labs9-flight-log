@@ -34,6 +34,7 @@ class App extends Component {
       .currentUser.getIdToken()
       .then(function(idToken) {
         const body = idToken;
+        console.log(body)
         axios
           .post("https://labs9-flight-log.herokuapp.com/pilots",body)
           .then(response => {
