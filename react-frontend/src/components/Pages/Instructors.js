@@ -9,6 +9,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
+import InstructorEdit from "../Module Components/instructors/InstructorEdit";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -51,10 +52,15 @@ class InstructorsList extends Component {
         this.setState({ instructorsList: response.data });
       });
   }
+
   switcher = () => {
     console.log("fired");
     this.componentDidMount();
   };
+  
+  handleEditClick = () => {
+    console.log("Open Edit Modal");
+  }
 
   render() {
     const { classes } = this.props;
@@ -79,55 +85,58 @@ class InstructorsList extends Component {
                 <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
                     <CardContent className={classes.content}>
-                      <Typography className={classes.contentLine} variant="h4">
-                        {instructor.name}
-                      </Typography>
-                      <Typography
-                        className={classes.contentLine}
-                        gutterBottom
-                        variant="h6"
-                      >
-                        LicNo: {instructor.licenseNum}
-                      </Typography>
-                      <Typography
-                        className={classes.contentLine}
-                        gutterBottom
-                        variant="h5"
-                      >
-                        {" "}
-                        {instructor.contactInfo}
-                      </Typography>
-                      <div>
+                      {instructor.id}
+                        <Typography className={classes.contentLine} variant="h4">
+                          {instructor.name}
+                        </Typography>
                         <Typography
                           className={classes.contentLine}
+                          gutterBottom
                           variant="h6"
                         >
-                          Notes:
+                          LicNo: {instructor.licenseNum}
                         </Typography>
                         <Typography
                           className={classes.contentLine}
                           gutterBottom
                           variant="h5"
                         >
-                          {instructor.notes}
-                        </Typography>
-                      </div>
-                      <div>
-                        <Typography
-                          className={classes.contentLine}
-                          variant="h6"
-                        >
-                          Ratings:
-                        </Typography>
-                        <Typography
-                          className={classes.contentLine}
-                          variant="h5"
-                        >
                           {" "}
-                          {instructor.ratings}
+                          {instructor.contactInfo}
                         </Typography>
-                      </div>
-                    </CardContent>
+                        <div>
+                          <Typography
+                            className={classes.contentLine}
+                            variant="h6"
+                          >
+                            Notes:
+                        </Typography>
+                          <Typography
+                            className={classes.contentLine}
+                            gutterBottom
+                            variant="h5"
+                          >
+                            {instructor.notes}
+                          </Typography>
+                        </div>
+                        <div>
+                          <Typography
+                            className={classes.contentLine}
+                            variant="h6"
+                          >
+                            Ratings:
+                        </Typography>
+                          <Typography
+                            className={classes.contentLine}
+                            variant="h5"
+                          >
+                            {" "}
+                            {instructor.ratings}
+                          </Typography>
+                        </div>
+                        <InstructorEdit {...this.props} switcher={this.switcher} instructor={instructor} />
+
+                      </CardContent>
                   </Card>
                 </Grid>
               ))}
