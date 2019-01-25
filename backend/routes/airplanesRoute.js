@@ -24,6 +24,17 @@ router.get("/:UID", async (req, res) => {
       .json({ error: "there was an error retrieving the airplanes" });
   }
 });
+router.get("/:UID/:id", async (req, res) => {
+  try {
+    console.log("req.params", req.params);
+    const airplane = await airplanesDb.get(req.params.UID, req.params.id);
+    res.status(200).json(airplane);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "there was an error retrieving the airplane" });
+  }
+});
 //post route
 router.post("/", async (req, res) => {
   console.log("req.body", req.body);
