@@ -1,46 +1,45 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
-import { withStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import AddIcon from '@material-ui/icons/Add';
-import Fab from '@material-ui/core/Fab';
+import React from "react";
+import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
+import { withStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import AddIcon from "@material-ui/icons/Add";
+import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
-import axios from 'axios';
+import axios from "axios";
 // eslint-disable-next-line
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const styles = theme => ({
   root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120,
+    minWidth: 120
   },
   selectEmpty: {
-    marginTop: theme.spacing.unit * 2,
+    marginTop: theme.spacing.unit * 2
   },
   container: {
-    display: 'flex',
-    flexWrap: 'wrap',
+    display: "flex",
+    flexWrap: "wrap"
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit
   },
   dense: {
-    marginTop: 16,
+    marginTop: 16
   },
   menu: {
-    width: 200,
-  },
+    width: 200
+  }
 });
 
 const URL = "https://labs9-flight-log.herokuapp.com";
@@ -49,7 +48,6 @@ const UID = localStorage.getItem("userID");
 class InstructorForm extends React.Component {
   constructor(props) {
     super(props);
-
 
     this.state = {
       open: false,
@@ -62,13 +60,12 @@ class InstructorForm extends React.Component {
     };
   }
 
-
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
-  }
+  };
 
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
@@ -83,7 +80,7 @@ class InstructorForm extends React.Component {
   };
 
   //submit add form
-  submitAddForm = (e) => {
+  submitAddForm = e => {
     e.preventDefault();
     const newInstructor = {
       name: this.state.instructorName,
@@ -92,33 +89,28 @@ class InstructorForm extends React.Component {
       ratings: this.state.instructorRatings,
       contactInfo: this.state.instructorContactInformation,
       pilotsUID: UID
-    }
+    };
     console.log("added");
     axios
       .post(`${URL}/instructors`, newInstructor)
       .then(() => {
         console.log(this.props);
-        this.setState(
-          {
-            open: false,
-            instructorName: "",
-            instructorLicenseNumber: "",
-            instructorContactInformation: "",
-            instructorNotes: "",
-            instructorRatings: ""
-          }
-        )
+        this.setState({
+          open: false,
+          instructorName: "",
+          instructorLicenseNumber: "",
+          instructorContactInformation: "",
+          instructorNotes: "",
+          instructorRatings: ""
+        });
         this.props.history.push(`/instructors`);
-      }
-      )
+      })
       .catch(error => console.log(error));
   };
 
   render() {
-
     const { classes } = this.props;
     return (
-
       <div className={classes.root}>
         <Typography variant="h6" color="inherit" noWrap>
           Add Instructor
@@ -131,8 +123,10 @@ class InstructorForm extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Edit / Create Instructor</DialogTitle>
-          <DialogContent >
+          <DialogTitle id="form-dialog-title">
+            Edit / Create Instructor
+          </DialogTitle>
+          <DialogContent>
             <TextField
               type="string"
               name="instructorName"
@@ -187,23 +181,20 @@ class InstructorForm extends React.Component {
               variant="outlined"
             />
 
-
             <DialogActions>
               <Button onClick={this.submitAddForm} color="primary">
                 Save
               </Button>
             </DialogActions>
-          </DialogContent >
-
+          </DialogContent>
         </Dialog>
       </div>
     );
   }
 }
 
-
 InstructorForm.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(InstructorForm);

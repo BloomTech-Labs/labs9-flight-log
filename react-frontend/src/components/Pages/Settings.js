@@ -48,7 +48,7 @@ class Settings extends Component {
     // });
     const name = localStorage.getItem("userName");
     this.setState({ name });
-
+    console.log("settings");
   }
   render() {
     return (

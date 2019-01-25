@@ -11,15 +11,15 @@ import axios from "axios";
 // import DialogContentText from '@material-ui/core/DialogContentText';
 // import DialogTitle from '@material-ui/core/DialogTitle';
 // import Slide from '@material-ui/core/Slide';
-import AirplaneForm from '../Module Components/aircrafts/AirplaneForm'
-import Grid from '@material-ui/core/Grid';
-import { withStyles } from '@material-ui/core/styles';
-import PropTypes from 'prop-types';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardMedia from '@material-ui/core/CardMedia';
-import CardContent from '@material-ui/core/CardContent';
-import Typography from '@material-ui/core/Typography';
+import AirplaneForm from "../Module Components/aircrafts/AirplaneForm";
+import Grid from "@material-ui/core/Grid";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+import Card from "@material-ui/core/Card";
+import CardActionArea from "@material-ui/core/CardActionArea";
+import CardMedia from "@material-ui/core/CardMedia";
+import CardContent from "@material-ui/core/CardContent";
+import Typography from "@material-ui/core/Typography";
 // import { CssBaseline } from "@material-ui/core";
 // import AircraftView from "../Module Components/aircrafts/AircraftView";
 // import Paper from '@material-ui/core/Paper';
@@ -35,40 +35,42 @@ import Typography from '@material-ui/core/Typography';
 // get all aircrafts referenced to user by id/name, create, update, delete
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   control: {
-    padding: theme.spacing.unit * 2,
+    padding: theme.spacing.unit * 2
   },
   card: {
-    maxWidth: 345,
+    maxWidth: 345
     // marginBottom: 20,
     // minWidth: 200,
   },
   media: {
-    height: 140,
-  },
+    height: 140
+  }
 });
 
 // function aircraftView(props) {
 //   return <AircraftView/>;
 // }
 
-
 class AircraftsList extends Component {
   constructor() {
     super();
     this.state = {
-      aircraftsList: [],
+      aircraftsList: []
     };
   }
 
-
   componentDidMount() {
-    axios.get("https://labs9-flight-log.herokuapp.com/airplanes").then(response => {
-      console.table(response.data);
-      this.setState({ aircraftsList: response.data });
-    });
+    console.log("aircrafts");
+    const UID = localStorage.getItem("userID");
+    axios
+      .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
+      .then(response => {
+        console.table(response.data);
+        this.setState({ aircraftsList: response.data });
+      });
   }
   render() {
     const { classes } = this.props;
@@ -76,29 +78,40 @@ class AircraftsList extends Component {
       <React.Fragment>
         <Layout>
           <div>
-            <Grid container className={classes.root} justify="flex-start" alignItems="flex-start" direction="row" spacing={16}>
-            <AirplaneForm />
+            <Grid
+              container
+              className={classes.root}
+              justify="flex-start"
+              alignItems="flex-start"
+              direction="row"
+              spacing={16}
+            >
+              <AirplaneForm {...this.props} />
               {this.state.aircraftsList.map(aircraft => (
                 <Grid item lg={2} xs={10} sm={6} md={4}>
                   <Card className={classes.card}>
                     <CardActionArea>
-
                       <CardMedia
                         className={classes.media}
                         image="insert/img/here"
                         title="Aircraft Img"
                       />
                       <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">{aircraft.make}</Typography>
-                        <Typography gutterBottom variant="h5" component="h2">{aircraft.model}</Typography>
-                        <Typography gutterBottom variant="h5" component="h2">{" "}
-                          {aircraft.tailNumber}</Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {aircraft.make}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {aircraft.model}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {" "}
+                          {aircraft.tailNumber}
+                        </Typography>
                       </CardContent>
                     </CardActionArea>
                   </Card>
                 </Grid>
               ))}
-              
             </Grid>
           </div>
           {/* <AircraftC /> */}
@@ -110,7 +123,7 @@ class AircraftsList extends Component {
 }
 
 AircraftsList.propTypes = {
-  classes: PropTypes.object.isRequired,
+  classes: PropTypes.object.isRequired
 };
 
 export default withStyles(styles)(AircraftsList);

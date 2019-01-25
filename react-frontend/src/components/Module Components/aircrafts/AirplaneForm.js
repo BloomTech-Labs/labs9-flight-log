@@ -14,6 +14,7 @@ import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
 
 const styles = theme => ({
   root: {
@@ -54,8 +55,12 @@ class AirplaneForm extends Component {
     super(props);
     this.state = {
       open: false,
-      tail: "",
-      files: []
+      files: [],
+      tailNumber: "",
+      make: "",
+      model: "",
+      category: "",
+      pilotsUID: ""
     };
   }
 
@@ -83,6 +88,35 @@ class AirplaneForm extends Component {
       files: files
     });
   }
+
+  submitAddForm = () => {
+    console.log("fired");
+    const UID = localStorage.getItem("userID");
+    console.log("uid", UID);
+    const newAirplane = {
+      make: this.state.make,
+      model: this.state.model,
+      tailNumber: this.state.tailNumber,
+      category: this.state.category,
+      pilotsUID: UID
+    };
+    axios
+      .post("http://localhost:9000/airplanes", newAirplane)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          open: false,
+          files: [],
+          tailNumber: "",
+          make: "",
+          model: "",
+          category: "",
+          pilotsUID: ""
+        });
+        console.log("this.props", this.props);
+        this.props.history.push("/aircrafts");
+      });
+  };
 
   render() {
     const { classes } = this.props;
@@ -167,7 +201,7 @@ class AirplaneForm extends Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.SubmitAddForm} color="primary">
+            <Button onClick={this.submitAddForm} color="primary">
               Save
             </Button>
           </DialogActions>
