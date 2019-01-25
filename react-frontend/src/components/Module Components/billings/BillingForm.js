@@ -5,13 +5,15 @@ import axios from 'axios';
 class BillingForm extends Component {
   constructor(props) {
     super(props);
-    this.state = {complete: false, value:''}
+    
+    this.state = {complete: false, value:""}
     this.submit = this.submit.bind(this)
 
   }
 
   setAmount = (ev) => {
-    console.log(ev.target.value);
+
+    console.log('setAmount', ev.target.value);
     this.setState({value: ev.target.value})
   }
 
@@ -35,14 +37,15 @@ class BillingForm extends Component {
       .catch(error => console.log(error)) */
       
     let {token} = await this.props.stripe.createToken({name: "Name"});
-    let amount = this.state.value
+    let amount = await this.state.value
 
     let response = await fetch("https://labs9-flight-log.herokuapp.com/charge", {
       method: "POST",
-      headers: {"Content-Type": "text/plain"},
+      headers: {"Content-Type": "application/json"},
       //application/json
-      body: token.id,
-      purchase: amount
+      //text/plain
+      body: JSON.stringify({token:token.id, amount})
+      //amount: amount
     });
 
     if (response.ok) this.setState({complete:true})
@@ -54,7 +57,8 @@ class BillingForm extends Component {
     if (this.state.complete) return <h1>Purchase Complete!</h1>;
 
     return (
-      <div className="checkout">
+      <div className="checkout">     
+        <CardElement />
         <p>Please select your preferred subscription:</p>
         <div onChange={this.setAmount}>
           <input type="radio" id="year" 
@@ -65,8 +69,6 @@ class BillingForm extends Component {
                   name="sub" value="999"/>
           <label htmlFor="999">$9.99 for 1 month</label>        
         </div>
-        
-        <CardElement />
         <button onClick={this.submit}>Send</button>
       </div>
     );
