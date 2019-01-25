@@ -84,7 +84,7 @@ class SignIn extends React.Component {
               const body = idToken;
               // console.log("idToken", idToken);
               axios
-                .get("http://localhost:9000/pilots/signin", {
+                .post("https://labs9-flight-log.herokuapp.com", {
                   params: { token: body }
                 })
                 .then(response => {

@@ -50,9 +50,16 @@ const styles = theme => ({
 });
 
 
-function Landing(props) {
-  const { classes } = props;
+class Landing extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      isSignIn:false
+    }
+  }
 
+render(){
+  const {classes}=this.props;
   return (
     <Fragment>
       <CssBaseline />
@@ -85,6 +92,8 @@ function Landing(props) {
       {/* End footer */}
     </Fragment>
   );
+}
+  
 }
 
 Landing.propTypes = {

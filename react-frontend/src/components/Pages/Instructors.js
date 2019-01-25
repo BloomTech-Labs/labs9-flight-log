@@ -52,6 +52,7 @@ class InstructorsList extends Component {
         this.setState({ instructorsList: response.data });
       }
     );
+    console.log(this.state);
   }
 
 

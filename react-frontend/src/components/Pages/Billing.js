@@ -52,7 +52,7 @@ class Billing extends Component {
         <div className="example">
           <h1>Billing</h1>
           <Elements>
-            <CheckoutForm />
+            <BillingForm />
           </Elements>
         </div>
       </StripeProvider>
