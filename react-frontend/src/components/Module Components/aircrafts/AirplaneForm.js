@@ -213,15 +213,15 @@ class AirplaneForm extends Component {
 
 export default withStyles(styles)(AirplaneForm);
 
-{
-  /* <TextField
-  type="string"
-  name="flightName"
-  label="Flight Name"
-  value={this.state.name}
-  onChange={this.editFormHandler}
-  required
-  fullWidth
-  variant="outlined"
-/>; */
-}
+// {
+//   /* <TextField
+//   type="string"
+//   name="flightName"
+//   label="Flight Name"
+//   value={this.state.name}
+//   onChange={this.editFormHandler}
+//   required
+//   fullWidth
+//   variant="outlined"
+// />; */
+// }
