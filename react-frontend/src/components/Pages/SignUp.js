@@ -82,7 +82,7 @@ class SignUp extends React.Component {
             .then(function(idToken) {
               console.log(idToken, name);
               const body = { token: idToken, firstName: name };
-              axios.post("http://localhost:9000/pilots", body);
+              axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
               history.push("/Flights");
             });
         }
