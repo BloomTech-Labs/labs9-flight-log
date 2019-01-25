@@ -93,8 +93,8 @@ class SignIn extends React.Component {
                   const name = response.data.PilotName;
                   localStorage.setItem("userID", uid);
                   localStorage.setItem("userName", name);
+                  history.push("/Settings");
                 });
-              history.push("/Settings");
               // console.log("idtoken", idToken);
               // })
               // .catch(function(error) {

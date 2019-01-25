@@ -101,7 +101,7 @@ class AirplaneForm extends Component {
       pilotsUID: UID
     };
     axios
-      .post("http://localhost:9000/airplanes", newAirplane)
+      .post("https://labs9-flight-log.herokuapp.com/airplanes", newAirplane)
       .then(response => {
         console.log(response);
         this.setState({
@@ -114,12 +114,15 @@ class AirplaneForm extends Component {
           pilotsUID: ""
         });
         console.log("this.props", this.props);
-        this.props.history.push("/aircrafts");
+        this.props.switcher();
+        // this.props.history.push("/aircrafts");
+        // window.location.reload()
       });
   };
 
   render() {
     const { classes } = this.props;
+
     return (
       <Fragment>
         <Grid item lg={2} xs={10} sm={6} md={4}>

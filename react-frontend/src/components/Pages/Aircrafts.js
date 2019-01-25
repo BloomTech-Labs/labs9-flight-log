@@ -72,8 +72,13 @@ class AircraftsList extends Component {
         this.setState({ aircraftsList: response.data });
       });
   }
+  switcher = () => {
+    console.log("fired");
+    this.componentDidMount();
+  };
   render() {
     const { classes } = this.props;
+    console.log("data", this.state.aircraftsList);
     return (
       <React.Fragment>
         <Layout>
@@ -86,7 +91,7 @@ class AircraftsList extends Component {
               direction="row"
               spacing={16}
             >
-              <AirplaneForm {...this.props} />
+              <AirplaneForm {...this.props} switcher={this.switcher} />
               {this.state.aircraftsList.map(aircraft => (
                 <Grid item lg={2} xs={10} sm={6} md={4}>
                   <Card className={classes.card}>
@@ -98,14 +103,22 @@ class AircraftsList extends Component {
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
+                          {" "}
+                          tail_number:
+                          {aircraft.tailNumber}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          make:
                           {aircraft.make}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h2">
+                          model:
                           {aircraft.model}
                         </Typography>
                         <Typography gutterBottom variant="h5" component="h2">
                           {" "}
-                          {aircraft.tailNumber}
+                          category:
+                          {aircraft.category}
                         </Typography>
                       </CardContent>
                     </CardActionArea>

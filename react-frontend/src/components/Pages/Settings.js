@@ -47,10 +47,12 @@ class Settings extends Component {
     //   console.log(error)
     // });
     const name = localStorage.getItem("userName");
+    console.log("name", name);
     this.setState({ name });
     console.log("settings");
   }
   render() {
+    console.log(this.state);
     return (
       <Layout>
         <p>Hello {this.state.name}</p>

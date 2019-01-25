@@ -24,6 +24,16 @@ router.get("/:UID", async (req, res) => {
       .json({ error: "there was an error retrieving the instructors" });
   }
 });
+router.get("/:UID/:id", async (req, res) => {
+  try {
+    const instructor = await instructorsDb.get(req.params.UID, req.params.id);
+    res.status(200).json(instructor);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "there was an error retrieving the instructor" });
+  }
+});
 //post route
 router.post("/", async (req, res) => {
   const { name, licenseNum, contactInfo, ratings, notes } = req.body;
