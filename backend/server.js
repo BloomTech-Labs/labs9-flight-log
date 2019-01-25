@@ -34,7 +34,7 @@ server.use("/admins", admins);
 server.use("/pilots", pilots);
 server.use("/airplanes", airplanes);
 server.use("/instructors", instructors);
-server.use("/flights", flights);
+server.use("/flights", flights); 
 
 //BILLING
 server.post("/charge", async (req, res) => {
