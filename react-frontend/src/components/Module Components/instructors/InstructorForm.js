@@ -51,16 +51,15 @@ class InstructorForm extends React.Component {
 
     this.state = {
       open: false,
-      instructorName: "",
-      instructorLicenseNumber: "",
-      instructorContactInformation: "",
-      instructorNotes: "",
-      instructorRatings: ""
+      name: "",
+      licenseNum: "",
+      contactInfo: "",
+      notes: "",
+      ratings: ""
     };
   }
 
   editFormHandler = e => {
-    console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -81,27 +80,25 @@ class InstructorForm extends React.Component {
   //submit add form
   submitAddForm = () => {
     const newInstructor = {
-      name: this.state.instructorName,
-      licenseNum: this.state.instructorLicenseNumber,
-      notes: this.state.instructorNotes,
-      ratings: this.state.instructorRatings,
-      contactInfo: this.state.instructorContactInformation,
+      name: this.state.name,
+      licenseNum: this.state.licenseNum,
+      notes: this.state.notes,
+      ratings: this.state.ratings,
+      contactInfo: this.state.contactInfo,
       pilotsUID: UID
     };
     console.log("added");
     axios
       .post(`${URL}/instructors`, newInstructor)
       .then(() => {
-        console.log(this.props);
         this.setState({
           open: false,
-          instructorName: "",
-          instructorLicenseNumber: "",
-          instructorContactInformation: "",
-          instructorNotes: "",
-          instructorRatings: ""
+          name: "",
+          licenseNum: "",
+          contactInfo: "",
+          notes: "",
+          ratings: ""
         });
-        console.log("this.props", this.props);
         this.props.switcher();
       })
       .catch(error => console.log(error));
@@ -128,9 +125,9 @@ class InstructorForm extends React.Component {
           <DialogContent>
             <TextField
               type="string"
-              name="instructorName"
+              name="name"
               label="Name"
-              value={this.state.instructorName}
+              value={this.state.name}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -139,9 +136,9 @@ class InstructorForm extends React.Component {
             <TextField
               type="string"
               id="licenseNum"
-              name="instructorLicenseNumber"
+              name="licenseNum"
               label="License Number"
-              value={this.state.instructorLicenseNumber}
+              value={this.state.licenseNum}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -150,9 +147,9 @@ class InstructorForm extends React.Component {
             <TextField
               type="text"
               id="notes"
-              name="instructorNotes"
+              name="notes"
               label="Notes"
-              value={this.state.instructorNotes}
+              value={this.state.notes}
               onChange={this.editFormHandler}
               multiline
               rows="4"
@@ -162,9 +159,9 @@ class InstructorForm extends React.Component {
             <TextField
               type="string"
               id="contactInfo"
-              name="instructorContactInformation"
+              name="contactInfo"
               label="Contact"
-              value={this.state.instructorContactInformation}
+              value={this.state.contactInfo}
               onChange={this.editFormHandler}
               fullWidth
               variant="outlined"
@@ -172,9 +169,9 @@ class InstructorForm extends React.Component {
             <TextField
               type="string"
               id="ratings"
-              name="instructorRatings"
+              name="ratings"
               label="Ratings"
-              value={this.state.instructorRatings}
+              value={this.state.ratings}
               onChange={this.editFormHandler}
               fullWidth
               variant="outlined"
