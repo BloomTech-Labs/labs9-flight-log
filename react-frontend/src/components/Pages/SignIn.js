@@ -82,9 +82,9 @@ class SignIn extends React.Component {
             .currentUser.getIdToken(/* forceRefresh */ true)
             .then(function(idToken) {
               const body = idToken;
-              // console.log("idToken", idToken);
+              console.log("idToken", idToken);
               axios
-                .get("http://localhost:9000/pilots/signin", {
+                .get("https://labs9-flight-log.herokuapp.com/pilots/signin", {
                   params: { token: body }
                 })
                 .then(response => {
