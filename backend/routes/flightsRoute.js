@@ -29,7 +29,7 @@ router.post("/", async (req, res) => {
   if (!req.body.flightName) {
     return res.status(400).json({ error: "please input flight name" });
   }
-  if (!req.body.pilotID) {
+  if (!req.body.pilotsUID) {
     return res.status(400).json({ error: "please input pilot id" });
   }
   try {

@@ -51,6 +51,10 @@ class InstructorsList extends Component {
         this.setState({ instructorsList: response.data });
       });
   }
+  switcher = () => {
+    console.log("fired");
+    this.componentDidMount();
+  };
 
   render() {
     const { classes } = this.props;
@@ -68,7 +72,7 @@ class InstructorsList extends Component {
               spacing={16}
             >
               <Grid item lg={4} md={6} sm={12}>
-                <InstructorForm {...this.props} />
+                <InstructorForm {...this.props} switcher={this.switcher} />
               </Grid>
 
               {this.state.instructorsList.map(instructor => (

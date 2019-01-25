@@ -55,8 +55,7 @@ class InstructorForm extends React.Component {
       instructorLicenseNumber: "",
       instructorContactInformation: "",
       instructorNotes: "",
-      instructorRatings: "",
-      labelWidth: 0
+      instructorRatings: ""
     };
   }
 
@@ -80,8 +79,7 @@ class InstructorForm extends React.Component {
   };
 
   //submit add form
-  submitAddForm = e => {
-    e.preventDefault();
+  submitAddForm = () => {
     const newInstructor = {
       name: this.state.instructorName,
       licenseNum: this.state.instructorLicenseNumber,
@@ -103,7 +101,8 @@ class InstructorForm extends React.Component {
           instructorNotes: "",
           instructorRatings: ""
         });
-        this.props.history.push(`/instructors`);
+        console.log("this.props", this.props);
+        this.props.switcher();
       })
       .catch(error => console.log(error));
   };
