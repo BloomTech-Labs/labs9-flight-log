@@ -10,14 +10,14 @@ exports.seed = function(knex, Promise) {
           firstName: "Helen",
           lastName: "Fries",
           isPaid: false,
-          UID: "504-07-6510"
+          UID: "1"
         },
         {
           id: 2,
           firstName: "Elfrida",
           lastName: "Dory",
           isPaid: true,
-          UID: "383-49-6172"
+          UID: "2"
         },
         {
           id: 3,

@@ -34,8 +34,8 @@ class SignIn extends React.Component {
       })
       .catch(function(error) {
         // Handle Errors here.
-        var errorCode = error.code;
-        var errorMessage = error.message;
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
         // ...
       });
   };
@@ -68,7 +68,7 @@ class SignIn extends React.Component {
       .catch(() => console.log("you are death, start over"));
   }
   signInWithGoogle = () => {
-    console.log("this in google modal", this);
+    // console.log("this in google modal", this);
     const provider = new firebase.auth.GoogleAuthProvider();
     const history = this.props.history;
     fire
@@ -76,22 +76,25 @@ class SignIn extends React.Component {
       .signInWithPopup(provider)
       .then(function(result) {
         if (result) {
-          console.log("result", result, result.credential.idToken);
+          // console.log("result", result, result.credential.idToken);
           fire
             .auth()
             .currentUser.getIdToken(/* forceRefresh */ true)
             .then(function(idToken) {
               const body = idToken;
-              console.log("idToken", idToken);
+              // console.log("idToken", idToken);
               axios
                 .get("http://localhost:9000/pilots/signin", {
                   params: { token: body }
                 })
                 .then(response => {
-                  console.log(response.data);
-                  localStorage.setItem("user", response.data);
+                  console.log("response.data", response.data);
+                  const uid = response.data.PilotUID;
+                  const name = response.data.PilotName;
+                  localStorage.setItem("userID", uid);
+                  localStorage.setItem("userName", name);
                 });
-              history.push("/HOC");
+              history.push("/Settings");
               // console.log("idtoken", idToken);
               // })
               // .catch(function(error) {

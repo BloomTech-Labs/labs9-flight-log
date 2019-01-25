@@ -29,9 +29,9 @@ module.exports = {
   //   return query;
   // },
 
-  get: id => {
+  get: UID => {
     let query = db("airplanes")
-      .join("pilots", "airplanes.pilotsID", "=", "pilots.id")
+      .join("pilots", "airplanes.pilotsUID", "=", "pilots.UID")
       .select(
         "airplanes.id",
         "airplanes.tailNumber",
@@ -39,7 +39,7 @@ module.exports = {
         "airplanes.model",
         "airplanes.category"
       )
-      .where("pilots.id", id);
+      .where("pilots.UID", UID);
     return query;
   },
 

@@ -7,9 +7,9 @@ exports.up = function(knex, Promise) {
     airplanes.string("model");
     airplanes.string("category"); //sel or mel
     airplanes
-      .integer("pilotsID")
-      .unsigned()
-      .references("pilots.id");
+      .string("pilotsUID")
+      .notNullable()
+      .references("pilots.UID");
   });
 };
 

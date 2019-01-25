@@ -26,7 +26,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 0.6,
           airPlanesID: 1,
-          pilotsID: 3
+          pilotsUID: "583-78-0825"
         },
         {
           id: 2,
@@ -49,7 +49,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 3.1,
           airPlanesID: 1,
-          pilotsID: 3
+          pilotsUID: "583-78-0825"
         },
         {
           id: 3,
@@ -72,7 +72,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 2.7,
           airPlanesID: 1,
-          pilotsID: 3
+          pilotsUID: "583-78-0825"
         },
         {
           id: 4,
@@ -95,7 +95,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 2.7,
           airPlanesID: 1,
-          pilotsID: 3
+          pilotsUID: "583-78-0825"
         },
         {
           id: 5,
@@ -118,7 +118,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 0.2,
           airPlanesID: 1,
-          pilotsID: 3
+          pilotsUID: "583-78-0825"
         },
         {
           id: 6,
@@ -141,7 +141,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 4.8,
           airPlanesID: 1,
-          pilotsID: 4
+          pilotsUID: "583-78-0825"
         },
         {
           id: 7,
@@ -164,7 +164,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 1.4,
           airPlanesID: 1,
-          pilotsID: 4
+          pilotsUID: "583-78-0825"
         },
         {
           id: 8,
@@ -187,7 +187,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 3.0,
           airPlanesID: 1,
-          pilotsID: 4
+          pilotsUID: "583-78-0825"
         },
         {
           id: 9,
@@ -210,7 +210,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 2.7,
           airPlanesID: 1,
-          pilotsID: 4
+          pilotsUID: "583-78-0825"
         },
         {
           id: 10,
@@ -233,7 +233,7 @@ exports.seed = function(knex, Promise) {
           dualReceived: 0,
           pilotInCommand: 2.8,
           airPlanesID: 1,
-          pilotsID: 4
+          pilotsUID: "583-78-0825"
         }
       ]);
     });

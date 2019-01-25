@@ -13,11 +13,16 @@ router.get("/", async (req, res) => {
   }
 });
 router.get("/signin", decode1, async (req, res) => {
-  console.log("req", req);
+  // console.log("req", req);
   const UID = req.body.UID;
   try {
     const pilots = await pilotsDb.get().where("UID", UID);
-    res.status(200).json(pilots);
+    // console.log(pilots[0]);
+    // console.log("pilots uid", pilots[0].UID);
+    // console.log("pilots name", pilots[0].firstName);
+    const PilotUID = pilots[0].UID;
+    const PilotName = pilots[0].firstName;
+    res.status(200).json({ PilotUID, PilotName });
   } catch (error) {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
   }
@@ -37,7 +42,7 @@ function decode(req, res, next) {
     });
 }
 function decode1(req, res, next) {
-  console.log("req", req.query.token);
+  // console.log("req", req.query.token);
   const token = req.query.token;
   admin
     .auth()

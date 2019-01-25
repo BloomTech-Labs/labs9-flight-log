@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Layout from "../Header component/Layout";
-import AircraftView from '../Module Components/aircrafts/AircraftView'
+// import AircraftView from '../Module Components/aircrafts/AircraftView'
 import axios from "axios";
 // import AircraftC from "../Module Components/aircrafts/AircraftC";
 // import AircraftE from "../Module Components/aircrafts/AircraftE";
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Slide from '@material-ui/core/Slide';
+// import Button from '@material-ui/core/Button';
+// import Dialog from '@material-ui/core/Dialog';
+// import DialogActions from '@material-ui/core/DialogActions';
+// import DialogContent from '@material-ui/core/DialogContent';
+// import DialogContentText from '@material-ui/core/DialogContentText';
+// import DialogTitle from '@material-ui/core/DialogTitle';
+// import Slide from '@material-ui/core/Slide';
 import AirplaneForm from '../Module Components/aircrafts/AirplaneForm'
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core/styles';
@@ -20,8 +20,8 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { CssBaseline } from "@material-ui/core";
-import AricraftView from "../Module Components/aircrafts/AircraftView";
+// import { CssBaseline } from "@material-ui/core";
+// import AircraftView from "../Module Components/aircrafts/AircraftView";
 // import Paper from '@material-ui/core/Paper';
 // const AircraftList = () => (
 //   <Layout>
@@ -50,9 +50,9 @@ const styles = theme => ({
   },
 });
 
-function aircraftView(props) {
-  return <AricraftView/>;
-}
+// function aircraftView(props) {
+//   return <AircraftView/>;
+// }
 
 
 class AircraftsList extends Component {

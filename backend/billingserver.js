@@ -16,13 +16,16 @@ app.get("/", (req, res) => {
 });
 
 app.post("/charge", async (req, res) => {
+
   console.log('@@@BILLING SERVER@@@', req.body.token)
   console.log('appPost-req.amount', req.body.amount)
   if(req.body.amount === "1999") {
+    
     try {
       let {status} = await stripe.charges.create({
         amount: 1999,
         currency: "usd",
+
         description: "yearly purchase",
         source: req.body.token
       });
@@ -36,6 +39,7 @@ app.post("/charge", async (req, res) => {
       let {status} = await stripe.charges.create({
         amount: 999,
         currency: "usd",
+
         description: "monthly purchase",
         source: req.body.token
       });

@@ -5,12 +5,14 @@ import axios from 'axios';
 class BillingForm extends Component {
   constructor(props) {
     super(props);
+    
     this.state = {complete: false, value:""}
     this.submit = this.submit.bind(this)
 
   }
 
   setAmount = (ev) => {
+
     console.log('setAmount', ev.target.value);
     this.setState({value: ev.target.value})
   }
