@@ -1,5 +1,5 @@
 import Layout from "../Header component/Layout";
-import FlightC from "../Module Components/flights/FlightC";
+import FlightForm from "../Module Components/flights/FlightsForm";
 import axios from "axios";
 import React, { Component } from "react";
 // import classNames from 'classnames';
