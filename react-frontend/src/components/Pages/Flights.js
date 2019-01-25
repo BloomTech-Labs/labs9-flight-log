@@ -1,5 +1,5 @@
 import Layout from "../Header component/Layout";
-import FlightForm from "../Module Components/flights/FlightsForm";
+import FlightC from "../Module Components/flights/FlightC";
 import axios from "axios";
 import React, { Component } from "react";
 // import classNames from 'classnames';
@@ -67,6 +67,7 @@ class Flights extends Component {
               {/* <Typography component="h1" variant="h2" align="center" color="textPrimary" >
                 Add New Flight
               </Typography> */}
+
               <Grid
                 container
                 className={classes.root}
@@ -78,6 +79,7 @@ class Flights extends Component {
                 <FlightForm {...this.props} switcher={this.switcher} />
                 {this.state.flightsList.map(flight => (
                   <Grid item lg={2} xs={10} sm={6} md={4}>
+
                     <Card className={classes.card}>
                       <CardActionArea>
                         <CardMedia
