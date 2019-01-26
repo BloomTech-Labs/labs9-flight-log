@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 // import Layout from './components/Header component/Layout';
 import SignIn from "./components/Pages/SignIn";
-import Aircrafts from "./components/Pages/Aircrafts";
+import Airplanes from "./components/Pages/Airplanes";
 import Billing from "./components/Pages/Billing";
 import Flights from "./components/Pages/Flights";
 import Instructors from "./components/Pages/Instructors";
@@ -33,8 +33,8 @@ class App extends Component {
         <Route exact path="/" render={() => <Landing />} />
         <Route
           exact
-          path="/Aircrafts"
-          render={props => <Aircrafts {...props} />}
+          path="/Airplanes"
+          render={props => <Airplanes {...props} />}
         />
         <Route exact path="/Billing" render={() => <Billing />} />
         <Route

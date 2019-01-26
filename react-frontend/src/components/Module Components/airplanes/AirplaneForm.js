@@ -62,6 +62,7 @@ class AirplaneForm extends Component {
       category: "",
       pilotsUID: ""
     };
+    console.log("this.props2", this.props);
   }
 
   editFormHandler = e => {
@@ -128,7 +129,7 @@ class AirplaneForm extends Component {
         <Grid item lg={2} xs={10} sm={6} md={4}>
           <Card className={classes.card}>
             <Typography variant="h6" color="inherit" noWrap>
-              Add Aircraft
+              Add Airplane
             </Typography>
             <Fab
               color="primary"
@@ -146,14 +147,14 @@ class AirplaneForm extends Component {
         >
           <DialogTitle id="form-dialog-title">Airplane:</DialogTitle>
           <DialogContent>
-            <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
+            <InputLabel htmlFor="aircraft-native-simple">Airplane</InputLabel>
             <Select
               native
-              value={this.state.aircraft}
-              onChange={this.handleChange("aircraft")}
+              value={this.state.airplane}
+              onChange={this.handleChange("airplane")}
               inputProps={{
-                name: "aircraft",
-                id: "aircraft-native-simple"
+                name: "aircplane",
+                id: "airplane-native-simple"
               }}
             >
               <option value="N" />
@@ -162,7 +163,7 @@ class AirplaneForm extends Component {
               type="string"
               name="tailNumber"
               label="Tail Number"
-              value={this.state.name}
+              value={this.state.tailNumber}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -172,7 +173,7 @@ class AirplaneForm extends Component {
               type="string"
               name="make"
               label="Airplane Make"
-              value={this.state.name}
+              value={this.state.make}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -182,7 +183,7 @@ class AirplaneForm extends Component {
               type="string"
               name="model"
               label="Airplane Model"
-              value={this.state.name}
+              value={this.state.model}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -192,7 +193,7 @@ class AirplaneForm extends Component {
               type="string"
               name="category"
               label="Airplane Category"
-              value={this.state.name}
+              value={this.state.category}
               onChange={this.editFormHandler}
               required
               fullWidth

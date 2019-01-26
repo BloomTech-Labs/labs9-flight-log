@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MenuList from "@material-ui/core/MenuList";
 import MenuItem from "@material-ui/core/MenuItem";
-import {Link} from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -22,7 +22,7 @@ const styles = theme => ({
     display: "none"
   },
   Link: {
-    textDecoration: "none",
+    textDecoration: "none"
   }
 });
 
@@ -31,38 +31,36 @@ function Navigation(props) {
 
   return (
     <div>
-      <MenuList  className={classes.root} elevation={1}>
-        <Link to='/' style={{ textDecoration: 'none' }}>
+      <MenuList className={classes.root} elevation={1}>
+        <Link to="/" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Home</MenuItem>
         </Link>
 
-        <Link to ='/Flights' style={{ textDecoration: 'none' }}>
+        <Link to="/Flights" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Flights</MenuItem>
-          </Link>
+        </Link>
 
-        <Link to ='/Aircrafts' style={{ textDecoration: 'none' }}>
-          <MenuItem className={classes.button}>Aircrafts</MenuItem>
-          </Link>
+        <Link to="/Airplanes" style={{ textDecoration: "none" }}>
+          <MenuItem className={classes.button}>Airplanes</MenuItem>
+        </Link>
 
-          <Link to ='/Instructors' style={{ textDecoration: 'none' }}>
+        <Link to="/Instructors" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Instructors</MenuItem>
-          </Link>
+        </Link>
 
-          <Link to ='/Billing' style={{ textDecoration: 'none' }}>
+        <Link to="/Billing" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Billing</MenuItem>
-          </Link>
+        </Link>
 
-          <Link to ='/Settings' style={{ textDecoration: 'none' }}>
+        <Link to="/Settings" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Settings</MenuItem>
-          </Link>
+        </Link>
 
-          <Link to ='/Pilots' style={{ textDecoration: 'none' }}>
+        <Link to="/Pilots" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Pilots</MenuItem>
-          </Link>
+        </Link>
 
-          <MenuItem className={classes.button}>Flights1</MenuItem>
-
-
+        <MenuItem className={classes.button}>Flights1</MenuItem>
       </MenuList>
     </div>
   );
