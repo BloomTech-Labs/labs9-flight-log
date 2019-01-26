@@ -61,7 +61,6 @@ class AirplaneEdit extends Component {
       model: "",
       category: ""
     };
-    console.log("this.props3", this.props);
   }
 
   editFormHandler = e => {

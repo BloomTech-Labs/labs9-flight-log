@@ -59,8 +59,6 @@ function Navigation(props) {
         <Link to="/Pilots" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Pilots</MenuItem>
         </Link>
-
-        <MenuItem className={classes.button}>Flights1</MenuItem>
       </MenuList>
     </div>
   );

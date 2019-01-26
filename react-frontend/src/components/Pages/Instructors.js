@@ -58,10 +58,10 @@ class InstructorsList extends Component {
     console.log("fired");
     this.componentDidMount();
   };
-  
+
   handleEditClick = () => {
     console.log("Open Edit Modal");
-  }
+  };
 
   render() {
     const { classes } = this.props;
@@ -87,57 +87,54 @@ class InstructorsList extends Component {
                   <Card className={classes.card}>
                     <CardContent className={classes.content}>
                       {instructor.id}
-                        <Typography className={classes.contentLine} variant="h4">
-                          {instructor.name}
-                        </Typography>
-                        <Typography
-                          className={classes.contentLine}
-                          gutterBottom
-                          variant="h6"
-                        >
-                          LicNo: {instructor.licenseNum}
-                        </Typography>
-                        <Typography
-                          className={classes.contentLine}
-                          gutterBottom
-                          variant="h5"
-                        >
-                          {" "}
-                          {instructor.contactInfo}
-                        </Typography>
-                        <div>
-                          <Typography
-                            className={classes.contentLine}
-                            variant="h6"
-                          >
-                            Notes:
-                        </Typography>
-                          <Typography
-                            className={classes.contentLine}
-                            gutterBottom
-                            variant="h5"
-                          >
-                            {instructor.notes}
-                          </Typography>
-                        </div>
-                        <div>
-                          <Typography
-                            className={classes.contentLine}
-                            variant="h6"
-                          >
-                            Ratings:
-                        </Typography>
-                          <Typography
-                            className={classes.contentLine}
-                            variant="h5"
-                          >
-                            {" "}
-                            {instructor.ratings}
-                          </Typography>
-                        </div>
-                        <InstructorEdit {...this.props} switcher={this.switcher} instructor={instructor} />
-                        <InstructorDelete id={instructor.id} switcher={this.switcher} />
-                      </CardContent>
+                      <Typography
+                        className={classes.contentLine}
+                        gutterBottom
+                        variant="h5"
+                      >
+                        name: {instructor.name}
+                      </Typography>
+                      <Typography
+                        className={classes.contentLine}
+                        gutterBottom
+                        variant="h6"
+                      >
+                        LicNo: {instructor.licenseNum}
+                      </Typography>
+                      <Typography
+                        className={classes.contentLine}
+                        gutterBottom
+                        variant="h5"
+                      >
+                        contact: {instructor.contactInfo}
+                      </Typography>
+
+                      <Typography
+                        className={classes.contentLine}
+                        gutterBottom
+                        variant="h5"
+                      >
+                        notes: {instructor.notes}
+                      </Typography>
+
+                      <Typography
+                        className={classes.contentLine}
+                        gutterBottom
+                        variant="h5"
+                      >
+                        rating: {instructor.ratings}
+                      </Typography>
+
+                      <InstructorEdit
+                        {...this.props}
+                        switcher={this.switcher}
+                        instructor={instructor}
+                      />
+                      <InstructorDelete
+                        id={instructor.id}
+                        switcher={this.switcher}
+                      />
+                    </CardContent>
                   </Card>
                 </Grid>
               ))}
