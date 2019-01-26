@@ -81,7 +81,7 @@ class InstructorEdit extends Component {
   };
   //submit edit form
   submitEditForm = () => {
-    const updatedInstructor = { 
+    const updatedInstructor = {
       id: this.state.id,
       name: this.state.name,
       licenseNum: this.state.licenseNum,
@@ -125,7 +125,7 @@ class InstructorEdit extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">
-            Edit / Create Instructor
+            Edit Instructor
           </DialogTitle>
           <DialogContent>
             <TextField
