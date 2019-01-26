@@ -80,7 +80,7 @@ class FlightForm extends React.Component {
     pilotInCommand: "",
     total: "",
     airplanesID: "",
-    instructorsID: ""
+    instructorsID: "1"
   };
 
   //   componentDidMount() {
@@ -161,11 +161,13 @@ class FlightForm extends React.Component {
           total: "",
           airplanesID: "",
           instructorsID: ""
-        });
+        })
         console.log("this.props", this.props);
         this.props.switcher();
-      });
+      })
+      .catch(error => console.log(error));
   };
+
   render() {
     const { classes } = this.props;
     return (
@@ -192,28 +194,25 @@ class FlightForm extends React.Component {
           <DialogTitle id="form-dialog-title">Edit / Create Flight</DialogTitle>
           <DialogContent>
             <TextField
-              autoFocus
               type="string"
               margin="dense"
               // id="name"
               name="flightName"
               label="Name This Flight"
-              value={this.state.name}
+              value={this.state.flightName}
               onChange={this.editFormHandler}
               required
               fullWidth
               variant="outlined"
             />
             <TextField
-              autoFocus
               type="string"
               margin="dense"
               // id="name"
               name="airports"
               label="Airports Visited"
-              value={this.state.name}
+              value={this.state.airports}
               onChange={this.editFormHandler}
-              required
               fullWidth
               variant="outlined"
             />
@@ -239,9 +238,9 @@ class FlightForm extends React.Component {
                 type="number"
                 name="airplanesID"
                 label="airplane id"
-                value={this.state.name}
+                value={this.state.airplanesID}
                 onChange={this.editFormHandler}
-                required
+                // required
                 fullWidth
                 variant="outlined"
               />
@@ -265,7 +264,7 @@ class FlightForm extends React.Component {
                 type="number"
                 name="instructorsID"
                 label="instructor id, n/r"
-                value={this.state.name}
+                value={this.state.instructorsID}
                 onChange={this.editFormHandler}
                 // required
                 fullWidth
@@ -276,34 +275,32 @@ class FlightForm extends React.Component {
                 type="date"
                 name="flightDate"
                 // label="date"
-                value={this.state.name}
+                value={this.state.flightDate}
                 onChange={this.editFormHandler}
-                required
+                // required
                 fullWidth
                 variant="outlined"
               />
             </FormControl>
 
             <TextField
-              autoFocus
               type="string"
               margin="dense"
               // id="name"
               name="remarks"
               label="Remarks, Procedures, Maneuvers"
-              value={this.state.name}
+              value={this.state.remarks}
               onChange={this.editFormHandler}
               fullWidth
               variant="outlined"
             />
             <TextField
-              autoFocus
               type="number"
               margin="dense"
               // id="name"
               name="numOfTakeOffs"
               label="number of take offs"
-              value={this.state.name}
+              value={this.state.numOfTakeOffs}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -315,7 +312,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="numOfLandings"
               label="number of landings"
-              value={this.state.name}
+              value={this.state.numOfLandings}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -327,7 +324,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="SEL"
               label="Airplane SEL"
-              value={this.state.name}
+              value={this.state.SEL}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -339,7 +336,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="MEL"
               label="Airplane MEL"
-              value={this.state.name}
+              value={this.state.MEL}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -351,7 +348,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="dayHours"
               label="day hours"
-              value={this.state.name}
+              value={this.state.dayHours}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -363,7 +360,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="nightHours"
               label="night hours"
-              value={this.state.name}
+              value={this.state.nightHours}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -375,7 +372,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="actInstruments"
               label="actual Instruments"
-              value={this.state.name}
+              value={this.state.actInstruments}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -387,7 +384,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="simInstruments"
               label="simulated Instruments"
-              value={this.state.name}
+              value={this.state.simInstruments}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -399,7 +396,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="groundTrainer"
               label="ground trainer"
-              value={this.state.name}
+              value={this.state.groundTrainer}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -411,7 +408,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="crossCountry"
               label="cross country"
-              value={this.state.name}
+              value={this.state.crossCountry}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -423,7 +420,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="asInstructor"
               label="as instructor"
-              value={this.state.name}
+              value={this.state.asInstructor}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -435,7 +432,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="dualReceived"
               label="dual"
-              value={this.state.name}
+              value={this.state.dualReceived}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -447,7 +444,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="pilotInCommand"
               label="PIC"
-              value={this.state.name}
+              value={this.state.pilotInCommand}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
@@ -459,7 +456,7 @@ class FlightForm extends React.Component {
               // id="name"
               name="total"
               label="total hours"
-              value={this.state.name}
+              value={this.state.total}
               onChange={this.editFormHandler}
               // fullWidth
               variant="outlined"
