@@ -1,19 +1,19 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
-import Fab from "@material-ui/core/Fab";
+// import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
-import AddIcon from "@material-ui/icons/Add";
+// import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
+// import InputLabel from "@material-ui/core/InputLabel";
+// import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
+// import Typography from "@material-ui/core/Typography";
+// import Card from "@material-ui/core/Card";
+// import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
 const styles = theme => ({
@@ -50,8 +50,7 @@ const styles = theme => ({
   }
 });
 
-//aircraft creation component
-class AircraftC extends Component {
+class AirplaneEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -60,32 +59,16 @@ class AircraftC extends Component {
       tailNumber: "",
       make: "",
       model: "",
-      category: "",
-      pilotsUID: ""
+      category: ""
     };
+    console.log("this.props3", this.props);
   }
-  //edit form handler
+
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
-  };
-  //submit add form
-  submitAddForm = () => {
-    console.log("added");
-    //axios call to post
-    const UID = localStorage.getItem("userID");
-    const newAirplane = {
-      make: this.state.make,
-      model: this.state.model,
-      tailNumber: this.state.tailNumber,
-      category: this.state.category,
-      pilotsUID: UID
-    };
-    this.setState({ newAirplane });
-    axios.post();
-    this.handleClose();
   };
 
   handleChange = name => event => {
@@ -93,7 +76,7 @@ class AircraftC extends Component {
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({ ...this.props.airplane, open: true });
   };
 
   handleClose = () => {
@@ -106,48 +89,66 @@ class AircraftC extends Component {
     });
   }
 
+  submitEditForm = () => {
+    console.log("fired", this.state);
+    const UID = localStorage.getItem("userID");
+    console.log("uid", UID);
+    const updatedAirplane = {
+      make: this.state.make,
+      model: this.state.model,
+      tailNumber: this.state.tailNumber,
+      category: this.state.category
+    };
+    axios
+      .put(
+        `https://labs9-flight-log.herokuapp.com/airplanes/${this.state.id}`,
+        updatedAirplane
+      )
+      .then(response => {
+        console.log(response);
+        this.setState({
+          open: false,
+          files: [],
+          id: 0,
+          tailNumber: "",
+          make: "",
+          model: "",
+          category: ""
+        });
+        console.log("this.props", this.props);
+        this.props.switcher();
+      })
+      .catch(error => console.log(error));
+  };
+
   render() {
     const { classes } = this.props;
+
     return (
-      <Fragment>
-        <Grid item lg={2} xs={10} sm={6} md={4}>
-          <Card className={classes.card}>
-            <Typography variant="h6" color="inherit" noWrap>
-              Add Aircraft
-            </Typography>
-            <Fab
-              color="primary"
-              aria-label="Add"
-              onClick={this.handleClickOpen}
-            >
-              <AddIcon />
-            </Fab>
-          </Card>
-        </Grid>
+      <div className={classes.root}>
+        <Button
+          variant="contained"
+          className={classes.button}
+          color="primary"
+          aria-label="Add"
+          onClick={this.handleClickOpen}
+        >
+          Edit
+        </Button>
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Airplane:</DialogTitle>
+          <DialogTitle id="form-dialog-title">Edit Airplane</DialogTitle>
+
           <DialogContent>
-            <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
-            <Select
-              native
-              value={this.state.aircraft}
-              onChange={this.handleChange("aircraft")}
-              inputProps={{
-                name: "aircraft",
-                id: "aircraft-native-simple"
-              }}
-            >
-              <option value="N" />
-            </Select>
             <TextField
               type="string"
               name="tailNumber"
-              label="Tail Number"
-              value={this.state.name}
+              label="TailNumber"
+              value={this.state.tailNumber}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -156,8 +157,8 @@ class AircraftC extends Component {
             <TextField
               type="string"
               name="make"
-              label="Airplane Make"
-              value={this.state.name}
+              label="Make"
+              value={this.state.make}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -166,8 +167,8 @@ class AircraftC extends Component {
             <TextField
               type="string"
               name="model"
-              label="Airplane Model"
-              value={this.state.name}
+              label="Model"
+              value={this.state.model}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -176,8 +177,8 @@ class AircraftC extends Component {
             <TextField
               type="string"
               name="category"
-              label="Airplane Category"
-              value={this.state.name}
+              label="Category"
+              value={this.state.category}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -187,25 +188,26 @@ class AircraftC extends Component {
               onChange={this.handleChange.bind(this)}
               showPreviews={true}
             />
+            <DialogActions>
+              <Button onClick={this.submitEditForm} color="primary">
+                Update
+              </Button>
+            </DialogActions>
           </DialogContent>
-          <DialogActions>
-            <Button onClick={this.SubmitAddForm} color="primary">
-              Save
-            </Button>
-          </DialogActions>
         </Dialog>
-      </Fragment>
+      </div>
     );
   }
 }
 
-export default withStyles(styles)(AircraftC);
+export default withStyles(styles)(AirplaneEdit);
 
 // import React, { Component } from "react";
 // import axios from "axios";
+// import AircraftD from "./AircraftD";
 
-// //aircraft creation component
-// class AircraftC extends Component {
+// //aircraft edit component
+// class AircraftE extends Component {
 //   constructor() {
 //     super();
 //     this.state = {
@@ -221,15 +223,20 @@ export default withStyles(styles)(AircraftC);
 //       [e.target.name]: e.target.value
 //     });
 //   };
-//   //submit add form
-//   submitAddForm = () => {
-//     console.log("added");
-//     //axios call to post
+//   //submit edit form
+//   submitEditForm = () => {
+//     console.log("edited");
+//     //axios call to put
+//   };
+//   //submit delete
+//   submitDelete = () => {
+//     console.log("deleted");
+//     //axios call to delete
 //   };
 //   render() {
 //     return (
 //       <div>
-//         <form onSubmit={this.submitAddForm}>
+//         <form onSubmit={this.submitEditForm}>
 //           <div>Input make: </div>
 //           <input
 //             type="text"
@@ -257,24 +264,41 @@ export default withStyles(styles)(AircraftC);
 //             onChange={this.editFormHandler}
 //             required
 //           />
-{
-  /* <div>Input category: </div>
-<input
-  type="text"
-  name="category"
-  placeholder="aircraft category"
-  value={this.state.category}
-  onChange={this.editFormHandler}
-  required
-/> */
-}
 //           <div>
-//             <button>Add Aircraft</button>
+//             <button>Edit Aircraft</button>
 //           </div>
 //         </form>
+//         <div>{/* <AircraftD submitDelete = {this.submitDelete}/> */}</div>
 //       </div>
 //     );
 //   }
 // }
 
-// export default AircraftC;
+// export default AircraftE;
+
+/* <Grid item lg={2} xs={10} sm={6} md={4}>
+          <Card className={classes.card}>
+            <Typography variant="h6" color="inherit" noWrap>
+              Add Aircraft
+            </Typography>
+            <Fab
+              color="primary"
+              aria-label="Add"
+              onClick={this.handleClickOpen}
+            >
+              <AddIcon />
+            </Fab>
+          </Card>
+        </Grid> */
+// <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
+// <Select
+//   native
+//   value={this.state.aircraft}
+//   onChange={this.handleChange("aircraft")}
+//   inputProps={{
+//     name: "aircraft",
+//     id: "aircraft-native-simple"
+//   }}
+// >
+//   <option value="N" />
+// </Select>

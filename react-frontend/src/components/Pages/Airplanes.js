@@ -11,13 +11,15 @@ import axios from "axios";
 // import DialogContentText from '@material-ui/core/DialogContentText';
 // import DialogTitle from '@material-ui/core/DialogTitle';
 // import Slide from '@material-ui/core/Slide';
-import AirplaneForm from "../Module Components/aircrafts/AirplaneForm";
+import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
+import AirplaneEdit from "../Module Components/airplanes/AirplaneEdit";
+import AirplaneDelete from "../Module Components/airplanes/AirplaneDelete";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardMedia from "@material-ui/core/CardMedia";
+// import CardActionArea from "@material-ui/core/CardActionArea";
+// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 // import { CssBaseline } from "@material-ui/core";
@@ -54,22 +56,22 @@ const styles = theme => ({
 //   return <AircraftView/>;
 // }
 
-class AircraftsList extends Component {
-  constructor() {
-    super();
+class AirplanesList extends Component {
+  constructor(props) {
+    super(props);
     this.state = {
-      aircraftsList: []
+      airplanesList: []
     };
+    console.log("this.props1", this.props);
   }
 
   componentDidMount() {
-    console.log("aircrafts");
     const UID = localStorage.getItem("userID");
     axios
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
       .then(response => {
         console.table(response.data);
-        this.setState({ aircraftsList: response.data });
+        this.setState({ airplanesList: response.data });
       });
   }
   switcher = () => {
@@ -78,7 +80,6 @@ class AircraftsList extends Component {
   };
   render() {
     const { classes } = this.props;
-    console.log("data", this.state.aircraftsList);
     return (
       <React.Fragment>
         <Layout>
@@ -92,51 +93,56 @@ class AircraftsList extends Component {
               spacing={16}
             >
               <AirplaneForm {...this.props} switcher={this.switcher} />
-              {this.state.aircraftsList.map(aircraft => (
+              {this.state.airplanesList.map(airplane => (
                 <Grid item lg={2} xs={10} sm={6} md={4}>
                   <Card className={classes.card}>
-                    <CardActionArea>
-                      <CardMedia
-                        className={classes.media}
-                        image="insert/img/here"
-                        title="Aircraft Img"
+                    <CardContent>
+                      {airplane.id}
+
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {" "}
+                        tail_number:
+                        {airplane.tailNumber}
+                      </Typography>
+
+                      <Typography gutterBottom variant="h5" component="h2">
+                        make:
+                        {airplane.make}
+                      </Typography>
+
+                      <Typography gutterBottom variant="h5" component="h2">
+                        model:
+                        {airplane.model}
+                      </Typography>
+
+                      <Typography gutterBottom variant="h5" component="h2">
+                        {" "}
+                        category:
+                        {airplane.category}
+                      </Typography>
+                      <AirplaneEdit
+                        {...this.props}
+                        switcher={this.switcher}
+                        airplane={airplane}
                       />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {" "}
-                          tail_number:
-                          {aircraft.tailNumber}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          make:
-                          {aircraft.make}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          model:
-                          {aircraft.model}
-                        </Typography>
-                        <Typography gutterBottom variant="h5" component="h2">
-                          {" "}
-                          category:
-                          {aircraft.category}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
+                      <AirplaneDelete
+                        id={airplane.id}
+                        switcher={this.switcher}
+                      />
+                    </CardContent>
                   </Card>
                 </Grid>
               ))}
             </Grid>
           </div>
-          {/* <AircraftC /> */}
-          {/* <AircraftE /> */}
         </Layout>
       </React.Fragment>
     );
   }
 }
 
-AircraftsList.propTypes = {
+AirplanesList.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AircraftsList);
+export default withStyles(styles)(AirplanesList);
