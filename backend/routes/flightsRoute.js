@@ -52,9 +52,6 @@ router.put("/:id", async (req, res) => {
   if (!req.body.flightName) {
     return res.status(400).json({ error: "please input flight name" });
   }
-  if (!req.body.pilotID) {
-    return res.status(400).json({ error: "please input pilot id" });
-  }
   try {
     const flight = await flightsDb.update(id, req.body);
     if (!flight) {

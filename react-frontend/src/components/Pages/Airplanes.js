@@ -100,7 +100,6 @@ class AirplanesList extends Component {
                       {airplane.id}
 
                       <Typography gutterBottom variant="h5" component="h2">
-                        {" "}
                         tail_number:
                         {airplane.tailNumber}
                       </Typography>
@@ -116,10 +115,10 @@ class AirplanesList extends Component {
                       </Typography>
 
                       <Typography gutterBottom variant="h5" component="h2">
-                        {" "}
                         category:
                         {airplane.category}
                       </Typography>
+
                       <AirplaneEdit
                         {...this.props}
                         switcher={this.switcher}

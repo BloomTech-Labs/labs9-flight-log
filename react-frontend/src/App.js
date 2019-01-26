@@ -9,7 +9,7 @@ import Instructors from "./components/Pages/Instructors";
 import Landing from "./components/Pages/Landing";
 import Settings from "./components/Pages/Settings";
 import SignUp from "./components/Pages/SignUp";
-import HOC from "./components/Pages/HOC";
+
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -46,11 +46,6 @@ class App extends Component {
         <Route exact path="/SignIn" render={props => <SignIn {...props} />} />
         <Route exact path="/SignUp" render={props => <SignUp {...props} />} />
         <Route exact path="/Flights" render={() => <Flights />} />
-        <Route
-          exact
-          path="/HOC"
-          render={() => <HOC updateUID={this.updateUID} />}
-        />
       </div>
     );
   }
