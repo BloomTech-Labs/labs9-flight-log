@@ -5,7 +5,7 @@ import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "../Module Components/billings/BillingForm";
 import Layout from "../Header component/Layout";
 
-//DO NOT DELETE COMMENTED CODE -we
+//DO NOT DELETE COMMENTED CODE YET -we
 /* class Billing extends Component {
   constructor() {
     super();
