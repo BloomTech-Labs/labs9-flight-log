@@ -70,8 +70,8 @@ class AirplanesList extends Component {
   componentDidMount() {
     const UID = localStorage.getItem("userID");
     axios
-      //
-      .get(`http://localhost:9000/airplanes/${UID}`)
+      //http://localhost:9000/airplanes
+      .get(`https://labs9-flight-log.herokuapp.com/${UID}`)
       .then(response => {
         console.table(response.data);
         let alteredList = response.data;
