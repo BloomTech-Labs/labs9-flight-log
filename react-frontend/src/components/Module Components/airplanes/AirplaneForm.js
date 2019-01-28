@@ -176,17 +176,7 @@ class AirplaneForm extends Component {
           <DialogTitle id="form-dialog-title">Airplane:</DialogTitle>
           <DialogContent>
             <InputLabel htmlFor="aircraft-native-simple">Airplane</InputLabel>
-            <Select
-              native
-              value={this.state.airplane}
-              onChange={this.handleChange("airplane")}
-              inputProps={{
-                name: "aircplane",
-                id: "airplane-native-simple"
-              }}
-            >
-              <option value="N" />
-            </Select>
+
             <TextField
               type="string"
               name="tailNumber"
