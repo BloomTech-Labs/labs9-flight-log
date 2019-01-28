@@ -35,7 +35,7 @@ const styles = theme => ({
     // border:"3px solid orange"
   }
 });
-const UID = localStorage.getItem("userID");
+
 
 class InstructorsList extends Component {
   constructor(props) {
@@ -46,6 +46,8 @@ class InstructorsList extends Component {
   }
 
   componentDidMount() {
+    const UID = this.props.UID;
+    console.log('coming from instructor', UID)
     axios
       .get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`)
       .then(response => {

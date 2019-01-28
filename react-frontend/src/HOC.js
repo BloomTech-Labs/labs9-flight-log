@@ -1,7 +1,5 @@
 import React from "react";
-import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase from "firebase";
-import fire from "./components/Config/fire";
 import App from "./App";
 import Headers from "./components/Pages/Headers";
 

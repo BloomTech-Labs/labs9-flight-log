@@ -68,7 +68,8 @@ class AirplanesList extends Component {
   }
 
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
+    console.log("this is props UID",this.props.UID);
     axios
       //http://localhost:9000/airplanes
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)

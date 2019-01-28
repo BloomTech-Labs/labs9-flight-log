@@ -42,7 +42,7 @@ class Flights extends Component {
     };
   }
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
     console.log(UID);
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
