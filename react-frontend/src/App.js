@@ -2,22 +2,14 @@ import React, { Component } from "react";
 import "./App.css";
 // import Layout from './components/Header component/Layout';
 import SignIn from "./components/Pages/SignIn";
-<<<<<<< HEAD
 import Aircrafts from "./components/Pages/Aircrafts";
-=======
-import Airplanes from "./components/Pages/Airplanes";
->>>>>>> faf6e9d5d03af2cda4bc8795483c0e92a71adc2a
 import Billing from "./components/Pages/Billing";
 import Flights from "./components/Pages/Flights";
 import Instructors from "./components/Pages/Instructors";
 import Landing from "./components/Pages/Landing";
 import Settings from "./components/Pages/Settings";
 import SignUp from "./components/Pages/SignUp";
-<<<<<<< HEAD
 import fire from "./components/Config/fire";
-=======
-
->>>>>>> faf6e9d5d03af2cda4bc8795483c0e92a71adc2a
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";

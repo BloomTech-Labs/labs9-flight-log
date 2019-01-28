@@ -48,23 +48,12 @@ class Billing extends Component {
   render() {
     return (
       <Layout>
-<<<<<<< HEAD
-      <StripeProvider apiKey="pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q">
-        <div className="example">
-          <h1>Billing</h1>
-          <Elements>
-            <BillingForm />
-          </Elements>
-        </div>
-      </StripeProvider>
-=======
         <StripeProvider apiKey="pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q">
           <div className="example">
             <h1>Billing</h1>
             <Elements><BillingForm /></Elements>
           </div>
         </StripeProvider>
->>>>>>> faf6e9d5d03af2cda4bc8795483c0e92a71adc2a
       </Layout>
     );
   }

@@ -51,13 +51,7 @@ class InstructorsList extends Component {
       .then(response => {
         console.table(response.data);
         this.setState({ instructorsList: response.data });
-<<<<<<< HEAD
-      }
-    );
-    console.log(this.state);
-=======
       });
->>>>>>> faf6e9d5d03af2cda4bc8795483c0e92a71adc2a
   }
 
   switcher = () => {
