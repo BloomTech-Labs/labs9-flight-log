@@ -40,6 +40,7 @@ router.post("/", async (req, res) => {
   if (!req.body.pilotsUID) {
     return res.status(400).json({ error: "please input pilot id" });
   }
+  console.log(req.body);
   try {
     const flight = await flightsDb.insert(req.body);
     res.status(201).json(flight);
