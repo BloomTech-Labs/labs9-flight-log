@@ -70,17 +70,17 @@ class AirplanesList extends Component {
   componentDidMount() {
     const UID = localStorage.getItem("userID");
     axios
-      //http://localhost:9000
-      .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
+      //
+      .get(`http://localhost:9000/airplanes/${UID}`)
       .then(response => {
         console.table(response.data);
         let alteredList = response.data;
         alteredList.map(airplane => {
           const imagesRef = storage.ref(`${UID}`).child(airplane.imageName);
-          imagesRef.getDownloadURL().then(url => {
+          return imagesRef.getDownloadURL().then(url => {
             console.log(url);
             airplane.imageName = url;
-            return this.setState({ airplanesList: alteredList });
+            this.setState({ airplanesList: alteredList });
           });
         });
         console.log(alteredList);
