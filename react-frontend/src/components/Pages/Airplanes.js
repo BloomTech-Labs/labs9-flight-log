@@ -22,6 +22,8 @@ import Card from "@material-ui/core/Card";
 // import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import fire from "../../components/Config/fire";
+const storage = fire.storage();
 // import { CssBaseline } from "@material-ui/core";
 // import AircraftView from "../Module Components/aircrafts/AircraftView";
 // import Paper from '@material-ui/core/Paper';
@@ -60,18 +62,28 @@ class AirplanesList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      airplanesList: []
+      airplanesList: [],
+      url: []
     };
-    console.log("this.props1", this.props);
   }
 
   componentDidMount() {
     const UID = localStorage.getItem("userID");
     axios
+      //http://localhost:9000
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
       .then(response => {
         console.table(response.data);
-        this.setState({ airplanesList: response.data });
+        let alteredList = response.data;
+        alteredList.map(airplane => {
+          const imagesRef = storage.ref(`${UID}`).child(airplane.imageName);
+          imagesRef.getDownloadURL().then(url => {
+            console.log(url);
+            airplane.imageName = url;
+            this.setState({ airplanesList: alteredList });
+          });
+        });
+        console.log(alteredList);
       });
   }
   switcher = () => {
@@ -98,7 +110,14 @@ class AirplanesList extends Component {
                   <Card className={classes.card}>
                     <CardContent>
                       {airplane.id}
-
+                      <img
+                        src={
+                          airplane.imageName ||
+                          "https://via.placeholder.com/100"
+                        }
+                        height="100"
+                        width="100"
+                      />
                       <Typography gutterBottom variant="h5" component="h2">
                         tail_number:
                         {airplane.tailNumber}
