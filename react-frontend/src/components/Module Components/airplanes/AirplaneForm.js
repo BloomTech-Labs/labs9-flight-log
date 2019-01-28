@@ -15,6 +15,8 @@ import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import fire from "../../../components/Config/fire";
+const storage = fire.storage();
 
 const styles = theme => ({
   root: {
@@ -45,8 +47,6 @@ const styles = theme => ({
   card: {
     height: "290px",
     maxWidth: 345
-    // marginBottom: 20,
-    // minWidth: 200,
   }
 });
 
@@ -60,10 +60,18 @@ class AirplaneForm extends Component {
       make: "",
       model: "",
       category: "",
-      pilotsUID: ""
+      pilotsUID: "",
+      image: "",
+      imageName: ""
     };
-    console.log("this.props2", this.props);
   }
+
+  handleImage = e => {
+    console.log(e.target.files[0]);
+    if (e.target.files[0]) {
+      this.setState({ image: e.target.files[0] });
+    }
+  };
 
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
@@ -73,6 +81,7 @@ class AirplaneForm extends Component {
   };
 
   handleChange = name => event => {
+    console.log(name, event);
     this.setState({ [name]: event.target.value });
   };
 
@@ -85,22 +94,42 @@ class AirplaneForm extends Component {
   };
 
   handleChange(files) {
+    console.log("files", files);
     this.setState({
       files: files
     });
+    console.log(this.state.files);
   }
 
   submitAddForm = () => {
     console.log("fired");
     const UID = localStorage.getItem("userID");
     console.log("uid", UID);
+    if (this.state.image) {
+      const image = this.state.image;
+      const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          console.log(snapshot);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("complete");
+        }
+      );
+    }
     const newAirplane = {
       make: this.state.make,
       model: this.state.model,
       tailNumber: this.state.tailNumber,
       category: this.state.category,
-      pilotsUID: UID
+      pilotsUID: UID,
+      imageName: this.state.image.name
     };
+    //http://localhost:9000
     axios
       .post("https://labs9-flight-log.herokuapp.com/airplanes", newAirplane)
       .then(response => {
@@ -112,12 +141,11 @@ class AirplaneForm extends Component {
           make: "",
           model: "",
           category: "",
-          pilotsUID: ""
+          pilotsUID: "",
+          image: null
         });
         console.log("this.props", this.props);
         this.props.switcher();
-        // this.props.history.push("/aircrafts");
-        // window.location.reload()
       });
   };
 
@@ -199,9 +227,11 @@ class AirplaneForm extends Component {
               fullWidth
               variant="outlined"
             />
+            <input name="image" type="file" onChange={this.handleImage} />
             <DropzoneArea
               onChange={this.handleChange.bind(this)}
               showPreviews={true}
+              acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
             />
           </DialogContent>
           <DialogActions>

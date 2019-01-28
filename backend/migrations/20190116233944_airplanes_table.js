@@ -6,6 +6,7 @@ exports.up = function(knex, Promise) {
     airplanes.string("make");
     airplanes.string("model");
     airplanes.string("category"); //sel or mel
+    airplanes.string("imageName");
     airplanes
       .string("pilotsUID")
       .notNullable()

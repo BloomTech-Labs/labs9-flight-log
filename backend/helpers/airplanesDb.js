@@ -37,7 +37,8 @@ module.exports = {
         "airplanes.tailNumber",
         "airplanes.make",
         "airplanes.model",
-        "airplanes.category"
+        "airplanes.category",
+        "airplanes.imageName"
       )
       .where("pilots.UID", UID);
     if (id) {
