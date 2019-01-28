@@ -3,7 +3,7 @@ const table = "flights";
 
 module.exports = {
   // get: () => db(table),
-  get: (UID, id) => {
+  get: (UID, total) => {
     let query = db("flights")
       .join("pilots", "flights.pilotsUID", "=", "pilots.UID")
       .select(
@@ -29,8 +29,50 @@ module.exports = {
         "flights.skyVector"
       )
       .where("pilots.UID", UID);
-    if (id) {
-      query.where("flights.id", id);
+    if (total) {
+      query = db("flights")
+        .sum({
+          totalTakeOffs: "numOfTakeOffs"
+        })
+        .sum({
+          totalLandings: "numOfLandings"
+        })
+        .sum({
+          totalSEL: "SEL"
+        })
+        .sum({
+          totalMEL: "MEL"
+        })
+        .sum({
+          totalDay: "dayHours"
+        })
+        .sum({
+          totalNight: "nightHours"
+        })
+        .sum({
+          totalActInstruments: "actInstruments"
+        })
+        .sum({
+          totalSimInstruments: "simInstruments"
+        })
+        .sum({
+          totalGroundTrainer: "groundTrainer"
+        })
+        .sum({
+          totalCrossCountry: "crossCountry"
+        })
+        .sum({
+          totalAsInstructor: "asInstructor"
+        })
+        .sum({
+          totalDualReceived: "dualReceived"
+        })
+        .sum({
+          totalPilotInCommand: "pilotInCommand"
+        })
+        .sum({
+          totalHours: "total"
+        });
     }
     return query;
   },

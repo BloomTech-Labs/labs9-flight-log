@@ -24,9 +24,9 @@ router.get("/:UID", async (req, res) => {
       .json({ error: "there was an error retrieving the flights" });
   }
 });
-router.get("/:UID/:id", async (req, res) => {
+router.get("/:UID/:total", async (req, res) => {
   try {
-    const flight = await flightsDb.get(req.params.UID, req.params.id);
+    const flight = await flightsDb.get(req.params.UID, req.params.total);
     res.status(200).json(flight);
   } catch (error) {
     res.status(500).json({ error: "there was an error retrieving the flight" });
