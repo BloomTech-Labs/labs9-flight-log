@@ -16,7 +16,8 @@ class SignInUi extends React.Component {
     // We will display Google and Facebook as auth providers.
     signInOptions: [
       fire.auth.GoogleAuthProvider.PROVIDER_ID,
-      fire.auth.FacebookAuthProvider.PROVIDER_ID
+      fire.auth.FacebookAuthProvider.PROVIDER_ID,
+      fire.auth.EmailAuthProvider.PROVIDER_ID
     ],
     signInSuccessUrl: "/Flights"
   };
