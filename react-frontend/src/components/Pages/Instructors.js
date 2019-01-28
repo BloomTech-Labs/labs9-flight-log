@@ -31,6 +31,16 @@ const styles = theme => ({
 
     height: "100%"
   },
+  buttonrow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexGrow: 1
+  },
+  button: {
+    margin: '0 8px'
+  },
   contentLine: {
     // border:"3px solid orange"
   }
@@ -125,15 +135,17 @@ class InstructorsList extends Component {
                         rating: {instructor.ratings}
                       </Typography>
 
-                      <InstructorEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        instructor={instructor}
-                      />
-                      <InstructorDelete
-                        id={instructor.id}
-                        switcher={this.switcher}
-                      />
+                      <div className={classes.buttonrow}>
+                        <InstructorEdit
+                          {...this.props}
+                          switcher={this.switcher}
+                          instructor={instructor}
+                        />
+                        <InstructorDelete
+                          id={instructor.id}
+                          switcher={this.switcher}
+                        />
+                      </div>
                     </CardContent>
                   </Card>
                 </Grid>
