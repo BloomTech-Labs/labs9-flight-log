@@ -9,7 +9,6 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
@@ -176,17 +175,7 @@ class AirplaneForm extends Component {
           <DialogTitle id="form-dialog-title">Airplane:</DialogTitle>
           <DialogContent>
             <InputLabel htmlFor="aircraft-native-simple">Airplane</InputLabel>
-            <Select
-              native
-              value={this.state.airplane}
-              onChange={this.handleChange("airplane")}
-              inputProps={{
-                name: "aircplane",
-                id: "airplane-native-simple"
-              }}
-            >
-              <option value="N" />
-            </Select>
+
             <TextField
               type="string"
               name="tailNumber"
