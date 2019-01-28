@@ -80,7 +80,7 @@ class AirplanesList extends Component {
           imagesRef.getDownloadURL().then(url => {
             console.log(url);
             airplane.imageName = url;
-            this.setState({ airplanesList: alteredList });
+            return this.setState({ airplanesList: alteredList });
           });
         });
         console.log(alteredList);
@@ -117,6 +117,7 @@ class AirplanesList extends Component {
                         }
                         height="100"
                         width="100"
+                        alt="airplaneImages"
                       />
                       <Typography gutterBottom variant="h5" component="h2">
                         tail_number:
