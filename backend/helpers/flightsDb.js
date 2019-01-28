@@ -25,7 +25,8 @@ module.exports = {
         "flights.crossCountry",
         "flights.asInstructor",
         "flights.dualReceived",
-        "flights.pilotInCommand"
+        "flights.pilotInCommand",
+        "flights.skyVector"
       )
       .where("pilots.UID", UID);
     if (id) {

@@ -6,7 +6,8 @@ exports.up = function(knex, Promise) {
     flights.date("flightDate"); //date of flight
     flights.string("flightName", 32).notNullable(); //flight name
     flights.string("airports"); //routes, from and to
-    flights.text("remarks", 512); //notes on flight
+    flights.string("skyVector"); // skyvector snipet
+    flights.string("remarks", 512); //notes on flight
     flights.float("total", 3, 2); // total duration of flight
     //procedures
     flights.integer("numOfTakeOffs"); // takeoffs
@@ -25,6 +26,7 @@ exports.up = function(knex, Promise) {
     flights.float("asInstructor", 3, 2); // as instructor
     flights.float("dualReceived", 3, 2); //dual rec. (dual received) float
     flights.float("pilotInCommand", 3, 2); //pic (pilot in command) float
+
     //foreign key to pilot
     flights
       .string("pilotsUID")
