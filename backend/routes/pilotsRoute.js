@@ -13,11 +13,11 @@ router.get("/", async (req, res) => {
   }
 });
 router.get("/signin", decode1, async (req, res) => {
-  // console.log("req", req);
+  console.log("req", req.body.UID);
   const UID = req.body.UID;
   try {
     const pilots = await pilotsDb.get().where("UID", UID);
-    // console.log(pilots[0]);
+    console.log("pilots", pilots);
     // console.log("pilots uid", pilots[0].UID);
     // console.log("pilots name", pilots[0].firstName);
     const PilotUID = pilots[0].UID;

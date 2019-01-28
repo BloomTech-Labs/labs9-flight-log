@@ -9,11 +9,13 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
+import axios from "axios";
+import fire from "../../../components/Config/fire";
+const storage = fire.storage();
 
 const styles = theme => ({
   root: {
@@ -44,8 +46,6 @@ const styles = theme => ({
   card: {
     height: "290px",
     maxWidth: 345
-    // marginBottom: 20,
-    // minWidth: 200,
   }
 });
 
@@ -54,10 +54,23 @@ class AirplaneForm extends Component {
     super(props);
     this.state = {
       open: false,
-      tail: "",
-      files: []
+      files: [],
+      tailNumber: "",
+      make: "",
+      model: "",
+      category: "",
+      pilotsUID: "",
+      image: "",
+      imageName: ""
     };
   }
+
+  handleImage = e => {
+    console.log(e.target.files[0]);
+    if (e.target.files[0]) {
+      this.setState({ image: e.target.files[0] });
+    }
+  };
 
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
@@ -67,6 +80,7 @@ class AirplaneForm extends Component {
   };
 
   handleChange = name => event => {
+    console.log(name, event);
     this.setState({ [name]: event.target.value });
   };
 
@@ -79,19 +93,70 @@ class AirplaneForm extends Component {
   };
 
   handleChange(files) {
+    console.log("files", files);
     this.setState({
       files: files
     });
+    console.log(this.state.files);
   }
+
+  submitAddForm = () => {
+    console.log("fired");
+    const UID = localStorage.getItem("userID");
+    console.log("uid", UID);
+    if (this.state.image) {
+      const image = this.state.image;
+      const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          console.log(snapshot);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("complete");
+        }
+      );
+    }
+    const newAirplane = {
+      make: this.state.make,
+      model: this.state.model,
+      tailNumber: this.state.tailNumber,
+      category: this.state.category,
+      pilotsUID: UID,
+      imageName: this.state.image.name
+    };
+    //http://localhost:9000
+    axios
+      .post("https://labs9-flight-log.herokuapp.com/airplanes", newAirplane)
+      .then(response => {
+        console.log(response);
+        this.setState({
+          open: false,
+          files: [],
+          tailNumber: "",
+          make: "",
+          model: "",
+          category: "",
+          pilotsUID: "",
+          image: null
+        });
+        console.log("this.props", this.props);
+        this.props.switcher();
+      });
+  };
 
   render() {
     const { classes } = this.props;
+
     return (
       <Fragment>
         <Grid item lg={2} xs={10} sm={6} md={4}>
           <Card className={classes.card}>
             <Typography variant="h6" color="inherit" noWrap>
-              Add Aircraft
+              Add Airplane
             </Typography>
             <Fab
               color="primary"
@@ -109,23 +174,13 @@ class AirplaneForm extends Component {
         >
           <DialogTitle id="form-dialog-title">Airplane:</DialogTitle>
           <DialogContent>
-            <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
-            <Select
-              native
-              value={this.state.aircraft}
-              onChange={this.handleChange("aircraft")}
-              inputProps={{
-                name: "aircraft",
-                id: "aircraft-native-simple"
-              }}
-            >
-              <option value="N" />
-            </Select>
+            <InputLabel htmlFor="aircraft-native-simple">Airplane</InputLabel>
+
             <TextField
               type="string"
               name="tailNumber"
               label="Tail Number"
-              value={this.state.name}
+              value={this.state.tailNumber}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -135,7 +190,7 @@ class AirplaneForm extends Component {
               type="string"
               name="make"
               label="Airplane Make"
-              value={this.state.name}
+              value={this.state.make}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -145,7 +200,7 @@ class AirplaneForm extends Component {
               type="string"
               name="model"
               label="Airplane Model"
-              value={this.state.name}
+              value={this.state.model}
               onChange={this.editFormHandler}
               required
               fullWidth
@@ -155,19 +210,21 @@ class AirplaneForm extends Component {
               type="string"
               name="category"
               label="Airplane Category"
-              value={this.state.name}
+              value={this.state.category}
               onChange={this.editFormHandler}
               required
               fullWidth
               variant="outlined"
             />
+            <input name="image" type="file" onChange={this.handleImage} />
             <DropzoneArea
               onChange={this.handleChange.bind(this)}
               showPreviews={true}
+              acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.SubmitAddForm} color="primary">
+            <Button onClick={this.submitAddForm} color="primary">
               Save
             </Button>
           </DialogActions>
@@ -178,16 +235,3 @@ class AirplaneForm extends Component {
 }
 
 export default withStyles(styles)(AirplaneForm);
-
-{
-  /* <TextField
-  type="string"
-  name="flightName"
-  label="Flight Name"
-  value={this.state.name}
-  onChange={this.editFormHandler}
-  required
-  fullWidth
-  variant="outlined"
-/>; */
-}

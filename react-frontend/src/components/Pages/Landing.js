@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
@@ -8,7 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import FlightTheme from "../Styles/theme"
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -66,7 +66,7 @@ render(){
       <AppBar position="static" color="default" className={classes.appBar}>
         <Toolbar>
           <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            Insert Name/Logo Here
+            Flight Log
           </Typography>
           <Link to='/SignUp'><Button className={classes.Button}>Sign Up </Button></Link>
           <Link to='/SignIn'><Button color="primary" variant="outlined">
@@ -81,7 +81,7 @@ render(){
             Important Information Here
           </Typography>
           <Typography variant="h6" align="center" color="textSecondary" component="p">
-              This is some insane message that is a huge attention-getter
+            This is some insane message that is a huge attention-getter
           </Typography>
         </div>
         {/* End hero unit */}

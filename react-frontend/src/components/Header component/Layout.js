@@ -10,6 +10,9 @@ import Button from '@material-ui/core/Button';
 import FlightTheme from '../Styles/theme';
 import React from 'react';
 
+import fire from "../Config/fire";
+
+
 
 const styles = theme => ({
   '@global': {
@@ -33,35 +36,45 @@ const styles = theme => ({
 });
 
 
-function Layout(props) {
-  const { classes } = props;
-  // const Layout = (props) => {
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <AppBar position="static" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.toolbarTitle}
-          >
-            Insert Name/Logo Here
+
+
+class Layout extends React.Component {
+  signOut = () => {
+    fire.auth().signOut();
+    localStorage.removeItem('userID');
+    localStorage.removeItem('userName');
+  }
+
+  render() {
+    const { classes } = this.props;
+    // const Layout = (props) => {
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <AppBar position="static" color="default" className={classes.appBar}>
+          <Toolbar>
+            <Typography
+              variant="h6"
+              color="inherit"
+              noWrap
+              className={classes.toolbarTitle}
+            >
+              Flight Log
             </Typography>
-          <Button variant="outlined">Sign Out</Button>
-        </Toolbar>
-      </AppBar>
-      <Grid container spacing={16} direction="row" justify="space-between" alignItems="stretch">
-        <Grid item xs={2}>
-          <Navigation />
+            <Button variant="outlined" onClick={this.signOut}>Sign Out</Button>
+          </Toolbar>
+        </AppBar>
+        <Grid container spacing={16} direction="row" justify="space-between" alignItems="stretch">
+          <Grid item xs={2}>
+            <Navigation />
+          </Grid>
+          <Grid item xs={10}>
+            {this.props.children}
+          </Grid>
         </Grid>
-        <Grid item xs={10}>
-          {props.children}
-        </Grid>
-      </Grid>
-    </React.Fragment>
-  );
+      </React.Fragment>
+    );
+  }
 }
 
 Layout.propTypes = {

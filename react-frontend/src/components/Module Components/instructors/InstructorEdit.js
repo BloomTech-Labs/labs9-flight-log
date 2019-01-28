@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React, { Component } from "react";
+// import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -7,12 +7,13 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import AddIcon from "@material-ui/icons/Add";
-import Fab from "@material-ui/core/Fab";
-import Typography from "@material-ui/core/Typography";
+// import AddIcon from "@material-ui/icons/Add";
+// import Fab from "@material-ui/core/Fab";
+// import Typography from "@material-ui/core/Typography";
 import axios from "axios";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
+// import InstructorD from "./InstructorD";
 
 const styles = theme => ({
   root: {
@@ -42,27 +43,29 @@ const styles = theme => ({
   }
 });
 
-const URL = "https://labs9-flight-log.herokuapp.com";
-const UID = localStorage.getItem("userID");
+const URL = `https://labs9-flight-log.herokuapp.com`;
 
-class InstructorForm extends React.Component {
+//instructor edit component
+class InstructorEdit extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       open: false,
+      id: 0,
       name: "",
       licenseNum: "",
       contactInfo: "",
       notes: "",
-      ratings: ""
+      ratings: "",
     };
   }
 
+  //edit form handler
   editFormHandler = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
+    console.log(this.state);
   };
 
   handleChange = name => event => {
@@ -70,57 +73,59 @@ class InstructorForm extends React.Component {
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    this.setState({ ...this.props.instructor, open: true });
   };
 
   handleClose = () => {
     this.setState({ open: false });
   };
-
-  //submit add form
-  submitAddForm = () => {
-    const newInstructor = {
+  //submit edit form
+  submitEditForm = () => {
+    const updatedInstructor = {
+      id: this.state.id,
       name: this.state.name,
       licenseNum: this.state.licenseNum,
+      contactInfo: this.state.contactInfo,
       notes: this.state.notes,
       ratings: this.state.ratings,
-      contactInfo: this.state.contactInfo,
-      pilotsUID: UID
     };
-    console.log("added");
     axios
-      .post(`${URL}/instructors`, newInstructor)
+      .put(`${URL}/instructors/${this.state.id}`, updatedInstructor)
       .then(() => {
         this.setState({
           open: false,
+          id: 0,
           name: "",
           licenseNum: "",
           contactInfo: "",
           notes: "",
           ratings: ""
-        });
+        })
         this.props.switcher();
       })
       .catch(error => console.log(error));
+    console.log("edited");
   };
+  //submit delete
+  submitDelete = () => {
 
+    console.log("deleted");
+    //axios call to delete
+  };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Typography variant="h6" color="inherit" noWrap>
-          Add Instructor
-        </Typography>
-        <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-          <AddIcon />
-        </Fab>
+        <Button variant="contained" className={classes.button} color="primary" aria-label="Add" onClick={this.handleClickOpen}>
+          Edit
+        </Button>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">
-            Edit / Create Instructor
+            Edit Instructor
           </DialogTitle>
           <DialogContent>
             <TextField
@@ -178,8 +183,8 @@ class InstructorForm extends React.Component {
             />
 
             <DialogActions>
-              <Button onClick={this.submitAddForm} color="primary">
-                Save
+              <Button onClick={this.submitEditForm} color="primary">
+                Update
               </Button>
             </DialogActions>
           </DialogContent>
@@ -189,8 +194,6 @@ class InstructorForm extends React.Component {
   }
 }
 
-InstructorForm.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
-export default withStyles(styles)(InstructorForm);
+export default withStyles(styles)(InstructorEdit);
+

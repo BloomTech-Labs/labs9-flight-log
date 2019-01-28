@@ -24,14 +24,23 @@ router.get("/:UID", async (req, res) => {
       .json({ error: "there was an error retrieving the flights" });
   }
 });
+router.get("/:UID/:id", async (req, res) => {
+  try {
+    const flight = await flightsDb.get(req.params.UID, req.params.id);
+    res.status(200).json(flight);
+  } catch (error) {
+    res.status(500).json({ error: "there was an error retrieving the flight" });
+  }
+});
 //post route
 router.post("/", async (req, res) => {
   if (!req.body.flightName) {
     return res.status(400).json({ error: "please input flight name" });
   }
-  if (!req.body.pilotID) {
+  if (!req.body.pilotsUID) {
     return res.status(400).json({ error: "please input pilot id" });
   }
+  console.log(req.body);
   try {
     const flight = await flightsDb.insert(req.body);
     res.status(201).json(flight);
@@ -43,9 +52,6 @@ router.put("/:id", async (req, res) => {
   const id = req.params.id;
   if (!req.body.flightName) {
     return res.status(400).json({ error: "please input flight name" });
-  }
-  if (!req.body.pilotID) {
-    return res.status(400).json({ error: "please input pilot id" });
   }
   try {
     const flight = await flightsDb.update(id, req.body);

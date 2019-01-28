@@ -1,6 +1,6 @@
 import Layout from "../components/Layout";
 import React, { Component } from "react";
-import axios from "axios";
+// import axios from "axios";
 import fire from "../components/config/fire";
 
 // const Settings = () => (

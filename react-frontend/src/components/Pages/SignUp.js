@@ -1,16 +1,54 @@
 import React from "react";
+
+import PropTypes from 'prop-types';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 import fire from "../Config/fire";
 import axios from "axios";
 import firebase from "firebase";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 const facebook = new firebase.auth.FacebookAuthProvider();
+
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  },
+  control: {
+    padding: theme.spacing.unit * 2
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 8,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
+  },
+  buttonRow: {
+    display: 'flex',
+    flexDirection: 'row'
+  },
+  button: {
+    margin: theme.spacing.unit
+  }
+});
 
 class SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       user: {
-        username: "",
+        email: "",
         password: ""
       }
     };
@@ -27,10 +65,10 @@ class SignUp extends React.Component {
     fire
       .auth()
       .createUserWithEmailAndPassword(
-        this.state.user.username,
+        this.state.user.email,
         this.state.user.password
       )
-      .then(() => {})
+      // .then(() => {})
       .catch(error => {
         console.log(error, "nope dude, youve gone goof");
       });
@@ -39,17 +77,17 @@ class SignUp extends React.Component {
     fire
       .auth()
       .currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function(idToken) {
+      .then(function (idToken) {
         // Send token to your backend via HTTPS
         // ...
         console.log(idToken);
       })
-      .catch(function(error) {
+      .catch(function (error) {
         // Handle error
         console.log(error);
       });
   };
-  authWithFacebook() {
+  signUpWithFacebook() {
     fire
       .auth()
       .signInWithPopup(facebook)
@@ -71,7 +109,7 @@ class SignUp extends React.Component {
     fire
       .auth()
       .signInWithPopup(provider)
-      .then(function(result) {
+      .then(function (result) {
         if (result) {
           console.log("result", result);
           name = result.user.displayName;
@@ -79,44 +117,87 @@ class SignUp extends React.Component {
           fire
             .auth()
             .currentUser.getIdToken(/* forceRefresh */ true)
-            .then(function(idToken) {
+            .then(function (idToken) {
               console.log(idToken, name);
               const body = { token: idToken, firstName: name };
-              axios.post("http://localhost:9000/pilots", body);
+              axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
               history.push("/Flights");
             });
         }
       })
-      .catch(function(error) {
+      .catch(function (error) {
         const errorMessage = error.message;
         console.log(errorMessage);
       });
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
-      <div>
-        <div>
-          <form onSubmit={this.createUser}>
-            <input
-              name="username"
-              placeholder="Username"
-              onChange={this.handleChanges}
-            />
-            <input
-              name="password"
-              placeholder="password"
-              onChange={this.handleChanges}
-            />
-            <Link to="/Settings">
-              <button onClick={this.createUser}>Sign Up</button>
-            </Link>
+      <main className={classes.main}>
+        <CssBaseline />
+        <Paper className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign in
+            </Typography>
+          <form className={classes.form}>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="email">Email Address</InputLabel>
+              <Input id="email" name="email" autoComplete="email" autoFocus value={this.state.email} onChange={this.handleChanges} />
+            </FormControl>
+            <FormControl margin="normal" required fullWidth>
+              <InputLabel htmlFor="password">Password</InputLabel>
+              <Input id="password" name="password" type="password" autoComplete="current-password" value={this.state.password} onChange={this.handleChanges} />
+            </FormControl>
+            {/* <FormControlLabel
+                control={<Checkbox value="remember" color="primary" />}
+                label="Remember me"
+              /> */}
+            <div className={classes.buttonRow}>
+              <Button
+                type="text"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.signUpWithGoogle}
+              >
+                Google
+              </Button>
+              <Button
+                type="text"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.signUpWithFacebook}
+              >
+                Facebook
+              </Button>
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onSubmit={this.createUser}
+              >
+                Email
+              </Button>
+            </div>
           </form>
-          <button onClick={this.signUpWithGoogle}>Google</button>
-          <button onClick={this.authWithFacebook}>Facebook</button>
-        </div>
-      </div>
+        </Paper>
+      </main>
     );
   }
 }
-export default SignUp;
+
+SignUp.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(SignUp);

@@ -9,8 +9,8 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 // import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from "@material-ui/core/DialogTitle";
-import AddIcon from "@material-ui/icons/Add";
-import Fab from "@material-ui/core/Fab";
+// import AddIcon from "@material-ui/icons/Add";
+// import Fab from "@material-ui/core/Fab";
 // import Input from '@material-ui/core/Input';
 // import OutlinedInput from '@material-ui/core/OutlinedInput';
 // import FilledInput from '@material-ui/core/FilledInput';
@@ -19,9 +19,9 @@ import Fab from "@material-ui/core/Fab";
 import FormControl from "@material-ui/core/FormControl";
 // import Select from "@material-ui/core/Select";
 // import NativeSelect from '@material-ui/core/NativeSelect';
-import Typography from "@material-ui/core/Typography";
-import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
+// import Typography from "@material-ui/core/Typography";
+// import Card from "@material-ui/core/Card";
+// import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
 const styles = theme => ({
@@ -58,36 +58,34 @@ const styles = theme => ({
   }
 });
 
-class FlightForm extends React.Component {
-  state = {
-    open: false,
-    flightDate: "",
-    flightName: "",
-    airports: "",
-    remarks: "",
-    numOfTakeOffs: "",
-    numOfLandings: "",
-    SEL: "",
-    MEL: "",
-    dayHours: "",
-    nightHours: "",
-    actInstruments: "",
-    simInstruments: "",
-    groundTrainer: "",
-    crossCountry: "",
-    asInstructor: "",
-    dualReceived: "",
-    pilotInCommand: "",
-    total: "",
-    airplanesID: "",
-    instructorsID: "1"
-  };
+class FlightEdit extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      open: false,
+      flightDate: "",
+      flightName: "",
+      airports: "",
+      remarks: "",
+      numOfTakeOffs: "",
+      numOfLandings: "",
+      SEL: "",
+      MEL: "",
+      dayHours: "",
+      nightHours: "",
+      actInstruments: "",
+      simInstruments: "",
+      groundTrainer: "",
+      crossCountry: "",
+      asInstructor: "",
+      dualReceived: "",
+      pilotInCommand: "",
+      total: "",
+      airplanesID: "",
+      instructorsID: "1"
+    };
+  }
 
-  //   componentDidMount() {
-  //         this.setState({
-  //             labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-  //         });
-  //     }
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
     this.setState({
@@ -100,18 +98,19 @@ class FlightForm extends React.Component {
   };
 
   handleClickOpen = () => {
-    this.setState({ open: true });
+    console.log(this.props.flight);
+    this.setState({ ...this.props.flight, open: true });
   };
 
   handleClose = () => {
     this.setState({ open: false });
   };
 
-  submitAddForm = () => {
+  submitEditForm = () => {
     console.log("fired");
     const UID = localStorage.getItem("userID");
     console.log("uid", UID);
-    const newFlight = {
+    const updatedFlight = {
       flightDate: this.state.flightDate,
       flightName: this.state.flightName,
       airports: this.state.airports,
@@ -131,12 +130,13 @@ class FlightForm extends React.Component {
       pilotInCommand: this.state.pilotInCommand,
       total: this.state.total,
       airplanesID: this.state.airplanesID,
-      instructorsID: this.state.instructorsID,
-      pilotsUID: UID
+      instructorsID: this.state.instructorsID
     };
-    console.log("newFlight", newFlight);
     axios
-      .post("https://labs9-flight-log.herokuapp.com/flights", newFlight)
+      .put(
+        `https://labs9-flight-log.herokuapp.com/flights/${this.state.id}`,
+        updatedFlight
+      )
       .then(response => {
         console.log(response);
         this.setState({
@@ -161,7 +161,7 @@ class FlightForm extends React.Component {
           total: "",
           airplanesID: "",
           instructorsID: ""
-        })
+        });
         console.log("this.props", this.props);
         this.props.switcher();
       })
@@ -172,26 +172,23 @@ class FlightForm extends React.Component {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Grid item lg={2} xs={10} sm={6} md={4}>
-          <Card className={classes.card}>
-            <Typography variant="h6" color="inherit" noWrap>
-              Add Flight
-            </Typography>
-            <Fab
-              color="primary"
-              aria-label="Add"
-              onClick={this.handleClickOpen}
-            >
-              <AddIcon />
-            </Fab>
-          </Card>
-        </Grid>
+        <Button
+          variant="contained"
+          className={classes.button}
+          color="primary"
+          aria-label="Add"
+          onClick={this.handleClickOpen}
+        >
+          Edit
+        </Button>
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Edit / Create Flight</DialogTitle>
+          <DialogTitle id="form-dialog-title">Edit Flight</DialogTitle>
+
           <DialogContent>
             <TextField
               type="string"
@@ -220,20 +217,6 @@ class FlightForm extends React.Component {
               <h1>SKYVECTOR HERE</h1>
             </div>
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel> */}
-              {/* <Select
-              type="number"
-                native
-                name="airplanesID"
-                value={this.state.name}
-                onChange={this.handleChange("aircraft")}
-                inputProps={{
-                  name: "aircraft",
-                  id: "aircraft-native-simple"
-                }}
-              >
-                <option value="" />
-              </Select> */}
               <TextField
                 type="number"
                 name="airplanesID"
@@ -246,20 +229,6 @@ class FlightForm extends React.Component {
               />
             </FormControl>
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="instructor-native-simple">
-                Instructor
-              </InputLabel> */}
-              {/* <Select
-                native
-                value={this.state.instructor}
-                onChange={this.handleChange("instructor")}
-                inputProps={{
-                  name: "instructor",
-                  id: "instructor-native-simple"
-                }}
-              >
-                <option value="" />
-              </Select> */}
               <TextField
                 type="number"
                 name="instructorsID"
@@ -463,7 +432,7 @@ class FlightForm extends React.Component {
             />
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.submitAddForm} color="primary">
+            <Button onClick={this.submitEditForm} color="primary">
               Save
             </Button>
           </DialogActions>
@@ -473,8 +442,8 @@ class FlightForm extends React.Component {
   }
 }
 
-FlightForm.propTypes = {
+FlightEdit.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(FlightForm);
+export default withStyles(styles)(FlightEdit);
