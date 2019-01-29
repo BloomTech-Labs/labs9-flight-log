@@ -78,7 +78,8 @@ class AirplanesList extends Component {
   }
 
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
+    console.log("this is props UID",this.props.UID);
     axios
       //http://localhost:9000/airplanes
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
@@ -114,7 +115,7 @@ class AirplanesList extends Component {
               direction="row"
               spacing={16}
             >
-              <AirplaneForm {...this.props} switcher={this.switcher} />
+              <AirplaneForm {...this.props} switcher={this.switcher} UID={this.props.UID5} />
               {this.state.airplanesList.map(airplane => (
                 <Grid item lg={4} MD={6} sm={12}>
                   <Card className={classes.card}>

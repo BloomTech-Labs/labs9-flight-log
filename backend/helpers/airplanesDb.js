@@ -42,7 +42,51 @@ module.exports = {
       )
       .where("pilots.UID", UID);
     if (id) {
-      query.where("airplanes.id", id);
+      query = db("airplanes")
+        .where("airplanes.id", id)
+        .join("flights", "flights.airplanesID", "=", "airplanes.id")
+        .sum({
+          totalTakeOffs: "flights.numOfTakeOffs"
+        })
+        .sum({
+          totalLandings: "flights.numOfLandings"
+        })
+        .sum({
+          totalSEL: "flights.SEL"
+        })
+        .sum({
+          totalMEL: "flights.MEL"
+        })
+        .sum({
+          totalDay: "flights.dayHours"
+        })
+        .sum({
+          totalNight: "flights.nightHours"
+        })
+        .sum({
+          totalActInstruments: "flights.actInstruments"
+        })
+        .sum({
+          totalSimInstruments: "flights.simInstruments"
+        })
+        .sum({
+          totalGroundTrainer: "flights.groundTrainer"
+        })
+        .sum({
+          totalCrossCountry: "flights.crossCountry"
+        })
+        .sum({
+          totalAsInstructor: "flights.asInstructor"
+        })
+        .sum({
+          totalDualReceived: "flights.dualReceived"
+        })
+        .sum({
+          totalPilotInCommand: "flights.pilotInCommand"
+        })
+        .sum({
+          totalHours: "flights.total"
+        });
     }
     return query;
   },

@@ -109,7 +109,7 @@ class FlightForm extends React.Component {
 
   submitAddForm = () => {
     console.log("fired");
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
     console.log("uid", UID);
     const newFlight = {
       flightDate: this.state.flightDate,

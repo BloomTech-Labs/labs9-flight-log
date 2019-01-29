@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 
-// import axios from 'axios';
-
 class BillingForm extends Component {
   constructor(props) {
     super(props);
@@ -16,24 +14,7 @@ class BillingForm extends Component {
     this.setState({ value: ev.target.value });
   };
 
-  //https://labs9-flight-log.herokuapp.com
-  //http://localhost:8000
-
   async submit(ev) {
-    // User clicked submit
-
-    /*     
-    let body = {
-      //amount:this.state.value, 
-      token: await this.props.stripe.createToken({name: "Name"})
-      }
-    
-    await axios
-      .post('http://localhost:8000/charge', body)
-      .then(res => {
-        console.log("SUCCESS")
-      })
-      .catch(error => console.log(error)) */
 
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let amount = await this.state.value;
@@ -43,10 +24,7 @@ class BillingForm extends Component {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        //application/json
-        //text/plain
         body: JSON.stringify({ token: token.id, amount })
-        //amount: amount
       }
     );
 
@@ -75,4 +53,3 @@ class BillingForm extends Component {
 }
 
 export default injectStripe(BillingForm);
-//export default injectStripe(CheckoutForm);
