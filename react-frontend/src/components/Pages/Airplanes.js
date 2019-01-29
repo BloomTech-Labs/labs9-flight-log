@@ -3,14 +3,7 @@ import Layout from "../Header component/Layout";
 // import AircraftView from '../Module Components/aircrafts/AircraftView'
 import axios from "axios";
 // import AircraftC from "../Module Components/aircrafts/AircraftC";
-// import AircraftE from "../Module Components/aircrafts/AircraftE";
-// import Button from '@material-ui/core/Button';
-// import Dialog from '@material-ui/core/Dialog';
-// import DialogActions from '@material-ui/core/DialogActions';
-// import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-// import DialogTitle from '@material-ui/core/DialogTitle';
-// import Slide from '@material-ui/core/Slide';
+
 import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
 import AirplaneEdit from "../Module Components/airplanes/AirplaneEdit";
 import AirplaneDelete from "../Module Components/airplanes/AirplaneDelete";
