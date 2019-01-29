@@ -35,14 +35,14 @@ const styles = theme => ({
     height: 140
   },
   buttonrow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     flexGrow: 1
   },
   button: {
-    margin: '0 8px'
+    margin: "0 8px"
   },
   skyvector: {
     width: 150,
@@ -87,7 +87,11 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+              <FlightForm
+                {...this.props}
+                switcher={this.switcher}
+                UID={this.props.UID}
+              />
               {this.state.flightsList.map(flight => (
                 <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
@@ -100,7 +104,7 @@ class Flights extends Component {
                         Route: {flight.airports}
                       </Typography>
 
-                      <Skyvector id='1' />
+                      <Skyvector id="1" />
 
                       <Typography gutterBottom variant="h6" component="h2">
                         {flight.flightDate}
@@ -109,7 +113,6 @@ class Flights extends Component {
                       <Typography gutterBottom variant="h6" component="h2">
                         Total time: {flight.total}
                       </Typography>
-<<<<<<< HEAD
                       <div className={classes.buttonrow}>
                         <FlightEdit
                           {...this.props}
@@ -119,17 +122,6 @@ class Flights extends Component {
                         <FlightDelete id={flight.id} switcher={this.switcher} />
                         <FlightView flight={flight} />
                       </div>
-=======
-
-                      <FlightEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        flight={flight}
-                      />
-                      <FlightDelete id={flight.id} switcher={this.switcher} />
-                      <FlightView flight={flight} />
-
->>>>>>> f67ca298057a07e0b26b0769c6ecb8ee9bd6b4c2
                     </CardContent>
                   </Card>
                 </Grid>

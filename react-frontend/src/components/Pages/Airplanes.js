@@ -34,14 +34,14 @@ const styles = theme => ({
     // minWidth: 200,
   },
   buttonrow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     flexGrow: 1
   },
   button: {
-    margin: '0 8px'
+    margin: "0 8px"
   },
   media: {
     height: 140
@@ -63,7 +63,7 @@ class AirplanesList extends Component {
 
   componentDidMount() {
     const UID = this.props.UID;
-    console.log("this is props UID",this.props.UID);
+    console.log("this is props UID", this.props.UID);
     axios
       //http://localhost:9000/airplanes
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
@@ -99,7 +99,11 @@ class AirplanesList extends Component {
               direction="row"
               spacing={16}
             >
-              <AirplaneForm {...this.props} switcher={this.switcher} UID={this.props.UID5} />
+              <AirplaneForm
+                {...this.props}
+                switcher={this.switcher}
+                UID={this.props.UID5}
+              />
               {this.state.airplanesList.map(airplane => (
                 <Grid item lg={4} MD={6} sm={12}>
                   <Card className={classes.card}>
@@ -134,7 +138,6 @@ class AirplanesList extends Component {
                         {airplane.category}
                       </Typography>
                       <div className={classes.buttonrow}>
-<<<<<<< HEAD
                         <AirplaneEdit
                           {...this.props}
                           switcher={this.switcher}
@@ -146,21 +149,6 @@ class AirplanesList extends Component {
                         />
                         <AirplaneView airplane={airplane} />
                       </div>
-=======
-
-
-                      <AirplaneEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        airplane={airplane}
-                      />
-                      <AirplaneDelete
-                        id={airplane.id}
-                        switcher={this.switcher}
-                      />
-                      <AirplaneView airplane={airplane} />
-
->>>>>>> f67ca298057a07e0b26b0769c6ecb8ee9bd6b4c2
                     </CardContent>
                   </Card>
                 </Grid>
