@@ -14,6 +14,7 @@ import axios from "axios";
 import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
 import AirplaneEdit from "../Module Components/airplanes/AirplaneEdit";
 import AirplaneDelete from "../Module Components/airplanes/AirplaneDelete";
+import AirplaneView from "../Module Components/airplanes/AirplaneView";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
@@ -148,6 +149,7 @@ class AirplanesList extends Component {
                         id={airplane.id}
                         switcher={this.switcher}
                       />
+                      <AirplaneView airplane={airplane} />
                     </CardContent>
                   </Card>
                 </Grid>

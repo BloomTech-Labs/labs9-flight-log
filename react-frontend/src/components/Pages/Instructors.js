@@ -11,6 +11,7 @@ import { withStyles } from "@material-ui/core/styles";
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
 import InstructorEdit from "../Module Components/instructors/InstructorEdit";
 import InstructorDelete from "../Module Components/instructors/InstructorDelete";
+import InstructorView from "../Module Components/instructors/InstructorView";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -134,6 +135,7 @@ class InstructorsList extends Component {
                         id={instructor.id}
                         switcher={this.switcher}
                       />
+                      <InstructorView instructor={instructor} />
                     </CardContent>
                   </Card>
                 </Grid>

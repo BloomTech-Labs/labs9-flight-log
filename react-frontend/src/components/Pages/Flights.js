@@ -4,6 +4,7 @@ import axios from "axios";
 import FlightForm from "../Module Components/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
 import FlightDelete from "../Module Components/flights/FlightDelete";
+import FlightView from "../Module Components/flights/FlightView";
 // import classNames from 'classnames';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
@@ -99,6 +100,7 @@ class Flights extends Component {
                         flight={flight}
                       />
                       <FlightDelete id={flight.id} switcher={this.switcher} />
+                      <FlightView flight={flight} />
                     </CardContent>
                   </Card>
                 </Grid>
