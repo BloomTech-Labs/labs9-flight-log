@@ -3,17 +3,11 @@ import Layout from "../Header component/Layout";
 // import AircraftView from '../Module Components/aircrafts/AircraftView'
 import axios from "axios";
 // import AircraftC from "../Module Components/aircrafts/AircraftC";
-// import AircraftE from "../Module Components/aircrafts/AircraftE";
-// import Button from '@material-ui/core/Button';
-// import Dialog from '@material-ui/core/Dialog';
-// import DialogActions from '@material-ui/core/DialogActions';
-// import DialogContent from '@material-ui/core/DialogContent';
-// import DialogContentText from '@material-ui/core/DialogContentText';
-// import DialogTitle from '@material-ui/core/DialogTitle';
-// import Slide from '@material-ui/core/Slide';
+
 import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
 import AirplaneEdit from "../Module Components/airplanes/AirplaneEdit";
 import AirplaneDelete from "../Module Components/airplanes/AirplaneDelete";
+import AirplaneView from "../Module Components/airplanes/AirplaneView";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
@@ -24,16 +18,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import fire from "../../components/Config/fire";
 const storage = fire.storage();
-// import { CssBaseline } from "@material-ui/core";
-// import AircraftView from "../Module Components/aircrafts/AircraftView";
-// import Paper from '@material-ui/core/Paper';
-// const AircraftList = () => (
-//   <Layout>
-//     <div>
-//       <p>Hello from aircraftList Next.js</p>
-//     </div>
-//   </Layout>
-// );
 
 //import aircrafts, this component will allow user to preform crud operations on aircrafts
 // get all aircrafts referenced to user by id/name, create, update, delete
@@ -50,14 +34,14 @@ const styles = theme => ({
     // minWidth: 200,
   },
   buttonrow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     flexGrow: 1
   },
   button: {
-    margin: '0 8px'
+    margin: "0 8px"
   },
   media: {
     height: 140
@@ -79,7 +63,7 @@ class AirplanesList extends Component {
 
   componentDidMount() {
     const UID = this.props.UID;
-    console.log("this is props UID",this.props.UID);
+    console.log("this is props UID", this.props.UID);
     axios
       //http://localhost:9000/airplanes
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
@@ -115,7 +99,11 @@ class AirplanesList extends Component {
               direction="row"
               spacing={16}
             >
-              <AirplaneForm {...this.props} switcher={this.switcher} UID={this.props.UID5} />
+              <AirplaneForm
+                {...this.props}
+                switcher={this.switcher}
+                UID={this.props.UID5}
+              />
               {this.state.airplanesList.map(airplane => (
                 <Grid item lg={4} MD={6} sm={12}>
                   <Card className={classes.card}>
@@ -150,7 +138,6 @@ class AirplanesList extends Component {
                         {airplane.category}
                       </Typography>
                       <div className={classes.buttonrow}>
-
                         <AirplaneEdit
                           {...this.props}
                           switcher={this.switcher}
@@ -160,6 +147,7 @@ class AirplanesList extends Component {
                           id={airplane.id}
                           switcher={this.switcher}
                         />
+                        <AirplaneView airplane={airplane} />
                       </div>
                     </CardContent>
                   </Card>

@@ -4,7 +4,11 @@ import axios from "axios";
 import FlightForm from "../Module Components/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
 import FlightDelete from "../Module Components/flights/FlightDelete";
+
+import FlightView from "../Module Components/flights/FlightView";
+
 import Skyvector from "../Module Components/flights/Skyvector";
+
 // import classNames from 'classnames';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
@@ -18,9 +22,6 @@ import Typography from "@material-ui/core/Typography";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 // import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from "@material-ui/core/styles";
-// import AddIcon from '@material-ui/icons/Add';
-// import Fab from '@material-ui/core/Fab';
-// import Paper from '@material-ui/core';
 
 const styles = theme => ({
   AddIcon: {},
@@ -34,14 +35,14 @@ const styles = theme => ({
     height: 140
   },
   buttonrow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     flexGrow: 1
   },
   button: {
-    margin: '0 8px'
+    margin: "0 8px"
   },
   skyvector: {
     width: 150,
@@ -86,7 +87,11 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+              <FlightForm
+                {...this.props}
+                switcher={this.switcher}
+                UID={this.props.UID}
+              />
               {this.state.flightsList.map(flight => (
                 <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
@@ -99,7 +104,7 @@ class Flights extends Component {
                         Route: {flight.airports}
                       </Typography>
 
-                      <Skyvector id='1' />
+                      <Skyvector id="1" />
 
                       <Typography gutterBottom variant="h6" component="h2">
                         {flight.flightDate}
@@ -115,6 +120,7 @@ class Flights extends Component {
                           flight={flight}
                         />
                         <FlightDelete id={flight.id} switcher={this.switcher} />
+                        <FlightView flight={flight} />
                       </div>
                     </CardContent>
                   </Card>

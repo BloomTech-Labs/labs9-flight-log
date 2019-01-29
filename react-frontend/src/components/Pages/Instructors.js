@@ -3,14 +3,14 @@ import React, { Component } from "react";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-// import CardActionArea from '@material-ui/core/CardActionArea';
-// import CardMedia from '@material-ui/core/CardMedia';
+
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
 import InstructorEdit from "../Module Components/instructors/InstructorEdit";
 import InstructorDelete from "../Module Components/instructors/InstructorDelete";
+import InstructorView from "../Module Components/instructors/InstructorView";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
@@ -32,20 +32,19 @@ const styles = theme => ({
     height: "100%"
   },
   buttonrow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     flexGrow: 1
   },
   button: {
-    margin: '0 8px'
+    margin: "0 8px"
   },
   contentLine: {
     // border:"3px solid orange"
   }
 });
-
 
 class InstructorsList extends Component {
   constructor(props) {
@@ -57,7 +56,7 @@ class InstructorsList extends Component {
 
   componentDidMount() {
     const UID = this.props.UID;
-    console.log('coming from instructor', UID)
+    console.log("coming from instructor", UID);
     axios
       .get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`)
       .then(response => {
@@ -91,7 +90,11 @@ class InstructorsList extends Component {
               spacing={16}
             >
               <Grid item lg={4} md={6} sm={12}>
-                <InstructorForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+                <InstructorForm
+                  {...this.props}
+                  switcher={this.switcher}
+                  UID={this.props.UID}
+                />
               </Grid>
 
               {this.state.instructorsList.map(instructor => (
@@ -136,7 +139,6 @@ class InstructorsList extends Component {
                       >
                         rating: {instructor.ratings}
                       </Typography>
-
                       <div className={classes.buttonrow}>
                         <InstructorEdit
                           {...this.props}
@@ -147,6 +149,7 @@ class InstructorsList extends Component {
                           id={instructor.id}
                           switcher={this.switcher}
                         />
+                        <InstructorView instructor={instructor} />
                       </div>
                     </CardContent>
                   </Card>
