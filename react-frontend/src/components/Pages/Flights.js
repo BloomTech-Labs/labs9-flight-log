@@ -44,8 +44,8 @@ const styles = theme => ({
     margin: '0 8px'
   },
   skyvector: {
-    width: 200,
-    height: 200
+    width: 150,
+    height: 150
   }
 });
 
@@ -100,6 +100,7 @@ class Flights extends Component {
                       </Typography>
 
                       <Skyvector id='1' />
+
                       <Typography gutterBottom variant="h6" component="h2">
                         {flight.flightDate}
                       </Typography>
