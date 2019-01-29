@@ -56,7 +56,7 @@ class Flights extends Component {
     };
   }
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
     console.log(UID);
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
@@ -85,7 +85,7 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} />
+              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               {this.state.flightsList.map(flight => (
                 <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
