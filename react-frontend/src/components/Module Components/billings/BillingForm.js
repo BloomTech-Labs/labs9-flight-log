@@ -1,39 +1,21 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
-
-// import axios from 'axios';
+import axios from "axios";
 
 class BillingForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { complete: false, value: "" };
+    this.state = { complete: false, value: "", isPaid: false};
     this.submit = this.submit.bind(this);
   }
 
   setAmount = ev => {
     console.log("setAmount", ev.target.value);
-    this.setState({ value: ev.target.value });
-  };
-
-  //https://labs9-flight-log.herokuapp.com
-  //http://localhost:8000
+    this.setState({ value: ev.target.value});
+    };
 
   async submit(ev) {
-    // User clicked submit
-
-    /*     
-    let body = {
-      //amount:this.state.value, 
-      token: await this.props.stripe.createToken({name: "Name"})
-      }
-    
-    await axios
-      .post('http://localhost:8000/charge', body)
-      .then(res => {
-        console.log("SUCCESS")
-      })
-      .catch(error => console.log(error)) */
 
     let { token } = await this.props.stripe.createToken({ name: "Name" });
     let amount = await this.state.value;
@@ -43,15 +25,24 @@ class BillingForm extends Component {
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        //application/json
-        //text/plain
         body: JSON.stringify({ token: token.id, amount })
-        //amount: amount
       }
     );
 
-    if (response.ok) this.setState({ complete: true });
-    console.log("Purchase Complete!");
+    if (response.ok) {
+      this.setState({ complete: true});
+      const UID = localStorage.getItem('userID');
+      console.log(UID);
+
+      axios
+        .post(`https://labs9-flight-log.herokuapp.com/pilots/${UID}`)
+        .then(response => {
+          this.setState({ isPaid: true})
+        })
+        .catch(error => console.log(error));
+        console.log("Purchase Complete!");
+    } 
+   
   }
 
   render() {
@@ -75,4 +66,3 @@ class BillingForm extends Component {
 }
 
 export default injectStripe(BillingForm);
-//export default injectStripe(CheckoutForm);

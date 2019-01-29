@@ -1,23 +1,24 @@
 import React, { Component } from "react";
 import "./App.css";
 // import Layout from './components/Header component/Layout';
-import SignIn from "./components/Pages/SignIn";
+
 import Airplanes from "./components/Pages/Airplanes";
 import Billing from "./components/Pages/Billing";
 import Flights from "./components/Pages/Flights";
 import Instructors from "./components/Pages/Instructors";
-import Landing from "./components/Pages/Landing";
 import Settings from "./components/Pages/Settings";
-import SignUp from "./components/Pages/SignUp";
-
+import fire from "./components/Config/fire";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
+import axios from "axios";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      UID: ""
+      idToken: "",
+      UID: "",
+      Name: ""
     };
   }
 
@@ -26,26 +27,61 @@ class App extends Component {
       UID: UID
     });
   };
+  componentWillMount() {
+    const that = this;
+    fire
+      .auth()
+      .currentUser.getIdToken(/* forceRefresh */ true)
+      .then(function (idToken) {
+        console.log(idToken);
+        const body = { token: idToken };
+        axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
+        that.setState({ idToken: idToken })
+      });
 
+  }
+  componentDidMount(){
+    const that= this;
+    fire
+    .auth()
+    .currentUser.getIdToken(/* forceRefresh */ true)
+    .then(function (idToken) {
+      const body = idToken;
+      console.log("idToken", idToken);
+      axios
+        .get("https://labs9-flight-log.herokuapp.com/pilots/signin", {
+          params: { token: body }
+        })
+        .then(response => {
+          console.log("response.data", response.data);
+          const uid = response.data.PilotUID;
+          const name = response.data.PilotName;
+          console.log(name, uid)
+          that.setState({
+            UID:uid,
+            Name:name
+          })
+        });
+    });
+  }
   render() {
     return (
       <div className="App">
-        <Route exact path="/" render={() => <Landing />} />
         <Route
           exact
           path="/Airplanes"
-          render={props => <Airplanes {...props} />}
+          render={props => <Airplanes {...props} UID={this.state.UID} />}
         />
-        <Route exact path="/Billing" render={() => <Billing />} />
+      
+        <Route exact path="/Billing" render={(props) => <Billing {...props} UID={this.state.UID}/>} />
+
         <Route
           exact
           path="/Instructors"
-          render={props => <Instructors {...props} />}
+          render={props => <Instructors {...props}UID={this.state.UID} />}
         />
-        <Route exact path="/Settings" render={() => <Settings />} />
-        <Route exact path="/SignIn" render={props => <SignIn {...props} />} />
-        <Route exact path="/SignUp" render={props => <SignUp {...props} />} />
-        <Route exact path="/Flights" render={() => <Flights />} />
+        <Route exact path="/Settings" render={(props) => <Settings {...props}UID={this.state.UID} />} />
+        <Route exact path="/Flights" render={(props) => <Flights {...props}UID={this.state.UID}/>} />
       </div>
     );
   }

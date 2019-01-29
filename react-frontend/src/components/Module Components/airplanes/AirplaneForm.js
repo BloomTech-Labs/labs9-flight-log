@@ -102,7 +102,7 @@ class AirplaneForm extends Component {
 
   submitAddForm = () => {
     console.log("fired");
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
     console.log("uid", UID);
     if (this.state.image) {
       const image = this.state.image;

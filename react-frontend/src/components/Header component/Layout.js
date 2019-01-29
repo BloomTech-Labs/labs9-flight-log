@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import FlightTheme from '../Styles/theme';
 import React from 'react';
+// import {BrowserRouter as Router}from 'react-router-dom';
 
 import fire from "../Config/fire";
 
@@ -41,8 +42,6 @@ const styles = theme => ({
 class Layout extends React.Component {
   signOut = () => {
     fire.auth().signOut();
-    localStorage.removeItem('userID');
-    localStorage.removeItem('userName');
   }
 
   render() {

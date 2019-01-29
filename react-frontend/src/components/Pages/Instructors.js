@@ -31,11 +31,21 @@ const styles = theme => ({
 
     height: "100%"
   },
+  buttonrow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexGrow: 1
+  },
+  button: {
+    margin: '0 8px'
+  },
   contentLine: {
     // border:"3px solid orange"
   }
 });
-const UID = localStorage.getItem("userID");
+
 
 class InstructorsList extends Component {
   constructor(props) {
@@ -46,6 +56,8 @@ class InstructorsList extends Component {
   }
 
   componentDidMount() {
+    const UID = this.props.UID;
+    console.log('coming from instructor', UID)
     axios
       .get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`)
       .then(response => {
@@ -79,7 +91,7 @@ class InstructorsList extends Component {
               spacing={16}
             >
               <Grid item lg={4} md={6} sm={12}>
-                <InstructorForm {...this.props} switcher={this.switcher} />
+                <InstructorForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               </Grid>
 
               {this.state.instructorsList.map(instructor => (
@@ -124,6 +136,7 @@ class InstructorsList extends Component {
                       >
                         rating: {instructor.ratings}
                       </Typography>
+<<<<<<< HEAD
                       <div className={classes.buttonrow}>
                         <InstructorEdit
                           {...this.props}
@@ -136,6 +149,20 @@ class InstructorsList extends Component {
                         />
                         <InstructorView instructor={instructor} />
                       </div>
+=======
+
+                      <InstructorEdit
+                        {...this.props}
+                        switcher={this.switcher}
+                        instructor={instructor}
+                      />
+                      <InstructorDelete
+                        id={instructor.id}
+                        switcher={this.switcher}
+                      />
+                      <InstructorView instructor={instructor} />
+
+>>>>>>> f67ca298057a07e0b26b0769c6ecb8ee9bd6b4c2
                     </CardContent>
                   </Card>
                 </Grid>
