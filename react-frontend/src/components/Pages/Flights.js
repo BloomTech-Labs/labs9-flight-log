@@ -28,10 +28,24 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    maxWidth: 345
+    height: 375
   },
   media: {
     height: 140
+  },
+  buttonrow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexGrow: 1
+  },
+  button: {
+    margin: '0 8px'
+  },
+  skyvector: {
+    width: 200,
+    height: 200
   }
 });
 
@@ -43,7 +57,7 @@ class Flights extends Component {
     };
   }
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
     console.log(UID);
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
@@ -72,9 +86,9 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} />
+              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               {this.state.flightsList.map(flight => (
-                <Grid item lg={2} xs={10} sm={6} md={4}>
+                <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
                     <CardContent>
                       {flight.id}
@@ -101,6 +115,7 @@ class Flights extends Component {
                       />
                       <FlightDelete id={flight.id} switcher={this.switcher} />
                       <FlightView flight={flight} />
+
                     </CardContent>
                   </Card>
                 </Grid>

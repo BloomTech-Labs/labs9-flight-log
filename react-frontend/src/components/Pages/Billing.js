@@ -6,7 +6,7 @@ import BillingForm from "../Module Components/billings/BillingForm";
 import Layout from "../Header component/Layout";
 import TotalsModal from "./TotalsModal";
 
-//DO NOT DELETE COMMENTED CODE -we
+//DO NOT DELETE COMMENTED CODE YET -we
 /* class Billing extends Component {
   constructor() {
     super();

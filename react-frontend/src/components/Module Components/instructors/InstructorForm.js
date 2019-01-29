@@ -43,7 +43,7 @@ const styles = theme => ({
 });
 
 const URL = "https://labs9-flight-log.herokuapp.com";
-const UID = localStorage.getItem("userID");
+
 
 class InstructorForm extends React.Component {
   constructor(props) {
@@ -79,6 +79,7 @@ class InstructorForm extends React.Component {
 
   //submit add form
   submitAddForm = () => {
+    const UID= this.props.UID
     const newInstructor = {
       name: this.state.name,
       licenseNum: this.state.licenseNum,
