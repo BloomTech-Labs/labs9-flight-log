@@ -71,7 +71,7 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} />
+              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               {this.state.flightsList.map(flight => (
                 <Grid item lg={2} xs={10} sm={6} md={4}>
                   <Card className={classes.card}>

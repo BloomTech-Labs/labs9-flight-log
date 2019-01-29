@@ -81,7 +81,7 @@ class InstructorsList extends Component {
               spacing={16}
             >
               <Grid item lg={4} md={6} sm={12}>
-                <InstructorForm {...this.props} switcher={this.switcher} />
+                <InstructorForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               </Grid>
 
               {this.state.instructorsList.map(instructor => (
