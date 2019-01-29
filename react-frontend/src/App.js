@@ -36,7 +36,9 @@ class App extends Component {
           path="/Airplanes"
           render={props => <Airplanes {...props} />}
         />
-        <Route exact path="/Billing" render={() => <Billing />} />
+        <Route 
+          exact path="/Billing" 
+          render={props => <Billing {...props} />} />
         <Route
           exact
           path="/Instructors"
