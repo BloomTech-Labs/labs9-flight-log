@@ -45,9 +45,19 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    maxWidth: 345
+    height: 375
     // marginBottom: 20,
     // minWidth: 200,
+  },
+  buttonrow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexGrow: 1
+  },
+  button: {
+    margin: '0 8px'
   },
   media: {
     height: 140
@@ -68,7 +78,8 @@ class AirplanesList extends Component {
   }
 
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
+    console.log("this is props UID",this.props.UID);
     axios
       //http://localhost:9000/airplanes
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
@@ -104,9 +115,9 @@ class AirplanesList extends Component {
               direction="row"
               spacing={16}
             >
-              <AirplaneForm {...this.props} switcher={this.switcher} />
+              <AirplaneForm {...this.props} switcher={this.switcher} UID={this.props.UID5} />
               {this.state.airplanesList.map(airplane => (
-                <Grid item lg={2} xs={10} sm={6} md={4}>
+                <Grid item lg={4} MD={6} sm={12}>
                   <Card className={classes.card}>
                     <CardContent>
                       {airplane.id}
@@ -138,16 +149,18 @@ class AirplanesList extends Component {
                         category:
                         {airplane.category}
                       </Typography>
+                      <div className={classes.buttonrow}>
 
-                      <AirplaneEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        airplane={airplane}
-                      />
-                      <AirplaneDelete
-                        id={airplane.id}
-                        switcher={this.switcher}
-                      />
+                        <AirplaneEdit
+                          {...this.props}
+                          switcher={this.switcher}
+                          airplane={airplane}
+                        />
+                        <AirplaneDelete
+                          id={airplane.id}
+                          switcher={this.switcher}
+                        />
+                      </div>
                     </CardContent>
                   </Card>
                 </Grid>

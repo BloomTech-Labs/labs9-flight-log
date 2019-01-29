@@ -4,6 +4,7 @@ import axios from "axios";
 import FlightForm from "../Module Components/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
 import FlightDelete from "../Module Components/flights/FlightDelete";
+import Skyvector from "../Module Components/flights/Skyvector";
 // import classNames from 'classnames';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
@@ -27,10 +28,24 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    maxWidth: 345
+    height: 400
   },
   media: {
     height: 140
+  },
+  buttonrow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    flexGrow: 1
+  },
+  button: {
+    margin: '0 8px'
+  },
+  skyvector: {
+    width: 150,
+    height: 150
   }
 });
 
@@ -42,7 +57,7 @@ class Flights extends Component {
     };
   }
   componentDidMount() {
-    const UID = localStorage.getItem("userID");
+    const UID = this.props.UID;
     console.log(UID);
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
@@ -71,34 +86,36 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} />
+              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               {this.state.flightsList.map(flight => (
-                <Grid item lg={2} xs={10} sm={6} md={4}>
+                <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
                     <CardContent>
-                      {flight.id}
                       <Typography gutterBottom variant="h5" component="h2">
-                        flight name: {flight.flightName}
+                        {flight.flightName}
                       </Typography>
 
-                      <Typography gutterBottom variant="h5" component="h2">
-                        flight date: {flight.flightDate}
+                      <Typography gutterBottom variant="h6" component="h2">
+                        Route: {flight.airports}
                       </Typography>
 
-                      <Typography gutterBottom variant="h5" component="h2">
-                        flight route: {flight.airports}
+                      <Skyvector id='1' />
+
+                      <Typography gutterBottom variant="h6" component="h2">
+                        {flight.flightDate}
                       </Typography>
 
-                      <Typography gutterBottom variant="h5" component="h2">
-                        flight hrs: {flight.total}
+                      <Typography gutterBottom variant="h6" component="h2">
+                        Total time: {flight.total}
                       </Typography>
-
-                      <FlightEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        flight={flight}
-                      />
-                      <FlightDelete id={flight.id} switcher={this.switcher} />
+                      <div className={classes.buttonrow}>
+                        <FlightEdit
+                          {...this.props}
+                          switcher={this.switcher}
+                          flight={flight}
+                        />
+                        <FlightDelete id={flight.id} switcher={this.switcher} />
+                      </div>
                     </CardContent>
                   </Card>
                 </Grid>
