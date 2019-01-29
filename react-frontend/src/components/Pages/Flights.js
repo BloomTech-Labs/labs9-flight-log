@@ -93,14 +93,15 @@ class Flights extends Component {
                       <Typography gutterBottom variant="h5" component="h2">
                         flight hrs: {flight.total}
                       </Typography>
-
-                      <FlightEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        flight={flight}
-                      />
-                      <FlightDelete id={flight.id} switcher={this.switcher} />
-                      <FlightView flight={flight} />
+                      <div className={classes.buttonrow}>
+                        <FlightEdit
+                          {...this.props}
+                          switcher={this.switcher}
+                          flight={flight}
+                        />
+                        <FlightDelete id={flight.id} switcher={this.switcher} />
+                        <FlightView flight={flight} />
+                      </div>
                     </CardContent>
                   </Card>
                 </Grid>

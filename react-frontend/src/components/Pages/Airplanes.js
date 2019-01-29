@@ -139,17 +139,18 @@ class AirplanesList extends Component {
                         category:
                         {airplane.category}
                       </Typography>
-
-                      <AirplaneEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        airplane={airplane}
-                      />
-                      <AirplaneDelete
-                        id={airplane.id}
-                        switcher={this.switcher}
-                      />
-                      <AirplaneView airplane={airplane} />
+                      <div className={classes.buttonrow}>
+                        <AirplaneEdit
+                          {...this.props}
+                          switcher={this.switcher}
+                          airplane={airplane}
+                        />
+                        <AirplaneDelete
+                          id={airplane.id}
+                          switcher={this.switcher}
+                        />
+                        <AirplaneView airplane={airplane} />
+                      </div>
                     </CardContent>
                   </Card>
                 </Grid>

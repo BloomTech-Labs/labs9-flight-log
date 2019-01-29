@@ -125,17 +125,18 @@ class InstructorsList extends Component {
                       >
                         rating: {instructor.ratings}
                       </Typography>
-
-                      <InstructorEdit
-                        {...this.props}
-                        switcher={this.switcher}
-                        instructor={instructor}
-                      />
-                      <InstructorDelete
-                        id={instructor.id}
-                        switcher={this.switcher}
-                      />
-                      <InstructorView instructor={instructor} />
+                      <div className={classes.buttonrow}>
+                        <InstructorEdit
+                          {...this.props}
+                          switcher={this.switcher}
+                          instructor={instructor}
+                        />
+                        <InstructorDelete
+                          id={instructor.id}
+                          switcher={this.switcher}
+                        />
+                        <InstructorView instructor={instructor} />
+                      </div>
                     </CardContent>
                   </Card>
                 </Grid>
