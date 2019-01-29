@@ -72,7 +72,9 @@ class App extends Component {
           path="/Airplanes"
           render={props => <Airplanes {...props} UID={this.state.UID} />}
         />
-        <Route exact path="/Billing" render={(props) => <Billing {...props}UID={this.state.UID}/>} />
+      
+        <Route exact path="/Billing" render={(props) => <Billing {...props} UID={this.state.UID}/>} />
+
         <Route
           exact
           path="/Instructors"

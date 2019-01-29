@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
+import axios from "axios";
 
 class BillingForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { complete: false, value: "" };
+    this.state = { complete: false, value: "", isPaid: false};
     this.submit = this.submit.bind(this);
   }
 
   setAmount = ev => {
     console.log("setAmount", ev.target.value);
-    this.setState({ value: ev.target.value });
-  };
+    this.setState({ value: ev.target.value});
+    };
 
   async submit(ev) {
 
@@ -28,8 +29,20 @@ class BillingForm extends Component {
       }
     );
 
-    if (response.ok) this.setState({ complete: true });
-    console.log("Purchase Complete!");
+    if (response.ok) {
+      this.setState({ complete: true});
+      const UID = localStorage.getItem('userID');
+      console.log(UID);
+
+      axios
+        .post(`https://labs9-flight-log.herokuapp.com/pilots/${UID}`)
+        .then(response => {
+          this.setState({ isPaid: true})
+        })
+        .catch(error => console.log(error));
+        console.log("Purchase Complete!");
+    } 
+   
   }
 
   render() {
