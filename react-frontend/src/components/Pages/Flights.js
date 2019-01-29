@@ -18,9 +18,6 @@ import Typography from "@material-ui/core/Typography";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 // import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from "@material-ui/core/styles";
-// import AddIcon from '@material-ui/icons/Add';
-// import Fab from '@material-ui/core/Fab';
-// import Paper from '@material-ui/core';
 
 const styles = theme => ({
   AddIcon: {},

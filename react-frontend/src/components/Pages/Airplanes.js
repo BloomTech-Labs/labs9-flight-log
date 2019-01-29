@@ -25,16 +25,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import fire from "../../components/Config/fire";
 const storage = fire.storage();
-// import { CssBaseline } from "@material-ui/core";
-// import AircraftView from "../Module Components/aircrafts/AircraftView";
-// import Paper from '@material-ui/core/Paper';
-// const AircraftList = () => (
-//   <Layout>
-//     <div>
-//       <p>Hello from aircraftList Next.js</p>
-//     </div>
-//   </Layout>
-// );
 
 //import aircrafts, this component will allow user to preform crud operations on aircrafts
 // get all aircrafts referenced to user by id/name, create, update, delete
