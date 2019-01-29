@@ -175,20 +175,18 @@ class FlightForm extends React.Component {
     const { classes } = this.props;
     return (
       <Fragment>
-        <Grid item lg={2} xs={10} sm={6} md={4}>
-          <Card className={classes.card}>
-            <Typography variant="h6" color="inherit" noWrap>
-              Add Flight
+        <Card className={classes.card}>
+          <Typography variant="h6" color="inherit" noWrap>
+            Add Flight
             </Typography>
-            <Fab
-              color="primary"
-              aria-label="Add"
-              onClick={this.handleClickOpen}
-            >
-              <AddIcon />
-            </Fab>
-          </Card>
-        </Grid>
+          <Fab
+            color="primary"
+            aria-label="Add"
+            onClick={this.handleClickOpen}
+          >
+            <AddIcon />
+          </Fab>
+        </Card>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}

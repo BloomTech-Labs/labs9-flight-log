@@ -82,7 +82,9 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+              <Grid item lg={4} md={6} sm={12}>
+                <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+              </Grid>
               {this.state.flightsList.map(flight => (
                 <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
@@ -95,7 +97,7 @@ class Flights extends Component {
                         Route: {flight.airports}
                       </Typography>
 
-                      <SkyVector skyVector={flight.skyVector} />
+                      <SkyVector id={flight.id} skyVector={flight.skyVector} />
 
                       <Typography gutterBottom variant="h6" component="h2">
                         {flight.flightDate}
