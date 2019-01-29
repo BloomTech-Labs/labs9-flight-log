@@ -64,6 +64,7 @@ class FlightForm extends React.Component {
     flightDate: "",
     flightName: "",
     airports: "",
+    skyVector: "",
     remarks: "",
     numOfTakeOffs: "",
     numOfLandings: "",
@@ -115,6 +116,7 @@ class FlightForm extends React.Component {
       flightDate: this.state.flightDate,
       flightName: this.state.flightName,
       airports: this.state.airports,
+      skyVector: this.state.skyVector,
       remarks: this.state.remarks,
       numOfTakeOffs: this.state.numOfTakeOffs,
       numOfLandings: this.state.numOfLandings,
@@ -144,6 +146,7 @@ class FlightForm extends React.Component {
           flightDate: "",
           flightName: "",
           airports: "",
+          skyVector: "",
           remarks: "",
           numOfTakeOffs: "",
           numOfLandings: "",
@@ -191,7 +194,7 @@ class FlightForm extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Edit / Create Flight</DialogTitle>
+          <DialogTitle id="form-dialog-title">Create Flight</DialogTitle>
           <DialogContent>
             <TextField
               type="string"
@@ -216,9 +219,17 @@ class FlightForm extends React.Component {
               fullWidth
               variant="outlined"
             />
-            <div>
-              <h1>SKYVECTOR HERE</h1>
-            </div>
+            <TextField
+              type="string"
+              margin="dense"
+              // id="name"
+              name="skyVector"
+              label="SkyVector Link"
+              value={this.state.skyVector}
+              onChange={this.editFormHandler}
+              fullWidth
+              variant="outlined"
+            />
             <FormControl className={classes.formControl}>
               {/* <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel> */}
               {/* <Select

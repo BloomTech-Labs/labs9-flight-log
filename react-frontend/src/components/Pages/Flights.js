@@ -4,7 +4,7 @@ import axios from "axios";
 import FlightForm from "../Module Components/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
 import FlightDelete from "../Module Components/flights/FlightDelete";
-import Skyvector from "../Module Components/flights/Skyvector";
+import SkyVector from "../Module Components/flights/SkyVector";
 // import classNames from 'classnames';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
@@ -42,10 +42,6 @@ const styles = theme => ({
   },
   button: {
     margin: '0 8px'
-  },
-  skyvector: {
-    width: 150,
-    height: 150
   }
 });
 
@@ -99,7 +95,7 @@ class Flights extends Component {
                         Route: {flight.airports}
                       </Typography>
 
-                      <Skyvector id='1' />
+                      <SkyVector skyVector={flight.skyVector} />
 
                       <Typography gutterBottom variant="h6" component="h2">
                         {flight.flightDate}

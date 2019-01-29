@@ -66,6 +66,7 @@ class FlightEdit extends React.Component {
       flightDate: "",
       flightName: "",
       airports: "",
+      skyVector: "",
       remarks: "",
       numOfTakeOffs: "",
       numOfLandings: "",
@@ -114,6 +115,7 @@ class FlightEdit extends React.Component {
       flightDate: this.state.flightDate,
       flightName: this.state.flightName,
       airports: this.state.airports,
+      skyVector: this.state.skyVector,
       remarks: this.state.remarks,
       numOfTakeOffs: this.state.numOfTakeOffs,
       numOfLandings: this.state.numOfLandings,
@@ -144,6 +146,7 @@ class FlightEdit extends React.Component {
           flightDate: "",
           flightName: "",
           airports: "",
+          skyVector: "",
           remarks: "",
           numOfTakeOffs: "",
           numOfLandings: "",
@@ -213,9 +216,17 @@ class FlightEdit extends React.Component {
               fullWidth
               variant="outlined"
             />
-            <div>
-              <h1>SKYVECTOR HERE</h1>
-            </div>
+            <TextField
+              type="string"
+              margin="dense"
+              // id="name"
+              name="skyVector"
+              label="SkyVector Link"
+              value={this.state.skyVector}
+              onChange={this.editFormHandler}
+              fullWidth
+              variant="outlined"
+            />
             <FormControl className={classes.formControl}>
               <TextField
                 type="number"
