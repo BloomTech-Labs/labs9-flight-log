@@ -8,13 +8,14 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import InputLabel from "@material-ui/core/InputLabel";
+// import InputLabel from "@material-ui/core/InputLabel";
 import TextField from "@material-ui/core/TextField";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import fire from "../../../components/Config/fire";
+import { Spring } from 'react-spring';
 const storage = fire.storage();
 
 const styles = theme => ({
@@ -34,8 +35,9 @@ const styles = theme => ({
     flexWrap: "wrap"
   },
   textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+    // marginLeft: theme.spacing.unit,
+    // marginRight: theme.spacing.unit,
+    marginBottom: 15,
   },
   dense: {
     marginTop: 16
@@ -44,7 +46,7 @@ const styles = theme => ({
     width: 200
   },
   card: {
-    height: "290px",
+    height: 345,
     maxWidth: 345
   }
 });
@@ -167,14 +169,17 @@ class AirplaneForm extends Component {
             </Fab>
           </Card>
         </Grid>
+        <Spring reset={ true } from={{ opacity: 0, marginTop: -1000 }} to={{ opacity: 1, marginTop: 0}}>
+        { props => 
         <Dialog
+          style={props}
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Airplane:</DialogTitle>
           <DialogContent>
-            <InputLabel htmlFor="aircraft-native-simple">Airplane</InputLabel>
+            {/* <InputLabel htmlFor="aircraft-native-simple">Airplane</InputLabel> */}
 
             <TextField
               type="string"
@@ -182,6 +187,7 @@ class AirplaneForm extends Component {
               label="Tail Number"
               value={this.state.tailNumber}
               onChange={this.editFormHandler}
+              className={classes.textField}
               required
               fullWidth
               variant="outlined"
@@ -193,6 +199,7 @@ class AirplaneForm extends Component {
               value={this.state.make}
               onChange={this.editFormHandler}
               required
+              className={classes.textField}
               fullWidth
               variant="outlined"
             />
@@ -203,6 +210,7 @@ class AirplaneForm extends Component {
               value={this.state.model}
               onChange={this.editFormHandler}
               required
+              className={classes.textField}
               fullWidth
               variant="outlined"
             />
@@ -213,12 +221,13 @@ class AirplaneForm extends Component {
               value={this.state.category}
               onChange={this.editFormHandler}
               required
+              className={classes.textField}
               fullWidth
               variant="outlined"
             />
             <input name="image" type="file" onChange={this.handleImage} />
             <DropzoneArea
-              onChange={this.handleChange.bind(this)}
+              onChange={this.handleImage}
               showPreviews={true}
               acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
             />
@@ -229,6 +238,8 @@ class AirplaneForm extends Component {
             </Button>
           </DialogActions>
         </Dialog>
+        }
+        </Spring>
       </Fragment>
     );
   }
