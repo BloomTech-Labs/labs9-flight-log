@@ -4,7 +4,11 @@ import axios from "axios";
 import FlightForm from "../Module Components/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
 import FlightDelete from "../Module Components/flights/FlightDelete";
-import SkyVector from "../Module Components/flights/SkyVector";
+
+import FlightView from "../Module Components/flights/FlightView";
+
+import Skyvector from "../Module Components/flights/Skyvector";
+
 // import classNames from 'classnames';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
@@ -18,9 +22,6 @@ import Typography from "@material-ui/core/Typography";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 // import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from "@material-ui/core/styles";
-// import AddIcon from '@material-ui/icons/Add';
-// import Fab from '@material-ui/core/Fab';
-// import Paper from '@material-ui/core';
 
 const styles = theme => ({
   AddIcon: {},
@@ -34,10 +35,10 @@ const styles = theme => ({
     height: 140
   },
   buttonrow: {
-    width: '100%',
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'center',
+    width: "100%",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     flexGrow: 1
   },
   button: {
@@ -113,6 +114,7 @@ class Flights extends Component {
                           flight={flight}
                         />
                         <FlightDelete id={flight.id} switcher={this.switcher} />
+                        <FlightView flight={flight} />
                       </div>
                     </CardContent>
                   </Card>
