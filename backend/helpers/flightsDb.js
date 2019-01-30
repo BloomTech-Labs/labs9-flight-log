@@ -26,11 +26,14 @@ module.exports = {
         "flights.asInstructor",
         "flights.dualReceived",
         "flights.pilotInCommand",
-        "flights.skyVector"
+        "flights.skyVector",
+        "flights.airplanesID",
+        "flights.instructorsID"
       )
       .where("pilots.UID", UID);
     if (total) {
       query = db("flights")
+        .join("pilots", "flights.pilotsUID", "=", "pilots.UID")
         .sum({
           totalTakeOffs: "numOfTakeOffs"
         })
@@ -72,7 +75,8 @@ module.exports = {
         })
         .sum({
           totalHours: "total"
-        });
+        })
+        .where("pilots.UID", UID);
     }
     return query;
   },

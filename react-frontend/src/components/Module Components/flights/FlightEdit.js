@@ -23,6 +23,12 @@ import FormControl from "@material-ui/core/FormControl";
 // import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import MenuItem from "@material-ui/core/MenuItem";
+import MenuList from "@material-ui/core/MenuList";
+import { Grow } from "@material-ui/core";
+import Popper from "@material-ui/core/Popper";
+import Paper from "@material-ui/core/Paper";
+import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const styles = theme => ({
   root: {
@@ -81,7 +87,14 @@ class FlightEdit extends React.Component {
       pilotInCommand: "",
       total: "",
       airplanesID: "",
-      instructorsID: "1"
+      instructorsID: "",
+      //
+      airplanes: [],
+      instructors: [],
+      airplane: "",
+      instructor: "",
+      openAir: false,
+      openIns: false
     };
   }
 
@@ -97,8 +110,25 @@ class FlightEdit extends React.Component {
   };
 
   handleClickOpen = () => {
-    console.log(this.props.flight);
-    this.setState({ ...this.props.flight, open: true });
+    console.log("this.props.airplanes", this.props.airplanes);
+    console.log("this.props.instructors", this.props.instructors);
+    console.log("this.props.flight.airplanesID", this.props.flight);
+    const airplane = this.props.airplanes.find(
+      airplane => airplane.id === this.props.flight.airplanesID
+    );
+    console.log("airplane", airplane);
+    const instructor = this.props.instructors.find(
+      instructor => instructor.id === this.props.flight.instructorsID
+    );
+    console.log("instructor", instructor);
+    this.setState({
+      ...this.props.flight,
+      airplanes: this.props.airplanes,
+      instructors: this.props.instructors,
+      airplane: airplane,
+      instructor: instructor,
+      open: true
+    });
   };
 
   handleClose = () => {
@@ -129,8 +159,8 @@ class FlightEdit extends React.Component {
       dualReceived: this.state.dualReceived,
       pilotInCommand: this.state.pilotInCommand,
       total: this.state.total,
-      airplanesID: this.state.airplanesID,
-      instructorsID: this.state.instructorsID
+      airplanesID: this.state.airplane.id,
+      instructorsID: this.state.instructor.id
     };
     axios
       .put(
@@ -167,6 +197,37 @@ class FlightEdit extends React.Component {
         this.props.switcher();
       })
       .catch(error => console.log(error));
+  };
+
+  handleOpenAir = () => {
+    console.log("airplanes");
+    this.setState({ openAir: true });
+  };
+  handleCloseAir = event => {
+    // if (this.anchorEl.contains(event.target)) {
+    //   return;
+    // }
+    this.setState({ openAir: false });
+  };
+  handleOpenIns = () => {
+    console.log("instructors");
+    this.setState({ openIns: true });
+  };
+  handleCloseIns = event => {
+    // if (this.anchorE2.contains(event.target)) {
+    //   return;
+    // }
+    this.setState({ openIns: false });
+  };
+  handleAirplane = airplane => event => {
+    console.log(airplane);
+    this.setState({ airplane: airplane });
+    this.handleCloseAir();
+  };
+  handleInstructor = instructor => event => {
+    console.log(instructor);
+    this.setState({ instructor: instructor });
+    this.handleCloseIns();
   };
 
   render() {
@@ -246,31 +307,133 @@ class FlightEdit extends React.Component {
                 />
               </Grid>
 
-              <FormControl className={classes.formControl}>
-                <TextField
-                  type="number"
-                  name="airplanesID"
-                  label="airplane id"
-                  value={this.state.airplanesID}
-                  onChange={this.editFormHandler}
-                  // required
-                  fullWidth
-                  variant="outlined"
-                />
-              </FormControl>
-              <FormControl className={classes.formControl}>
-                <TextField
-                  type="number"
-                  name="instructorsID"
-                  label="instructor id, n/r"
-                  value={this.state.instructorsID}
-                  onChange={this.editFormHandler}
-                  // required
-                  fullWidth
-                  variant="outlined"
-                />
-
-              </FormControl>
+                    <FormControl className={classes.formControl}>
+              {/* <TextField
+                type="number"
+                name="airplanesID"
+                label="airplane id"
+                value={this.state.airplanesID}
+                onChange={this.editFormHandler}
+                // required
+                fullWidth
+                variant="outlined"
+              /> */}
+              <Button
+                buttonRef={node => {
+                  this.anchorEl = node;
+                }}
+                aria-owns={this.state.openAir ? "air-list-grow" : undefined}
+                aria-haspopup="true"
+                onClick={this.handleOpenAir}
+              >
+                {this.state.airplane.tailNumber || "tailnumber"}
+                {"/ "}
+                {this.state.airplane.model || "model"}
+              </Button>
+              <Popper
+                open={this.state.openAir}
+                anchorEl={this.anchorEl}
+                transition
+                disablePortal
+              >
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    id="air-list-grow"
+                    style={{
+                      transformOrigin:
+                        placement === "bottom" ? "center top" : "center bottom"
+                    }}
+                  >
+                    <Paper className={classes.paper}>
+                      <ClickAwayListener onClickAway={this.handleCloseAir}>
+                        <MenuList className={classes.menuList}>
+                          {this.state.airplanes.map(airplane => (
+                            <MenuItem
+                              className={classes.menuItem}
+                              onClick={this.handleAirplane(airplane)}
+                            >
+                              tailNumber:{airplane.tailNumber}, model:{" "}
+                              {airplane.model}
+                            </MenuItem>
+                          ))}
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
+            </FormControl>
+            <FormControl className={classes.formControl}>
+              {/* <TextField
+                type="number"
+                name="instructorsID"
+                label="instructor id, n/r"
+                value={this.state.instructorsID}
+                onChange={this.editFormHandler}
+                // required
+                fullWidth
+                variant="outlined"
+              /> */}
+              <Button
+                buttonRef={node => {
+                  this.anchorE2 = node;
+                }}
+                aria-owns={this.state.openIns ? "ins-list-grow" : undefined}
+                aria-haspopup="true"
+                onClick={this.handleOpenIns}
+              >
+                {this.state.instructor.name || "name of instructor"}
+                {"/ "}
+                {this.state.instructor.licenseNum || "license Number"}
+              </Button>
+              <Popper
+                open={this.state.openIns}
+                anchorEl={this.anchorE2}
+                transition
+                disablePortal
+              >
+                {({ TransitionProps, placement }) => (
+                  <Grow
+                    {...TransitionProps}
+                    id="ins-list-grow"
+                    style={{
+                      transformOrigin:
+                        placement === "bottom" ? "center top" : "center bottom"
+                    }}
+                  >
+                    <Paper className={classes.paper}>
+                      <ClickAwayListener onClickAway={this.handleCloseIns}>
+                        <MenuList className={classes.menuList}>
+                          {this.state.instructors.map(instructor => (
+                            <MenuItem
+                              className={classes.menuItem}
+                              onClick={this.handleInstructor(instructor)}
+                            >
+                              name: {instructor.name}, licenseNo.:{" "}
+                              {instructor.licenseNum}
+                            </MenuItem>
+                          ))}
+                        </MenuList>
+                      </ClickAwayListener>
+                    </Paper>
+                  </Grow>
+                )}
+              </Popper>
+            </FormControl>
+            <FormControl>
+              <span>date</span>
+              <TextField
+                type="date"
+                name="flightDate"
+                // label="date"
+                value={this.state.flightDate}
+                onChange={this.editFormHandler}
+                // required
+                fullWidth
+                variant="outlined"
+              />
+            </FormControl>
 
               <Grid item xs={12}>
 
