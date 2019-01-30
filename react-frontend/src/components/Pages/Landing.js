@@ -51,49 +51,48 @@ const styles = theme => ({
 
 
 class Landing extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      isSignIn:false
+    this.state = {
+      isSignIn: false
     }
   }
 
-render(){
-  const {classes}=this.props;
-  return (
-    <Fragment>
-      <CssBaseline />
-      <AppBar position="static" color="default" className={classes.appBar}>
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-            Flight Log
+  render() {
+    const { classes } = this.props;
+    return (
+      <Fragment>
+        <CssBaseline />
+        <AppBar position="static" color="default" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
+              Flight Log
           </Typography>
-          <Link to='/SignUp'><Button className={classes.Button}>Sign Up </Button></Link>
-          <Link to='/SignIn'><Button color="primary" variant="outlined">
-            Sign In
+            <Link to='/SignIn'><Button color="primary" variant="outlined">
+              Sign In/Sign Up
           </Button></Link>
-        </Toolbar>
-      </AppBar>
-      <main className={classes.layout}>
-        {/* Hero unit */}
-        <div className={classes.heroContent}>
-          <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-            Important Information Here
+          </Toolbar>
+        </AppBar>
+        <main className={classes.layout}>
+          {/* Hero unit */}
+          <div className={classes.heroContent}>
+            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
+              Important Information Here
           </Typography>
-          <Typography variant="h6" align="center" color="textSecondary" component="p">
-            This is some insane message that is a huge attention-getter
+            <Typography variant="h6" align="center" color="textSecondary" component="p">
+              This is some insane message that is a huge attention-getter
           </Typography>
-        </div>
-        {/* End hero unit */}
-      </main>
-      {/* Footer */}
-      <footer className={classNames(classes.footer, classes.layout)}>
-      </footer>
-      {/* End footer */}
-    </Fragment>
-  );
-}
-  
+          </div>
+          {/* End hero unit */}
+        </main>
+        {/* Footer */}
+        <footer className={classNames(classes.footer, classes.layout)}>
+        </footer>
+        {/* End footer */}
+      </Fragment>
+    );
+  }
+
 }
 
 Landing.propTypes = {

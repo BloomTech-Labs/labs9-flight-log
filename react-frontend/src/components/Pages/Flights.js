@@ -55,13 +55,14 @@ class Flights extends Component {
   }
   componentDidMount() {
     const UID = this.props.UID;
-    console.log(UID);
+    // console.log(UID);
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
       .then(response => {
         console.table(response.data);
         this.setState({ flightsList: response.data });
       });
+    console.log("this state", this.state);
   }
 
   switcher = () => {
