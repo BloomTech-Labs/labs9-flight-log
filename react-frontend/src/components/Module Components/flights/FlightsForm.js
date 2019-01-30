@@ -38,7 +38,11 @@ const styles = theme => ({
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120
+    minWidth: 120,
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    alignItems: "center"
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2
@@ -56,25 +60,14 @@ const styles = theme => ({
   },
   menu: {
     width: 200
-
-  },
-  card: {
-    height: "329px",
-    maxWidth: 345
-    // marginBottom: 20,
-    // minWidth: 200,
   },
   menuItem: {
-    // opacity: 1,
-    // zindex: 3,
-    // background: "blue"
-    //dont know why this is opaque
   }
 });
 
 class FlightForm extends React.Component {
   state = {
-    open: false,
+    open: true,
     flightDate: "",
     flightName: "",
     airports: "",
@@ -249,7 +242,7 @@ class FlightForm extends React.Component {
         <Card className={classes.card}>
           <Typography variant="h6" color="inherit" noWrap>
             Add Flight
-            </Typography>
+          </Typography>
           <Fab
             color="primary"
             aria-label="Add"
@@ -259,71 +252,60 @@ class FlightForm extends React.Component {
           </Fab>
         </Card>
         <Dialog
+          fullWidth="true"
+          maxWidth="lg"
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Create Flight</DialogTitle>
           <DialogContent>
-            <TextField
-              type="string"
-              margin="dense"
-              // id="name"
-              name="flightName"
-              label="Name This Flight"
-              value={this.state.flightName}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              margin="dense"
-              // id="name"
-              name="airports"
-              label="Airports Visited"
-              value={this.state.airports}
-              onChange={this.editFormHandler}
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              margin="dense"
-              // id="name"
-              name="skyVector"
-              label="SkyVector Link"
-              value={this.state.skyVector}
-              onChange={this.editFormHandler}
-              fullWidth
-              variant="outlined"
-            />
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel> */}
-              {/* <Select
-              type="number"
-                native
-                name="airplanesID"
-                value={this.state.name}
-                onChange={this.handleChange("aircraft")}
-                inputProps={{
-                  name: "aircraft",
-                  id: "aircraft-native-simple"
-                }}
-              >
-                <option value="" />
-              </Select> */}
-              {/* <TextField
-                type="number"
-                name="airplanesID"
-                label="airplane id"
-                value={this.state.airplanesID}
+              <TextField
+                type="string"
+                margin="dense"
+                // id="name"
+                name="flightName"
+                label="Name This Flight"
+                value={this.state.flightName}
+                onChange={this.editFormHandler}
+                required
+                variant="outlined"
+              />
+              <TextField
+                type="date"
+                name="flightDate"
+                // label="date"
+                value={this.state.flightDate}
                 onChange={this.editFormHandler}
                 // required
-                fullWidth
                 variant="outlined"
-              /> */}
+              />
+              <TextField
+                type="string"
+                margin="dense"
+                // id="name"
+                name="airports"
+                label="Airports Visited"
+                value={this.state.airports}
+                onChange={this.editFormHandler}
+                
+                variant="outlined"
+              />
+              <TextField
+                type="string"
+                margin="dense"
+                // id="name"
+                name="skyVector"
+                label="SkyVector Link"
+                value={this.state.skyVector}
+                onChange={this.editFormHandler}
+                
+                variant="outlined"
+              />
+            </FormControl>
+
+            <FormControl className={classes.formControl}>
               <Button
                 buttonRef={node => {
                   this.anchorEl = node;
@@ -371,30 +353,6 @@ class FlightForm extends React.Component {
               </Popper>
             </FormControl>
             <FormControl className={classes.formControl}>
-              {/* <InputLabel htmlFor="instructor-native-simple">
-                Instructor
-              </InputLabel> */}
-              {/* <Select
-                native
-                value={this.state.instructor}
-                onChange={this.handleChange("instructor")}
-                inputProps={{
-                  name: "instructor",
-                  id: "instructor-native-simple"
-                }}
-              >
-                <option value="" />
-              </Select> */}
-              {/* <TextField
-                type="number"
-                name="instructorsID"
-                label="instructor id, n/r"
-                value={this.state.instructorsID}
-                onChange={this.editFormHandler}
-                // required
-                fullWidth
-                variant="outlined"
-              /> */}
               <Button
                 buttonRef={node => {
                   this.anchorE2 = node;
@@ -441,19 +399,7 @@ class FlightForm extends React.Component {
                 )}
               </Popper>
             </FormControl>
-            <FormControl>
-              <div>date</div>
-              <TextField
-                type="date"
-                name="flightDate"
-                // label="date"
-                value={this.state.flightDate}
-                onChange={this.editFormHandler}
-                // required
-                fullWidth
-                variant="outlined"
-              />
-            </FormControl>
+
 
             <TextField
               type="string"
