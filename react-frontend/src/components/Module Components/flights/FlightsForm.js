@@ -116,18 +116,22 @@ class FlightForm extends React.Component {
   handleClickOpen = () => {
     let UID = localStorage.getItem("userID");
     console.log(UID);
-    //https://labs9-flight-log.herokuapp.com/pilots/${UID}/airplanes
-    //https://labs9-flight-log.herokuapp.com/pilots/${UID}/instructors
-    // http://localhost:9000/pilots/${UID}/airplanes
-    //http://localhost:9000/pilots/${UID}/instructors
+    //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes
+    //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors
+    // http://localhost:9000/pilots/access/${UID}/airplanes
+    //http://localhost:9000/pilots/access/${UID}/instructors
     axios
-      .get(`https://labs9-flight-log.herokuapp.com/pilots/${UID}/airplanes`)
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
+      )
       .then(response => {
         console.log(response.data);
         this.setState({ airplanes: response.data });
       });
     axios
-      .get(`https://labs9-flight-log.herokuapp.com/pilots/${UID}/instructors`)
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
+      )
       .then(response => {
         console.log(response.data);
         this.setState({ instructors: response.data });
@@ -243,11 +247,7 @@ class FlightForm extends React.Component {
           <Typography variant="h6" color="inherit" noWrap>
             Add Flight
           </Typography>
-          <Fab
-            color="primary"
-            aria-label="Add"
-            onClick={this.handleClickOpen}
-          >
+          <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
             <AddIcon />
           </Fab>
         </Card>
