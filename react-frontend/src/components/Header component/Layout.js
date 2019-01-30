@@ -12,6 +12,7 @@ import React from 'react';
 // import {BrowserRouter as Router}from 'react-router-dom';
 
 import fire from "../Config/fire";
+import TotalsModal from '../Pages/TotalsModal'
 
 
 
@@ -33,6 +34,9 @@ const styles = theme => ({
   button: {
     marginRight: "15px",
   },
+  totalsModal: {
+    marinRight: theme.spacing.unit,
+  }
 
 });
 
@@ -60,6 +64,7 @@ class Layout extends React.Component {
             >
               Flight Log
             </Typography>
+            <TotalsModal className={classes.totalsModal} />
             <Button variant="outlined" onClick={this.signOut}>Sign Out</Button>
           </Toolbar>
         </AppBar>

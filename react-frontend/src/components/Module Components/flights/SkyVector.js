@@ -8,6 +8,7 @@ export default class SkyVector extends React.Component {
   //   super(props);
   // }
 
+  // <div id="sv_1105" style="width: 200px; height: 200px;">Make your <a href="https://skyvector.com/">Flight Plan</a> at SkyVector.com</div><script src="//skyvector.com/api/lchart?ll=26.51340911507262,-80.74273181955344&amp;s=3&amp;c=sv_1105&amp;i=37" type="text/javascript"></script>
 
   render() {
     if (this.props.skyVector) {
