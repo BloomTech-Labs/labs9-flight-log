@@ -34,12 +34,12 @@ function Navigation(props) {
   return (
     <div>
       <MenuList className={classes.root} elevation={1}>
-        <NavLink to="/" style={{ textDecoration: "none" }}>
+        {/* <NavLink to="/" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Home</MenuItem>
         </NavLink>
-        <Divider />
+        <Divider /> */}
 
-        <NavLink to="/Flights" style={{ textDecoration: "none" }}>
+        <NavLink to="/" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Flights</MenuItem>
         </NavLink>
         <Divider />
