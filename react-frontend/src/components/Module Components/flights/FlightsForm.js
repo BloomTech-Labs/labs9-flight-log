@@ -67,7 +67,7 @@ const styles = theme => ({
 
 class FlightForm extends React.Component {
   state = {
-    open: true,
+    open: false,
     flightDate: "",
     flightName: "",
     airports: "",
