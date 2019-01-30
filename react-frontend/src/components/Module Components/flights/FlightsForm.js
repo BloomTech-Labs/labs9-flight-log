@@ -21,7 +21,7 @@ import FormControl from "@material-ui/core/FormControl";
 // import NativeSelect from '@material-ui/core/NativeSelect';
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 // import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -56,6 +56,7 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+
   },
   card: {
     height: "329px",
@@ -77,6 +78,7 @@ class FlightForm extends React.Component {
     flightDate: "",
     flightName: "",
     airports: "",
+    skyVector: "",
     remarks: "",
     numOfTakeOffs: "",
     numOfLandings: "",
@@ -184,6 +186,7 @@ class FlightForm extends React.Component {
       flightDate: this.state.flightDate,
       flightName: this.state.flightName,
       airports: this.state.airports,
+      skyVector: this.state.skyVector,
       remarks: this.state.remarks,
       numOfTakeOffs: this.state.numOfTakeOffs,
       numOfLandings: this.state.numOfLandings,
@@ -213,6 +216,7 @@ class FlightForm extends React.Component {
           flightDate: "",
           flightName: "",
           airports: "",
+          skyVector: "",
           remarks: "",
           numOfTakeOffs: "",
           numOfLandings: "",
@@ -242,26 +246,24 @@ class FlightForm extends React.Component {
     console.log(this.state);
     return (
       <Fragment>
-        <Grid item lg={2} xs={10} sm={6} md={4}>
-          <Card className={classes.card}>
-            <Typography variant="h6" color="inherit" noWrap>
-              Add Flight
+        <Card className={classes.card}>
+          <Typography variant="h6" color="inherit" noWrap>
+            Add Flight
             </Typography>
-            <Fab
-              color="primary"
-              aria-label="Add"
-              onClick={this.handleClickOpen}
-            >
-              <AddIcon />
-            </Fab>
-          </Card>
-        </Grid>
+          <Fab
+            color="primary"
+            aria-label="Add"
+            onClick={this.handleClickOpen}
+          >
+            <AddIcon />
+          </Fab>
+        </Card>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Edit / Create Flight</DialogTitle>
+          <DialogTitle id="form-dialog-title">Create Flight</DialogTitle>
           <DialogContent>
             <TextField
               type="string"
@@ -286,9 +288,17 @@ class FlightForm extends React.Component {
               fullWidth
               variant="outlined"
             />
-            <div>
-              <h1>SKYVECTOR HERE</h1>
-            </div>
+            <TextField
+              type="string"
+              margin="dense"
+              // id="name"
+              name="skyVector"
+              label="SkyVector Link"
+              value={this.state.skyVector}
+              onChange={this.editFormHandler}
+              fullWidth
+              variant="outlined"
+            />
             <FormControl className={classes.formControl}>
               {/* <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel> */}
               {/* <Select

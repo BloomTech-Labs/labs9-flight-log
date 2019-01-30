@@ -7,7 +7,7 @@ import FlightDelete from "../Module Components/flights/FlightDelete";
 
 import FlightView from "../Module Components/flights/FlightView";
 
-import Skyvector from "../Module Components/flights/Skyvector";
+import SkyVector from "../Module Components/flights/SkyVector";
 
 // import classNames from 'classnames';
 import PropTypes from "prop-types";
@@ -42,11 +42,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   button: {
-    margin: "0 8px"
-  },
-  skyvector: {
-    width: 150,
-    height: 150
+    margin: '0 8px'
   }
 });
 
@@ -87,13 +83,11 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <FlightForm
-                {...this.props}
-                switcher={this.switcher}
-                UID={this.props.UID}
-              />
+              <Grid item lg={4} md={6} sm={12}>
+                <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+              </Grid>
               {this.state.flightsList.map(flight => (
-                <Grid item lg={4} md={6} sm={12}>
+                <Grid item lg={4} md={6} sm={12} key={flight.id}>
                   <Card className={classes.card}>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
@@ -104,7 +98,7 @@ class Flights extends Component {
                         Route: {flight.airports}
                       </Typography>
 
-                      <Skyvector id="1" />
+                      <SkyVector id={flight.id} skyVector={flight.skyVector} />
 
                       <Typography gutterBottom variant="h6" component="h2">
                         {flight.flightDate}
