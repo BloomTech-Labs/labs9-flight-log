@@ -19,12 +19,10 @@ class Billing extends Component {
           <div className="example">
             <h1>Billing</h1>
             <Elements>
-              <BillingForm {...props} />
+              <BillingForm {...props}/>
             </Elements>
-
           </div>
         </StripeProvider>
-        {/* <TotalsModal /> */}
       </Layout>
     );
   }
