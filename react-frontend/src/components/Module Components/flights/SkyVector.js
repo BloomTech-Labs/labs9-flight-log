@@ -10,23 +10,27 @@ export default class SkyVector extends React.Component {
 
 
   render() {
-    const skyVectorSnip = this.props.skyVector;
+    if (this.props.skyVector) {
+      const skyVectorSnip = ;
 
-    let skyVectorDiv = skyVectorSnip.substring(0, skyVectorSnip.indexOf('<script'));
+      let skyVectorDiv = skyVectorSnip.substring(0, skyVectorSnip.indexOf('<script'));
 
-    skyVectorDiv = skyVectorDiv.replace('style="width: 200px; height: 200px;"', `style='width: 200px; height: 200px; margin: 0 auto;'`);
+      skyVectorDiv = skyVectorDiv.replace('style="width: 200px; height: 200px;"', `style='width: 200px; height: 200px; margin: 0 auto;'`);
 
-    const skyVectorScript = skyVectorSnip.substring(skyVectorSnip.indexOf('<script'));
+      const skyVectorScript = skyVectorSnip.substring(skyVectorSnip.indexOf('<script'));
 
-    // const script = document.createElement("script");
+      // const script = document.createElement("script");
 
-    // script.src = skyVectorScript;
-    // script.async = true;
+      // script.src = skyVectorScript;
+      // script.async = true;
 
-    // document.body.appendChild(script);
+      // document.body.appendChild(script);
 
-    return (
-      <div key={this.props.id} dangerouslySetInnerHTML={{ __html: skyVectorDiv + skyVectorScript }} />
-    );
+      return (
+        <div key={this.props.id} dangerouslySetInnerHTML={{ __html: skyVectorDiv + skyVectorScript }} />
+      );
+    } else {
+      return null;
+    }
   }
 }
