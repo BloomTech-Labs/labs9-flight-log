@@ -1,6 +1,6 @@
 import React from 'react';
-// import ReactHtmlParser, { htmlparser2 } from 'react-html-parser';
-// import Helmet from 'react-helmet'
+import Parser from 'html-react-parser';
+import { Helmet } from 'react-helmet'
 
 export default class SkyVector extends React.Component {
 
@@ -16,7 +16,7 @@ export default class SkyVector extends React.Component {
 
       let skyVectorDiv = skyVectorSnip.substring(0, skyVectorSnip.indexOf('<script'));
 
-      skyVectorDiv = skyVectorDiv.replace('style="width: 200px; height: 200px;"', `style='width: 200px; height: 200px; margin: 0 auto;'`);
+      skyVectorDiv = skyVectorDiv.replace('style="width: 200px; height: 200px;"', `style='width: 100%; height: 150px; margin: 16px auto;'`);
 
       const skyVectorScript = skyVectorSnip.substring(skyVectorSnip.indexOf('<script'));
 
@@ -28,7 +28,10 @@ export default class SkyVector extends React.Component {
       // document.body.appendChild(script);
 
       return (
-        <div key={this.props.id} dangerouslySetInnerHTML={{ __html: skyVectorDiv + skyVectorScript }} />
+        <div key={this.props.id}>
+          {Parser(skyVectorDiv)}
+          <Helmet>{Parser(skyVectorScript)}</Helmet>
+        </div>
       );
     } else {
       return null;
