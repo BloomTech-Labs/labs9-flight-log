@@ -81,7 +81,7 @@ class App extends Component {
           render={props => <Instructors {...props}UID={this.state.UID} />}
         />
         <Route exact path="/Settings" render={(props) => <Settings {...props}UID={this.state.UID} />} />
-        <Route exact path="/Flights" render={(props) => <Flights {...props}UID={this.state.UID}/>} />
+        <Route exact path="/" render={(props) => <Flights {...props}UID={this.state.UID}/>} />
       </div>
     );
   }
