@@ -114,30 +114,8 @@ class FlightForm extends React.Component {
   };
 
   handleClickOpen = () => {
-    let UID = localStorage.getItem("userID");
-    console.log(UID);
-    //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes
-    //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors
-    // http://localhost:9000/pilots/access/${UID}/airplanes
-    //http://localhost:9000/pilots/access/${UID}/instructors
-    axios
-      .get(
-        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ airplanes: response.data });
-      });
-    axios
-      .get(
-        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ instructors: response.data });
-      });
-
-    this.setState({ open: true });
+    console.log("this.props", this.props);
+    this.setState({ ...this.props, open: true });
   };
 
   handleClose = () => {

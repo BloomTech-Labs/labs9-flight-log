@@ -65,11 +65,29 @@ class FlightView extends Component {
       pilotInCommand: "",
       total: "",
       airplanesID: "",
-      instructorsID: "1"
+      instructorsID: "",
+      //
+      airplanes: [],
+      instructors: [],
+      airplane: "",
+      instructor: ""
     };
   }
   handleClickOpen = () => {
-    this.setState({ ...this.props.flight, open: true });
+    console.log("this.props.airplanes", this.props.airplanes);
+    console.log("this.props.instructors", this.props.instructors);
+    const airplane = this.props.airplanes.find(
+      airplane => airplane.id === this.props.flight.airplanesID
+    );
+    const instructor = this.props.instructors.find(
+      instructor => instructor.id === this.props.flight.instructorsID
+    );
+    this.setState({
+      ...this.props.flight,
+      airplane: airplane,
+      instructor: instructor,
+      open: true
+    });
   };
   handleClose = () => {
     this.setState({ open: false });
@@ -109,11 +127,12 @@ class FlightView extends Component {
               alt="skyVector"
             />
             <div>
-              airplane name: {this.state.airplanesID}, airplane make/model etc
+              airplane tail number: {this.state.airplane.tailNumber}, airplane
+              model: {this.state.airplane.model}
             </div>
             <div>
-              instructors name: {this.state.instructorsID}, instructor name,
-              number
+              instructors name: {this.state.instructor.name}, instructors
+              license number: {this.state.instructor.licenseNum}
             </div>
             <div>remarks: {this.state.remarks}</div>
             <div>

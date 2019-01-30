@@ -42,7 +42,7 @@ const styles = theme => ({
     flexGrow: 1
   },
   button: {
-    margin: '0 8px'
+    margin: "0 8px"
   }
 });
 
@@ -50,12 +50,36 @@ class Flights extends Component {
   constructor() {
     super();
     this.state = {
-      flightsList: []
+      flightsList: [],
+      airplanes: [],
+      instructors: []
     };
   }
   componentDidMount() {
     const UID = this.props.UID;
-    // console.log(UID);
+
+    console.log("from flights", UID);
+    //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes
+    //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors
+    // http://localhost:9000/pilots/access/${UID}/airplanes
+    //http://localhost:9000/pilots/access/${UID}/instructors
+    axios
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
+      )
+      .then(response => {
+        console.log(response.data);
+        this.setState({ airplanes: response.data });
+      });
+    axios
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
+      )
+      .then(response => {
+        console.log(response.data);
+        this.setState({ instructors: response.data });
+      });
+
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
       .then(response => {
@@ -111,11 +135,17 @@ class Flights extends Component {
                       <div className={classes.buttonrow}>
                         <FlightEdit
                           {...this.props}
+                          airplanes={this.state.airplanes}
+                          instructors={this.state.instructors}
                           switcher={this.switcher}
                           flight={flight}
                         />
                         <FlightDelete id={flight.id} switcher={this.switcher} />
-                        <FlightView flight={flight} />
+                        <FlightView
+                          airplanes={this.state.airplanes}
+                          instructors={this.state.instructors}
+                          flight={flight}
+                        />
                       </div>
                     </CardContent>
                   </Card>
