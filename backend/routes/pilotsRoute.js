@@ -12,28 +12,32 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
   }
 });
-// router.get("/:UID", async (req, res) => {
-//   try {
-//     const pilots = await pilotsDb.get(req.params.UID);
-//     res.status(200).json(pilots);
-//   } catch (error) {
-//     res.status(500).json({ error: "there was an error with the DB" });
-//   }
-// });
-// router.get("/:UID/:path", async (req, res) => {
-//   console.log(req.params.path);
-//   try {
-//     const pilots = await pilotsDb.get(req.params.UID, req.params.path);
-//     res.status(200).json(pilots);
-//   } catch (error) {
-//     res.status(500).json({ error: "there was an error with the DB" });
-//   }
-// });
-router.get("/signin", decode1, async (req, res) => {
+router.get("/:access/:UID", async (req, res) => {
+  try {
+    const pilots = await pilotsDb.get(req.params.access, req.params.UID);
+    res.status(200).json(pilots);
+  } catch (error) {
+    res.status(500).json({ error: "there was an error with the DB" });
+  }
+});
+router.get("/:access/:UID/:path", async (req, res) => {
+  console.log(req.params.path);
+  try {
+    const pilots = await pilotsDb.get(
+      req.params.access,
+      req.params.UID,
+      req.params.path
+    );
+    res.status(200).json(pilots);
+  } catch (error) {
+    res.status(500).json({ error: "there was an error with the DB" });
+  }
+});
+router.get("/:signin", decode1, async (req, res) => {
   console.log("req", req.body.UID);
   const UID = req.body.UID;
   try {
-    const pilots = await pilotsDb.get().where("UID", UID);
+    const pilots = await pilotsDb.get(req.params.signin).where("UID", UID);
     console.log("pilots", pilots);
     // console.log("pilots uid", pilots[0].UID);
     // console.log("pilots name", pilots[0].firstName);
