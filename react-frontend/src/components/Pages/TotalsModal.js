@@ -61,6 +61,7 @@ class TotalsModal extends Component {
   handleClickOpen = () => {
     const UID = localStorage.getItem("userID");
     axios
+      //https://labs9-flight-log.herokuapp.com/flights
       //http://localhost:9000/flights
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}/total`)
       .then(response => {
