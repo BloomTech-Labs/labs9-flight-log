@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "../Module Components/billings/BillingForm";
 import Layout from "../Header component/Layout";
-import TotalsModal from "./TotalsModal";
+// import TotalsModal from "./TotalsModal"; Moved to Layout AppBar
 
 class Billing extends Component {
   constructor(props) {
@@ -19,12 +19,10 @@ class Billing extends Component {
           <div className="example">
             <h1>Billing</h1>
             <Elements>
-      <BillingForm {...props}/>
-      </Elements>
-
+              <BillingForm {...props}/>
+            </Elements>
           </div>
         </StripeProvider>
-        <TotalsModal />
       </Layout>
     );
   }
