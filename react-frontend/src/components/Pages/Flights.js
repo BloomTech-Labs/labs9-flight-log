@@ -7,7 +7,7 @@ import FlightDelete from "../Module Components/flights/FlightDelete";
 
 import FlightView from "../Module Components/flights/FlightView";
 
-import Skyvector from "../Module Components/flights/Skyvector";
+import SkyVector from "../Module Components/flights/SkyVector";
 
 // import classNames from 'classnames';
 import PropTypes from "prop-types";

@@ -1,12 +1,12 @@
 import React from 'react';
-import ReactHtmlParser, { htmlparser2 } from 'react-html-parser';
-import Helmet from 'react-helmet'
+// import ReactHtmlParser, { htmlparser2 } from 'react-html-parser';
+// import Helmet from 'react-helmet'
 
 export default class SkyVector extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
 
   render() {
