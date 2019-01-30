@@ -58,7 +58,7 @@ class SignInUi extends React.Component {
       fire.auth.FacebookAuthProvider.PROVIDER_ID,
       fire.auth.EmailAuthProvider.PROVIDER_ID
     ],
-    signInSuccessUrl: "/Flights"
+    signInSuccessUrl: "/"
   };
   componentDidMount() {
     // this.unregisterAuthObserver = firebase.auth().onAuthStateChanged(user => {

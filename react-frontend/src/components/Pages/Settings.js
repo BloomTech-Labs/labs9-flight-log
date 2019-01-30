@@ -1,7 +1,8 @@
 import Layout from "../Header component/Layout";
 import React, { Component } from "react";
+import fire from '../Config/fire';
+
 // import axios from "axios";
-import fire from "../Config/fire";
 
 // const Settings = () => (
 //   <Layout>
@@ -18,34 +19,30 @@ class Settings extends Component {
   constructor() {
     super();
     this.state = {
-      name: ""
+      user: {
+        name:"",
+        email: "",
+      }
     };
   }
+sendResetEmail=(email)=>{
+  fire.auth().sendPasswordResetEmail(email).then(function() {
+    console.log('email sent')
+  }).catch(function(error) {
+    console.log('Please try again')
+  });
+}
 
-  signOut = () => {
-    fire
-      .auth()
-      .signOut()
-      .then(result => {
-        console.log(result, "success");
-      })
-      .catch(error => console.log(error, "failure"));
-  };
   componentDidMount() {
-    // console.log('mounted')
-    // fire.auth().currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-    //   console.log(idToken,'idToken')
-    //   let headers={"token":idToken}
-    //   let data= {
-    //     "firstName":"axiosTest",
-    //     "lastName":"axios"
-    //   }
-    //   axios.post("https://labs9-flight-log.herokuapp.com/pilots", {headers:headers})
-    //   console.log(idToken)
-    // }).catch(function(error) {
-    //   // Handle error
-    //   console.log(error)
-    // });
+    var currentUser = fire.auth().currentUser;
+    if(currentUser!=null){
+      this.setState({
+        user:{
+          name: currentUser.displayName,
+          email: currentUser.email
+        }
+      })
+    }
     const name = localStorage.getItem("userName");
     console.log("name", name);
     this.setState({ name });
@@ -55,8 +52,12 @@ class Settings extends Component {
     console.log(this.state);
     return (
       <Layout>
-        <p>Hello {this.state.name}</p>
-        <button onClick={this.signOut}>signOut</button>
+        <p>Name</p>
+        {this.state.user.name}
+        <p>Email</p>
+        {this.state.user.email}
+        <p>reset</p>
+        <button onClick={this.sendResetEmail(this.state.user.email)}>send password reset email</button>
       </Layout>
     );
   }
