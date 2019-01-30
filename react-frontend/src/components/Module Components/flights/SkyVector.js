@@ -11,7 +11,7 @@ export default class SkyVector extends React.Component {
 
   render() {
     if (this.props.skyVector) {
-      const skyVectorSnip = ;
+      const skyVectorSnip = this.props.skyVector;
 
       let skyVectorDiv = skyVectorSnip.substring(0, skyVectorSnip.indexOf('<script'));
 
