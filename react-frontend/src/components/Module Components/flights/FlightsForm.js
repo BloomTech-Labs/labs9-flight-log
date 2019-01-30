@@ -49,12 +49,6 @@ const styles = theme => ({
   },
   menu: {
     width: 200
-  },
-  card: {
-    height: "329px",
-    maxWidth: 345
-    // marginBottom: 20,
-    // minWidth: 200,
   }
 });
 
