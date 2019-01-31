@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 // import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
 
 // import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
@@ -11,8 +12,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -27,7 +27,15 @@ const styles = theme => ({
   },
   textField: {
     marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit
+    marginRight: theme.spacing.unit,
+    border: "1px solid black",
+    borderRadius: 3,
+    boxShadow: "3px 3px 5px 6px #ccc"
+  },
+  image: {
+    borderRadius: 3,
+    margin: 2,
+    boxShadow: "3px 3px 5px 6px #ccc"
   },
   dense: {
     marginTop: 16
@@ -115,42 +123,93 @@ class FlightView extends Component {
           <DialogTitle id="form-dialog-title">Flight View</DialogTitle>
 
           <DialogContent>
-            <div>
-              flight name: {this.state.flightName}
-              flight date: {this.state.flightDate}
-            </div>
-            <div>routes:{this.state.airports}</div>
-            <img
-              src={"https://via.placeholder.com/250"}
-              height="250"
-              width="250"
-              alt="skyVector"
-            />
-            <div>
-              airplane tail number: {this.state.airplane.tailNumber}, airplane
-              model: {this.state.airplane.model}
-            </div>
-            <div>
-              instructors name: {this.state.instructor.name}, instructors
-              license number: {this.state.instructor.licenseNum}
-            </div>
-            <div>remarks: {this.state.remarks}</div>
-            <div>
-              SEL: {this.state.SEL}, MEL: {this.state.MEL}, takeoffs:
-              {this.state.numOfTakeOffs}, landings:{this.state.numOfLandings}
-            </div>
-            <div>
-              dayHrs:{this.state.dayHours}, nightHrs:{this.state.nightHours},
-              simInst: {this.state.simInstruments}, actInst:{" "}
-              {this.state.actInstruments}
-            </div>
-            <div>
-              dualRec: {this.state.dualReceived}, PIC:{" "}
-              {this.state.pilotInCommand}, asInst: {this.state.asInstructor}
-            </div>
-            <div>
-              groundTrn: {this.state.groundTrainer}, crossCountry:{" "}
-              {this.state.crossCountry}, totalHrs:{this.state.total}
+            <div style={{ padding: 10 }}>
+              <Grid
+                container
+                className={classes.root}
+                spacing={16}
+                direction="row"
+                justify="space-between"
+                alignItems="stretch"
+              >
+                <Grid className={classes.textField} sm={5}>
+                  Flight Name: {this.state.flightName}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  Flight Date: {this.state.flightDate}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  Routes/ Airports Viseted: {this.state.airports}
+                </Grid>
+                <Grid className={classes.image} sm={8}>
+                  <img
+                    src={"https://via.placeholder.com/250"}
+                    height="250"
+                    width="250"
+                    alt="skyVector"
+                  />
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  Airplane Tail Number: {this.state.airplane.tailNumber}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  Airplane Model: {this.state.airplane.model}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  Instructors name: {this.state.instructor.name}, instructors
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  license number: {this.state.instructor.licenseNum}
+                </Grid>
+                <Grid className={classes.textField} sm={11}>
+                  remarks: {this.state.remarks}
+                </Grid>
+
+                <Grid className={classes.textField} sm={3}>
+                  SEL: {this.state.SEL}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  MEL: {this.state.MEL}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  GroundT: {this.state.groundTrainer}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  Takeoffs: {this.state.numOfTakeOffs}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  Landings:{this.state.numOfLandings}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  SimInst: {this.state.simInstruments}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  Day Hrs:{this.state.dayHours}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  Night Hrs:{this.state.nightHours}
+                </Grid>
+                <Grid className={classes.textField} sm={3}>
+                  ActInst: {this.state.actInstruments}
+                </Grid>
+
+                <Grid className={classes.textField} sm={5}>
+                  Dual Recieved: {this.state.dualReceived}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  PIC: {this.state.pilotInCommand}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  As Instrictpr: {this.state.asInstructor}
+                </Grid>
+
+                <Grid className={classes.textField} sm={5}>
+                  CrossCountry: {this.state.crossCountry}
+                </Grid>
+                <Grid className={classes.textField} sm={5}>
+                  Total Hours:{this.state.total}
+                </Grid>
+              </Grid>
             </div>
           </DialogContent>
         </Dialog>

@@ -215,7 +215,7 @@ class FlightForm extends Component {
             >
               <Grid item sm={8} xs={12}>
                 <FormControl required fullWidth>
-                  <InputLabel>Instructor Name</InputLabel>
+                  <InputLabel>Flight Name</InputLabel>
                   <OutlinedInput
                     type="string"
                     name="flightName"
