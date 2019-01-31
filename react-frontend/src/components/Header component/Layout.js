@@ -35,7 +35,7 @@ const styles = theme => ({
     marginRight: "15px",
   },
   totalsModal: {
-    marinRight: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
   }
 
 });
