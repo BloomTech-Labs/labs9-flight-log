@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../Header component/Layout";
-// import AircraftView from '../Module Components/aircrafts/AircraftView'
 import axios from "axios";
-// import AircraftC from "../Module Components/aircrafts/AircraftC";
-
 import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
 import AirplaneEdit from "../Module Components/airplanes/AirplaneEdit";
 import AirplaneDelete from "../Module Components/airplanes/AirplaneDelete";
@@ -12,15 +9,12 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import fire from "../../components/Config/fire";
+
 const storage = fire.storage();
 
-//import aircrafts, this component will allow user to preform crud operations on aircrafts
-// get all aircrafts referenced to user by id/name, create, update, delete
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -29,9 +23,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 375
-    // marginBottom: 20,
-    // minWidth: 200,
+    height: 400
   },
   buttonrow: {
     width: "100%",
@@ -48,10 +40,6 @@ const styles = theme => ({
   }
 });
 
-// function aircraftView(props) {
-//   return <AircraftView/>;
-// }
-
 class AirplanesList extends Component {
   constructor(props) {
     super(props);
@@ -63,9 +51,9 @@ class AirplanesList extends Component {
 
   componentDidMount() {
     const UID = this.props.UID;
-    console.log("this is props UID", this.props.UID);
+    console.log("from airplanes", this.props.UID);
+    //http://localhost:9000/airplanes/${UID}
     axios
-      //http://localhost:9000/airplanes
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
       .then(response => {
         console.table(response.data);
@@ -85,6 +73,7 @@ class AirplanesList extends Component {
     console.log("fired");
     this.componentDidMount();
   };
+
   render() {
     const { classes } = this.props;
     return (
@@ -110,7 +99,7 @@ class AirplanesList extends Component {
                 <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent>
-                      {airplane.id}
+                      <div>{airplane.id}</div>
                       <img
                         src={
                           airplane.imageName ||
@@ -120,25 +109,24 @@ class AirplanesList extends Component {
                         width="100"
                         alt="airplaneImages"
                       />
+
                       <Typography gutterBottom variant="h5" component="h2">
-                        tail_number:
+                        Tail Number:
                         {airplane.tailNumber}
                       </Typography>
-
                       <Typography gutterBottom variant="h5" component="h2">
-                        make:
+                        Make:
                         {airplane.make}
                       </Typography>
-
                       <Typography gutterBottom variant="h5" component="h2">
-                        model:
+                        Model:
                         {airplane.model}
                       </Typography>
-
                       <Typography gutterBottom variant="h5" component="h2">
-                        category:
+                        Category:
                         {airplane.category}
                       </Typography>
+
                       <div className={classes.buttonrow}>
                         <AirplaneEdit
                           {...this.props}
