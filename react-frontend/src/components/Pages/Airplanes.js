@@ -79,7 +79,7 @@ class AirplanesList extends Component {
     return (
       <React.Fragment>
         <Layout>
-          <div>
+          <div style={{ marginTop: "16px" }}>
             <Grid
               container
               className={classes.root}
@@ -95,9 +95,8 @@ class AirplanesList extends Component {
                   UID={this.props.UID5}
                 />
               </Grid>
-
               {this.state.airplanesList.map(airplane => (
-                <Grid item lg={4} MD={6} sm={12}>
+                <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent>
                       <div>{airplane.id}</div>

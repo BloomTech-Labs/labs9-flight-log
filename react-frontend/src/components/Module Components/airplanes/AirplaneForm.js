@@ -151,7 +151,6 @@ class AirplaneForm extends Component {
             <AddIcon />
           </Fab>
         </Card>
-
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
