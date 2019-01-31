@@ -25,7 +25,8 @@ class Settings extends Component {
       }
     };
   }
-sendResetEmail=(email)=>{
+sendResetEmail=()=>{
+  const email= this.state.user.email;
   fire.auth().sendPasswordResetEmail(email).then(function() {
     console.log('email sent')
   }).catch(function(error) {
@@ -57,7 +58,7 @@ sendResetEmail=(email)=>{
         <p>Email</p>
         {this.state.user.email}
         <p>reset</p>
-        <button onClick={this.sendResetEmail(this.state.user.email)}>send password reset email</button>
+        <button onClick={this.sendResetEmail}>send password reset email</button>
       </Layout>
     );
   }
