@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import BillingForm from "../Module Components/billings/BillingForm";
 import Layout from "../Header component/Layout";
+import { withStyles } from "@material-ui/core";
 // import TotalsModal from "./TotalsModal"; Moved to Layout AppBar
+
+const styles = theme => ({
+  root: {
+    marginTop: 50,
+    maxWidth: 300,
+  },
+});
+
 
 class Billing extends Component {
   constructor(props) {
@@ -13,11 +22,12 @@ class Billing extends Component {
   }
 
   render(props) {
+    const {classes} = this.props;
+
     return (
       <Layout>
         <StripeProvider apiKey="pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q">
-          <div className="example">
-            <h1>Billing</h1>
+          <div className={classes.root}>
             <Elements>
               <BillingForm {...props}/>
             </Elements>
@@ -28,4 +38,4 @@ class Billing extends Component {
   }
 }
 
-export default Billing;
+export default withStyles(styles)(Billing);

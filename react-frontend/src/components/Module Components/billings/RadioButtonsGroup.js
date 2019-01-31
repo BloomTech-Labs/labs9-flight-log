@@ -12,14 +12,14 @@ const styles = theme => ({
     display: 'flex',
   },
   formControl: {
-    margin: theme.spacing.unit * 3,
+    margin: theme.spacing.unit * 1,
   },
   group: {
     margin: `${theme.spacing.unit}px 0`,
   },
 });
 
-class RadioButtonsGroup extends Component {
+class RadioButtons extends Component {
   constructor(props) {
     super(props);
     
@@ -29,10 +29,6 @@ class RadioButtonsGroup extends Component {
       isPaid: false,
     }
   }
-
-/*   handleChange = event => {
-    this.setState({ value: event.target.value });
-  }; */
 
   setAmount = ev => {
     console.log("setAmount", ev.target.value);
@@ -70,8 +66,8 @@ class RadioButtonsGroup extends Component {
   }
 }
 
-RadioButtonsGroup.propTypes = {
+RadioButtons.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(RadioButtonsGroup);
+export default withStyles(styles)(RadioButtons);
