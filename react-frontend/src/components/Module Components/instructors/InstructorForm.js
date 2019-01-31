@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment, Component } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -11,13 +11,16 @@ import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import Card from "@material-ui/core/Card";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -42,13 +45,9 @@ const styles = theme => ({
   }
 });
 
-const URL = "https://labs9-flight-log.herokuapp.com";
-
-
-class InstructorForm extends React.Component {
+class InstructorForm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       open: false,
       name: "",
@@ -64,22 +63,17 @@ class InstructorForm extends React.Component {
       [e.target.name]: e.target.value
     });
   };
-
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
-
   handleClickOpen = () => {
     this.setState({ open: true });
   };
-
   handleClose = () => {
     this.setState({ open: false });
   };
-
-  //submit add form
   submitAddForm = () => {
-    const UID= this.props.UID
+    const UID = this.props.UID;
     const newInstructor = {
       name: this.state.name,
       licenseNum: this.state.licenseNum,
@@ -88,9 +82,9 @@ class InstructorForm extends React.Component {
       contactInfo: this.state.contactInfo,
       pilotsUID: UID
     };
-    console.log("added");
+    //http://localhost:9000.com/instructors
     axios
-      .post(`${URL}/instructors`, newInstructor)
+      .post("https://labs9-flight-log.herokuapp.com/instructors", newInstructor)
       .then(() => {
         this.setState({
           open: false,
@@ -108,84 +102,105 @@ class InstructorForm extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
-        <Typography variant="h6" color="inherit" noWrap>
-          Add Instructor
-        </Typography>
-        <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-          <AddIcon />
-        </Fab>
+      <Fragment className={classes.root}>
+        <Card className={classes.card}>
+          <Typography variant="h6" color="inherit" noWrap>
+            Add Instructor
+          </Typography>
+          <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
+            <AddIcon />
+          </Fab>
+        </Card>
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">
-            Edit / Create Instructor
-          </DialogTitle>
-          <DialogContent>
-            <TextField
-              type="string"
-              name="name"
-              label="Name"
-              value={this.state.name}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="licenseNum"
-              name="licenseNum"
-              label="License Number"
-              value={this.state.licenseNum}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="text"
-              id="notes"
-              name="notes"
-              label="Notes"
-              value={this.state.notes}
-              onChange={this.editFormHandler}
-              multiline
-              rows="4"
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="contactInfo"
-              name="contactInfo"
-              label="Contact"
-              value={this.state.contactInfo}
-              onChange={this.editFormHandler}
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="ratings"
-              name="ratings"
-              label="Ratings"
-              value={this.state.ratings}
-              onChange={this.editFormHandler}
-              fullWidth
-              variant="outlined"
-            />
+          <DialogTitle id="form-dialog-title">Create Instructor</DialogTitle>
 
-            <DialogActions>
-              <Button onClick={this.submitAddForm} color="primary">
-                Save
-              </Button>
-            </DialogActions>
+          <DialogContent>
+            <div style={{ padding: 5 }}>
+              <Grid
+                container
+                spacing={24}
+                direction="row"
+                justify="space-between"
+                alignItems="stretch"
+              >
+                <Grid item xs={12} sm={6}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Instructor Name</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text1">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Instuctor License Number</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="licenseNum"
+                      value={this.state.licenseNum}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text2">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+                <TextField
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  label="Notes"
+                  value={this.state.notes}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  multiline
+                  rows="4"
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  type="string"
+                  id="contactInfo"
+                  name="contactInfo"
+                  label="Contact"
+                  value={this.state.contactInfo}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  type="string"
+                  id="ratings"
+                  name="ratings"
+                  label="Ratings"
+                  value={this.state.ratings}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  fullWidth
+                  variant="outlined"
+                />
+              </Grid>
+            </div>
           </DialogContent>
+          <DialogActions>
+            <Button onClick={this.submitAddForm} color="primary">
+              Save
+            </Button>
+          </DialogActions>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

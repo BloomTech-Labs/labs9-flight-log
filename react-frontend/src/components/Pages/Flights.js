@@ -4,35 +4,24 @@ import axios from "axios";
 import FlightForm from "../Module Components/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
 import FlightDelete from "../Module Components/flights/FlightDelete";
-
 import FlightView from "../Module Components/flights/FlightView";
-
 import SkyVector from "../Module Components/flights/SkyVector";
-
-// import classNames from 'classnames';
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-// import CardActionArea from "@material-ui/core/CardActionArea";
-// import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
-// import AppBar from '@material-ui/core/AppBar';
-// import Button from '@material-ui/core/Button';
-// import CssBaseline from "@material-ui/core/CssBaseline";
-// import Toolbar from '@material-ui/core/Toolbar';
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
-  AddIcon: {},
+  root: {
+    flexGrow: 1
+  },
   control: {
     padding: theme.spacing.unit * 2
   },
   card: {
     height: 400
-  },
-  media: {
-    height: 140
   },
   buttonrow: {
     width: "100%",
@@ -43,6 +32,9 @@ const styles = theme => ({
   },
   button: {
     margin: "0 8px"
+  },
+  media: {
+    height: 140
   }
 });
 
@@ -57,7 +49,6 @@ class Flights extends Component {
   }
   componentDidMount() {
     const UID = this.props.UID;
-
     console.log("from flights", UID);
     //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes
     //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors
@@ -86,9 +77,7 @@ class Flights extends Component {
         console.table(response.data);
         this.setState({ flightsList: response.data });
       });
-    console.log("this state", this.state);
   }
-
   switcher = () => {
     console.log("fired");
     this.componentDidMount();
@@ -117,27 +106,27 @@ class Flights extends Component {
                   UID={this.props.UID}
                 />
               </Grid>
+
               {this.state.flightsList.map(flight => (
-                <Grid item lg={3} md={4} sm={6} xs={12} key={flight.id}>
+                <Grid item lg={4} md={6} sm={12}>
                   <Card className={classes.card}>
                     <CardContent>
+                      {flight.id}
+
                       <Typography gutterBottom variant="h5" component="h2">
-                        {flight.flightName}
+                        Flight Name: {flight.flightName}
                       </Typography>
-
                       <Typography gutterBottom variant="h6" component="h2">
-                        Route: {flight.airports}
+                        Routes/Airports: {flight.airports}
                       </Typography>
-
                       <SkyVector id={flight.id} skyVector={flight.skyVector} />
-
                       <Typography gutterBottom variant="h6" component="h2">
-                        {flight.flightDate}
+                        Flight Date: {flight.flightDate}
                       </Typography>
-
                       <Typography gutterBottom variant="h6" component="h2">
                         Total time: {flight.total}
                       </Typography>
+
                       <div className={classes.buttonrow}>
                         <FlightEdit
                           {...this.props}
