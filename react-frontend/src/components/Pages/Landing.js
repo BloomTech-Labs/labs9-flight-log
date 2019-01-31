@@ -8,6 +8,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
 import FlightTheme from "../Styles/theme"
+import ReactSVG from 'react-svg'
 import { Link } from 'react-router-dom';
 
 
@@ -38,8 +39,9 @@ const styles = theme => ({
   },
   heroContent: {
     maxWidth: 600,
+    textAlign: 'center',
     margin: '0 auto',
-    marginTop: '120px',
+    // marginTop: '40px',
     padding: `${theme.spacing.unit * 14}px 0 ${theme.spacing.unit * 6}px`,
   },
   footer: {
@@ -66,22 +68,23 @@ class Landing extends React.Component {
         <AppBar position="static" color="default" className={classes.appBar}>
           <Toolbar>
             <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              Flight Log
-          </Typography>
+              Flytelog
+            </Typography>
             <Link to='/SignIn'><Button color="primary" variant="outlined">
               Sign In/Sign Up
-          </Button></Link>
+            </Button></Link>
           </Toolbar>
         </AppBar>
         <main className={classes.layout}>
           {/* Hero unit */}
           <div className={classes.heroContent}>
-            <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-              Important Information Here
-          </Typography>
-            <Typography variant="h6" align="center" color="textSecondary" component="p">
-              This is some insane message that is a huge attention-getter
-          </Typography>
+            <ReactSVG src="./shield-airplane-outline.svg" svgStyle={{ width: 250, height: 250 }}/>
+            <Typography variant="h1" >
+              Flytelog
+            </Typography>
+            <Typography variant="h3">
+              Pilot's Logbook
+            </Typography>
           </div>
           {/* End hero unit */}
         </main>

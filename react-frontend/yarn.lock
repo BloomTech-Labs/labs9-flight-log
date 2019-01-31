@@ -848,7 +848,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0", "@babel/runtime@^7.3.1":
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.3.1.tgz#574b03e8e8a9898eaf4a872a92ea20b7846f6f2a"
   integrity sha512-7jGW8ppV0ant637pIqAcFfQDDH1orEPGJb8aXfUozuCU3QqX7rX4DA8iwrbPrR1hcH0FTTHz47yQnk+bl5xHQA==
@@ -1146,6 +1146,11 @@
     "@babel/preset-react" "^7.0.0"
     "@svgr/core" "^2.4.1"
     loader-utils "^1.1.0"
+
+"@tanem/svg-injector@^2.1.4":
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-2.1.4.tgz#b804f1c78b5179365ae21061f119263acccbeb13"
+  integrity sha512-//NIrFl8G59OCHWEeMUcI/UI05/xtkHOu0kVrfJe3Zh13gtKKSkkSdlr2kZSJthFal2JvdMm3T3XBm8grbbRbw==
 
 "@types/jss@^9.5.6":
   version "9.5.7"
@@ -9031,6 +9036,15 @@ react-stripe-elements@^2.0.2:
   integrity sha512-ETyOjOeCmgJdRILzJQ6YsYLqtqgdxZn8jVtdkMQvRQMJCXzu9aKTopPmNGw/iiRk1MonRfG5k46vX5vL2ZOVsA==
   dependencies:
     prop-types "^15.5.10"
+
+react-svg@^7.2.6:
+  version "7.2.6"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-7.2.6.tgz#e5f8dfe1adef11a7e91e3c5da4eb03a417ba6639"
+  integrity sha512-SnEmlHyMCyfpSFxSqbNlCIEyZyZdP/+Dvtr8lPxVRflMw5YtW/tECetx6/M4t8Llcz6rSIQGPn2xHptmaDIP8Q==
+  dependencies:
+    "@babel/runtime" "^7.3.1"
+    "@tanem/svg-injector" "^2.1.4"
+    prop-types "^15.6.2"
 
 react-transition-group@^2.2.1:
   version "2.5.3"
