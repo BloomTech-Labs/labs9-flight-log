@@ -109,7 +109,13 @@ class Flights extends Component {
               spacing={16}
             >
               <Grid item lg={3} md={4} sm={6} xs={12}>
-                <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
+                <FlightForm
+                  {...this.props}
+                  airplanes={this.state.airplanes}
+                  instructors={this.state.instructors}
+                  switcher={this.switcher}
+                  UID={this.props.UID}
+                />
               </Grid>
               {this.state.flightsList.map(flight => (
                 <Grid item lg={3} md={4} sm={6} xs={12} key={flight.id}>
