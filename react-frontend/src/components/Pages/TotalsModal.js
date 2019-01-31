@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-import Typography from '@material-ui/core/Typography';
+import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -23,6 +23,11 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap"
   },
+  dialog: {
+    width: 300,
+    // display: 'flex',
+    // flexWrap: "wrap",
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit
@@ -36,7 +41,13 @@ const styles = theme => ({
   card: {
     height: "290px",
     maxWidth: 345
-  }
+  },
+  title: {
+    borderBottom: `2px solid ${theme.palette.divider}`,
+  },
+  text: {
+    marginRight: 10,
+  },
 });
 
 class TotalsModal extends Component {
@@ -110,51 +121,55 @@ class TotalsModal extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Flight Totals</DialogTitle>
+          <DialogTitle className={classes.title} id="form-dialog-title">Flight Totals</DialogTitle>
 
-          <DialogContent>
-              <Typography variant="h6">
-              Airplane SEL: 
-              </Typography> 
-              {this.state.totalSEL} 
-              {/* <Typography variant="h5">
-                Airplane MEL:{" "}
-              </Typography>
-              {this.state.totalMEL}
-          
-              <Typography variant="h5">
-                Takeoffs:
-              </Typography>
-              {this.state.totalTakeOffs}
+          <DialogContent className={classes.dialog}>
+            <Typography className={classes.text} variant="h6">
+              Airplane SEL: {this.state.totalSEL}
+            </Typography>
+            <Typography className={classes.text} variant="h6">
+              Airplane MEL: {this.state.totalMEL}
+            </Typography>
 
-              <Typography variant="h5">
-                Landings:{" "}
-              </Typography>
-              {this.state.totalLandings}, 
-              
-              <Typography variant="h5">
-                Day: 
-              </Typography>
-              {this.state.totalDay}
+            <Typography className={classes.text} variant="h6">
+              Takeoffs: {this.state.totalTakeOffs}
+            </Typography>
 
-              <Typography variant="h5">
-               Night:{" "}
-              </Typography>
-              {this.state.totalNight} */}
-            
-           
-              {/* sim: {this.state.totalSimInstruments}, Act:{" "}
-              {this.state.totalActInstruments}, ground:{" "}
-              {this.state.totalGroundTrainer}
-            
-            
-              crossCountry: {this.state.totalCrossCountry}, dual:
-              {this.state.totalDualReceived}, PIC:{" "}
-              {this.state.totalPilotInCommand}
-            
-            
-              As Inst: {this.state.totalAsInstructor}, Total Hrs:{" "}
-              {this.state.totalHours} */}
+            <Typography className={classes.text} variant="h6">
+              Landings: {this.state.totalLandings}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">Day: {this.state.totalDay}</Typography>
+
+            <Typography className={classes.text} variant="h6">Night: {this.state.totalNight}</Typography>
+
+            <Typography className={classes.text} variant="h6">
+              sim: {this.state.totalSimInstruments}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">
+              Act: {this.state.totalActInstruments}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">
+              ground: {this.state.totalGroundTrainer}
+            </Typography>
+            <Typography className={classes.text} variant="h6">
+              crossCountry: {this.state.totalCrossCountry}
+            </Typography>
+            <Typography className={classes.text} variant="h6">
+              dual: {this.state.totalDualReceived}
+            </Typography>
+            <Typography className={classes.text} variant="h6">
+              PIC: {this.state.totalPilotInCommand}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">
+              As Inst: {this.state.totalAsInstructor}
+            </Typography>
+            <Typography className={classes.text} variant="title">
+              Total Hrs: {this.state.totalHours}
+            </Typography>
           </DialogContent>
         </Dialog>
       </div>
