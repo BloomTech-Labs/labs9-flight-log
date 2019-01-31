@@ -1,6 +1,9 @@
 import Layout from "../Header component/Layout";
 import React, { Component } from "react";
 import fire from '../Config/fire';
+import Paper from "@material-ui/core/Paper";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
 // import axios from "axios";
 
@@ -20,25 +23,25 @@ class Settings extends Component {
     super();
     this.state = {
       user: {
-        name:"",
+        name: "",
         email: "",
       }
     };
   }
-sendResetEmail=()=>{
-  const email= this.state.user.email;
-  fire.auth().sendPasswordResetEmail(email).then(function() {
-    console.log('email sent')
-  }).catch(function(error) {
-    console.log('Please try again')
-  });
-}
+  sendResetEmail = () => {
+    const email = this.state.user.email;
+    fire.auth().sendPasswordResetEmail(email).then(function () {
+      console.log('email sent')
+    }).catch(function (error) {
+      console.log('Please try again')
+    });
+  }
 
   componentDidMount() {
     var currentUser = fire.auth().currentUser;
-    if(currentUser!=null){
+    if (currentUser != null) {
       this.setState({
-        user:{
+        user: {
           name: currentUser.displayName,
           email: currentUser.email
         }
@@ -53,12 +56,15 @@ sendResetEmail=()=>{
     console.log(this.state);
     return (
       <Layout>
-        <p>Name</p>
-        {this.state.user.name}
-        <p>Email</p>
-        {this.state.user.email}
-        <p>reset</p>
-        <button onClick={this.sendResetEmail}>send password reset email</button>
+        <Paper>
+          <Typography variant="h5">Name:</Typography>
+          {this.state.user.name}
+          <Typography variant="h5">Email:</Typography>
+          {this.state.user.email}
+          <Typography variant="h5">Password reset:</Typography>
+          <Button onClick={this.sendResetEmail}>send password reset email</Button>
+        </Paper>
+
       </Layout>
     );
   }
