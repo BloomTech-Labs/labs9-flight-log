@@ -155,7 +155,6 @@ class AirplaneForm extends Component {
 
     return (
       <Fragment>
-        <Grid item lg={2} xs={10} sm={6} md={4}>
           <Card className={classes.card}>
             <Typography variant="h6" color="inherit" noWrap>
               Add Airplane
@@ -168,7 +167,6 @@ class AirplaneForm extends Component {
               <AddIcon />
             </Fab>
           </Card>
-        </Grid>
         <Spring reset={ true } from={{ opacity: 0, marginTop: -1000 }} to={{ opacity: 1, marginTop: 0}}>
         { props => 
         <Dialog

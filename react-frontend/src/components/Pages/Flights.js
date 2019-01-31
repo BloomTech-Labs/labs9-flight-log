@@ -99,7 +99,7 @@ class Flights extends Component {
     return (
       <React.Fragment>
         <Layout>
-          <div>
+          <div style={{ marginTop: "16px"}}>
             <Grid
               container
               className={classes.root}
