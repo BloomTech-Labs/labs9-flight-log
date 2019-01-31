@@ -88,7 +88,7 @@ class AirplanesList extends Component {
               direction="row"
               spacing={16}
             >
-              <Grid item lg={4} MD={6} sm={12}>
+              <Grid item lg={3} md={4} sm={6} xs={12}>
                 <AirplaneForm
                   {...this.props}
                   switcher={this.switcher}
