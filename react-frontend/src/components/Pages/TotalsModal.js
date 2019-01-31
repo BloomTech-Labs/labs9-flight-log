@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
+import Typography from '@material-ui/core/Typography';
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
@@ -109,32 +110,51 @@ class TotalsModal extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Totals Modal</DialogTitle>
+          <DialogTitle id="form-dialog-title">Flight Totals</DialogTitle>
 
           <DialogContent>
-            <div>
-              Airplane SEL: {this.state.totalSEL}, Airplane MEL:{" "}
+              <Typography variant="h6">
+              Airplane SEL: 
+              </Typography> 
+              {this.state.totalSEL} 
+              {/* <Typography variant="h5">
+                Airplane MEL:{" "}
+              </Typography>
               {this.state.totalMEL}
-            </div>
-            <div>
-              Takeoffs:{this.state.totalTakeOffs}, Landings:{" "}
-              {this.state.totalLandings}, Day: {this.state.totalDay}, Night:{" "}
-              {this.state.totalNight}
-            </div>
-            <div>
-              sim: {this.state.totalSimInstruments}, Act:{" "}
+          
+              <Typography variant="h5">
+                Takeoffs:
+              </Typography>
+              {this.state.totalTakeOffs}
+
+              <Typography variant="h5">
+                Landings:{" "}
+              </Typography>
+              {this.state.totalLandings}, 
+              
+              <Typography variant="h5">
+                Day: 
+              </Typography>
+              {this.state.totalDay}
+
+              <Typography variant="h5">
+               Night:{" "}
+              </Typography>
+              {this.state.totalNight} */}
+            
+           
+              {/* sim: {this.state.totalSimInstruments}, Act:{" "}
               {this.state.totalActInstruments}, ground:{" "}
               {this.state.totalGroundTrainer}
-            </div>
-            <div>
+            
+            
               crossCountry: {this.state.totalCrossCountry}, dual:
               {this.state.totalDualReceived}, PIC:{" "}
               {this.state.totalPilotInCommand}
-            </div>
-            <div>
+            
+            
               As Inst: {this.state.totalAsInstructor}, Total Hrs:{" "}
-              {this.state.totalHours}
-            </div>
+              {this.state.totalHours} */}
           </DialogContent>
         </Dialog>
       </div>
