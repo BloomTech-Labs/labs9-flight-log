@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import Button from "@material-ui/core/Button";
-import RadioButtonsGroup from "./RadioButtonsGroup"
 import axios from "axios";
+import RadioButtonsGroup from "./RadioButtonsGroup";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+
+
 
 class BillingForm extends Component {
   constructor(props) {
@@ -50,34 +54,24 @@ class BillingForm extends Component {
   }
 
   render() {
-    if (this.state.complete) return <h1>Purchase Complete!</h1>;
+    //if (this.state.complete) return <h1>Purchase Complete!</h1>;
 
     return (
-      <div className="checkout">
+      <div>
+      <Paper>
+        <Typography
+          variant="h5">Payment Info</Typography>
         <CardElement />
-        <p>Please select your preferred subscription:</p>
-
         <RadioButtonsGroup/>
-
         <Button
           variant="contained"
           color="primary"
           onClick={this.submit}
-        >
-          Buy Now
-        </Button>
-
+        >Buy Now</Button>
+      </Paper>
       </div>
     );
   }
 }
 
 export default injectStripe(BillingForm);
-
-/* <div onChange={this.setAmount}>
-<input type="radio" id="year" name="sub" value="1999" />
-<label htmlFor="1999">$19.99 for 1 year</label>
-
-<input type="radio" id="month" name="sub" value="999" />
-<label htmlFor="999">$9.99 for 1 month</label>
-</div> */
