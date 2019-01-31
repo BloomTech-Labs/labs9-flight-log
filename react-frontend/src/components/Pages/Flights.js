@@ -108,17 +108,11 @@ class Flights extends Component {
               direction="row"
               spacing={16}
             >
-              <Grid item lg={4} md={6} sm={12}>
-                <FlightForm
-                  {...this.props}
-                  airplanes={this.state.airplanes}
-                  instructors={this.state.instructors}
-                  switcher={this.switcher}
-                  UID={this.props.UID}
-                />
+              <Grid item lg={3} md={4} sm={6} xs={12}>
+                <FlightForm {...this.props} switcher={this.switcher} UID={this.props.UID} />
               </Grid>
               {this.state.flightsList.map(flight => (
-                <Grid item lg={4} md={6} sm={12} key={flight.id}>
+                <Grid item lg={3} md={4} sm={6} xs={12} key={flight.id}>
                   <Card className={classes.card}>
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">

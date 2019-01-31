@@ -12,6 +12,7 @@
     "firebase": "^5.8.0",
     "firebaseui": "^3.5.2",
     "helmet": "^3.15.0",
+    "html-react-parser": "^0.6.1",
     "jss": "^9.8.7",
     "material-ui-dropzone": "^2.2.1",
     "re-base": "^4.0.0",
