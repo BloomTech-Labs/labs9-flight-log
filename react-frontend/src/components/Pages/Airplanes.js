@@ -61,12 +61,12 @@ class AirplanesList extends Component {
         alteredList.map(airplane => {
           const imagesRef = storage.ref(`${UID}`).child(airplane.imageName);
           return imagesRef.getDownloadURL().then(url => {
-            console.log(url);
+            console.log("url", url);
             airplane.imageName = url;
             this.setState({ airplanesList: alteredList });
+            console.log("alteredList", alteredList);
           });
         });
-        console.log(alteredList);
       });
   }
   switcher = () => {

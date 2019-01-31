@@ -63,6 +63,12 @@ class AirplaneForm extends Component {
     };
   }
 
+  handleImage2 = e => {
+    console.log(e[0]);
+    if (e[0]) {
+      this.setState({ image: e[0] });
+    }
+  };
   handleImage = e => {
     console.log(e.target.files[0]);
     if (e.target.files[0]) {
@@ -95,6 +101,7 @@ class AirplaneForm extends Component {
 
   submitAddForm = () => {
     const UID = this.props.UID;
+    console.log(UID);
     if (this.state.image) {
       const image = this.state.image;
       const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
@@ -228,7 +235,7 @@ class AirplaneForm extends Component {
                 </Grid>
                 <Grid item sm={12}>
                   <DropzoneArea
-                    onChange={this.handleImage}
+                    onChange={this.handleImage2}
                     showPreviews={true}
                     acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
                   />
