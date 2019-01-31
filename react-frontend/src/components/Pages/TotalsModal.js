@@ -35,6 +35,9 @@ const styles = theme => ({
   card: {
     height: "290px",
     maxWidth: 345
+  },
+  button: {
+    marginRight: theme.spacing.unit
   }
 });
 

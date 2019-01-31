@@ -1,6 +1,7 @@
 import React from 'react';
 import Parser from 'html-react-parser';
-import { Helmet } from 'react-helmet'
+import { Helmet } from 'react-helmet';
+import ReactSVG from 'react-svg';
 
 export default class SkyVector extends React.Component {
 
@@ -34,7 +35,11 @@ export default class SkyVector extends React.Component {
         </div>
       );
     } else {
-      return null;
+      return (
+        <div key={this.props.id}>
+          <ReactSVG src="./around.svg" svgStyle={{ width: '100%', height: 150, margin: '12px auto' }} />
+        </div>
+      )
     }
   }
 }

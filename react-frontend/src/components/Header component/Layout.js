@@ -13,7 +13,7 @@ import React from 'react';
 
 import fire from "../Config/fire";
 import TotalsModal from '../Pages/TotalsModal'
-
+import ReactSVG from 'react-svg';
 
 
 const styles = theme => ({
@@ -33,9 +33,6 @@ const styles = theme => ({
   },
   button: {
     marginRight: "15px",
-  },
-  totalsModal: {
-    marginRight: theme.spacing.unit,
   }
 
 });
@@ -56,13 +53,14 @@ class Layout extends React.Component {
         <CssBaseline />
         <AppBar position="static" color="default" className={classes.appBar}>
           <Toolbar>
+            <ReactSVG src="./shield-airplane-outline.svg" svgStyle={{ width: 40, height: 40 }} />
             <Typography
               variant="h6"
               color="inherit"
               noWrap
               className={classes.toolbarTitle}
             >
-              Flight Log
+              Flytelog
             </Typography>
             <TotalsModal className={classes.totalsModal} />
             <Button variant="outlined" onClick={this.signOut}>Sign Out</Button>
