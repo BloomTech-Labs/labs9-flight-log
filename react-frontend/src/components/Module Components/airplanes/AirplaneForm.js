@@ -20,7 +20,6 @@ import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormHelperText from "@material-ui/core/FormHelperText";
 
 const storage = fire.storage();
-
 const styles = theme => ({
   root: {
     flexGrow: 1
