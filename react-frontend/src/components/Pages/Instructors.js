@@ -80,7 +80,7 @@ class InstructorsList extends Component {
     return (
       <React.Fragment>
         <Layout>
-          <div>
+          <div style={{ marginTop: "16px" }}>
             <Grid
               container
               className={classes.root}
@@ -89,7 +89,7 @@ class InstructorsList extends Component {
               direction="row"
               spacing={16}
             >
-              <Grid item lg={4} md={6} sm={12}>
+              <Grid item lg={3} md={4} sm={6} xs={12}>
                 <InstructorForm
                   {...this.props}
                   switcher={this.switcher}
@@ -98,7 +98,7 @@ class InstructorsList extends Component {
               </Grid>
 
               {this.state.instructorsList.map(instructor => (
-                <Grid item lg={4} md={6} sm={12}>
+                <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent className={classes.content}>
                       {instructor.id}

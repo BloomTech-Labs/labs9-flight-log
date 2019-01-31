@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -10,6 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
 import axios from "axios";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -79,7 +80,7 @@ class InstructorForm extends React.Component {
 
   //submit add form
   submitAddForm = () => {
-    const UID= this.props.UID
+    const UID = this.props.UID
     const newInstructor = {
       name: this.state.name,
       licenseNum: this.state.licenseNum,
@@ -108,13 +109,16 @@ class InstructorForm extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Fragment>
+                <Card className={classes.card}>
+
         <Typography variant="h6" color="inherit" noWrap>
           Add Instructor
         </Typography>
         <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
           <AddIcon />
         </Fab>
+        </Card>
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
@@ -185,7 +189,7 @@ class InstructorForm extends React.Component {
             </DialogActions>
           </DialogContent>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }
