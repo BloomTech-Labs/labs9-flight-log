@@ -88,7 +88,7 @@ class Flights extends Component {
     return (
       <React.Fragment>
         <Layout>
-          <div style={{ marginTop: "16px"}}>
+          <div style={{ marginTop: "16px" }}>
             <Grid
               container
               className={classes.root}
@@ -108,7 +108,7 @@ class Flights extends Component {
               </Grid>
 
               {this.state.flightsList.map(flight => (
-                <Grid item lg={4} md={6} sm={12}>
+                <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent>
                       {flight.id}
