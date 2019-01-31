@@ -10,6 +10,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
+import Card from "@material-ui/core/Card";
 import axios from "axios";
 import Card from "@material-ui/core/Card";
 import FormControl from "@material-ui/core/FormControl";
@@ -73,7 +74,9 @@ class InstructorForm extends Component {
     this.setState({ open: false });
   };
   submitAddForm = () => {
+
     const UID = this.props.UID;
+
     const newInstructor = {
       name: this.state.name,
       licenseNum: this.state.licenseNum,
@@ -102,6 +105,7 @@ class InstructorForm extends Component {
   render() {
     const { classes } = this.props;
     return (
+
       <Fragment className={classes.root}>
         <Card className={classes.card}>
           <Typography variant="h6" color="inherit" noWrap>
