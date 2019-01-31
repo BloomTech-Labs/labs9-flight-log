@@ -92,7 +92,7 @@ class AirplanesList extends Component {
                 <AirplaneForm
                   {...this.props}
                   switcher={this.switcher}
-                  UID={this.props.UID5}
+                  UID={this.props.UID}
                 />
               </Grid>
               {this.state.airplanesList.map(airplane => (
