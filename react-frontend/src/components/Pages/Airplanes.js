@@ -26,16 +26,6 @@ const styles = theme => ({
   card: {
     height: 400
   },
-  buttonrow: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center",
-    flexGrow: 1
-  },
-  button: {
-    margin: "0 8px"
-  },
   media: {
     height: "50%"
   }
@@ -116,19 +106,17 @@ class AirplanesList extends Component {
                         {/* <Grid item xs={1}>{airplane.id}</Grid> */}
                         <Grid item xs={12}>
                           <Typography gutterBottom variant="h4" component="h2">
-                            Tail Num: {airplane.tailNumber}
+                            {airplane.tailNumber}
                           </Typography>
                         </Grid>
                         <Grid item xs={8}>
                           <Typography gutterBottom variant="h5" component="h2">
-                            Make:
                             {airplane.make} {airplane.model}
                           </Typography>
                         </Grid>
                         <Grid item xs={3}>
                           <Typography gutterBottom variant="h5" component="h2">
-                            Cat:
-                            {airplane.category}
+                            HOURS
                           </Typography>
                         </Grid>
                         {/* BUTTON ROW*/}
@@ -140,7 +128,7 @@ class AirplanesList extends Component {
                             justify="flex-start"
                             alignItems="flex-start"
                             direction="row"
-                            spacing={16}
+                            spacing={8}
                           >
                             <Grid item xs={4}>
                               <AirplaneEdit

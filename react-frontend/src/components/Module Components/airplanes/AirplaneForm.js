@@ -44,6 +44,9 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  addCardContent: {
+    marginTop: "40%"
   }
 });
 
@@ -151,12 +154,14 @@ class AirplaneForm extends Component {
     return (
       <Fragment>
         <Card className={classes.card}>
-          <Typography variant="h6" color="inherit" noWrap>
-            Add Airplane
-          </Typography>
-          <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-            <AddIcon />
-          </Fab>
+          <div className={classes.addCardContent}>
+            <Typography gutterBottom variant="h4" color="inherit" noWrap>
+              Add Airplane
+            </Typography>
+            <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
+              <AddIcon />
+            </Fab>
+          </div>
         </Card>
         <Dialog
           open={this.state.open}

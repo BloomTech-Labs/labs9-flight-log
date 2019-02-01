@@ -149,8 +149,9 @@ class AirplaneEdit extends Component {
           variant="contained"
           className={classes.button}
           color="primary"
-          aria-label="Add"
+          aria-label="Edit Airplane"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           Edit
         </Button>
