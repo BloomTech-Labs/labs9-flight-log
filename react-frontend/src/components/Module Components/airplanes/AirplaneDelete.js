@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -10,8 +10,7 @@ import axios from "axios";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -38,7 +37,7 @@ const styles = theme => ({
 
 const URL = "https://labs9-flight-log.herokuapp.com";
 
-class AirplaneDelete extends React.Component {
+class AirplaneDelete extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -70,7 +69,7 @@ class AirplaneDelete extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Fragment>
         <Button
           variant="contained"
           className={classes.button}
@@ -94,7 +93,7 @@ class AirplaneDelete extends React.Component {
             </DialogActions>
           </DialogContent>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

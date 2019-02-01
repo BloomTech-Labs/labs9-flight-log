@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -102,7 +102,7 @@ class InstructorForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Fragment>
         <Card className={classes.card}>
           <Typography variant="h6" color="inherit" noWrap>
             Add Instructor
@@ -199,7 +199,7 @@ class InstructorForm extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }
