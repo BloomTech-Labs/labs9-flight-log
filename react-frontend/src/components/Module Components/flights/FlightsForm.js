@@ -48,6 +48,12 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  button: {
+    border: "1px solid silver"
+  },
+  popper: {
+    position: "inherit !important"
   }
 });
 
@@ -270,6 +276,7 @@ class FlightForm extends Component {
               <Grid item xs={12} sm={6}>
                 <FormControl className={classes.formControl}>
                   <Button
+                    className={classes.button}
                     buttonRef={node => {
                       this.anchorEl = node;
                     }}
@@ -281,7 +288,11 @@ class FlightForm extends Component {
                     {"/ "}
                     {this.state.airplane.model || "model"}
                   </Button>
+                  <FormHelperText id="my-helper-text1">
+                    This field is required.
+                  </FormHelperText>
                   <Popper
+                    className={classes.popper}
                     open={this.state.openAir}
                     anchorEl={this.anchorEl}
                     transition
@@ -321,6 +332,7 @@ class FlightForm extends Component {
               <Grid item xs={12} sm={6}>
                 <FormControl className={classes.formControl}>
                   <Button
+                    className={classes.button}
                     buttonRef={node => {
                       this.anchorE2 = node;
                     }}
@@ -333,6 +345,7 @@ class FlightForm extends Component {
                     {this.state.instructor.licenseNum || "license Number"}
                   </Button>
                   <Popper
+                    className={classes.popper}
                     open={this.state.openIns}
                     anchorEl={this.anchorE2}
                     transition
