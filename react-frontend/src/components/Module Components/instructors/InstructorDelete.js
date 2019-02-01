@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -38,7 +38,7 @@ const styles = theme => ({
 
 const URL = "https://labs9-flight-log.herokuapp.com";
 
-class InstructorDelete extends React.Component {
+class InstructorDelete extends Component {
   constructor(props) {
     super(props);
 
@@ -72,7 +72,7 @@ class InstructorDelete extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Fragment>
         <Button
           variant="contained"
           className={classes.button}
@@ -96,7 +96,7 @@ class InstructorDelete extends React.Component {
             </DialogActions>
           </DialogContent>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

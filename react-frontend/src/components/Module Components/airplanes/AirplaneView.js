@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -113,7 +113,7 @@ class AirplaneView extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <Fragment>
         <Button
           variant="contained"
           className={classes.button}
@@ -193,7 +193,7 @@ class AirplaneView extends Component {
             </div>
           </DialogContent>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }
