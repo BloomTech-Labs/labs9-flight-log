@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -98,7 +98,7 @@ class InstructorEdit extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+      <Fragment>
         <Button
           variant="contained"
           className={classes.button}
@@ -199,7 +199,7 @@ class InstructorEdit extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

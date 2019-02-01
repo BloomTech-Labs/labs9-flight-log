@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -38,7 +38,7 @@ const styles = theme => ({
 
 const URL = "https://labs9-flight-log.herokuapp.com";
 
-class FlightDelete extends React.Component {
+class FlightDelete extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -69,9 +69,7 @@ class FlightDelete extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-
       <Fragment>
-
         <Button
           variant="contained"
           className={classes.button}
