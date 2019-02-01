@@ -54,6 +54,9 @@ const styles = theme => ({
   },
   popper: {
     position: "inherit !important"
+  },
+  addCardContent: {
+    marginTop: "40%"
   }
 });
 
@@ -196,12 +199,14 @@ class FlightForm extends Component {
     return (
       <Fragment>
         <Card className={classes.card}>
-          <Typography variant="h6" color="inherit" noWrap>
+        <div className={classes.addCardContent}>
+          <Typography gutterBottom variant="h4" color="inherit" noWrap>
             Add Flight
           </Typography>
           <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
             <AddIcon />
           </Fab>
+          </div>
         </Card>
 
         <Dialog

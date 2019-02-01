@@ -74,8 +74,9 @@ class AirplaneDelete extends Component {
           variant="contained"
           className={classes.button}
           color="secondary"
-          aria-label="Add"
+          aria-label="Delete Airplane"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           Delete
         </Button>

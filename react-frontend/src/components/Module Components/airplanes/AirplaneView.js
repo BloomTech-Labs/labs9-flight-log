@@ -118,8 +118,9 @@ class AirplaneView extends Component {
           variant="contained"
           className={classes.button}
           color="primary"
-          aria-label="Add"
+          aria-label="View Airplane"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           View
         </Button>
