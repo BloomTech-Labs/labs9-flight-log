@@ -1,12 +1,8 @@
 import React, { Component, Fragment } from "react";
 import Button from "@material-ui/core/Button";
-// import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-
-// import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 
@@ -82,8 +78,6 @@ class FlightView extends Component {
     };
   }
   handleClickOpen = () => {
-    console.log("this.props.airplanes", this.props.airplanes);
-    console.log("this.props.instructors", this.props.instructors);
     const airplane = this.props.airplanes.find(
       airplane => airplane.id === this.props.flight.airplanesID
     );
@@ -100,6 +94,7 @@ class FlightView extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
   render() {
     const { classes } = this.props;
 
@@ -137,7 +132,7 @@ class FlightView extends Component {
                   Flight Name: {this.state.flightName}
                 </Grid>
                 <Grid className={classes.textField} sm={5}>
-                  Flight Date: {this.state.flightDate}
+                  Flight Date: {this.state.flightDate.substring(0, 9)}
                 </Grid>
                 <Grid className={classes.textField} sm={5}>
                   Routes/ Airports Viseted: {this.state.airports}

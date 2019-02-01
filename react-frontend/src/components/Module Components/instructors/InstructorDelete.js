@@ -2,17 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
-// import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-// import AddIcon from "@material-ui/icons/Add";
-// import Fab from "@material-ui/core/Fab";
-// import Typography from "@material-ui/core/Typography";
 import axios from "axios";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route } from "react-router-dom";
 
 const styles = theme => ({
   root: {
@@ -62,13 +56,13 @@ class InstructorDelete extends React.Component {
     this.setState({ open: false });
   };
 
-  //submit add form
   deleteInstructor = () => {
     axios
       .delete(`${URL}/instructors/${this.props.id}`)
-      .then(() => {
+      .then(response => {
+        console.log(response);
         this.setState({
-          open: false,
+          open: false
         });
         this.props.switcher();
       })
@@ -79,7 +73,13 @@ class InstructorDelete extends React.Component {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Button variant="contained" className={classes.button} color="secondary" aria-label="Add" onClick={this.handleClickOpen}>
+        <Button
+          variant="contained"
+          className={classes.button}
+          color="secondary"
+          aria-label="Add"
+          onClick={this.handleClickOpen}
+        >
           Delete
         </Button>
         <Dialog
@@ -87,13 +87,11 @@ class InstructorDelete extends React.Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">
-            DELETE Instructor
-          </DialogTitle>
+          <DialogTitle id="form-dialog-title">Delete Instructor</DialogTitle>
           <DialogContent>
             <DialogActions>
               <Button onClick={this.deleteInstructor} color="secondary">
-                ARE YOU SURE?
+                DELETE
               </Button>
             </DialogActions>
           </DialogContent>

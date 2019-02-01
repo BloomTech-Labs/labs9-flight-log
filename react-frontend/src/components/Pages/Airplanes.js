@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Fragment, Component } from "react";
 import Layout from "../Header component/Layout";
 import axios from "axios";
 import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
@@ -77,7 +77,7 @@ class AirplanesList extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <React.Fragment>
+      <Fragment>
         <Layout>
           <div style={{ marginTop: "16px" }}>
             <Grid
@@ -146,7 +146,7 @@ class AirplanesList extends Component {
             </Grid>
           </div>
         </Layout>
-      </React.Fragment>
+      </Fragment>
     );
   }
 }

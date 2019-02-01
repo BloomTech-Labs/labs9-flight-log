@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -7,18 +7,16 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-// import AddIcon from "@material-ui/icons/Add";
-// import Fab from "@material-ui/core/Fab";
-// import Typography from "@material-ui/core/Typography";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
-// eslint-disable-next-line
-import { BrowserRouter as Router, Route } from "react-router-dom";
-// import InstructorD from "./InstructorD";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -45,155 +43,169 @@ const styles = theme => ({
 
 const URL = `https://labs9-flight-log.herokuapp.com`;
 
-//instructor edit component
 class InstructorEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
       open: false,
-      id: 0,
       name: "",
       licenseNum: "",
       contactInfo: "",
       notes: "",
-      ratings: "",
+      ratings: ""
     };
   }
 
-  //edit form handler
   editFormHandler = e => {
     this.setState({
       [e.target.name]: e.target.value
     });
-    console.log(this.state);
   };
-
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
-
   handleClickOpen = () => {
     this.setState({ ...this.props.instructor, open: true });
   };
-
   handleClose = () => {
     this.setState({ open: false });
   };
-  //submit edit form
   submitEditForm = () => {
     const updatedInstructor = {
-      id: this.state.id,
       name: this.state.name,
       licenseNum: this.state.licenseNum,
       contactInfo: this.state.contactInfo,
       notes: this.state.notes,
-      ratings: this.state.ratings,
+      ratings: this.state.ratings
     };
     axios
       .put(`${URL}/instructors/${this.state.id}`, updatedInstructor)
-      .then(() => {
+      .then(response => {
+        console.log(response);
         this.setState({
           open: false,
-          id: 0,
           name: "",
           licenseNum: "",
           contactInfo: "",
           notes: "",
           ratings: ""
-        })
+        });
         this.props.switcher();
       })
       .catch(error => console.log(error));
-    console.log("edited");
   };
-  //submit delete
-  submitDelete = () => {
 
-    console.log("deleted");
-    //axios call to delete
-  };
   render() {
     const { classes } = this.props;
     return (
       <div className={classes.root}>
-        <Button variant="contained" className={classes.button} color="primary" aria-label="Add" onClick={this.handleClickOpen}>
+        <Button
+          variant="contained"
+          className={classes.button}
+          color="primary"
+          aria-label="Add"
+          onClick={this.handleClickOpen}
+        >
           Edit
         </Button>
+
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">
-            Edit Instructor
-          </DialogTitle>
-          <DialogContent>
-            <TextField
-              type="string"
-              name="name"
-              label="Name"
-              value={this.state.name}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="licenseNum"
-              name="licenseNum"
-              label="License Number"
-              value={this.state.licenseNum}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="text"
-              id="notes"
-              name="notes"
-              label="Notes"
-              value={this.state.notes}
-              onChange={this.editFormHandler}
-              multiline
-              rows="4"
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="contactInfo"
-              name="contactInfo"
-              label="Contact"
-              value={this.state.contactInfo}
-              onChange={this.editFormHandler}
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              id="ratings"
-              name="ratings"
-              label="Ratings"
-              value={this.state.ratings}
-              onChange={this.editFormHandler}
-              fullWidth
-              variant="outlined"
-            />
+          <DialogTitle id="form-dialog-title">Edit Instructor</DialogTitle>
 
-            <DialogActions>
-              <Button onClick={this.submitEditForm} color="primary">
-                Update
-              </Button>
-            </DialogActions>
+          <DialogContent>
+            <div style={{ padding: 5 }}>
+              <Grid
+                container
+                spacing={24}
+                direction="row"
+                justify="space-between"
+                alignItems="stretch"
+              >
+                <Grid item xs={12} sm={6}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Instructor Name</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="name"
+                      value={this.state.name}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text1">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Instuctor License Number</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="licenseNum"
+                      value={this.state.licenseNum}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text2">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+
+                <TextField
+                  type="text"
+                  id="notes"
+                  name="notes"
+                  label="Notes"
+                  value={this.state.notes}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  multiline
+                  rows="4"
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  type="string"
+                  id="contactInfo"
+                  name="contactInfo"
+                  label="Contact"
+                  value={this.state.contactInfo}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  fullWidth
+                  variant="outlined"
+                />
+                <TextField
+                  type="string"
+                  id="ratings"
+                  name="ratings"
+                  label="Ratings"
+                  value={this.state.ratings}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  fullWidth
+                  variant="outlined"
+                />
+              </Grid>
+            </div>
           </DialogContent>
+          <DialogActions>
+            <Button onClick={this.submitEditForm} color="primary">
+              Update
+            </Button>
+          </DialogActions>
         </Dialog>
       </div>
     );
   }
 }
 
+InstructorEdit.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(InstructorEdit);
-

@@ -1,26 +1,16 @@
-import React, { Fragment } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import ReactDOM from 'react-dom';
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from "@material-ui/core/DialogTitle";
-// import AddIcon from "@material-ui/icons/Add";
-// import Fab from "@material-ui/core/Fab";
-// import Input from '@material-ui/core/Input';
-// import OutlinedInput from '@material-ui/core/OutlinedInput';
-// import FilledInput from '@material-ui/core/FilledInput';
-// import InputLabel from "@material-ui/core/InputLabel";
-// import FormHelperText from '@material-ui/core/FormHelperText';
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
-// import Select from "@material-ui/core/Select";
-// import NativeSelect from '@material-ui/core/NativeSelect';
-// import Typography from "@material-ui/core/Typography";
-// import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -32,16 +22,11 @@ import ClickAwayListener from "@material-ui/core/ClickAwayListener";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
-    minWidth: 120,
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    alignItems: "center"
+    minWidth: 120
   },
   selectEmpty: {
     marginTop: theme.spacing.unit * 2
@@ -59,10 +44,16 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  button: {
+    border: "1px solid silver"
+  },
+  popper: {
+    position: "inherit !important"
   }
 });
 
-class FlightEdit extends React.Component {
+class FlightEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -99,28 +90,20 @@ class FlightEdit extends React.Component {
   }
 
   editFormHandler = e => {
-    console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
   };
-
   handleChange = name => event => {
     this.setState({ [name]: event.target.value });
   };
-
   handleClickOpen = () => {
-    console.log("this.props.airplanes", this.props.airplanes);
-    console.log("this.props.instructors", this.props.instructors);
-    console.log("this.props.flight.airplanesID", this.props.flight);
     const airplane = this.props.airplanes.find(
       airplane => airplane.id === this.props.flight.airplanesID
     );
-    console.log("airplane", airplane);
     const instructor = this.props.instructors.find(
       instructor => instructor.id === this.props.flight.instructorsID
     );
-    console.log("instructor", instructor);
     this.setState({
       ...this.props.flight,
       airplanes: this.props.airplanes,
@@ -136,9 +119,6 @@ class FlightEdit extends React.Component {
   };
 
   submitEditForm = () => {
-    console.log("fired");
-    const UID = localStorage.getItem("userID");
-    console.log("uid", UID);
     const updatedFlight = {
       flightDate: this.state.flightDate,
       flightName: this.state.flightName,
@@ -193,39 +173,28 @@ class FlightEdit extends React.Component {
           airplanesID: "",
           instructorsID: ""
         });
-        console.log("this.props", this.props);
         this.props.switcher();
       })
       .catch(error => console.log(error));
   };
 
   handleOpenAir = () => {
-    console.log("airplanes");
     this.setState({ openAir: true });
   };
-  handleCloseAir = event => {
-    // if (this.anchorEl.contains(event.target)) {
-    //   return;
-    // }
+  handleCloseAir = () => {
     this.setState({ openAir: false });
   };
   handleOpenIns = () => {
-    console.log("instructors");
     this.setState({ openIns: true });
   };
-  handleCloseIns = event => {
-    // if (this.anchorE2.contains(event.target)) {
-    //   return;
-    // }
+  handleCloseIns = () => {
     this.setState({ openIns: false });
   };
-  handleAirplane = airplane => event => {
-    console.log(airplane);
+  handleAirplane = airplane => () => {
     this.setState({ airplane: airplane });
     this.handleCloseAir();
   };
-  handleInstructor = instructor => event => {
-    console.log(instructor);
+  handleInstructor = instructor => () => {
     this.setState({ instructor: instructor });
     this.handleCloseIns();
   };
@@ -233,7 +202,7 @@ class FlightEdit extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment>
+      <div className={classes.root}>
         <Button
           variant="contained"
           className={classes.button}
@@ -253,214 +222,201 @@ class FlightEdit extends React.Component {
           <DialogTitle id="form-dialog-title">Edit Flight</DialogTitle>
 
           <DialogContent>
-            <Grid container spacing={16} direction="row" justify="space-between" alignItems="stretch">
+            <Grid
+              container
+              spacing={16}
+              direction="row"
+              justify="space-between"
+              alignItems="stretch"
+            >
               <Grid item sm={8} xs={12}>
-                <TextField
-                  type="string"
-                  margin="dense"
-                  // id="name"
-                  name="flightName"
-                  label="Name This Flight"
-                  value={this.state.flightName}
-                  onChange={this.editFormHandler}
-                  required
-                  fullWidth
-                  variant="outlined"
-                />
+                <FormControl required fullWidth>
+                  <InputLabel>Flight Name</InputLabel>
+                  <OutlinedInput
+                    type="string"
+                    name="flightName"
+                    value={this.state.flightName}
+                    onChange={this.editFormHandler}
+                  />
+                  <FormHelperText id="my-helper-text1">
+                    This field is required.
+                  </FormHelperText>
+                </FormControl>
               </Grid>
               <Grid item sm={4} xs={6}>
                 <TextField
+                  autoFocus
                   type="date"
                   name="flightDate"
-                  // label="date"
                   value={this.state.flightDate}
                   onChange={this.editFormHandler}
-                  // required
-                  fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={8} xs={6}>
-
                 <TextField
+                  autoFocus
                   type="string"
                   margin="dense"
-                  // id="name"
                   name="airports"
                   label="Airports Visited"
                   value={this.state.airports}
                   onChange={this.editFormHandler}
-                  fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={12}>
                 <TextField
+                  autoFocus
                   type="string"
                   margin="dense"
-                  // id="name"
                   name="skyVector"
                   label="SkyVector Link"
                   value={this.state.skyVector}
                   onChange={this.editFormHandler}
-                  fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
-
-                    <FormControl className={classes.formControl}>
-              {/* <TextField
-                type="number"
-                name="airplanesID"
-                label="airplane id"
-                value={this.state.airplanesID}
-                onChange={this.editFormHandler}
-                // required
-                fullWidth
-                variant="outlined"
-              /> */}
-              <Button
-                buttonRef={node => {
-                  this.anchorEl = node;
-                }}
-                aria-owns={this.state.openAir ? "air-list-grow" : undefined}
-                aria-haspopup="true"
-                onClick={this.handleOpenAir}
-              >
-                {this.state.airplane.tailNumber || "tailnumber"}
-                {"/ "}
-                {this.state.airplane.model || "model"}
-              </Button>
-              <Popper
-                open={this.state.openAir}
-                anchorEl={this.anchorEl}
-                transition
-                disablePortal
-              >
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    id="air-list-grow"
-                    style={{
-                      transformOrigin:
-                        placement === "bottom" ? "center top" : "center bottom"
+              <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl}>
+                  <Button
+                    className={classes.button}
+                    buttonRef={node => {
+                      this.anchorEl = node;
                     }}
+                    aria-owns={this.state.openAir ? "air-list-grow" : undefined}
+                    aria-haspopup="true"
+                    onClick={this.handleOpenAir}
                   >
-                    <Paper className={classes.paper}>
-                      <ClickAwayListener onClickAway={this.handleCloseAir}>
-                        <MenuList className={classes.menuList}>
-                          {this.state.airplanes.map(airplane => (
-                            <MenuItem
-                              className={classes.menuItem}
-                              onClick={this.handleAirplane(airplane)}
-                            >
-                              tailNumber:{airplane.tailNumber}, model:{" "}
-                              {airplane.model}
-                            </MenuItem>
-                          ))}
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
-            </FormControl>
-            <FormControl className={classes.formControl}>
-              {/* <TextField
-                type="number"
-                name="instructorsID"
-                label="instructor id, n/r"
-                value={this.state.instructorsID}
-                onChange={this.editFormHandler}
-                // required
-                fullWidth
-                variant="outlined"
-              /> */}
-              <Button
-                buttonRef={node => {
-                  this.anchorE2 = node;
-                }}
-                aria-owns={this.state.openIns ? "ins-list-grow" : undefined}
-                aria-haspopup="true"
-                onClick={this.handleOpenIns}
-              >
-                {this.state.instructor.name || "name of instructor"}
-                {"/ "}
-                {this.state.instructor.licenseNum || "license Number"}
-              </Button>
-              <Popper
-                open={this.state.openIns}
-                anchorEl={this.anchorE2}
-                transition
-                disablePortal
-              >
-                {({ TransitionProps, placement }) => (
-                  <Grow
-                    {...TransitionProps}
-                    id="ins-list-grow"
-                    style={{
-                      transformOrigin:
-                        placement === "bottom" ? "center top" : "center bottom"
+                    {this.state.airplane.tailNumber || "tailnumber"}
+                    {"/ "}
+                    {this.state.airplane.model || "model"}
+                  </Button>
+                  <FormHelperText id="my-helper-text1">
+                    This field is required.
+                  </FormHelperText>
+                  <Popper
+                    className={classes.popper}
+                    open={this.state.openAir}
+                    anchorEl={this.anchorEl}
+                    transition
+                    disablePortal
+                  >
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        id="air-list-grow"
+                        style={{
+                          transformOrigin:
+                            placement === "bottom"
+                              ? "center top"
+                              : "center bottom"
+                        }}
+                      >
+                        <Paper className={classes.paper}>
+                          <ClickAwayListener onClickAway={this.handleCloseAir}>
+                            <MenuList className={classes.menuList}>
+                              {this.state.airplanes.map(airplane => (
+                                <MenuItem
+                                  className={classes.menuItem}
+                                  onClick={this.handleAirplane(airplane)}
+                                >
+                                  tailNumber:{airplane.tailNumber}, model:{" "}
+                                  {airplane.model}
+                                </MenuItem>
+                              ))}
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
+                </FormControl>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <FormControl className={classes.formControl}>
+                  <Button
+                    className={classes.button}
+                    buttonRef={node => {
+                      this.anchorE2 = node;
                     }}
+                    aria-owns={this.state.openIns ? "ins-list-grow" : undefined}
+                    aria-haspopup="true"
+                    onClick={this.handleOpenIns}
                   >
-                    <Paper className={classes.paper}>
-                      <ClickAwayListener onClickAway={this.handleCloseIns}>
-                        <MenuList className={classes.menuList}>
-                          {this.state.instructors.map(instructor => (
-                            <MenuItem
-                              className={classes.menuItem}
-                              onClick={this.handleInstructor(instructor)}
-                            >
-                              name: {instructor.name}, licenseNo.:{" "}
-                              {instructor.licenseNum}
-                            </MenuItem>
-                          ))}
-                        </MenuList>
-                      </ClickAwayListener>
-                    </Paper>
-                  </Grow>
-                )}
-              </Popper>
-            </FormControl>
-            <FormControl>
-              <span>date</span>
-              <TextField
-                type="date"
-                name="flightDate"
-                // label="date"
-                value={this.state.flightDate}
-                onChange={this.editFormHandler}
-                // required
-                fullWidth
-                variant="outlined"
-              />
-            </FormControl>
-
+                    {this.state.instructor.name || "name of instructor"}
+                    {"/ "}
+                    {this.state.instructor.licenseNum || "license Number"}
+                  </Button>
+                  <Popper
+                    className={classes.popper}
+                    open={this.state.openIns}
+                    anchorEl={this.anchorE2}
+                    transition
+                    disablePortal
+                  >
+                    {({ TransitionProps, placement }) => (
+                      <Grow
+                        {...TransitionProps}
+                        id="ins-list-grow"
+                        style={{
+                          transformOrigin:
+                            placement === "bottom"
+                              ? "center top"
+                              : "center bottom"
+                        }}
+                      >
+                        <Paper className={classes.paper}>
+                          <ClickAwayListener onClickAway={this.handleCloseIns}>
+                            <MenuList className={classes.menuList}>
+                              {this.state.instructors.map(instructor => (
+                                <MenuItem
+                                  className={classes.menuItem}
+                                  onClick={this.handleInstructor(instructor)}
+                                >
+                                  name: {instructor.name}, licenseNo.:{" "}
+                                  {instructor.licenseNum}
+                                </MenuItem>
+                              ))}
+                            </MenuList>
+                          </ClickAwayListener>
+                        </Paper>
+                      </Grow>
+                    )}
+                  </Popper>
+                </FormControl>
+              </Grid>
               <Grid item xs={12}>
-
                 <TextField
+                  autoFocus
                   type="string"
                   margin="dense"
-                  // id="name"
                   name="remarks"
                   label="Remarks, Procedures, Maneuvers"
                   value={this.state.remarks}
                   onChange={this.editFormHandler}
+                  className={classes.textField}
                   fullWidth
                   variant="outlined"
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
                 <TextField
+                  autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="numOfTakeOffs"
                   label="number of take offs"
                   value={this.state.numOfTakeOffs}
                   onChange={this.editFormHandler}
-                  // fullWidth
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -468,13 +424,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="numOfLandings"
                   label="number of landings"
                   value={this.state.numOfLandings}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -482,13 +438,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="SEL"
                   label="Airplane SEL"
                   value={this.state.SEL}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -496,13 +452,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="MEL"
                   label="Airplane MEL"
                   value={this.state.MEL}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -510,13 +466,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="dayHours"
                   label="day hours"
                   value={this.state.dayHours}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -524,13 +480,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="nightHours"
                   label="night hours"
                   value={this.state.nightHours}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -538,13 +494,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="actInstruments"
                   label="actual Instruments"
                   value={this.state.actInstruments}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -552,13 +508,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="simInstruments"
                   label="simulated Instruments"
                   value={this.state.simInstruments}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -566,13 +522,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="groundTrainer"
                   label="ground trainer"
                   value={this.state.groundTrainer}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -580,13 +536,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="crossCountry"
                   label="cross country"
                   value={this.state.crossCountry}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -594,13 +550,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="asInstructor"
                   label="as instructor"
                   value={this.state.asInstructor}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -608,13 +564,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="dualReceived"
                   label="dual"
                   value={this.state.dualReceived}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -622,13 +578,13 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="pilotInCommand"
                   label="PIC"
                   value={this.state.pilotInCommand}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
               <Grid item sm={4} xs={6}>
@@ -636,16 +592,15 @@ class FlightEdit extends React.Component {
                   autoFocus
                   type="number"
                   margin="dense"
-                  // id="name"
                   name="total"
                   label="total hours"
                   value={this.state.total}
                   onChange={this.editFormHandler}
-                  // fullWidth
+                  className={classes.textField}
                   variant="outlined"
+                  fullWidth
                 />
               </Grid>
-
             </Grid>
           </DialogContent>
           <DialogActions>
@@ -654,7 +609,7 @@ class FlightEdit extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </Fragment>
+      </div>
     );
   }
 }

@@ -1,15 +1,9 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
-// import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
-
-// import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
-// import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-// import Typography from "@material-ui/core/Typography";
-// import Card from "@material-ui/core/Card";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
@@ -83,7 +77,6 @@ class AirplaneView extends Component {
   }
 
   handleClickOpen = () => {
-    console.log(this.props.airplane.imageName);
     const id = this.props.airplane.id;
     const UID = localStorage.getItem("userID");
     //http://localhost:9000/airplanes
@@ -111,18 +104,11 @@ class AirplaneView extends Component {
           totalHours: data.totalHours
         });
       });
-
-    console.log(this.state);
   };
   handleClose = () => {
     this.setState({ open: false });
   };
-  //   componentDidMount() {
-  //     const UID = localStorage.getItem("userID");
-  //     axios.get(`http://localhost:9000/airplanes/${UID}/${id}`).then(response => {
-  //       console.log(response.data);
-  //     });
-  //   }
+
   render() {
     const { classes } = this.props;
 

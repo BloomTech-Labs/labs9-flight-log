@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
@@ -149,7 +149,7 @@ class AirplaneForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment className={classes.root}>
+      <div className={classes.root}>
         <Card className={classes.card}>
           <Typography variant="h6" color="inherit" noWrap>
             Add Airplane
@@ -249,7 +249,7 @@ class AirplaneForm extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </Fragment>
+      </div>
     );
   }
 }

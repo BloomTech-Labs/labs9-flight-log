@@ -112,6 +112,7 @@ class Flights extends Component {
                 <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent>
+
                       <Grid
                         container
                         className={classes.root}
@@ -132,7 +133,7 @@ class Flights extends Component {
                         </Grid>
                         <Grid item xs={6}>
                           <Typography gutterBottom variant="h6" component="h2" noWrap>
-                            {flight.flightDate}
+                            {flight.flightDate.substring(0,9)}
                           </Typography>
                         </Grid>
                         <Grid item xs={12}>
