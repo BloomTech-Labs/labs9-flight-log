@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -194,7 +194,7 @@ class FlightForm extends Component {
   render() {
     const { classes } = this.props;
     return (
-      <Fragment className={classes.root}>
+      <div className={classes.root}>
         <Card className={classes.card}>
           <Typography variant="h6" color="inherit" noWrap>
             Add Flight
@@ -600,7 +600,7 @@ class FlightForm extends Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </Fragment>
+      </div>
     );
   }
 }

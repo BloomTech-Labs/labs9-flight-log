@@ -1,25 +1,24 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
-// import Fab from "@material-ui/core/Fab";
 import { withStyles } from "@material-ui/core/styles";
-// import AddIcon from "@material-ui/icons/Add";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-// import InputLabel from "@material-ui/core/InputLabel";
-// import Select from "@material-ui/core/Select";
-import TextField from "@material-ui/core/TextField";
-// import Typography from "@material-ui/core/Typography";
-// import Card from "@material-ui/core/Card";
-// import Grid from "@material-ui/core/Grid";
+import Grid from "@material-ui/core/Grid";
 import axios from "axios";
+import FormControl from "@material-ui/core/FormControl";
+import InputLabel from "@material-ui/core/InputLabel";
+import OutlinedInput from "@material-ui/core/OutlinedInput";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import fire from "../../../components/Config/fire";
+const storage = fire.storage();
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -41,12 +40,6 @@ const styles = theme => ({
   },
   menu: {
     width: 200
-  },
-  card: {
-    height: "290px",
-    maxWidth: 345
-    // marginBottom: 20,
-    // minWidth: 200,
   }
 });
 
@@ -59,12 +52,25 @@ class AirplaneEdit extends Component {
       tailNumber: "",
       make: "",
       model: "",
-      category: ""
+      category: "",
+      image: "",
+      imageName: ""
     };
   }
 
+  handleImage2 = e => {
+    if (e[0]) {
+      this.setState({ image: e[0] });
+    }
+  };
+
+  handleImage = e => {
+    if (e.target.files[0]) {
+      this.setState({ image: e.target.files[0] });
+    }
+  };
+
   editFormHandler = e => {
-    console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -75,6 +81,7 @@ class AirplaneEdit extends Component {
   };
 
   handleClickOpen = () => {
+    console.log("this.props", this.props);
     this.setState({ ...this.props.airplane, open: true });
   };
 
@@ -89,14 +96,29 @@ class AirplaneEdit extends Component {
   }
 
   submitEditForm = () => {
-    console.log("fired", this.state);
-    const UID = localStorage.getItem("userID");
-    console.log("uid", UID);
+    const UID = this.props.UID;
+    if (this.state.image) {
+      const image = this.state.image;
+      const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          console.log(snapshot);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("complete");
+        }
+      );
+    }
     const updatedAirplane = {
       make: this.state.make,
       model: this.state.model,
       tailNumber: this.state.tailNumber,
-      category: this.state.category
+      category: this.state.category,
+      imageName: this.state.image.name
     };
     axios
       .put(
@@ -108,13 +130,12 @@ class AirplaneEdit extends Component {
         this.setState({
           open: false,
           files: [],
-          id: 0,
           tailNumber: "",
           make: "",
           model: "",
-          category: ""
+          category: "",
+          image: null
         });
-        console.log("this.props", this.props);
         this.props.switcher();
       })
       .catch(error => console.log(error));
@@ -122,7 +143,6 @@ class AirplaneEdit extends Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <div className={classes.root}>
         <Button
@@ -134,59 +154,89 @@ class AirplaneEdit extends Component {
         >
           Edit
         </Button>
-
         <Dialog
           open={this.state.open}
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Edit Airplane</DialogTitle>
-
           <DialogContent>
-            <TextField
-              type="string"
-              name="tailNumber"
-              label="TailNumber"
-              value={this.state.tailNumber}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              name="make"
-              label="Make"
-              value={this.state.make}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              name="model"
-              label="Model"
-              value={this.state.model}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <TextField
-              type="string"
-              name="category"
-              label="Category"
-              value={this.state.category}
-              onChange={this.editFormHandler}
-              required
-              fullWidth
-              variant="outlined"
-            />
-            <DropzoneArea
-              onChange={this.handleChange.bind(this)}
-              showPreviews={true}
-            />
+            <div style={{ padding: 10 }}>
+              <Grid
+                container
+                spacing={16}
+                direction="row"
+                justify="space-between"
+                alignItems="stretch"
+              >
+                <Grid sm={12}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Airplane Tail Number</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="tailNumber"
+                      value={this.state.tailNumber}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text1">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+                <Grid sm={12}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Airplane Make</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="make"
+                      value={this.state.make}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text2">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+                <Grid sm={12}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Airplane Model</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="model"
+                      value={this.state.model}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text3">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+                <Grid sm={12}>
+                  <FormControl required fullWidth>
+                    <InputLabel>Airplane Category</InputLabel>
+                    <OutlinedInput
+                      type="string"
+                      name="category"
+                      value={this.state.category}
+                      onChange={this.editFormHandler}
+                    />
+                    <FormHelperText id="my-helper-text4">
+                      This field is required.
+                    </FormHelperText>
+                  </FormControl>
+                </Grid>
+                <Grid item sm={12}>
+                  <input name="image" type="file" onChange={this.handleImage} />
+                </Grid>
+                <Grid item sm={12}>
+                  <DropzoneArea
+                    onChange={this.handleImage2}
+                    showPreviews={true}
+                    acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
+                  />
+                </Grid>
+              </Grid>
+            </div>
             <DialogActions>
               <Button onClick={this.submitEditForm} color="primary">
                 Update
@@ -199,105 +249,8 @@ class AirplaneEdit extends Component {
   }
 }
 
+AirplaneEdit.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
 export default withStyles(styles)(AirplaneEdit);
-
-// import React, { Component } from "react";
-// import axios from "axios";
-// import AircraftD from "./AircraftD";
-
-// //aircraft edit component
-// class AircraftE extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       make: "",
-//       model: "",
-//       tailNumber: ""
-//     };
-//   }
-//   //edit form handler
-//   editFormHandler = e => {
-//     console.log(e.target.name, e.target.value);
-//     this.setState({
-//       [e.target.name]: e.target.value
-//     });
-//   };
-//   //submit edit form
-//   submitEditForm = () => {
-//     console.log("edited");
-//     //axios call to put
-//   };
-//   //submit delete
-//   submitDelete = () => {
-//     console.log("deleted");
-//     //axios call to delete
-//   };
-//   render() {
-//     return (
-//       <div>
-//         <form onSubmit={this.submitEditForm}>
-//           <div>Input make: </div>
-//           <input
-//             type="text"
-//             name="make"
-//             placeholder="aircraft make"
-//             value={this.state.make}
-//             onChange={this.editFormHandler}
-//             required
-//           />
-//           <div>Input model: </div>
-//           <input
-//             type="text"
-//             name="model"
-//             placeholder="aircraft model"
-//             value={this.state.model}
-//             onChange={this.editFormHandler}
-//             required
-//           />
-//           <div>Input tail number: </div>
-//           <input
-//             type="text"
-//             name="tailNumber"
-//             placeholder="aircraft tail number"
-//             value={this.state.tailNumber}
-//             onChange={this.editFormHandler}
-//             required
-//           />
-//           <div>
-//             <button>Edit Aircraft</button>
-//           </div>
-//         </form>
-//         <div>{/* <AircraftD submitDelete = {this.submitDelete}/> */}</div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default AircraftE;
-
-/* <Grid item lg={2} xs={10} sm={6} md={4}>
-          <Card className={classes.card}>
-            <Typography variant="h6" color="inherit" noWrap>
-              Add Aircraft
-            </Typography>
-            <Fab
-              color="primary"
-              aria-label="Add"
-              onClick={this.handleClickOpen}
-            >
-              <AddIcon />
-            </Fab>
-          </Card>
-        </Grid> */
-// <InputLabel htmlFor="aircraft-native-simple">Aircraft</InputLabel>
-// <Select
-//   native
-//   value={this.state.aircraft}
-//   onChange={this.handleChange("aircraft")}
-//   inputProps={{
-//     name: "aircraft",
-//     id: "aircraft-native-simple"
-//   }}
-// >
-//   <option value="N" />
-// </Select>

@@ -121,7 +121,7 @@ class Flights extends Component {
                       </Typography>
                       <SkyVector id={flight.id} skyVector={flight.skyVector} />
                       <Typography gutterBottom variant="h6" component="h2">
-                        Flight Date: {flight.flightDate}
+                        Flight Date: {flight.flightDate.substring(0, 9)}
                       </Typography>
                       <Typography gutterBottom variant="h6" component="h2">
                         Total time: {flight.total}

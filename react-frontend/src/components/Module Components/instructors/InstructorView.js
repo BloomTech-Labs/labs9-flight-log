@@ -8,8 +8,7 @@ import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap"
+    flexGrow: 1
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -27,6 +26,11 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     border: "1px solid black",
     borderRadius: 3,
+    boxShadow: "3px 3px 5px 6px #ccc"
+  },
+  image: {
+    borderRadius: 3,
+    margin: 2,
     boxShadow: "3px 3px 5px 6px #ccc"
   },
   dense: {
@@ -59,6 +63,7 @@ class InstructorView extends Component {
   handleClose = () => {
     this.setState({ open: false });
   };
+
   render() {
     const { classes } = this.props;
 

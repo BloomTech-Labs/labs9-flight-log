@@ -1,5 +1,5 @@
 import React from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -35,7 +35,8 @@ const styles = theme => ({
     width: 200
   }
 });
-//flight delete modal,
+
+const URL = "https://labs9-flight-log.herokuapp.com";
 
 class FlightDelete extends React.Component {
   constructor(props) {
@@ -52,10 +53,9 @@ class FlightDelete extends React.Component {
   handleClose = () => {
     this.setState({ open: false });
   };
-  //submit delete
   handleDelete = () => {
     axios
-      .delete(`https://labs9-flight-log.herokuapp.com/flights/${this.props.id}`)
+      .delete(`${URL}/flights/${this.props.id}`)
       .then(response => {
         console.log(response);
         this.setState({
@@ -69,7 +69,7 @@ class FlightDelete extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div>
+      <div className={classes.root}>
         <Button
           variant="contained"
           className={classes.button}
@@ -88,7 +88,7 @@ class FlightDelete extends React.Component {
           <DialogContent>
             <DialogActions>
               <Button onClick={this.handleDelete} color="secondary">
-                Delete
+                DELETE
               </Button>
             </DialogActions>
           </DialogContent>
@@ -97,5 +97,9 @@ class FlightDelete extends React.Component {
     );
   }
 }
+
+FlightDelete.propTypes = {
+  classes: PropTypes.object.isRequired
+};
 
 export default withStyles(styles)(FlightDelete);
