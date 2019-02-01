@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {Transition, animated} from "react-spring";
 import axios from "axios";
 
 const styles = theme => ({
@@ -20,13 +20,15 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2
   },
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+   display: "flex",
+   flexDirection: "row",
+   flexWrap:"wrap",
+   justifyContent:"space-evenly"
   },
   dialog: {
-    width: 300,
-    // display: 'flex',
-    // flexWrap: "wrap",
+    width: 600,
+    display: 'flex',
+    flexWrap: "wrap",
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -43,10 +45,21 @@ const styles = theme => ({
     maxWidth: 345
   },
   title: {
-    borderBottom: `2px solid ${theme.palette.divider}`,
+    marginRight: 15,
+  },
+  takeOffs: {
+    padding: "15px"
+  },
+  topModal: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-evenly",
+    borderBottom: `3px solid ${theme.palette.divider}`,
   },
   text: {
+    marginTop: 10,
     marginRight: 10,
+    marginBottom: 10,
   },
 });
 
@@ -121,16 +134,27 @@ class TotalsModal extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle className={classes.title} id="form-dialog-title">Flight Totals</DialogTitle>
-
+          {/* <DialogTitle  id="form-dialog-title">Flight Totals</DialogTitle> */}
+      <Transition
+        native
+        items={this.state.open}
+        from={{ opacity: 0, height: 300 }}
+        enter={{ opacity: 1, height: 400 }}
+        leave= {{ opacity: 0, height: -600}}
+      >
+      {show => show && (props => (
+        <animated.div style={props}>
           <DialogContent className={classes.dialog}>
-            <Typography className={classes.text} variant="h6">
+          <div className={classes.topModal}>
+            <Typography className={classes.title} variant="h6">
               Airplane SEL: {this.state.totalSEL}
             </Typography>
-            <Typography className={classes.text} variant="h6">
+            <Typography className={classes.title} variant="h6">
               Airplane MEL: {this.state.totalMEL}
             </Typography>
-
+            </div>
+            <div className={classes.container}>
+            <div className={classes.takeOffs}>
             <Typography className={classes.text} variant="h6">
               Takeoffs: {this.state.totalTakeOffs}
             </Typography>
@@ -142,9 +166,10 @@ class TotalsModal extends Component {
             <Typography className={classes.text} variant="h6">Day: {this.state.totalDay}</Typography>
 
             <Typography className={classes.text} variant="h6">Night: {this.state.totalNight}</Typography>
-
+            </div>
+            <div className={classes.takeOffs}>
             <Typography className={classes.text} variant="h6">
-              sim: {this.state.totalSimInstruments}
+              Sim: {this.state.totalSimInstruments}
             </Typography>
 
             <Typography className={classes.text} variant="h6">
@@ -152,13 +177,15 @@ class TotalsModal extends Component {
             </Typography>
 
             <Typography className={classes.text} variant="h6">
-              ground: {this.state.totalGroundTrainer}
+              Ground: {this.state.totalGroundTrainer}
             </Typography>
             <Typography className={classes.text} variant="h6">
-              crossCountry: {this.state.totalCrossCountry}
+              Cross-Country: {this.state.totalCrossCountry}
             </Typography>
+            </div>
+            <div className={classes.takeOffs}>
             <Typography className={classes.text} variant="h6">
-              dual: {this.state.totalDualReceived}
+              Dual: {this.state.totalDualReceived}
             </Typography>
             <Typography className={classes.text} variant="h6">
               PIC: {this.state.totalPilotInCommand}
@@ -167,10 +194,15 @@ class TotalsModal extends Component {
             <Typography className={classes.text} variant="h6">
               As Inst: {this.state.totalAsInstructor}
             </Typography>
+            </div>
             <Typography className={classes.text} variant="title">
               Total Hrs: {this.state.totalHours}
             </Typography>
+            </div>
           </DialogContent>
+          </animated.div>
+          ))}
+          </Transition>
         </Dialog>
       </div>
     );
