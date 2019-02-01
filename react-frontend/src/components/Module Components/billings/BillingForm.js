@@ -2,10 +2,40 @@ import React, { Component } from "react";
 import { CardElement, injectStripe } from "react-stripe-elements";
 import Button from "@material-ui/core/Button";
 import axios from "axios";
-import RadioButtonsGroup from "./RadioButtonsGroup";
+import { withStyles } from '@material-ui/core/styles';
+
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormControl from '@material-ui/core/FormControl';
+
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
 
+const styles = theme => ({
+  button: {
+    margin: theme.spacing.unit
+  },
+  input: {
+    display: 'none'
+  },
+  paper: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
+  root: {
+    display: 'flex',
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
+  formControl: {
+    margin: theme.spacing.unit * 1,
+  },
+  group: {
+    margin: `${theme.spacing.unit}px 0`,
+  },
+});
 
 
 class BillingForm extends Component {
@@ -54,24 +84,58 @@ class BillingForm extends Component {
   }
 
   render() {
+    const { classes } = this.props;
+
     if (this.state.complete) return <h1>Purchase Complete!</h1>;
 
     return (
       <div>
-      <Paper>
-        <Typography
-          variant="h5">Payment Info</Typography>
-        <CardElement />
-        <RadioButtonsGroup/>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={this.submit}
-        >Buy Now</Button>
-      </Paper>
+        <Paper className={classes.paper}>
+          <Typography
+            variant="title"
+            marginBottom="100"
+            align="left"
+            >Payment Info</Typography>
+        
+        <div>
+          <CardElement />
+        </div>    
+
+          <div className={classes.root}>
+            <FormControl component="fieldset" className={classes.formControl}>
+              <RadioGroup
+                aria-label="subscription"
+                name="subscription1"
+                className={classes.group}
+                value={this.state.value}
+                onChange={this.setAmount}
+              >
+                <FormControlLabel 
+                  value="1999" 
+                  control={<Radio />} 
+                  label="$19.99 for 1 year" 
+                />
+                <FormControlLabel 
+                  value="999" 
+                  control={<Radio />} 
+                  label="$9.99 for 1 month" 
+                />
+
+              </RadioGroup>
+            </FormControl>
+          </div>
+
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={this.submit}
+          >Buy Now</Button>
+
+        </Paper>
       </div>
     );
   }
 }
 
-export default injectStripe(BillingForm);
+export default withStyles(styles)(injectStripe(BillingForm));
