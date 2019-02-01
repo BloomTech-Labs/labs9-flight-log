@@ -61,6 +61,9 @@ const styles = theme => ({
     marginRight: 10,
     marginBottom: 10,
   },
+  button: {
+    marginRight: theme.spacing.unit
+  }
 });
 
 class TotalsModal extends Component {
