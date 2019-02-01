@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
@@ -69,13 +69,16 @@ class FlightDelete extends React.Component {
   render() {
     const { classes } = this.props;
     return (
-      <div className={classes.root}>
+
+      <Fragment>
+
         <Button
           variant="contained"
           className={classes.button}
           color="secondary"
-          aria-label="Add"
+          aria-label="Delete"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           Delete
         </Button>
@@ -93,7 +96,7 @@ class FlightDelete extends React.Component {
             </DialogActions>
           </DialogContent>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

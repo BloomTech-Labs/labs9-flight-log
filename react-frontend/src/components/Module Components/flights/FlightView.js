@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -40,8 +40,8 @@ const styles = theme => ({
     width: 200
   },
   card: {
-    height: "290px",
-    maxWidth: 345
+    // height: "290px",
+    // maxWidth: 345
   }
 });
 
@@ -99,13 +99,14 @@ class FlightView extends Component {
     const { classes } = this.props;
 
     return (
-      <div className={classes.root}>
+      <Fragment>
         <Button
           variant="contained"
           className={classes.button}
           color="primary"
-          aria-label="Add"
+          aria-label="View"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           View
         </Button>
@@ -208,7 +209,7 @@ class FlightView extends Component {
             </div>
           </DialogContent>
         </Dialog>
-      </div>
+      </Fragment>
     );
   }
 }

@@ -30,9 +30,9 @@ const styles = theme => ({
     justifyContent: "center",
     flexGrow: 1
   },
-  button: {
-    margin: "0 8px"
-  },
+  // button: {
+  //   margin: "0 8px"
+  // },
   media: {
     height: 140
   }
@@ -85,6 +85,7 @@ class Flights extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <React.Fragment>
         <Layout>
@@ -111,41 +112,76 @@ class Flights extends Component {
                 <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent>
-                      {flight.id}
 
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Flight Name: {flight.flightName}
-                      </Typography>
-                      <Typography gutterBottom variant="h6" component="h2">
-                        Routes/Airports: {flight.airports}
-                      </Typography>
-                      <SkyVector id={flight.id} skyVector={flight.skyVector} />
-                      <Typography gutterBottom variant="h6" component="h2">
-                        Flight Date: {flight.flightDate.substring(0, 9)}
-                      </Typography>
-                      <Typography gutterBottom variant="h6" component="h2">
-                        Total time: {flight.total}
-                      </Typography>
-
-                      <div className={classes.buttonrow}>
-                        <FlightEdit
-                          {...this.props}
-                          airplanes={this.state.airplanes}
-                          instructors={this.state.instructors}
-                          switcher={this.switcher}
-                          flight={flight}
-                        />
-                        <FlightDelete id={flight.id} switcher={this.switcher} />
-                        <FlightView
-                          airplanes={this.state.airplanes}
-                          instructors={this.state.instructors}
-                          flight={flight}
-                        />
-                      </div>
+                      <Grid
+                        container
+                        className={classes.root}
+                        justify="center"
+                        alignItems="center"
+                        direction="row"
+                        spacing={16}
+                      >
+                        <Grid item xs={12}>
+                          <Typography gutterBottom variant="h4" component="h2">
+                            {flight.flightName}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography gutterBottom variant="h6" component="h2">
+                            Airports: {flight.airports}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                          <Typography gutterBottom variant="h6" component="h2" noWrap>
+                            {flight.flightDate.substring(0,9)}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <SkyVector id={flight.id} skyVector={flight.skyVector} />
+                        </Grid>
+                        <Grid item xs={6} />
+                        <Grid item xs={6}>
+                          <Typography gutterBottom variant="h6" component="h2">
+                            Total: {flight.total}hrs
+                        </Typography>
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Grid
+                            container
+                            className={classes.root}
+                            justify="flex-start"
+                            alignItems="flex-start"
+                            direction="row"
+                            spacing={8}
+                          >
+                            <Grid item xs={4}>
+                              <FlightEdit
+                                {...this.props}
+                                airplanes={this.state.airplanes}
+                                instructors={this.state.instructors}
+                                switcher={this.switcher}
+                                flight={flight}
+                              />
+                            </Grid>
+                            <Grid item xs={4}>
+                              <FlightDelete id={flight.id} switcher={this.switcher} />
+                            </Grid>
+                            <Grid item xs={4}>
+                              <FlightView
+                                airplanes={this.state.airplanes}
+                                instructors={this.state.instructors}
+                                flight={flight}
+                              />
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
                     </CardContent>
                   </Card>
                 </Grid>
-              ))}
+              )
+
+              )}
             </Grid>
           </div>
         </Layout>
