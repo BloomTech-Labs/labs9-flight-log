@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 400
+    height: 450
   },
   buttonrow: {
     width: "100%",
