@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-import React, { Fragment, Component } from "react";
-=======
 import React, { Component, Fragment } from "react";
->>>>>>> b5cf26d0a322b70779cedd337518af57a7232f38
 import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
