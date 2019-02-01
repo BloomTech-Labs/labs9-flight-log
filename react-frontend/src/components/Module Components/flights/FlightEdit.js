@@ -238,8 +238,9 @@ class FlightEdit extends React.Component {
           variant="contained"
           className={classes.button}
           color="primary"
-          aria-label="Add"
+          aria-label="Edit"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           Edit
         </Button>
