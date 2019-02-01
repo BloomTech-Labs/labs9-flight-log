@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
+import Typography from "@material-ui/core/Typography";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogTitle from "@material-ui/core/DialogTitle";
+import {Transition, animated} from "react-spring";
 import axios from "axios";
 
 const styles = theme => ({
@@ -19,8 +20,15 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2
   },
   container: {
-    display: "flex",
-    flexWrap: "wrap"
+   display: "flex",
+   flexDirection: "row",
+   flexWrap:"wrap",
+   justifyContent:"space-evenly"
+  },
+  dialog: {
+    width: 600,
+    display: 'flex',
+    flexWrap: "wrap",
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -35,6 +43,23 @@ const styles = theme => ({
   card: {
     height: "290px",
     maxWidth: 345
+  },
+  title: {
+    marginRight: 15,
+  },
+  takeOffs: {
+    padding: "15px"
+  },
+  topModal: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-evenly",
+    borderBottom: `3px solid ${theme.palette.divider}`,
+  },
+  text: {
+    marginTop: 10,
+    marginRight: 10,
+    marginBottom: 10,
   },
   button: {
     marginRight: theme.spacing.unit
@@ -112,33 +137,75 @@ class TotalsModal extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Totals Modal</DialogTitle>
+          {/* <DialogTitle  id="form-dialog-title">Flight Totals</DialogTitle> */}
+      <Transition
+        native
+        items={this.state.open}
+        from={{ opacity: 0, height: 300 }}
+        enter={{ opacity: 1, height: 400 }}
+        leave= {{ opacity: 0, height: -600}}
+      >
+      {show => show && (props => (
+        <animated.div style={props}>
+          <DialogContent className={classes.dialog}>
+          <div className={classes.topModal}>
+            <Typography className={classes.title} variant="h6">
+              Airplane SEL: {this.state.totalSEL}
+            </Typography>
+            <Typography className={classes.title} variant="h6">
+              Airplane MEL: {this.state.totalMEL}
+            </Typography>
+            </div>
+            <div className={classes.container}>
+            <div className={classes.takeOffs}>
+            <Typography className={classes.text} variant="h6">
+              Takeoffs: {this.state.totalTakeOffs}
+            </Typography>
 
-          <DialogContent>
-            <div>
-              Airplane SEL: {this.state.totalSEL}, Airplane MEL:{" "}
-              {this.state.totalMEL}
+            <Typography className={classes.text} variant="h6">
+              Landings: {this.state.totalLandings}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">Day: {this.state.totalDay}</Typography>
+
+            <Typography className={classes.text} variant="h6">Night: {this.state.totalNight}</Typography>
             </div>
-            <div>
-              Takeoffs:{this.state.totalTakeOffs}, Landings:{" "}
-              {this.state.totalLandings}, Day: {this.state.totalDay}, Night:{" "}
-              {this.state.totalNight}
+            <div className={classes.takeOffs}>
+            <Typography className={classes.text} variant="h6">
+              Sim: {this.state.totalSimInstruments}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">
+              Act: {this.state.totalActInstruments}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">
+              Ground: {this.state.totalGroundTrainer}
+            </Typography>
+            <Typography className={classes.text} variant="h6">
+              Cross-Country: {this.state.totalCrossCountry}
+            </Typography>
             </div>
-            <div>
-              sim: {this.state.totalSimInstruments}, Act:{" "}
-              {this.state.totalActInstruments}, ground:{" "}
-              {this.state.totalGroundTrainer}
+            <div className={classes.takeOffs}>
+            <Typography className={classes.text} variant="h6">
+              Dual: {this.state.totalDualReceived}
+            </Typography>
+            <Typography className={classes.text} variant="h6">
+              PIC: {this.state.totalPilotInCommand}
+            </Typography>
+
+            <Typography className={classes.text} variant="h6">
+              As Inst: {this.state.totalAsInstructor}
+            </Typography>
             </div>
-            <div>
-              crossCountry: {this.state.totalCrossCountry}, dual:
-              {this.state.totalDualReceived}, PIC:{" "}
-              {this.state.totalPilotInCommand}
-            </div>
-            <div>
-              As Inst: {this.state.totalAsInstructor}, Total Hrs:{" "}
-              {this.state.totalHours}
+            <Typography className={classes.text} variant="title">
+              Total Hrs: {this.state.totalHours}
+            </Typography>
             </div>
           </DialogContent>
+          </animated.div>
+          ))}
+          </Transition>
         </Dialog>
       </div>
     );
