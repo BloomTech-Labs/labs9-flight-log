@@ -12,6 +12,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import fire from "../../components/Config/fire";
+import { CardMedia } from "@material-ui/core";
 
 const storage = fire.storage();
 
@@ -36,7 +37,7 @@ const styles = theme => ({
     margin: "0 8px"
   },
   media: {
-    height: 140
+    height: "50%"
   }
 });
 
@@ -98,47 +99,69 @@ class AirplanesList extends Component {
               {this.state.airplanesList.map(airplane => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
+                    <CardMedia
+                      className={classes.media}
+                      image={airplane.imageName || "https://via.placeholder.com/100"}
+                      title="airplane image"
+                    />
                     <CardContent>
-                      <div>{airplane.id}</div>
-                      <img
-                        src={
-                          airplane.imageName ||
-                          "https://via.placeholder.com/100"
-                        }
-                        height="100"
-                        width="100"
-                        alt="airplaneImages"
-                      />
+                      <Grid
+                        container
+                        className={classes.root}
+                        justify="flex-start"
+                        alignItems="flex-start"
+                        direction="row"
+                        spacing={16}
+                      >
+                        {/* <Grid item xs={1}>{airplane.id}</Grid> */}
+                        <Grid item xs={12}>
+                          <Typography gutterBottom variant="h4" component="h2">
+                            Tail Num: {airplane.tailNumber}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={8}>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            Make:
+                            {airplane.make} {airplane.model}
+                          </Typography>
+                        </Grid>
+                        <Grid item xs={3}>
+                          <Typography gutterBottom variant="h5" component="h2">
+                            Cat:
+                            {airplane.category}
+                          </Typography>
+                        </Grid>
+                        {/* BUTTON ROW*/}
+                        <Grid item xs={12}>
 
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Tail Number:
-                        {airplane.tailNumber}
-                      </Typography>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Make:
-                        {airplane.make}
-                      </Typography>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Model:
-                        {airplane.model}
-                      </Typography>
-                      <Typography gutterBottom variant="h5" component="h2">
-                        Category:
-                        {airplane.category}
-                      </Typography>
+                          <Grid
+                            container
+                            className={classes.root}
+                            justify="flex-start"
+                            alignItems="flex-start"
+                            direction="row"
+                            spacing={16}
+                          >
+                            <Grid item xs={4}>
+                              <AirplaneEdit
+                                {...this.props}
+                                switcher={this.switcher}
+                                airplane={airplane}
+                              />
+                            </Grid>
+                            <Grid item xs={4}>
 
-                      <div className={classes.buttonrow}>
-                        <AirplaneEdit
-                          {...this.props}
-                          switcher={this.switcher}
-                          airplane={airplane}
-                        />
-                        <AirplaneDelete
-                          id={airplane.id}
-                          switcher={this.switcher}
-                        />
-                        <AirplaneView airplane={airplane} />
-                      </div>
+                              <AirplaneDelete
+                                id={airplane.id}
+                                switcher={this.switcher}
+                              />
+                            </Grid>
+                            <Grid item xs={4}>
+                              <AirplaneView airplane={airplane} />
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
                     </CardContent>
                   </Card>
                 </Grid>

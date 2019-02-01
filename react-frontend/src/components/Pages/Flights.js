@@ -145,6 +145,9 @@ class Flights extends Component {
                             Total: {flight.total}hrs
                         </Typography>
                         </Grid>
+
+                                              {/* BUTTON ROW*/}
+
                         <Grid item xs={12}>
                           <Grid
                             container
