@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route} from "react-router-dom";
+import { Route } from "react-router-dom";
 import Landing from './Landing';
 import SignInUi from './SignInUi';
 class Headers extends Component{
