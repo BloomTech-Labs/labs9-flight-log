@@ -43,7 +43,8 @@ router.get("/:signin", decode1, async (req, res) => {
     // console.log("pilots name", pilots[0].firstName);
     const PilotUID = pilots[0].UID;
     const PilotName = pilots[0].firstName;
-    res.status(200).json({ PilotUID, PilotName });
+    const PilotID = pilots[0].id;
+    res.status(200).json({ PilotUID, PilotName, PilotID });
   } catch (error) {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
   }

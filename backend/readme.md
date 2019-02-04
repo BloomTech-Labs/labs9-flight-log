@@ -7,6 +7,16 @@ npm i sqlite3
 npm i express
 npm i node
 npm i nodemon --only=dev
+cors
+dotenv
+firebase
+firebase-admin
+mysql
+stripe
+
+for testing:
+jest
+supertest
 
 created .gitignore file
 
@@ -16,21 +26,90 @@ knex migrate:make flights_table
 knex migrate:make aircrafts_table
 knex migrate:make instructors_table
 
-for user pilot seeds, ran into issue where i would get error: Error: SQLITE_ERROR: too many SQL variables, seems that this is internal driver limitation and you can't avoid it.
-have to insert entities in chuncks. I dont really think it it should be necessary to create 500 seeds for users(pilots), i think 100 is more than good enough
+please look at migrations directory to see how to setup testing and formating data
+main routes can be found in the server.js
+subroutes can be found in the routes directory
+along with the middleware functions
+helper functions can be found in the helpers directory
 
-TODO:
-pilots
-routes error message/catch when duplicate, should respond with correct error, right now just responds with error creating pilot
-post route async response is id of newly created pilot, may want to change what we want returned
-should look into migrations, loggin default needed, along with isPaid, currently null
-make sure error codes are correct codes
-aircrafts
-flightID currently null, have to bring in the flights in the route
-instructors
-flightID currently null, have to bring in the flights in the route???
-personally i think we may need to set this table up differently, doesnt make sense to attach
-a flight id to an instructor and have the same instructor added multiple times for different flights, all we need is to reference the instructor for a flight, i think maybe have a junction table and have instructor related to the pilot, with a many to many relationship,
-now that i think about it, i think the same principle applies with the aircraft.
-i think if you consider scalability, you would create less redundancies this way
-not too sure...
+- main route
+  /admins
+  currently there are no ways to modify admins :alien:
+- sub routes
+  get(/) : get all admins
+  post(/) : create new admin, two params for body, first,last names
+  put(/:id) : edit admin, two params for body, first, last names, one header param, id
+  delete (/:id) : delete admin, one header param id
+- helper functions
+  get: get admins table
+  insert: two params, firstname, lastname, inserts body content, admin, into admin table
+  update: update either body params, first or last name, where id is equal to id
+  delete: accepts id header param, deletes from db
+
+- main route
+  /pilots
+- middleware function decode/decode1 : decode access token from google firebase oauth, and assigns UID,
+  when user signs in, or creates a new pilot
+- sub routes
+  get(/) : gets all pilots from db, however due to helper functions, cannot access all pilots
+  get(/:signin) returns pilots db after decode1
+  get(/:access/:UID) : if pilot is signed in allows info from specified UID
+  get(/:access/:UID/:path) : path is either airplanes or instructors to handle respective info
+  post(/) : allows user to create new pilot, after decode helper function to create UID
+  put(/:id) : allows user/pilot to edit user info
+  delete(/:id) : allows user to delete pilot info
+- helper functions
+  get: three params, access, UID and path,
+  if access is signin, once middleware decode function validates, returns pilots db
+  if access is access, moves onto UID, uid is passed, moves onto path
+  if path is airplanes, joins airplanes table to bring back some info that pilot shares with airplanes
+  if path is instructors, joins instructors table to bring back some info that pilot shares with instructors
+  insert: creates new instructor, and inserts to pilots table
+  update: accepts id and updated pilot info to update pilot where id matches id
+  delete: accepts id and deletes pilot info
+
+- main route
+  /airplanes
+- sub routes
+  get(/:UID) : get all airplanes where UID matches the uid from pilot
+  get(/:UID/:id) : get one airplane where UID matches the uid from pilot and the id matches id from airplane
+  post(/) : creates airplane
+  put(/:id) : updates airplane where id matches id from airplane
+  delete(/:id) : deletes airplane with matching id
+- helper functions
+  get: joins all airplanes matching uid of pilot, returns selected airplanes and their info
+  if id param is passed, will only select specific id of airplane and join with all flights that match
+  the corresponding airplane, bring back sum total of flight hours of flights that match airplane id
+  insert: creates new airplane and inserts airplane to airplane db
+  update: accepts id and updated airplane info, updates airplane where id matches id
+  delete: accepts id and deletes airplane
+
+- main route
+  /instructors
+- sub routes
+  get(/:UID) : get all instructors where UID matches the uid from pilot
+  get(/:UID/:id) : get one instructor where UID matches the uid from pilot and the id matches id from instructor
+  post(/) : creates instructor
+  put(/:id) : updates instructor where id matches id from instructor
+  delete(/:id) : deletes instructor with matching id
+- helper functions
+  get: joins all instructors matching uid of pilot, returns selected instructiors and their info
+  if id param is passed, will only select specific id of instructor
+  insert: creates new instructor and inserts instructor to instructor db
+  update: accepts id and updated instrucor info, updates instructor where id matches id
+  delete: accepts id and deletes instructor
+
+- main route
+  /flights
+- sub routes
+  get(/:UID) : get all flights where UID matches uid from pilot
+  get(/:UID/:total) : get all flights and total hours of flights matching uid of pilot
+  post(/) : creates flight
+  put(/:id) : updates flight where id matches id from flight
+  delete(/:id) : deletes flight with matching id
+- helper functions
+  get: joins all flights matching uid of pilot, returns selected flights and their info
+  if totals param is passed sum total of all flights attached to pilots uid, (used in totals modal front-end)
+  insert: creates new flight and inserts flight to flight db
+  update: accepts id and updates flight info, updates flight where id matches id
+  delete: accpts id and deletes flight
