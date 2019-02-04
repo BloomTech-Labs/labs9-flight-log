@@ -61,23 +61,30 @@ class AirplaneForm extends Component {
       model: "",
       category: "",
       pilotsUID: "",
-      image: "",
+      // image: "",
       imageName: ""
     };
   }
 
-  handleImage2 = e => {
-    console.log(e[0]);
-    if (e[0]) {
-      this.setState({ image: e[0] });
-    }
-  };
   handleImage = e => {
-    console.log(e.target.files[0]);
-    if (e.target.files[0]) {
-      this.setState({ image: e.target.files[0] });
+    let files = [];
+    let imageName = "";
+    files = e.map(file => {
+      return file;
+    });
+    if (files) {
+      imageName = files.map(image => {
+        return image.name;
+      });
+      this.setState({ files, imageName });
     }
   };
+  // handleImage = e => {
+  //   console.log(e.target.files[0]);
+  //   if (e.target.files[0]) {
+  //     this.setState({ image: e.target.files[0] });
+  //   }
+  // };
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
     this.setState({
@@ -105,21 +112,27 @@ class AirplaneForm extends Component {
   submitAddForm = () => {
     const UID = this.props.UID;
     console.log(UID);
-    if (this.state.image) {
-      const image = this.state.image;
-      const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
-      uploadTask.on(
-        "state_changed",
-        snapshot => {
-          console.log(snapshot);
-        },
-        error => {
-          console.log(error);
-        },
-        () => {
-          console.log("complete");
-        }
-      );
+    console.log("this.state.files", this.state.files);
+    console.log("this.state.imageName", this.state.imageName);
+    if (this.state.files) {
+      const files = this.state.files;
+      files.forEach(image => {
+        storage
+          .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
+          .put(image)
+          .on(
+            "state_changed",
+            snapshot => {
+              console.log(snapshot);
+            },
+            error => {
+              console.log(error);
+            },
+            () => {
+              console.log("complete");
+            }
+          );
+      });
     }
     const newAirplane = {
       make: this.state.make,
@@ -127,11 +140,12 @@ class AirplaneForm extends Component {
       tailNumber: this.state.tailNumber,
       category: this.state.category,
       pilotsUID: UID,
-      imageName: this.state.image.name
+      imageName: this.state.imageName.join("+=+")
     };
-    //http://localhost:9000.com/airplanes
+    //http://localhost:9000/airplanes
+    //https://labs9-flight-log.herokuapp.com/airplanes
     axios
-      .post("https://labs9-flight-log.herokuapp.com/airplanes", newAirplane)
+      .post("http://localhost:9000/airplanes", newAirplane)
       .then(response => {
         console.log(response);
         this.setState({
@@ -142,7 +156,8 @@ class AirplaneForm extends Component {
           model: "",
           category: "",
           pilotsUID: "",
-          image: null
+          // image: null
+          imageName: ""
         });
         this.props.switcher();
       })
@@ -158,7 +173,11 @@ class AirplaneForm extends Component {
             <Typography gutterBottom variant="h4" color="inherit" noWrap>
               Add Airplane
             </Typography>
-            <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
+            <Fab
+              color="primary"
+              aria-label="Add"
+              onClick={this.handleClickOpen}
+            >
               <AddIcon />
             </Fab>
           </div>
@@ -235,12 +254,12 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item sm={12}>
+                {/* <Grid item sm={12}>
                   <input name="image" type="file" onChange={this.handleImage} />
-                </Grid>
+                </Grid> */}
                 <Grid item sm={12}>
                   <DropzoneArea
-                    onChange={this.handleImage2}
+                    onChange={this.handleImage}
                     showPreviews={true}
                     acceptedFiles={["image/jpeg", "image/png", "image/bmp"]}
                   />

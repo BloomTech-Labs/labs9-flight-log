@@ -54,7 +54,7 @@ class AirplaneEdit extends Component {
       model: "",
       category: "",
       image: "",
-      imageName: ""
+      imageName: []
     };
   }
 
@@ -142,6 +142,7 @@ class AirplaneEdit extends Component {
   };
 
   render() {
+    console.log("this.state", this.state);
     const { classes } = this.props;
     return (
       <Fragment>
@@ -226,9 +227,21 @@ class AirplaneEdit extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item sm={12}>
-                  <input name="image" type="file" onChange={this.handleImage} />
+                <Grid>
+                  {this.state.imageName.map(image => {
+                    return (
+                      <img
+                        src={image.i}
+                        width="50"
+                        hieght="50"
+                        alt="imagelist"
+                      />
+                    );
+                  })}
                 </Grid>
+                {/* <Grid item sm={12}>
+                  <input name="image" type="file" onChange={this.handleImage} />
+                </Grid> */}
                 <Grid item sm={12}>
                   <DropzoneArea
                     onChange={this.handleImage2}
