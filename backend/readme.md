@@ -67,6 +67,12 @@ helper functions can be found in the helpers directory
   insert: creates new instructor, and inserts to pilots table
   update: accepts id and updated pilot info to update pilot where id matches id
   delete: accepts id and deletes pilot info
+- object create and edit
+  {
+  firstName: "",
+  isPaid: "",
+  UID: ""
+  }
 
 - main route
   /airplanes
@@ -84,6 +90,16 @@ helper functions can be found in the helpers directory
   update: accepts id and updated airplane info, updates airplane where id matches id
   delete: accepts id and deletes airplane
 
+  - object for create and edit
+    {
+    tailNumber: "",
+    make: "",
+    model: "",
+    category: "",
+    imageName: "",
+    pilotsUID: ""
+    }
+
 - main route
   /instructors
 - sub routes
@@ -99,6 +115,16 @@ helper functions can be found in the helpers directory
   update: accepts id and updated instrucor info, updates instructor where id matches id
   delete: accepts id and deletes instructor
 
+  - object create and edit
+    {
+    name: "",
+    licenseNum: "",
+    notes: "",
+    ratings: "",
+    contactInfo: "",
+    pilotsUID: ""
+    }
+
 - main route
   /flights
 - sub routes
@@ -113,3 +139,28 @@ helper functions can be found in the helpers directory
   insert: creates new flight and inserts flight to flight db
   update: accepts id and updates flight info, updates flight where id matches id
   delete: accpts id and deletes flight
+- object create and edit
+  {
+  flightDate: "",
+  flightName: "",
+  airports: "",
+  skyVector: "",
+  remarks: "",
+  numOfTakeOffs: "",
+  numOfLandings: "",
+  SEL: "",
+  MEL: "",
+  dayHours: "",
+  nightHours: "",
+  actInstruments: "",
+  simInstruments: "",
+  groundTrainer: "",
+  crossCountry: "",
+  asInstructor: "",
+  dualReceived: "",
+  pilotInCommand: "",
+  total: "",
+  pilotsUID: "",
+  airplanesID: "",
+  instructorsID: ""
+  }

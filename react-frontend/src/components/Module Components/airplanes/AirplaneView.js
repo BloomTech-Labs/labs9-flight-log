@@ -56,7 +56,7 @@ class AirplaneView extends Component {
       make: "",
       mode: "",
       category: "",
-      imageName: null,
+      imageName: [],
       pilotsUID: "",
       //
       totalTakeOffs: "",
@@ -155,12 +155,16 @@ class AirplaneView extends Component {
                   Airplane Model: {this.state.model}
                 </Grid>
                 <Grid className={classes.image} sm={12}>
-                  <img
-                    src={this.state.imageName}
-                    height="250"
-                    width="250"
-                    alt="airplaneImage"
-                  />
+                  {this.state.imageName.map(image => {
+                    return (
+                      <img
+                        src={image.i}
+                        width="100"
+                        height="100"
+                        alt="imageList"
+                      />
+                    );
+                  })}
                 </Grid>
                 <Grid className={classes.textField} sm={5}>
                   SEL: {this.state.totalSEL}, MEL: {this.state.totalMEL}
