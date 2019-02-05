@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+// import "./App.css";
 // import Layout from './components/Header component/Layout';
 
 import Airplanes from "./components/Pages/Airplanes";
@@ -11,6 +11,7 @@ import fire from "./components/Config/fire";
 // eslint-disable-next-line
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
+
 
 class App extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ class App extends Component {
       UID: UID
     });
   };
+
   componentWillMount() {
     const that = this;
     fire
@@ -43,6 +45,7 @@ class App extends Component {
         that.setState({ idToken: idToken });
       });
   }
+
   componentDidMount() {
     const that = this;
     fire
@@ -54,6 +57,7 @@ class App extends Component {
         axios
           //http://localhost:9000
           //https://labs9-flight-log.herokuapp.com
+
           .get("https://labs9-flight-log.herokuapp.com/pilots/signin", {
             params: { token: body }
           })
@@ -61,6 +65,7 @@ class App extends Component {
             console.log("response.data", response.data);
             const uid = response.data.PilotUID;
             const name = response.data.PilotName;
+
             const id = response.data.PilotID;
             console.log(name, uid);
             that.setState({
@@ -76,6 +81,7 @@ class App extends Component {
     console.log("fired from app");
     this.componentDidMount();
   };
+
   render() {
     console.log("this.state.refresh", this.state.refresh);
     if (this.state.refresh) {

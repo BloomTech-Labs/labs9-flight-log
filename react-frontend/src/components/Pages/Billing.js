@@ -26,7 +26,7 @@ class Billing extends Component {
 
     return (
       <Layout>
-        <StripeProvider apiKey="pk_test_8ORBm2Wl7klSkjJI4PtWHT5Q">
+        <StripeProvider apiKey={process.env.REACT_APP_STRIPE_API_KEY}>
           <div className={classes.root}>
             <Elements>
               <BillingForm {...props}/>
