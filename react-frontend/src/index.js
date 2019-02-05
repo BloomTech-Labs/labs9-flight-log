@@ -1,15 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "./index.css";
+import { MuiThemeProvider } from '@material-ui/core/styles';
 import HOC from "./HOC";
 import { BrowserRouter as Router } from "react-router-dom";
+
+import theme from './components/Styles/theme';
 
 require('dotenv').config({ path: '../.env'});
 
 
+
 ReactDOM.render(
   <Router>
-    < HOC/>
+    <MuiThemeProvider theme={theme}>
+      < HOC/>
+    </MuiThemeProvider>
   </Router>,
   document.getElementById("root")
 );

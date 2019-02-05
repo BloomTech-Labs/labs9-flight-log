@@ -46,6 +46,7 @@ const styles = theme => ({
     width: 200
   },
   addCardContent: {
+    textAlign: "center",
     marginTop: "40%"
   }
 });
@@ -174,7 +175,7 @@ class AirplaneForm extends Component {
               Add Airplane
             </Typography>
             <Fab
-              color="primary"
+              color="secondary"
               aria-label="Add"
               onClick={this.handleClickOpen}
             >
