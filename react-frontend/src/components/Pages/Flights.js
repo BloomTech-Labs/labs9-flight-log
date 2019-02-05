@@ -112,7 +112,6 @@ class Flights extends Component {
                 <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card className={classes.card}>
                     <CardContent>
-
                       <Grid
                         container
                         className={classes.root}
@@ -132,21 +131,29 @@ class Flights extends Component {
                           </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                          <Typography gutterBottom variant="h6" component="h2" noWrap>
-                            {flight.flightDate.substring(0,9)}
+                          <Typography
+                            gutterBottom
+                            variant="h6"
+                            component="h2"
+                            noWrap
+                          >
+                            {flight.flightDate.substring(0, 9)}
                           </Typography>
                         </Grid>
                         <Grid item xs={12}>
-                          <SkyVector id={flight.id} skyVector={flight.skyVector} />
+                          <SkyVector
+                            id={flight.id}
+                            skyVector={flight.skyVector}
+                          />
                         </Grid>
                         <Grid item xs={6} />
                         <Grid item xs={6}>
                           <Typography gutterBottom variant="h6" component="h2">
                             Total: {flight.total}hrs
-                        </Typography>
+                          </Typography>
                         </Grid>
 
-                                              {/* BUTTON ROW*/}
+                        {/* BUTTON ROW*/}
 
                         <Grid item xs={12}>
                           <Grid
@@ -167,7 +174,10 @@ class Flights extends Component {
                               />
                             </Grid>
                             <Grid item xs={4}>
-                              <FlightDelete id={flight.id} switcher={this.switcher} />
+                              <FlightDelete
+                                id={flight.id}
+                                switcher={this.switcher}
+                              />
                             </Grid>
                             <Grid item xs={4}>
                               <FlightView
@@ -182,9 +192,7 @@ class Flights extends Component {
                     </CardContent>
                   </Card>
                 </Grid>
-              )
-
-              )}
+              ))}
             </Grid>
           </div>
         </Layout>

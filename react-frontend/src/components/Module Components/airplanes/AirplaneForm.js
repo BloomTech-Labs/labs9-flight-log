@@ -145,7 +145,7 @@ class AirplaneForm extends Component {
     //http://localhost:9000/airplanes
     //https://labs9-flight-log.herokuapp.com/airplanes
     axios
-      .post("http://localhost:9000/airplanes", newAirplane)
+      .post("https://labs9-flight-log.herokuapp.com/airplanes", newAirplane)
       .then(response => {
         console.log(response);
         this.setState({

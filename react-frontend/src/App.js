@@ -19,7 +19,9 @@ class App extends Component {
     this.state = {
       idToken: "",
       UID: "",
-      Name: ""
+      Name: "",
+      id: "",
+      refresh: false
     };
   }
 
@@ -34,23 +36,28 @@ class App extends Component {
     fire
       .auth()
       .currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function (idToken) {
+      .then(function(idToken) {
         console.log(idToken);
         const body = { token: idToken };
+        //http://localhost:9000
+        //https://labs9-flight-log.herokuapp.com
         axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
-        that.setState({ idToken: idToken })
+        that.setState({ idToken: idToken });
       });
   }
 
-  componentDidMount(){
-    const that= this;
+  componentDidMount() {
+    const that = this;
     fire
       .auth()
       .currentUser.getIdToken(/* forceRefresh */ true)
-      .then(function (idToken) {
+      .then(function(idToken) {
         const body = idToken;
         console.log("idToken", idToken);
         axios
+          //http://localhost:9000
+          //https://labs9-flight-log.herokuapp.com
+
           .get("https://labs9-flight-log.herokuapp.com/pilots/signin", {
             params: { token: body }
           })
@@ -58,33 +65,65 @@ class App extends Component {
             console.log("response.data", response.data);
             const uid = response.data.PilotUID;
             const name = response.data.PilotName;
-            console.log(name, uid)
+
+            const id = response.data.PilotID;
+            console.log(name, uid);
             that.setState({
-              UID:uid,
-              Name:name
-            })
+              UID: uid,
+              Name: name,
+              id: id,
+              refresh: !that.state.refresh
+            });
           });
       });
   }
+  refresh = () => {
+    console.log("fired from app");
+    this.componentDidMount();
+  };
 
   render() {
+    console.log("this.state.refresh", this.state.refresh);
+    if (this.state.refresh) {
+      return (
+        <div className="App">
+          <Route
+            exact
+            path="/Airplanes"
+            render={props => <Airplanes {...props} UID={this.state.UID} />}
+          />
+
+          <Route
+            exact
+            path="/Billing"
+            render={props => <Billing {...props} UID={this.state.UID} />}
+          />
+
+          <Route
+            exact
+            path="/Instructors"
+            render={props => <Instructors {...props} UID={this.state.UID} />}
+          />
+          <Route
+            exact
+            path="/Settings"
+            render={props => <Settings {...props} UID={this.state.UID} />}
+          />
+          <Route
+            exact
+            path="/"
+            render={props => <Flights {...props} UID={this.state.UID} />}
+          />
+        </div>
+      );
+    }
     return (
       <div className="App">
         <Route
           exact
-          path="/Airplanes"
-          render={props => <Airplanes {...props} UID={this.state.UID} />}
+          path="/"
+          render={props => <Flights {...props} UID={this.state.UID} />}
         />
-      
-        <Route exact path="/Billing" render={(props) => <Billing {...props} UID={this.state.UID}/>} />
-
-        <Route
-          exact
-          path="/Instructors"
-          render={props => <Instructors {...props}UID={this.state.UID} />}
-        />
-        <Route exact path="/Settings" render={(props) => <Settings {...props}UID={this.state.UID} />} />
-        <Route exact path="/" render={(props) => <Flights {...props}UID={this.state.UID}/>} />
       </div>
     );
   }

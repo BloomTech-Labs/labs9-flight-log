@@ -161,7 +161,7 @@ class FlightForm extends Component {
       instructorsID: this.state.instructor.id,
       pilotsUID: UID
     };
-    //http://localhost:9000.com/flights
+    //http://localhost:9000/flights
     axios
       .post("https://labs9-flight-log.herokuapp.com/flights", newFlight)
       .then(response => {
@@ -199,13 +199,17 @@ class FlightForm extends Component {
     return (
       <Fragment>
         <Card className={classes.card}>
-        <div className={classes.addCardContent}>
-          <Typography gutterBottom variant="h4" color="inherit" noWrap>
-            Add Flight
-          </Typography>
-          <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-            <AddIcon />
-          </Fab>
+          <div className={classes.addCardContent}>
+            <Typography gutterBottom variant="h4" color="inherit" noWrap>
+              Add Flight
+            </Typography>
+            <Fab
+              color="primary"
+              aria-label="Add"
+              onClick={this.handleClickOpen}
+            >
+              <AddIcon />
+            </Fab>
           </div>
         </Card>
 

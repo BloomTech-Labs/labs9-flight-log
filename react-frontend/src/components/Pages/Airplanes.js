@@ -45,58 +45,60 @@ class AirplanesList extends Component {
     console.log("from airplanes", this.props.UID);
     //http://localhost:9000/airplanes/${UID}
     //https://labs9-flight-log.herokuapp.com/airplanes/${UID}
-    axios.get(`http://localhost:9000/airplanes/${UID}`).then(response => {
-      console.table(response.data);
-      let alteredResponse = response.data.map(airplane => {
-        airplane.imageName = airplane.imageName.split("+=+");
-        return airplane;
-      });
+    axios
+      .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
+      .then(response => {
+        console.table(response.data);
+        let alteredResponse = response.data.map(airplane => {
+          airplane.imageName = airplane.imageName.split("+=+");
+          return airplane;
+        });
 
-      let alteredResponse2 = alteredResponse.map(airplane => {
-        //
-        return (airplane = airplane.imageName.map(image => {
-          let imageRef = storage
-            .ref(`${UID}/${airplane.tailNumber}`)
-            .child(image);
-          // console.log(image);
-          return imageRef.getDownloadURL().then(url => {
-            image = url;
-            alteredResponse.map((airplane, i) => {
-              airplane.imageName = alteredResponse2[i];
-              console.log("alteredResponse", airplane);
-              return this.setState({ airplanesList: alteredResponse });
+        let alteredResponse2 = alteredResponse.map(airplane => {
+          //
+          return (airplane = airplane.imageName.map(image => {
+            let imageRef = storage
+              .ref(`${UID}/${airplane.tailNumber}`)
+              .child(image);
+            // console.log(image);
+            return imageRef.getDownloadURL().then(url => {
+              image = url;
+              alteredResponse.map((airplane, i) => {
+                airplane.imageName = alteredResponse2[i];
+                console.log("alteredResponse", airplane);
+                return this.setState({ airplanesList: alteredResponse });
+              });
+              // console.log("alteredResponse", alteredResponse);
+              return image;
             });
-            // console.log("alteredResponse", alteredResponse);
-            return image;
-          });
-        }));
-      });
+          }));
+        });
 
-      //   console.log("alteredList2", alteredResponse);
-      //   console.log("each airplane image list", airplane.imageName);
-      //   //
-      //   return airplane.imageName.map(image => {
-      //     console.log("alteredList3", alteredResponse);
-      //     console.log("image", image);
-      //     image = storage.ref(`${UID}/${airplane.tailNumber}`).child(image);
-      // return something.getDownloadURL().then(url => {
-      //   console.log("alteredList4", alteredResponse);
-      //   image = url;
-      //   return image;
-      // });
-      // console.log("airplane.imageName", image);
-      // const imagesRef = storage
-      //   .ref(`${UID}/${airplane.tailNumber}`)
-      //   .child(airplane.imageName);
-      // return imagesRef.getDownloadURL().then(url => {
-      //   console.log("url", url);
-      //   airplane.imageName = url;
-      //   this.setState({ airplanesList: alteredList });
-      //   console.log("alteredList", alteredList);
-      // });
-      // });
-      // console.log("altered response", alteredResponse);
-    });
+        //   console.log("alteredList2", alteredResponse);
+        //   console.log("each airplane image list", airplane.imageName);
+        //   //
+        //   return airplane.imageName.map(image => {
+        //     console.log("alteredList3", alteredResponse);
+        //     console.log("image", image);
+        //     image = storage.ref(`${UID}/${airplane.tailNumber}`).child(image);
+        // return something.getDownloadURL().then(url => {
+        //   console.log("alteredList4", alteredResponse);
+        //   image = url;
+        //   return image;
+        // });
+        // console.log("airplane.imageName", image);
+        // const imagesRef = storage
+        //   .ref(`${UID}/${airplane.tailNumber}`)
+        //   .child(airplane.imageName);
+        // return imagesRef.getDownloadURL().then(url => {
+        //   console.log("url", url);
+        //   airplane.imageName = url;
+        //   this.setState({ airplanesList: alteredList });
+        //   console.log("alteredList", alteredList);
+        // });
+        // });
+        // console.log("altered response", alteredResponse);
+      });
   }
   switcher = () => {
     console.log("fired");
