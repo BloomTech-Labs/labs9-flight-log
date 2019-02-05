@@ -4,15 +4,9 @@ export default createMuiTheme({
   palette: {
     primary: {
       light: '#e1eff7',
-      main: '#afbdc4',
-      dark: '#808d94',
+      main: '#44a6df',
+      dark: '#2f749c',
       contrastText: '#fff',
-    },
-    secondary: {
-      light: '#8bf6ff',
-      main: '#4fc3f7',
-      dark: '#0093c4',
-      contrastText: '#000',
     },
   },
   themeName: 'FlightTheme',

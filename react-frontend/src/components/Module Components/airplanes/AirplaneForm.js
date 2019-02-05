@@ -175,7 +175,7 @@ class AirplaneForm extends Component {
               Add Airplane
             </Typography>
             <Fab
-              color="secondary"
+              color="primary"
               aria-label="Add"
               onClick={this.handleClickOpen}
             >

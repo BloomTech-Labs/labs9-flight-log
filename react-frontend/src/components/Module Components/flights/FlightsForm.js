@@ -56,6 +56,7 @@ const styles = theme => ({
     position: "inherit !important"
   },
   addCardContent: {
+    textAlign: "center",
     marginTop: "40%"
   }
 });

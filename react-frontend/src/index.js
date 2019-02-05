@@ -13,7 +13,7 @@ require('dotenv').config({ path: '../.env'});
 ReactDOM.render(
   <Router>
     <MuiThemeProvider theme={theme}>
-      < HOC/>
+      <HOC/>
     </MuiThemeProvider>
   </Router>,
   document.getElementById("root")
