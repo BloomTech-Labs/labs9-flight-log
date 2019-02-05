@@ -45,7 +45,7 @@ class AirplanesList extends Component {
     console.log("from airplanes", this.props.UID);
     //http://localhost:9000/airplanes/${UID}
     //https://labs9-flight-log.herokuapp.com/airplanes/${UID}
-    axios.get(`http://localhost:9000/airplanes/${UID}`).then(response => {
+    axios.get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`).then(response => {
       console.table(response.data);
       let alteredResponse = response.data.map(airplane => {
         airplane.imageName = airplane.imageName.split("+=+");
