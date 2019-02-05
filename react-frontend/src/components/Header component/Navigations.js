@@ -3,9 +3,8 @@ import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import MenuList from "@material-ui/core/MenuList";
 import MenuItem from "@material-ui/core/MenuItem";
-import Divider from '@material-ui/core/Divider';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
+import Divider from "@material-ui/core/Divider";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { NavLink } from "react-router-dom";
 
@@ -35,13 +34,9 @@ function Navigation(props) {
 
   return (
     <div>
-              <CssBaseline />
+      <CssBaseline />
 
       <MenuList className={classes.root} elevation={1}>
-        {/* <NavLink to="/" style={{ textDecoration: "none" }}>
-          <MenuItem className={classes.button}>Home</MenuItem>
-        </NavLink>
-        <Divider /> */}
 
         <NavLink to="/" style={{ textDecoration: "none" }}>
           <MenuItem className={classes.button}>Flights</MenuItem>

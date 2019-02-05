@@ -65,7 +65,7 @@ class Layout extends React.Component {
               svgStyle={{ width: 40, height: 40 }}
             />
             <Typography
-              variant="h6"
+              variant="h4"
               color="inherit"
               noWrap
               className={classes.toolbarTitle}
