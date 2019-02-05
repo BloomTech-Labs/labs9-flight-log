@@ -49,7 +49,8 @@ class InstructorsList extends Component {
     const UID = this.props.UID;
     console.log("from instructor", UID);
     //http://localhost:9000/instructors/${UID}
-    axios.get(`http://localhost:9000/instructors/${UID}`).then(response => {
+    //https://labs9-flight-log.herokuapp.com/instructors/${UID}
+    axios.get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`).then(response => {
       console.table(response.data);
       this.setState({ instructorsList: response.data });
     });
