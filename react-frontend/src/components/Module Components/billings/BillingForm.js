@@ -23,6 +23,8 @@ const styles = theme => ({
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+    height: 400,
+    width: 335
   },
   root: {
     display: 'flex',
@@ -42,7 +44,13 @@ class BillingForm extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { complete: false, value: "", isPaid: false};
+    this.state = { 
+      complete: false, 
+      value: "", 
+      isPaid: false,
+      pilotID: this.props.id
+    };
+
     this.submit = this.submit.bind(this);
   }
 
@@ -67,12 +75,12 @@ class BillingForm extends Component {
 
     if (response.ok) {
       this.setState({ complete: true});
-      const UID = localStorage.getItem('userID');
-      console.log(UID);
+
+
       //console.log('isPaid status:', {isPaid});
 
       axios
-        .post(`https://labs9-flight-log.herokuapp.com/pilots/${UID}`)
+        .post(`https://labs9-flight-log.herokuapp.com/pilots/`)
         .then(response => {
           this.setState({ isPaid: true})
           //console.log('isPaid post status:', {isPaid})
@@ -93,11 +101,10 @@ class BillingForm extends Component {
         <Paper className={classes.paper}>
           <Typography
             variant="title"
-            marginBottom="100"
             align="left"
             >Payment Info</Typography>
         
-        <div>
+        <div style={{ marginTop: "24px" }}>
           <CardElement />
         </div>    
 
