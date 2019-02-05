@@ -79,14 +79,15 @@ router.put("/:id", async (req, res) => {
       make,
       model,
       tailNumber,
-      category
+      category,
+      imageName
     });
     if (!airplane) {
       res
         .status(400)
         .json({ error: "the airplane with the specified id does not exist" });
     }
-    res.status(200).json({ make, model, tailNumber });
+    res.status(200).json({ make, model, tailNumber, imageName });
   } catch (error) {
     res
       .status(500)

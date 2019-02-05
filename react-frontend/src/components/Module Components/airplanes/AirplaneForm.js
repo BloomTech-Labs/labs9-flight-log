@@ -62,7 +62,7 @@ class AirplaneForm extends Component {
       category: "",
       pilotsUID: "",
       // image: "",
-      imageName: ""
+      imageName: []
     };
   }
 
