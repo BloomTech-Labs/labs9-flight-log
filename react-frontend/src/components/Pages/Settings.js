@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core"
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { Spring } from 'react-spring'
 // import Grid from "@material-ui/core/Grid";
 // import axios from "axios";
 
@@ -22,22 +23,26 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   mainContainer: {
-    width: "70%",
+    width: "80%",
     marginTop: 15,
     display: "flex",
-    justifyContent: "center"
+    // justifyContent: "center"
   },
   innerContainer: {
-    padding: 20,
+    padding: 90,
   },
   paper: {
     padding: 20,
   },
   text: {
-    padding: 15,
+    paddingBottom: 70,
+  },
+  textTitle: {
+    paddingBottom: 20,
   },
   button: {
-    // padding: 15,
+    padding: 15,
+    width: "100%",
   }
 });
 
@@ -80,18 +85,24 @@ class Settings extends Component {
     const { classes } = this.props;
     return (
       <Layout>
+        <Spring
+          from={{ opacity: 0, padding: -1000 }}
+          to={{ opacity: 1, padding: 0 }}>
+          {props => <div style={props}>
         <div className={classes.mainContainer}>
         <Paper className="paper">
           <div className={classes.innerContainer}>
-          <Typography className={classes.text} variant="title">Name:</Typography>
+          <Typography className={classes.textTitle} variant="title">Name:</Typography>
           <Typography className={classes.text} variant="h4">{this.state.user.name}</Typography>
-          <Typography className={classes.text} variant="title">Email:</Typography>
+          <Typography className={classes.textTitle} variant="title">Email:</Typography>
           <Typography className={classes.text} variant="h4">{this.state.user.email}</Typography>
           {/* <Typography className={classes.text} variant="title">Password reset:</Typography> */}
-          <Button className={classes.button} variant="outlined" onClick={this.sendResetEmail}>Reset Password</Button>
+          <Button className={classes.button} color="secondary" variant="outlined" onClick={this.sendResetEmail}>Reset Password</Button>
           </div>
         </Paper>
         </div>
+        </div>}
+        </Spring>
       </Layout>
     );
   }
