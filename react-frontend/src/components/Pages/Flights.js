@@ -55,22 +55,28 @@ class Flights extends Component {
     // http://localhost:9000/pilots/access/${UID}/airplanes
     //http://localhost:9000/pilots/access/${UID}/instructors
     axios
-      .get(`http://localhost:9000/pilots/access/${UID}/airplanes`)
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
+      )
       .then(response => {
         console.log(response.data);
         this.setState({ airplanes: response.data });
       });
     axios
-      .get(`http://localhost:9000/pilots/access/${UID}/instructors`)
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
+      )
       .then(response => {
         console.log(response.data);
         this.setState({ instructors: response.data });
       });
 
-    axios.get(`http://localhost:9000/flights/${UID}`).then(response => {
-      console.table(response.data);
-      this.setState({ flightsList: response.data });
-    });
+    axios
+      .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
+      .then(response => {
+        console.table(response.data);
+        this.setState({ flightsList: response.data });
+      });
   }
   switcher = () => {
     console.log("fired");

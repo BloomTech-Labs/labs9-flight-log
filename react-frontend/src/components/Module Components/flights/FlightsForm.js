@@ -163,7 +163,7 @@ class FlightForm extends Component {
     };
     //http://localhost:9000/flights
     axios
-      .post("http://localhost:9000/flights", newFlight)
+      .post("https://labs9-flight-log.herokuapp.com/flights", newFlight)
       .then(response => {
         this.setState({
           open: false,

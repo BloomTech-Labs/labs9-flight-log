@@ -39,7 +39,7 @@ class App extends Component {
         const body = { token: idToken };
         //http://localhost:9000
         //https://labs9-flight-log.herokuapp.com
-        axios.post("http://localhost:9000/pilots", body);
+        axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
         that.setState({ idToken: idToken });
       });
   }
@@ -54,7 +54,7 @@ class App extends Component {
         axios
           //http://localhost:9000
           //https://labs9-flight-log.herokuapp.com
-          .get("http://localhost:9000/pilots/signin", {
+          .get("https://labs9-flight-log.herokuapp.com/pilots/signin", {
             params: { token: body }
           })
           .then(response => {
