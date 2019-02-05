@@ -1,10 +1,12 @@
 import Layout from "../Header component/Layout";
 import React, { Component } from "react";
 import fire from '../Config/fire';
+import { withStyles } from "@material-ui/core"
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-
+import { Spring } from 'react-spring'
+// import Grid from "@material-ui/core/Grid";
 // import axios from "axios";
 
 // const Settings = () => (
@@ -18,6 +20,32 @@ import Typography from "@material-ui/core/Typography";
 // import pilots(users), this component will open settings to changes user's name
 // billing info etc, probably wont need a get all but only get by id, update, delete
 //set state, to username, password, paid/unpaid,
+
+const styles = theme => ({
+  mainContainer: {
+    width: "80%",
+    marginTop: 15,
+    display: "flex",
+    // justifyContent: "center"
+  },
+  innerContainer: {
+    padding: 90,
+  },
+  paper: {
+    padding: 20,
+  },
+  text: {
+    paddingBottom: 70,
+  },
+  textTitle: {
+    paddingBottom: 20,
+  },
+  button: {
+    padding: 15,
+    width: "100%",
+  }
+});
+
 class Settings extends Component {
   constructor() {
     super();
@@ -54,20 +82,30 @@ class Settings extends Component {
   }
   render() {
     console.log(this.state);
+    const { classes } = this.props;
     return (
       <Layout>
-        <Paper>
-          <Typography variant="h5">Name:</Typography>
-          {this.state.user.name}
-          <Typography variant="h5">Email:</Typography>
-          {this.state.user.email}
-          <Typography variant="h5">Password reset:</Typography>
-          <Button onClick={this.sendResetEmail}>send password reset email</Button>
+        <Spring
+          from={{ opacity: 0, padding: -1000 }}
+          to={{ opacity: 1, padding: 0 }}>
+          {props => <div style={props}>
+        <div className={classes.mainContainer}>
+        <Paper className="paper">
+          <div className={classes.innerContainer}>
+          <Typography className={classes.textTitle} variant="title">Name:</Typography>
+          <Typography className={classes.text} variant="h4">{this.state.user.name}</Typography>
+          <Typography className={classes.textTitle} variant="title">Email:</Typography>
+          <Typography className={classes.text} variant="h4">{this.state.user.email}</Typography>
+          {/* <Typography className={classes.text} variant="title">Password reset:</Typography> */}
+          <Button className={classes.button} color="secondary" variant="outlined" onClick={this.sendResetEmail}>Reset Password</Button>
+          </div>
         </Paper>
-
+        </div>
+        </div>}
+        </Spring>
       </Layout>
     );
   }
 }
 
-export default Settings;
+export default withStyles(styles)(Settings);
