@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import FlightTheme from "../Styles/theme";
 import React from "react";
-import { Route, Redirect } from "react-router";
+import { Redirect } from "react-router";
 
 import fire from "../Config/fire";
 import TotalsModal from "../Pages/TotalsModal";
