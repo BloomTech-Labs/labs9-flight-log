@@ -75,6 +75,7 @@ class InstructorView extends Component {
           color="primary"
           aria-label="Add"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           View
         </Button>

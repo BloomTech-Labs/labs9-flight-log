@@ -42,6 +42,10 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  addCardContent: {
+    textAlign: "center",
+    marginTop: "40%"
   }
 });
 
@@ -104,12 +108,18 @@ class InstructorForm extends Component {
     return (
       <Fragment>
         <Card className={classes.card}>
-          <Typography variant="h6" color="inherit" noWrap>
-            Add Instructor
-          </Typography>
-          <Fab color="primary" aria-label="Add" onClick={this.handleClickOpen}>
-            <AddIcon />
-          </Fab>
+          <div className={classes.addCardContent}>
+            <Typography gutterBottom variant="h4" color="inherit" noWrap>
+              Add Instructor
+            </Typography>
+            <Fab
+              color="primary"
+              aria-label="Add"
+              onClick={this.handleClickOpen}
+            >
+              <AddIcon />
+            </Fab>
+          </div>
         </Card>
         <Dialog
           open={this.state.open}

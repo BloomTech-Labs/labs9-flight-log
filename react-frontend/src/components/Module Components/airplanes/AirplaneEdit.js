@@ -175,9 +175,9 @@ class AirplaneEdit extends Component {
     return (
       <Fragment>
         <Button
-          variant="contained"
+          variant="outlined"
           className={classes.button}
-          color="primary"
+          color="default"
           aria-label="Edit Airplane"
           onClick={this.handleClickOpen}
           fullWidth

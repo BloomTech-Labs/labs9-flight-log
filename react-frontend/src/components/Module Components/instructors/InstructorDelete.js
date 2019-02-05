@@ -79,6 +79,7 @@ class InstructorDelete extends Component {
           color="secondary"
           aria-label="Add"
           onClick={this.handleClickOpen}
+          fullWidth
         >
           Delete
         </Button>

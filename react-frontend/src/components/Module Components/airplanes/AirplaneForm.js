@@ -46,6 +46,7 @@ const styles = theme => ({
     width: 200
   },
   addCardContent: {
+    textAlign: "center",
     marginTop: "40%"
   }
 });
