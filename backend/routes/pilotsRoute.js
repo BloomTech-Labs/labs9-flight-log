@@ -106,7 +106,7 @@ router.post("/", decode, async (req, res) => {
 //put route
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName } = req.body;
+  const { firstName, lastName, isPaid } = req.body;
   // if (!firstName) {
   //   return res.status(400).json({ error: "please input firstName" });
   // }

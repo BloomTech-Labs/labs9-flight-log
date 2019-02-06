@@ -70,7 +70,7 @@ class BillingForm extends Component {
         body: JSON.stringify({ token: token.id, amount })
       }
     );
-
+    console.log("inside billing form pilot id:", this.state.pilotID);
     if (response.ok) {
       this.setState({ complete: true, isPaid: true });
       let pilot = {
@@ -80,7 +80,7 @@ class BillingForm extends Component {
         .put(
           //http://localhost:9000/pilots/${this.state.id}
           //https://labs9-flight-log.herokuapp.com/pilots/${this.state.id}
-          `http://localhost:9000/pilots/${this.state.id}`,
+          `http://localhost:9000/pilots/${this.state.pilotID}`,
           pilot
         )
         .then(response => {
