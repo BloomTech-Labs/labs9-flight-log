@@ -1,5 +1,5 @@
-import Navigation from "./Navigations";
-import Grid from "@material-ui/core/Grid";
+// import Navigation from "./Navigations";
+// import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -8,11 +8,15 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MoreIcon from "@material-ui/icons/MoreVert";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
+import { Menu, MenuItem, MenuList } from "@material-ui/core";
+// import { List, ListItem, ListItemText } from "@material-ui/core";
+import Divider from "@material-ui/core/Divider";
+import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
 // import LibraryAdd from "@material-ui/icons/LibraryAdd";
 import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuIcon from "@material-ui/icons/Menu";
+import { NavLink } from "react-router-dom";
 
 // import from '@material-ui/icons'
 
@@ -25,6 +29,8 @@ import fire from "../Config/fire";
 import TotalsModal from "../Pages/TotalsModal";
 import ReactSVG from "react-svg";
 
+const drawerWidth = 110;
+
 const styles = theme => ({
   "@global": {
     body: {
@@ -35,8 +41,24 @@ const styles = theme => ({
     flexGrow: 1
   },
   appBar: {
-    position: "relative"
+    zIndex: theme.zIndex.drawer + 1,
+    position: "fixed"
   },
+  drawer: {
+    [theme.breakpoints.up("sm")]: {
+      width: drawerWidth,
+      flexShrink: 0
+    }
+  },
+  drawerPaper: {
+    width: drawerWidth
+  },
+  content: {
+    flexGrow: 1,
+    marginLeft: drawerWidth,
+    padding: theme.spacing.unit
+  },
+  toolbar: theme.mixins.toolbar,
   toolbarTitle: {
     flex: 1
   },
@@ -62,6 +84,7 @@ class Layout extends React.Component {
     super(props);
     this.state = {
       signOut: false,
+      mobileOpen: false,
       mobileMoreAnchorEl: null
     };
   }
@@ -70,6 +93,10 @@ class Layout extends React.Component {
     this.setState({
       signOut: !this.state.signOut
     });
+  };
+
+  handleDrawerToggle = () => {
+    this.setState(state => ({ mobileOpen: !state.mobileOpen }));
   };
 
   handleMobileMenuOpen = event => {
@@ -108,14 +135,55 @@ class Layout extends React.Component {
       </Menu>
     );
 
+    const drawer = (
+      <div>
+        <div className={classes.toolbar} />
+        <MenuList className={classes.root} elevation={1}>
+          <NavLink to="/" style={{ textDecoration: "none" }}>
+            <MenuItem className={classes.button}>Flights</MenuItem>
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/Airplanes" style={{ textDecoration: "none" }}>
+            <MenuItem className={classes.button}>Airplanes</MenuItem>
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/Instructors" style={{ textDecoration: "none" }}>
+            <MenuItem className={classes.button}>Instructors</MenuItem>
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/Billing" style={{ textDecoration: "none" }}>
+            <MenuItem className={classes.button}>Billing</MenuItem>
+          </NavLink>
+          <Divider />
+
+          <NavLink to="/Settings" style={{ textDecoration: "none" }}>
+            <MenuItem className={classes.button}>Settings</MenuItem>
+          </NavLink>
+          <Divider />
+        </MenuList>
+      </div>
+    );
+
     if (this.state.signOut) {
       return <Redirect to="/" />;
     }
+
     return (
       <React.Fragment>
         <CssBaseline />
         <AppBar position="static" color="default" className={classes.appBar}>
           <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="Open drawer"
+              onClick={this.handleDrawerToggle}
+              className={classes.menuButton}
+            >
+              <MenuIcon />
+            </IconButton>
             <ReactSVG
               src="./shield-airplane-outline.svg"
               svgStyle={{ width: 40, height: 40 }}
@@ -146,20 +214,20 @@ class Layout extends React.Component {
           </Toolbar>
           {renderMobileMenu}
         </AppBar>
-        <Grid
-          container
-          spacing={16}
-          direction="row"
-          justify="space-between"
-          alignItems="stretch"
+
+        <Drawer
+          className={classes.drawer}
+          variant="permanent"
+          classes={{
+            paper: classes.drawerPaper
+          }}
         >
-          <Grid item xs={5} sm={3} md={2}>
-            <Navigation />
-          </Grid>
-          <Grid item xs={7} sm={9} md={10}>
-            {this.props.children}
-          </Grid>
-        </Grid>
+          {drawer}
+        </Drawer>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          {this.props.children}
+        </main>
       </React.Fragment>
     );
   }

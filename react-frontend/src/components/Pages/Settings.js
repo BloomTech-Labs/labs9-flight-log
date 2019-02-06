@@ -1,11 +1,11 @@
 import Layout from "../HeaderComponents/Layout";
 import React, { Component } from "react";
-import fire from '../Config/fire';
-import { withStyles } from "@material-ui/core"
+import fire from "../Config/fire";
+import { withStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Spring } from 'react-spring'
+import { Spring } from "react-spring";
 // import Grid from "@material-ui/core/Grid";
 // import axios from "axios";
 
@@ -25,24 +25,24 @@ const styles = theme => ({
   mainContainer: {
     width: "80%",
     marginTop: 15,
-    display: "flex",
+    display: "flex"
     // justifyContent: "center"
   },
   innerContainer: {
-    padding: 90,
+    padding: 90
   },
   paper: {
-    padding: 20,
+    padding: 20
   },
   text: {
-    paddingBottom: 70,
+    paddingBottom: 70
   },
   textTitle: {
-    paddingBottom: 20,
+    paddingBottom: 20
   },
   button: {
     padding: 15,
-    width: "100%",
+    width: "100%"
   }
 });
 
@@ -52,18 +52,22 @@ class Settings extends Component {
     this.state = {
       user: {
         name: "",
-        email: "",
+        email: ""
       }
     };
   }
   sendResetEmail = () => {
     const email = this.state.user.email;
-    fire.auth().sendPasswordResetEmail(email).then(function () {
-      console.log('email sent')
-    }).catch(function (error) {
-      console.log('Please try again')
-    });
-  }
+    fire
+      .auth()
+      .sendPasswordResetEmail(email)
+      .then(function() {
+        console.log("email sent");
+      })
+      .catch(function(error) {
+        console.log("Please try again");
+      });
+  };
 
   componentDidMount() {
     var currentUser = fire.auth().currentUser;
@@ -73,7 +77,7 @@ class Settings extends Component {
           name: currentUser.displayName,
           email: currentUser.email
         }
-      })
+      });
     }
     const name = localStorage.getItem("userName");
     console.log("name", name);
@@ -87,21 +91,39 @@ class Settings extends Component {
       <Layout>
         <Spring
           from={{ opacity: 0, padding: -1000 }}
-          to={{ opacity: 1, padding: 0 }}>
-          {props => <div style={props}>
-        <div className={classes.mainContainer}>
-        <Paper className="paper">
-          <div className={classes.innerContainer}>
-          <Typography className={classes.textTitle} variant="title">Name:</Typography>
-          <Typography className={classes.text} variant="h4">{this.state.user.name}</Typography>
-          <Typography className={classes.textTitle} variant="title">Email:</Typography>
-          <Typography className={classes.text} variant="h4">{this.state.user.email}</Typography>
-          {/* <Typography className={classes.text} variant="title">Password reset:</Typography> */}
-          <Button className={classes.button} color="secondary" variant="outlined" onClick={this.sendResetEmail}>Reset Password</Button>
-          </div>
-        </Paper>
-        </div>
-        </div>}
+          to={{ opacity: 1, padding: 0 }}
+        >
+          {props => (
+            <div style={props}>
+              {/* <div className={classes.mainContainer}> */}
+                <Paper className="paper">
+                  <div className={classes.innerContainer}>
+                    <Typography className={classes.textTitle} variant="title">
+                      Name:
+                    </Typography>
+                    <Typography className={classes.text} variant="h4">
+                      {this.state.user.name}
+                    </Typography>
+                    <Typography className={classes.textTitle} variant="title">
+                      Email:
+                    </Typography>
+                    <Typography className={classes.text} variant="h4">
+                      {this.state.user.email}
+                    </Typography>
+                    {/* <Typography className={classes.text} variant="title">Password reset:</Typography> */}
+                    <Button
+                      className={classes.button}
+                      color="secondary"
+                      variant="outlined"
+                      onClick={this.sendResetEmail}
+                    >
+                      Reset Password
+                    </Button>
+                  </div>
+                </Paper>
+              {/* </div> */}
+            </div>
+          )}
         </Spring>
       </Layout>
     );
