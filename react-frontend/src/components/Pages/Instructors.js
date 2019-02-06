@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 400
+    height: 403
   },
   buttonrow: {
     width: "100%",
@@ -102,7 +102,8 @@ class InstructorsList extends Component {
                             className={classes.textField}
                             margin="dense"
                             InputProps={{
-                              readOnly: true
+                              readOnly: true,
+                              style: {fontSize: "24px"}
                             }}
                             variant="outlined"
                             fullWidth
@@ -111,7 +112,7 @@ class InstructorsList extends Component {
                         <Grid item xs={6}>
                           <TextField
                             id="instructor-license"
-                            label="License Number"
+                            label="License No."
                             defaultValue={instructor.licenseNum}
                             className={classes.textField}
                             margin="dense"

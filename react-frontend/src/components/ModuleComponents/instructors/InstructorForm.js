@@ -12,10 +12,6 @@ import Fab from "@material-ui/core/Fab";
 import Typography from "@material-ui/core/Typography";
 import Card from "@material-ui/core/Card";
 import axios from "axios";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Grid from "@material-ui/core/Grid";
 
 const styles = theme => ({
@@ -137,69 +133,79 @@ class InstructorForm extends Component {
                 justify="space-between"
                 alignItems="stretch"
               >
-                <Grid item xs={12} sm={6}>
-                  <FormControl required fullWidth>
-                    <InputLabel>Instructor Name</InputLabel>
-                    <OutlinedInput
-                      type="string"
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.editFormHandler}
-                    />
-                    <FormHelperText id="my-helper-text1">
-                      This field is required.
-                    </FormHelperText>
-                  </FormControl>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    name="name"
+                    id="instructor-name"
+                    label="Name"
+                    defaultValue="Name"
+                    value={this.state.name}
+                    onChange={this.editFormHandler}
+                    className={classes.textField}
+                    margin="dense"
+                    variant="outlined"
+                    fullWidth
+                  />
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormControl required fullWidth>
-                    <InputLabel>Instuctor License Number</InputLabel>
-                    <OutlinedInput
-                      type="string"
-                      name="licenseNum"
-                      value={this.state.licenseNum}
-                      onChange={this.editFormHandler}
-                    />
-                    <FormHelperText id="my-helper-text2">
-                      This field is required.
-                    </FormHelperText>
-                  </FormControl>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    name="licenseNum"
+                    id="instructor-license"
+                    label="License No."
+                    defaultValue="License No."
+                    value={this.state.licenseNum}
+                    onChange={this.editFormHandler}
+                    className={classes.textField}
+                    margin="dense"
+                    variant="outlined"
+                    fullWidth
+                  />
                 </Grid>
-                <TextField
-                  type="text"
-                  id="notes"
-                  name="notes"
-                  label="Notes"
-                  value={this.state.notes}
-                  onChange={this.editFormHandler}
-                  className={classes.textField}
-                  multiline
-                  rows="4"
-                  fullWidth
-                  variant="outlined"
-                />
-                <TextField
-                  type="string"
-                  id="contactInfo"
-                  name="contactInfo"
-                  label="Contact"
-                  value={this.state.contactInfo}
-                  onChange={this.editFormHandler}
-                  className={classes.textField}
-                  fullWidth
-                  variant="outlined"
-                />
-                <TextField
-                  type="string"
-                  id="ratings"
-                  name="ratings"
-                  label="Ratings"
-                  value={this.state.ratings}
-                  onChange={this.editFormHandler}
-                  className={classes.textField}
-                  fullWidth
-                  variant="outlined"
-                />
+                <Grid item xs={12}>
+                  <TextField
+                    type="text"
+                    id="notes"
+                    name="notes"
+                    label="Notes"
+                    value={this.state.notes}
+                    onChange={this.editFormHandler}
+                    className={classes.textField}
+                    multiline
+                    rows="2"
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="text"
+                    id="contactInfo"
+                    name="contactInfo"
+                    label="Contact"
+                    value={this.state.contactInfo}
+                    onChange={this.editFormHandler}
+                    className={classes.textField}
+                    multiline
+                    rows="2"
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    type="string"
+                    id="ratings"
+                    name="ratings"
+                    label="Ratings"
+                    value={this.state.ratings}
+                    onChange={this.editFormHandler}
+                    className={classes.textField}
+                    fullWidth
+                    variant="outlined"
+                  />
+                </Grid>
               </Grid>
             </div>
           </DialogContent>

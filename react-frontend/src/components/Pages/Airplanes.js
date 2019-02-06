@@ -10,7 +10,7 @@ import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 import fire from "../../components/Config/fire";
 // import { CardMedia } from "@material-ui/core";
 
@@ -24,10 +24,10 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 400
+    height: 403
   },
   media: {
-    height: "50%"
+    height: "43%"
   }
 });
 
@@ -136,17 +136,19 @@ class AirplanesList extends Component {
                       }
                       title="airplane image"
                     /> */}
-                    {airplane.imageName.map(image => {
-                      console.log("image", image.i);
-                      return (
-                        <img
-                          src={image.i}
-                          width="50"
-                          height="50"
-                          alt="imagelist"
-                        />
-                      );
-                    })}
+                    <div className={classes.media}>
+                      {airplane.imageName.map(image => {
+                        console.log("image", image.i);
+                        return (
+                          <img
+                            src={image.i}
+                            width="50"
+                            height="50"
+                            alt="imagelist"
+                          />
+                        );
+                      })}
+                    </div>
                     <CardContent>
                       <Grid
                         container
@@ -158,19 +160,50 @@ class AirplanesList extends Component {
                       >
                         {/* <Grid item xs={1}>{airplane.id}</Grid> */}
                         <Grid item xs={12}>
-                          <Typography gutterBottom variant="h4" component="h2">
+                          <TextField
+                            id="airplane-tailnumber"
+                            value={airplane.tailNumber}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true,
+                              style: { fontSize: "24px" }
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
+                          {/* <Typography gutterBottom variant="h4" component="h2">
                             {airplane.tailNumber}
-                          </Typography>
+                          </Typography> */}
                         </Grid>
                         <Grid item xs={8}>
-                          <Typography gutterBottom variant="h5" component="h2">
+                          <TextField
+                            id="airplane-model"
+                            value={airplane.make + " " + airplane.model}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
+                          {/* <Typography gutterBottom variant="h5" component="h2">
                             {airplane.make} {airplane.model}
-                          </Typography>
+                          </Typography> */}
                         </Grid>
-                        <Grid item xs={3}>
-                          <Typography gutterBottom variant="h5" component="h2">
+                        <Grid item xs={4}>
+                          <TextField
+                            id="airplane-category"
+                            value={airplane.category}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
+                          {/* <Typography gutterBottom variant="h5" component="h2">
                             {airplane.category}
-                          </Typography>
+                          </Typography> */}
                         </Grid>
                         {/* BUTTON ROW*/}
                         <Grid item xs={12}>
