@@ -10,7 +10,6 @@ import { withStyles } from "@material-ui/core/styles";
 import InstructorForm from "../Module Components/instructors/InstructorForm.js";
 import InstructorEdit from "../Module Components/instructors/InstructorEdit";
 import InstructorDelete from "../Module Components/instructors/InstructorDelete";
-import InstructorView from "../Module Components/instructors/InstructorView";
 import PropTypes from "prop-types";
 
 const styles = theme => ({
