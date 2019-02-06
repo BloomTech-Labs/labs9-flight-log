@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
 
@@ -86,13 +85,17 @@ class AirplaneDelete extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Delete Airplane</DialogTitle>
-          <DialogContent>
-            <DialogActions>
-              <Button onClick={this.handleDelete} color="secondary">
-                DELETE
-              </Button>
-            </DialogActions>
-          </DialogContent>
+          <DialogActions>
+            <Button
+              onClick={this.handleDelete}
+              aria-label="ARE YOU SURE?"
+              color="secondary"
+              variant="contained"
+              fullWidth
+            >
+              ARE YOU SURE?
+            </Button>
+          </DialogActions>
         </Dialog>
       </Fragment>
     );

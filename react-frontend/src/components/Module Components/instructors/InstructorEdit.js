@@ -7,10 +7,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import FormControl from "@material-ui/core/FormControl";
-import InputLabel from "@material-ui/core/InputLabel";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Grid from "@material-ui/core/Grid";
 import axios from "axios";
 
@@ -118,44 +114,44 @@ class InstructorEdit extends Component {
           <DialogTitle id="form-dialog-title">Edit Instructor</DialogTitle>
 
           <DialogContent>
-            <div style={{ padding: 5 }}>
-              <Grid
-                container
-                spacing={24}
-                direction="row"
-                justify="space-between"
-                alignItems="stretch"
-              >
-                <Grid item xs={12} sm={6}>
-                  <FormControl required fullWidth>
-                    <InputLabel>Instructor Name</InputLabel>
-                    <OutlinedInput
-                      type="string"
-                      name="name"
-                      value={this.state.name}
-                      onChange={this.editFormHandler}
-                    />
-                    <FormHelperText id="my-helper-text1">
-                      This field is required.
-                    </FormHelperText>
-                  </FormControl>
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <FormControl required fullWidth>
-                    <InputLabel>Instuctor License Number</InputLabel>
-                    <OutlinedInput
-                      type="string"
-                      name="licenseNum"
-                      value={this.state.licenseNum}
-                      onChange={this.editFormHandler}
-                    />
-                    <FormHelperText id="my-helper-text2">
-                      This field is required.
-                    </FormHelperText>
-                  </FormControl>
-                </Grid>
-
+            <Grid
+              container
+              spacing={24}
+              direction="row"
+              justify="space-between"
+              alignItems="stretch"
+            >
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  name="name"
+                  id="instructor-name"
+                  label="Name"
+                  defaultValue="Name"
+                  value={this.state.name}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  name="licenseNum"
+                  id="instructor-license"
+                  label="License No."
+                  defaultValue="License No."
+                  value={this.state.licenseNum}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  margin="dense"
+                  variant="outlined"
+                  fullWidth
+                />
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
                   type="text"
                   id="notes"
@@ -165,21 +161,27 @@ class InstructorEdit extends Component {
                   onChange={this.editFormHandler}
                   className={classes.textField}
                   multiline
-                  rows="4"
+                  rows="2"
                   fullWidth
                   variant="outlined"
                 />
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
-                  type="string"
+                  type="text"
                   id="contactInfo"
                   name="contactInfo"
                   label="Contact"
                   value={this.state.contactInfo}
                   onChange={this.editFormHandler}
                   className={classes.textField}
+                  multiline
+                  rows="2"
                   fullWidth
                   variant="outlined"
                 />
+              </Grid>
+              <Grid item xs={12}>
                 <TextField
                   type="string"
                   id="ratings"
@@ -192,7 +194,7 @@ class InstructorEdit extends Component {
                   variant="outlined"
                 />
               </Grid>
-            </div>
+            </Grid>
           </DialogContent>
           <DialogActions>
             <Button onClick={this.submitEditForm} color="primary">

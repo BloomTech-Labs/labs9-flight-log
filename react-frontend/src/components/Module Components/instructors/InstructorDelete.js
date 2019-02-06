@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
 
@@ -77,7 +76,7 @@ class InstructorDelete extends Component {
           variant="contained"
           className={classes.button}
           color="secondary"
-          aria-label="Add"
+          aria-label="Delete Instructor"
           onClick={this.handleClickOpen}
           fullWidth
         >
@@ -89,13 +88,18 @@ class InstructorDelete extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Delete Instructor</DialogTitle>
-          <DialogContent>
             <DialogActions>
-              <Button onClick={this.deleteInstructor} color="secondary">
-                DELETE
+              <Button
+                onClick={this.deleteInstructor}
+                variant="contained"
+                className={classes.button}
+                color="secondary"
+                aria-label="ARE YOU SURE?"
+                fullWidth
+              >
+                ARE YOU SURE?
               </Button>
             </DialogActions>
-          </DialogContent>
         </Dialog>
       </Fragment>
     );

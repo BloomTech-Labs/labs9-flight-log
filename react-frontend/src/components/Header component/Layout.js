@@ -85,10 +85,10 @@ class Layout extends React.Component {
           justify="space-between"
           alignItems="stretch"
         >
-          <Grid item xs={2}>
+          <Grid item sm={3} md={2}>
             <Navigation />
           </Grid>
-          <Grid item xs={10}>
+          <Grid item sm={9} md={10}>
             {this.props.children}
           </Grid>
         </Grid>

@@ -4,7 +4,6 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
 
@@ -74,7 +73,7 @@ class FlightDelete extends Component {
           variant="contained"
           className={classes.button}
           color="secondary"
-          aria-label="Delete"
+          aria-label="Delete Flight"
           onClick={this.handleClickOpen}
           fullWidth
         >
@@ -86,13 +85,18 @@ class FlightDelete extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">Delete Flight</DialogTitle>
-          <DialogContent>
             <DialogActions>
-              <Button onClick={this.handleDelete} color="secondary">
-                DELETE
+            <Button
+                onClick={this.handleDelete}
+                variant="contained"
+                className={classes.button}
+                color="secondary"
+                aria-label="ARE YOU SURE?"
+                fullWidth
+              >
+                ARE YOU SURE?
               </Button>
             </DialogActions>
-          </DialogContent>
         </Dialog>
       </Fragment>
     );
