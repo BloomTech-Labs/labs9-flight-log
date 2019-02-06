@@ -11,9 +11,8 @@ import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
-import Typography from "@material-ui/core/Typography";
 import fire from "../../components/Config/fire";
-import { CardMedia } from "@material-ui/core";
+// import { CardMedia } from "@material-ui/core";
 
 const storage = fire.storage();
 
