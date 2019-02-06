@@ -160,7 +160,7 @@ class AirplaneForm extends Component {
       tailNumber: this.state.tailNumber,
       category: this.state.category,
       pilotsUID: UID,
-      imageName: this.state.imageName.join("+=+")
+      imageName: this.state.image.name
     };
     //http://localhost:9000/airplanes
     //https://labs9-flight-log.herokuapp.com/airplanes

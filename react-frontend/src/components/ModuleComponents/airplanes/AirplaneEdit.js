@@ -149,7 +149,7 @@ class AirplaneEdit extends Component {
       model: this.state.model,
       tailNumber: this.state.tailNumber,
       category: this.state.category,
-      imageName: this.state.imageName.join("+=+")
+      imageName: this.state.image.name
     };
     axios
       .put(
@@ -270,11 +270,11 @@ class AirplaneEdit extends Component {
                   })} */}
                   <img
                     src={
-                      this.state.imageName || "https://via.placeholder.com/100"
+                      this.state.imageName || "https://via.placeholder.com/50"
                     }
                     alt="airplaneImage"
-                    height="100"
-                    width="100"
+                    height="50"
+                    width="50"
                   />
                 </Grid>
                 {/* <Grid item sm={12}>
