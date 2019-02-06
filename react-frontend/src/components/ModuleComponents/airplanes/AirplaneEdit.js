@@ -53,22 +53,25 @@ class AirplaneEdit extends Component {
       make: "",
       model: "",
       category: "",
-      // image: "",
-      imageName: []
+      image: "",
+      imageName: ""
     };
   }
 
   handleImage = e => {
-    let files = [];
-    let imageName = "";
-    files = e.map(file => {
-      return file;
-    });
-    if (files) {
-      imageName = files.map(image => {
-        return image.name;
-      });
-      this.setState({ files, imageName });
+    // let files = [];
+    // let imageName = "";
+    // files = e.map(file => {
+    //   return file;
+    // });
+    // if (files) {
+    //   imageName = files.map(image => {
+    //     return image.name;
+    //   });
+    //   this.setState({ files, imageName });
+    // }
+    if (e[0]) {
+      this.setState({ image: e[0] });
     }
   };
 
@@ -105,43 +108,42 @@ class AirplaneEdit extends Component {
 
   submitEditForm = () => {
     const UID = this.props.UID;
-    // if (this.state.image) {
-    //   const image = this.state.image;
-    //   const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
-    //   uploadTask.on(
-    //     "state_changed",
-    //     snapshot => {
-    //       console.log(snapshot);
-    //     },
-    //     error => {
-    //       console.log(error);
-    //     },
-    //     () => {
-    //       console.log("complete");
-    //     }
-    //   );
-    // }
-    console.log("this.state", this.state);
-    if (this.state.files) {
-      const files = this.state.files;
-      files.forEach(image => {
-        storage
-          .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
-          .put(image)
-          .on(
-            "state_changed",
-            snapshot => {
-              console.log(snapshot);
-            },
-            error => {
-              console.log(error);
-            },
-            () => {
-              console.log("complete");
-            }
-          );
-      });
+    if (this.state.image) {
+      const image = this.state.image;
+      const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          console.log(snapshot);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("complete");
+        }
+      );
     }
+    // if (this.state.files) {
+    //   const files = this.state.files;
+    //   files.forEach(image => {
+    //     storage
+    //       .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
+    //       .put(image)
+    //       .on(
+    //         "state_changed",
+    //         snapshot => {
+    //           console.log(snapshot);
+    //         },
+    //         error => {
+    //           console.log(error);
+    //         },
+    //         () => {
+    //           console.log("complete");
+    //         }
+    //       );
+    //   });
+    // }
     const updatedAirplane = {
       make: this.state.make,
       model: this.state.model,
@@ -256,7 +258,7 @@ class AirplaneEdit extends Component {
                   </FormControl>
                 </Grid>
                 <Grid>
-                  {this.state.imageName.map(image => {
+                  {/* {this.state.imageName.map(image => {
                     return (
                       <img
                         src={image.i}
@@ -265,7 +267,15 @@ class AirplaneEdit extends Component {
                         alt="imagelist"
                       />
                     );
-                  })}
+                  })} */}
+                  <img
+                    src={
+                      this.state.imageName || "https://via.placeholder.com/100"
+                    }
+                    alt="image"
+                    height="100"
+                    width="100"
+                  />
                 </Grid>
                 {/* <Grid item sm={12}>
                   <input name="image" type="file" onChange={this.handleImage} />
