@@ -10,7 +10,6 @@ import { withStyles } from "@material-ui/core/styles";
 import InstructorForm from "../ModuleComponents/instructors/InstructorForm.js";
 import InstructorEdit from "../ModuleComponents/instructors/InstructorEdit";
 import InstructorDelete from "../ModuleComponents/instructors/InstructorDelete";
-import InstructorView from "../ModuleComponents/instructors/InstructorView";
 import PropTypes from "prop-types";
 
 const styles = theme => ({
@@ -178,21 +177,20 @@ class InstructorsList extends Component {
                             direction="row"
                             spacing={8}
                           >
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                               <InstructorEdit
                                 {...this.props}
                                 switcher={this.switcher}
                                 instructor={instructor}
                               />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                               <InstructorDelete
                                 id={instructor.id}
                                 switcher={this.switcher}
                               />
                             </Grid>
-                            <Grid item xs={4}>
-                              <InstructorView instructor={instructor} />
+                            <Grid item xs={6}>
                             </Grid>
                           </Grid>
                         </Grid>
