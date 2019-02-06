@@ -272,7 +272,7 @@ class AirplaneEdit extends Component {
                     src={
                       this.state.imageName || "https://via.placeholder.com/100"
                     }
-                    alt="image"
+                    alt="airplaneImage"
                     height="100"
                     width="100"
                   />
