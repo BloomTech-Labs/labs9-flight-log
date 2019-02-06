@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import Layout from "../Header component/Layout";
+import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
-import FlightForm from "../Module Components/flights/FlightsForm";
-import FlightEdit from "../Module Components/flights/FlightEdit";
-import FlightDelete from "../Module Components/flights/FlightDelete";
-import FlightView from "../Module Components/flights/FlightView";
-import SkyVector from "../Module Components/flights/SkyVector";
+import FlightForm from "../ModuleComponents/flights/FlightsForm";
+import FlightEdit from "../ModuleComponents/flights/FlightEdit";
+import FlightDelete from "../ModuleComponents/flights/FlightDelete";
+import FlightView from "../ModuleComponents/flights/FlightView";
+import SkyVector from "../ModuleComponents/flights/SkyVector";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
+import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 450
+    height: 503
   },
   buttonrow: {
     width: "100%",
@@ -30,11 +30,15 @@ const styles = theme => ({
     justifyContent: "center",
     flexGrow: 1
   },
-  // button: {
-  //   margin: "0 8px"
-  // },
+  titleField: {
+    fontSize: 50
+  },
   media: {
     height: 140
+  },
+  skyVector: {
+    margin: 0,
+    padding: 0
   }
 });
 
@@ -121,41 +125,69 @@ class Flights extends Component {
                         spacing={16}
                       >
                         <Grid item xs={12}>
-                          <Typography gutterBottom variant="h4" component="h2">
-                            {flight.flightName}
-                          </Typography>
+                          <TextField
+                            id="flight-name"
+                            value={flight.flightName}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true,
+                              style: {fontSize: "24px"}
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
                         </Grid>
                         <Grid item xs={6}>
-                          <Typography gutterBottom variant="h6" component="h2">
-                            Airports: {flight.airports}
-                          </Typography>
+                        <TextField
+                            id="flight-airports"
+                            label="Airports"
+                            value={flight.airports}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
                         </Grid>
                         <Grid item xs={6}>
-                          <Typography
-                            gutterBottom
-                            variant="h6"
-                            component="h2"
-                            noWrap
-                          >
-                            {flight.flightDate.substring(0, 9)}
-                          </Typography>
+                        <TextField
+                            id="flight-date"
+                            label="Date"
+                            value={flight.flightDate.substring(0, 10)}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
                         </Grid>
                         <Grid item xs={12}>
                           <SkyVector
                             id={flight.id}
                             skyVector={flight.skyVector}
+                            className={classes.skyVector}
                           />
                         </Grid>
                         <Grid item xs={6} />
                         <Grid item xs={6}>
-                          <Typography gutterBottom variant="h6" component="h2">
-                            Total: {flight.total}hrs
-                          </Typography>
+                        <TextField
+                            id="flight-date"
+                            label="Total"
+                            value={flight.total}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
                         </Grid>
 
                         {/* BUTTON ROW*/}
 
-                        <Grid item xs={12}>
+                        <Grid item xs={12}> {/* Start Button Row*/}
                           <Grid
                             container
                             className={classes.root}
@@ -187,7 +219,7 @@ class Flights extends Component {
                               />
                             </Grid>
                           </Grid>
-                        </Grid>
+                        </Grid> {/* End Button Row*/}
                       </Grid>
                     </CardContent>
                   </Card>

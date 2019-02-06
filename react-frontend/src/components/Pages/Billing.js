@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import BillingForm from "../Module Components/billings/BillingForm";
-import Layout from "../Header component/Layout";
+import BillingForm from "../ModuleComponents/billings/BillingForm";
+import Layout from "../HeaderComponents/Layout";
 import { withStyles } from "@material-ui/core";
 // import TotalsModal from "./TotalsModal"; Moved to Layout AppBar
 
