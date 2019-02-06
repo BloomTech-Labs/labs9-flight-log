@@ -37,4 +37,3 @@ You will also need to set up accounts with:
 # Sections
 
 - [Billing](./react-frontend/src/components/modulecomponents/billings/README.md)
-react-frontend\src\components\Module Components
