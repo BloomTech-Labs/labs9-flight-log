@@ -36,4 +36,5 @@ You will also need to set up accounts with:
 
 # Sections
 
-- [Billing](./react-frontend/src/components/modulecomponents/billings/README.md)
+- [AWS](backend/awsREADME.md)
+- [Billing](react-frontend/src/components/ModuleComponents/billings/README.md)
