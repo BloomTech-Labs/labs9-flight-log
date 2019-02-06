@@ -15,7 +15,6 @@ const flights = require("./routes/flightsRoute");
 
 const port = process.env.PORT || 9000;
 
-// const db = require("./dbConfig");
 
 server.use(express.json());
 server.use(cors());
@@ -69,7 +68,7 @@ server.post("/charge", async (req, res) => {
       res.status(500).end();
     }    
   }
-});//app.post end brackets
+});//server.post end brackets
 
 server.listen(port, () => console.log(`api running on ${port}...`));
 
