@@ -76,14 +76,10 @@ class BillingForm extends Component {
     if (response.ok) {
       this.setState({ complete: true});
 
-
-      //console.log('isPaid status:', {isPaid});
-
       axios
         .post(`https://labs9-flight-log.herokuapp.com/pilots/`)
         .then(response => {
           this.setState({ isPaid: true})
-          //console.log('isPaid post status:', {isPaid})
         })
         .catch(error => console.log(error));
         console.log("Purchase Complete!");

@@ -33,3 +33,7 @@ You will also need to set up accounts with:
 - Firebase
 - Stripe
 - AWS
+
+# Sections
+
+- [Billing](./react-frontend/src/components/modulecomponents/billings/README.md)
