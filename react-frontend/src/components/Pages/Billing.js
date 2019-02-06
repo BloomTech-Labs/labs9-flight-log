@@ -7,8 +7,8 @@ import { withStyles } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
-    marginTop: 50,
-    maxWidth: 300,
+    marginTop: 15,
+    maxWidth: 350,
   },
 });
 
