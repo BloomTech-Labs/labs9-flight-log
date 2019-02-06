@@ -44,7 +44,8 @@ router.get("/:signin", decode1, async (req, res) => {
     const PilotUID = pilots[0].UID;
     const PilotName = pilots[0].firstName;
     const PilotID = pilots[0].id;
-    res.status(200).json({ PilotUID, PilotName, PilotID });
+    const PilotIsPaid = pilots[0].isPaid;
+    res.status(200).json({ PilotUID, PilotName, PilotID, PilotIsPaid });
   } catch (error) {
     res.status(500).json({ error: "there was an error retrieving the pilots" });
   }
@@ -106,20 +107,20 @@ router.post("/", decode, async (req, res) => {
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
   const { firstName, lastName } = req.body;
-  if (!firstName) {
-    return res.status(400).json({ error: "please input firstName" });
-  }
-  if (!lastName) {
-    return res.status(400).json({ error: "please input lastName" });
-  }
+  // if (!firstName) {
+  //   return res.status(400).json({ error: "please input firstName" });
+  // }
+  // if (!lastName) {
+  //   return res.status(400).json({ error: "please input lastName" });
+  // }
   try {
-    const pilot = await pilotsDb.update(id, { firstName, lastName });
+    const pilot = await pilotsDb.update(id, { firstName, lastName, isPaid });
     if (!pilot) {
       res
         .status(404)
         .json({ error: "the pilot with the specified id does not exist" });
     }
-    res.status(200).json({ firstName, lastName });
+    res.status(200).json({ firstName, lastName, isPaid });
   } catch (error) {
     res.status(500).json({ error: "there was an error in updating the pilot" });
   }

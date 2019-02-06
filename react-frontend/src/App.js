@@ -12,7 +12,6 @@ import fire from "./components/Config/fire";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -96,7 +95,9 @@ class App extends Component {
           <Route
             exact
             path="/Billing"
-            render={props => <Billing {...props} UID={this.state.UID} />}
+            render={props => (
+              <Billing {...props} UID={this.state.UID} id={this.state.id} />
+            )}
           />
 
           <Route
