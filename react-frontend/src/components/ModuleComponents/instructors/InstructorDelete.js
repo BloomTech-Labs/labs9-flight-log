@@ -4,13 +4,13 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    display: "flex",
+    flexWrap: "wrap"
   },
   formControl: {
     margin: theme.spacing.unit,
@@ -37,14 +37,16 @@ const styles = theme => ({
 
 const URL = "https://labs9-flight-log.herokuapp.com";
 
-class AirplaneDelete extends Component {
+class InstructorDelete extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       open: false,
       id: ""
     };
   }
+
   handleClickOpen = () => {
     this.setState({ open: true });
   };
@@ -53,9 +55,9 @@ class AirplaneDelete extends Component {
     this.setState({ open: false });
   };
 
-  handleDelete = () => {
+  deleteInstructor = () => {
     axios
-      .delete(`${URL}/airplanes/${this.props.id}`)
+      .delete(`${URL}/instructors/${this.props.id}`)
       .then(response => {
         console.log(response);
         this.setState({
@@ -74,7 +76,7 @@ class AirplaneDelete extends Component {
           variant="contained"
           className={classes.button}
           color="secondary"
-          aria-label="Delete Airplane"
+          aria-label="Delete Instructor"
           onClick={this.handleClickOpen}
           fullWidth
         >
@@ -85,22 +87,27 @@ class AirplaneDelete extends Component {
           onClose={this.handleClose}
           aria-labelledby="form-dialog-title"
         >
-          <DialogTitle id="form-dialog-title">Delete Airplane</DialogTitle>
-          <DialogContent>
+          <DialogTitle id="form-dialog-title">Delete Instructor</DialogTitle>
             <DialogActions>
-              <Button onClick={this.handleDelete} color="secondary">
-                DELETE
+              <Button
+                onClick={this.deleteInstructor}
+                variant="contained"
+                className={classes.button}
+                color="secondary"
+                aria-label="ARE YOU SURE?"
+                fullWidth
+              >
+                ARE YOU SURE?
               </Button>
             </DialogActions>
-          </DialogContent>
         </Dialog>
       </Fragment>
     );
   }
 }
 
-AirplaneDelete.propTypes = {
+InstructorDelete.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(AirplaneDelete);
+export default withStyles(styles)(InstructorDelete);
