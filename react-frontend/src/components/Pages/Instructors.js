@@ -191,7 +191,6 @@ class InstructorsList extends Component {
                               />
                             </Grid>
                             <Grid item xs={6}>
-                              {/* <InstructorView instructor={instructor} /> */}
                             </Grid>
                           </Grid>
                         </Grid>
