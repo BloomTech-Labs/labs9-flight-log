@@ -36,7 +36,8 @@ class AirplanesList extends Component {
     super(props);
     this.state = {
       airplanesList: [],
-      url: []
+      url: [],
+      isPaid: null
     };
   }
 

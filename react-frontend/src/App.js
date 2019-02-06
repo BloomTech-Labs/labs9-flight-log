@@ -76,13 +76,14 @@ class App extends Component {
           });
       });
   }
-  refresh = () => {
-    console.log("fired from app");
-    this.componentDidMount();
-  };
+  // refresh = () => {
+  //   console.log("fired from app");
+  //   this.componentDidMount();
+  // };
 
   render() {
     console.log("this.state.refresh", this.state.refresh);
+    console.log("this.state.id inside app", this.state.id);
     if (this.state.refresh) {
       return (
         <div className="App">
