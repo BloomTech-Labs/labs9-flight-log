@@ -177,21 +177,21 @@ class InstructorsList extends Component {
                             direction="row"
                             spacing={8}
                           >
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                               <InstructorEdit
                                 {...this.props}
                                 switcher={this.switcher}
                                 instructor={instructor}
                               />
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={6}>
                               <InstructorDelete
                                 id={instructor.id}
                                 switcher={this.switcher}
                               />
                             </Grid>
-                            <Grid item xs={4}>
-                              <InstructorView instructor={instructor} />
+                            <Grid item xs={6}>
+                              {/* <InstructorView instructor={instructor} /> */}
                             </Grid>
                           </Grid>
                         </Grid>
