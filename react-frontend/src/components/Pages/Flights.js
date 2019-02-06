@@ -23,7 +23,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 510
+    height: 503
   },
   buttonrow: {
     width: "100%",
@@ -133,7 +133,7 @@ class Flights extends Component {
                             margin="dense"
                             InputProps={{
                               readOnly: true,
-                              style: {fontSize: "30px"}
+                              style: {fontSize: "24px"}
                             }}
                             variant="outlined"
                             fullWidth
