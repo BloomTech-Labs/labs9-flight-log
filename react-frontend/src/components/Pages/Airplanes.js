@@ -13,6 +13,7 @@ import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import fire from "../../components/Config/fire";
 import { CardMedia } from "@material-ui/core";
+import Typography from "@material-ui/core/Typography";
 
 const storage = fire.storage();
 
@@ -28,6 +29,10 @@ const styles = theme => ({
   },
   media: {
     height: "43%"
+  },
+  addCardContent: {
+    textAlign: "center",
+    marginTop: "40%"
   }
 });
 
@@ -37,7 +42,8 @@ class AirplanesList extends Component {
     this.state = {
       airplanesList: [],
       url: [],
-      isPaid: null
+      isPaid: null,
+      refreshed: false
     };
   }
 
@@ -58,14 +64,17 @@ class AirplanesList extends Component {
     axios
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
       .then(response => {
-        console.table(response.data);
+        console.table("response.data to get airplanes image", response.data);
         let alteredList = response.data;
         alteredList.map(airplane => {
           const imagesRef = storage.ref(`${UID}`).child(airplane.imageName);
           return imagesRef.getDownloadURL().then(url => {
             console.log("url", url);
             airplane.imageName = url;
-            this.setState({ airplanesList: alteredList });
+            this.setState({
+              airplanesList: alteredList
+              // refreshed: !this.state.refreshed
+            });
             console.log("alteredList", alteredList);
           });
         });
@@ -103,12 +112,15 @@ class AirplanesList extends Component {
     //   });
   }
   switcher = () => {
-    console.log("fired");
+    console.log("fired from airplanes");
     this.componentDidMount();
   };
 
   render() {
     const { classes } = this.props;
+    // if (this.state.refreshed) {
+    //   this.componentDidMount();
+    // }
     return (
       <Fragment>
         <Layout>
@@ -122,11 +134,32 @@ class AirplanesList extends Component {
               spacing={16}
             >
               <Grid item lg={3} md={4} sm={6} xs={12}>
-                <AirplaneForm
+                {/* <AirplaneForm
                   {...this.props}
                   switcher={this.switcher}
                   UID={this.props.UID}
-                />
+                /> */}
+                {!this.state.isPaid && this.state.airplanesList.length > 0 ? (
+                  <Card className={classes.card}>
+                    <div className={classes.addCardContent}>
+                      <Typography
+                        gutterBottom
+                        variant="h5"
+                        color="inherit"
+                        Wrap
+                      >
+                        Please purchase a subscription in the billing page to
+                        add more airplanes.
+                      </Typography>
+                    </div>
+                  </Card>
+                ) : (
+                  <AirplaneForm
+                    {...this.props}
+                    switcher={this.switcher}
+                    UID={this.props.UID}
+                  />
+                )}
               </Grid>
               {this.state.airplanesList.map(airplane => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
