@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
+import SkyVector from "../../ModuleComponents/flights/SkyVector";
 // import DialogTitle from "@material-ui/core/DialogTitle";
 import TextField from '@material-ui/core/TextField';
 
@@ -32,9 +33,12 @@ const styles = theme => ({
   image: {
     borderRadius: 3,
     marginTop: 10,
-    marginBottom: 10,
+    // marginBottom: 10,
     display: "flex",
-    justifyContent: "center"
+    justifyContent: "center",
+    alignItems: "center",
+    fontSize: 25,
+    fontFamily: "Roboto",
   },
   dense: {
     marginTop: 16
@@ -133,7 +137,7 @@ class FlightView extends Component {
                 alignItems="stretch"
                 
               >
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5} sm={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Flight Name: "
@@ -146,7 +150,7 @@ class FlightView extends Component {
                     variant="outlined"
                   />
                 </Grid>
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Flight Date: "
@@ -159,7 +163,7 @@ class FlightView extends Component {
                     variant="outlined"
                   />
                 </Grid>
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Routes/ Airports: "
@@ -173,15 +177,14 @@ class FlightView extends Component {
                   />
                    
                 </Grid>
-                <Grid className={classes.image} md={12}>
-                  <img
-                    src={"https://via.placeholder.com/250"}
-                    height="250"
-                    width="250"
-                    alt="skyVector"
-                  />
+                <Grid item className={classes.image} md={12}>
+                <SkyVector
+                            id={this.props.flight.id}
+                            skyVector={this.props.flight.skyVector}
+                            className={classes.skyVector}
+                          />
                 </Grid>
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Tail Number:"
@@ -194,7 +197,7 @@ class FlightView extends Component {
                     variant="outlined"
                   />
                 </Grid>
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Airplane Model:"
@@ -207,7 +210,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Instructors name:"
@@ -220,7 +223,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={5}>
+                <Grid item className={classes.textField} md={5}>
                 <TextField
                     id="outlined-read-only-input"
                     label="License Number:"
@@ -233,7 +236,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={12}>
+                <Grid item className={classes.textField} md={12}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Remarks, Procedures, Maneuvers: "
@@ -249,7 +252,7 @@ class FlightView extends Component {
                   
                 </Grid>
 
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="SEL:"
@@ -262,7 +265,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="MEL:"
@@ -275,7 +278,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Ground Trainer:"
@@ -288,7 +291,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Takeoffs:"
@@ -301,7 +304,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Landings:"
@@ -315,7 +318,7 @@ class FlightView extends Component {
                   /> 
                   
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="SimInst:"
@@ -328,7 +331,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Day Hrs:"
@@ -342,7 +345,7 @@ class FlightView extends Component {
                   /> 
                   
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Night Hrs:"
@@ -355,7 +358,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="ActInst:"
@@ -369,7 +372,7 @@ class FlightView extends Component {
                   /> 
                 </Grid>
 
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Dual Recieved:"
@@ -382,7 +385,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="PIC:"
@@ -395,7 +398,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="As Instructor:"
@@ -409,7 +412,7 @@ class FlightView extends Component {
                   /> 
                 </Grid>
 
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Cross Country:"
@@ -422,7 +425,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                 </Grid>
-                <Grid className={classes.textField} md={3}>
+                <Grid item className={classes.textField} md={3}>
                 <TextField
                     id="outlined-read-only-input"
                     label="Takeoffs:"
@@ -435,7 +438,7 @@ class FlightView extends Component {
                     variant="outlined"
                   /> 
                   </Grid>
-                  <Grid className={classes.textField} md={3}>
+                  <Grid item className={classes.textField} md={3}>
                   <TextField
                     id="outlined-read-only-input"
                     label="Total Hours:"
