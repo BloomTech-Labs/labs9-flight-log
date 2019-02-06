@@ -62,22 +62,25 @@ class AirplaneForm extends Component {
       model: "",
       category: "",
       pilotsUID: "",
-      // image: "",
-      imageName: []
+      image: "",
+      imageName: ""
     };
   }
 
   handleImage = e => {
-    let files = [];
-    let imageName = "";
-    files = e.map(file => {
-      return file;
-    });
-    if (files) {
-      imageName = files.map(image => {
-        return image.name;
-      });
-      this.setState({ files, imageName });
+    // let files = [];
+    // let imageName = "";
+    // files = e.map(file => {
+    //   return file;
+    // });
+    // if (files) {
+    //   imageName = files.map(image => {
+    //     return image.name;
+    //   });
+    //   this.setState({ files, imageName });
+    // }
+    if (e[0]) {
+      this.setState({ image: e[0] });
     }
   };
   // handleImage = e => {
@@ -115,25 +118,41 @@ class AirplaneForm extends Component {
     console.log(UID);
     console.log("this.state.files", this.state.files);
     console.log("this.state.imageName", this.state.imageName);
-    if (this.state.files) {
-      const files = this.state.files;
-      files.forEach(image => {
-        storage
-          .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
-          .put(image)
-          .on(
-            "state_changed",
-            snapshot => {
-              console.log(snapshot);
-            },
-            error => {
-              console.log(error);
-            },
-            () => {
-              console.log("complete");
-            }
-          );
-      });
+    // if (this.state.files) {
+    //   const files = this.state.files;
+    //   files.forEach(image => {
+    //     storage
+    //       .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
+    //       .put(image)
+    //       .on(
+    //         "state_changed",
+    //         snapshot => {
+    //           console.log(snapshot);
+    //         },
+    //         error => {
+    //           console.log(error);
+    //         },
+    //         () => {
+    //           console.log("complete");
+    //         }
+    //       );
+    //   });
+    // }
+    if (this.state.image) {
+      const image = this.state.image;
+      const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
+      uploadTask.on(
+        "state_changed",
+        snapshot => {
+          console.log(snapshot);
+        },
+        error => {
+          console.log(error);
+        },
+        () => {
+          console.log("complete");
+        }
+      );
     }
     const newAirplane = {
       make: this.state.make,
@@ -141,7 +160,7 @@ class AirplaneForm extends Component {
       tailNumber: this.state.tailNumber,
       category: this.state.category,
       pilotsUID: UID,
-      imageName: this.state.imageName.join("+=+")
+      imageName: this.state.image.name
     };
     //http://localhost:9000/airplanes
     //https://labs9-flight-log.herokuapp.com/airplanes
@@ -157,8 +176,7 @@ class AirplaneForm extends Component {
           model: "",
           category: "",
           pilotsUID: "",
-          // image: null
-          imageName: ""
+          image: null
         });
         this.props.switcher();
       })
