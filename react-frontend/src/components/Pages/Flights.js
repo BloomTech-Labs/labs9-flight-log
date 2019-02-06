@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import FlightForm from "../ModuleComponents/flights/FlightsForm";
-import FlightEdit from "../Module Components/flights/FlightEdit";
+import FlightEdit from "../ModuleComponents/flights/FlightEdit";
 import FlightDelete from "../ModuleComponents/flights/FlightDelete";
 import FlightView from "../ModuleComponents/flights/FlightView";
 import SkyVector from "../ModuleComponents/flights/SkyVector";
