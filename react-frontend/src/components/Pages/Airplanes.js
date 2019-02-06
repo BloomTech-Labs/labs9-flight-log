@@ -112,7 +112,7 @@ class AirplanesList extends Component {
     return (
       <Fragment>
         <Layout>
-          <div style={{ marginTop: "16px" }}>
+          {/* <div style={{ marginTop: "16px" }}> */}
             <Grid
               container
               className={classes.root}
@@ -241,7 +241,7 @@ class AirplanesList extends Component {
                 </Grid>
               ))}
             </Grid>
-          </div>
+          {/* </div> */}
         </Layout>
       </Fragment>
     );
