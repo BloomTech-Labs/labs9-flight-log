@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from "react";
-import Layout from "../HeaderComponent/Layout";
+import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import AirplaneForm from "../ModuleComponents/airplanes/AirplaneForm";
 import AirplaneEdit from "../ModuleComponents/airplanes/AirplaneEdit";

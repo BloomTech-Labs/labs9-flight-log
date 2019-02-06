@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Layout from "../HeaderComponent/Layout";
+import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";

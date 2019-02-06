@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Layout from "../HeaderComponent/Layout";
+import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import FlightForm from "../ModuleComponents/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
