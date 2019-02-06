@@ -1,4 +1,4 @@
-import Layout from "../Header component/Layout";
+import Layout from "../HeaderComponent/Layout";
 import React, { Component } from "react";
 import fire from '../Config/fire';
 import { withStyles } from "@material-ui/core"

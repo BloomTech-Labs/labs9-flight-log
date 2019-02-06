@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Layout from "../Header component/Layout";
+import Layout from "../HeaderComponent/Layout";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
@@ -7,10 +7,10 @@ import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 
-import InstructorForm from "../Module Components/instructors/InstructorForm.js";
-import InstructorEdit from "../Module Components/instructors/InstructorEdit";
-import InstructorDelete from "../Module Components/instructors/InstructorDelete";
-import InstructorView from "../Module Components/instructors/InstructorView";
+import InstructorForm from "../ModuleComponents/instructors/InstructorForm.js";
+import InstructorEdit from "../ModuleComponents/instructors/InstructorEdit";
+import InstructorDelete from "../ModuleComponents/instructors/InstructorDelete";
+import InstructorView from "../ModuleComponents/instructors/InstructorView";
 import PropTypes from "prop-types";
 
 const styles = theme => ({

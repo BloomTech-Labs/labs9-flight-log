@@ -1,10 +1,10 @@
 import React, { Fragment, Component } from "react";
-import Layout from "../Header component/Layout";
+import Layout from "../HeaderComponent/Layout";
 import axios from "axios";
-import AirplaneForm from "../Module Components/airplanes/AirplaneForm";
-import AirplaneEdit from "../Module Components/airplanes/AirplaneEdit";
-import AirplaneDelete from "../Module Components/airplanes/AirplaneDelete";
-import AirplaneView from "../Module Components/airplanes/AirplaneView";
+import AirplaneForm from "../ModuleComponents/airplanes/AirplaneForm";
+import AirplaneEdit from "../ModuleComponents/airplanes/AirplaneEdit";
+import AirplaneDelete from "../ModuleComponents/airplanes/AirplaneDelete";
+import AirplaneView from "../ModuleComponents/airplanes/AirplaneView";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";

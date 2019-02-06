@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import Layout from "../Header component/Layout";
+import Layout from "../HeaderComponent/Layout";
 import axios from "axios";
-import FlightForm from "../Module Components/flights/FlightsForm";
+import FlightForm from "../ModuleComponents/flights/FlightsForm";
 import FlightEdit from "../Module Components/flights/FlightEdit";
-import FlightDelete from "../Module Components/flights/FlightDelete";
-import FlightView from "../Module Components/flights/FlightView";
-import SkyVector from "../Module Components/flights/SkyVector";
+import FlightDelete from "../ModuleComponents/flights/FlightDelete";
+import FlightView from "../ModuleComponents/flights/FlightView";
+import SkyVector from "../ModuleComponents/flights/SkyVector";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
