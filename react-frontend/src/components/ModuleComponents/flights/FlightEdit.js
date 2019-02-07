@@ -7,8 +7,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Grid from "@material-ui/core/Grid";
@@ -230,18 +228,18 @@ class FlightEdit extends Component {
               alignItems="stretch"
             >
               <Grid item sm={8} xs={12}>
-                <FormControl required fullWidth>
-                  <InputLabel>Flight Name</InputLabel>
-                  <OutlinedInput
-                    type="string"
-                    name="flightName"
-                    value={this.state.flightName}
-                    onChange={this.editFormHandler}
-                  />
-                  <FormHelperText id="my-helper-text1">
-                    This field is required.
-                  </FormHelperText>
-                </FormControl>
+              <TextField
+                  autoFocus
+                  type="string"
+                  margin="dense"
+                  name="flightName"
+                  label="Flight Name:"
+                  value={this.state.flightName}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  variant="outlined"
+                  fullWidth
+                />
               </Grid>
               <Grid item sm={4} xs={6}>
                 <TextField
@@ -398,7 +396,7 @@ class FlightEdit extends Component {
                   type="string"
                   margin="dense"
                   name="remarks"
-                  label="Remarks, Procedures, Maneuvers"
+                  label="Remarks, Procedures, Maneuvers:"
                   value={this.state.remarks}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -412,7 +410,7 @@ class FlightEdit extends Component {
                   type="number"
                   margin="dense"
                   name="numOfTakeOffs"
-                  label="number of take offs"
+                  label="Number Of Take Offs"
                   value={this.state.numOfTakeOffs}
                   onChange={this.editFormHandler}
                   variant="outlined"
@@ -425,7 +423,7 @@ class FlightEdit extends Component {
                   type="number"
                   margin="dense"
                   name="numOfLandings"
-                  label="number of landings"
+                  label="Number Of Landings"
                   value={this.state.numOfLandings}
                   onChange={this.editFormHandler}
                   className={classes.textField}
