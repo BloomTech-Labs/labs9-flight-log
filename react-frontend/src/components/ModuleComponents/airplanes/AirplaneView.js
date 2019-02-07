@@ -5,7 +5,6 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import { Transition, animated } from "react-spring";
 import axios from "axios";
@@ -462,10 +461,19 @@ class AirplaneView extends Component {
                     {this.state.totalGroundTrainer}
                   </Typography> */}
                         </Grid>
-                        <Grid className={classes.textField} sm={4}>
-                          <Typography className={classes.Total} variant="h5">
-                            Total Hours: {this.state.totalHours}
-                          </Typography>
+                        <Grid className={classes.textField} sm={2}>
+                        <TextField
+                            error
+                            id="outlined-read-only-input"
+                            label="Total Hours:"
+                            defaultValue={this.state.totalHours}
+                            // className={classes.textField}
+                            margin="normal"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                          />
                         </Grid>
                       </Grid>
                     </div>
