@@ -51,7 +51,7 @@ class AirplanesList extends Component {
     const UID = this.props.UID;
     console.log("from airplanes", this.props.UID);
 
-    axios.get(`http://localhost:9000/pilots/access/${UID}`).then(response => {
+    axios.get(`https://labs9-flight-log.herokuapp.com/pilots/access/${UID}`).then(response => {
       console.log("pilot response.data in airplane", response.data[0].isPaid);
       this.setState({ isPaid: response.data[0].isPaid });
       // if (response.data[0].isPaid === 1) {
