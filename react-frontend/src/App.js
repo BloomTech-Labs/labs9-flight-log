@@ -36,12 +36,15 @@ class App extends Component {
       .auth()
       .currentUser.getIdToken(/* forceRefresh */ true)
       .then(function(idToken) {
-        console.log(idToken);
+        //console.log(idToken);
         const body = { token: idToken };
         //http://localhost:9000
         //https://labs9-flight-log.herokuapp.com
         axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
         that.setState({ idToken: idToken });
+      })
+      .catch(error => {
+        console.log(error)
       });
   }
 
@@ -52,7 +55,7 @@ class App extends Component {
       .currentUser.getIdToken(/* forceRefresh */ true)
       .then(function(idToken) {
         const body = idToken;
-        console.log("idToken", idToken);
+        //console.log("idToken", idToken);
         axios
           //http://localhost:9000
           //https://labs9-flight-log.herokuapp.com
@@ -61,12 +64,12 @@ class App extends Component {
             params: { token: body }
           })
           .then(response => {
-            console.log("response.data", response.data);
+            //console.log("response.data", response.data);
             const uid = response.data.PilotUID;
             const name = response.data.PilotName;
 
             const id = response.data.PilotID;
-            console.log(name, uid);
+            //console.log(name, uid);
             that.setState({
               UID: uid,
               Name: name,
@@ -74,6 +77,9 @@ class App extends Component {
               refresh: !that.state.refresh
             });
           });
+      })
+      .catch(error => {
+        console.log(error)
       });
   }
   // refresh = () => {
@@ -82,8 +88,8 @@ class App extends Component {
   // };
 
   render() {
-    console.log("this.state.refresh", this.state.refresh);
-    console.log("this.state.id inside app", this.state.id);
+    //console.log("this.state.refresh", this.state.refresh);
+    //console.log("this.state.id inside app", this.state.id);
     if (this.state.refresh) {
       return (
         <div className="App">
