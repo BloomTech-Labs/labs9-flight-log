@@ -6,6 +6,9 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import axios from "axios";
+import fire from "../../../components/Config/fire";
+
+const storage = fire.storage();
 
 const styles = theme => ({
   root: {
@@ -41,11 +44,21 @@ class AirplaneDelete extends Component {
     super(props);
     this.state = {
       open: false,
-      id: ""
+      id: "",
+      airplane: {}
     };
   }
   handleClickOpen = () => {
-    this.setState({ open: true });
+    console.log("this.props.airplane", this.props);
+    console.log("this.props.UID", this.props.UID);
+    axios
+      .get(`${URL}/airplanes/${this.props.UID}/${this.props.id}`)
+      .then(response => {
+        console.log(response.data[0]);
+        let airplane = response.data[0];
+        this.setState({ ...airplane, open: true });
+      })
+      .catch(error => console.log(error));
   };
 
   handleClose = () => {
@@ -53,6 +66,18 @@ class AirplaneDelete extends Component {
   };
 
   handleDelete = () => {
+    const UID = this.props.UID;
+    const desertRef = storage
+      .ref(`${UID}`)
+      .child(`${this.state.airplane.imageName}`);
+    desertRef
+      .delete()
+      .then(() => {
+        console.log("image Deleted successfully");
+      })
+      .catch(() => {
+        console.log("error deleting image");
+      });
     axios
       .delete(`${URL}/airplanes/${this.props.id}`)
       .then(response => {
