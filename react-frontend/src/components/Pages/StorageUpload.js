@@ -21,7 +21,7 @@ class StorageUpload extends Component {
   };
 
   handleUpload = () => {
-    console.log("fired");
+    // console.log("fired");
     const { image } = this.state;
     const uploadTask = storage.ref(`images/${image.name}`).put(image);
     // uploadTask.on('state_changed', progress, error, complete)
@@ -29,7 +29,7 @@ class StorageUpload extends Component {
       "state_changed",
       snapshot => {
         //progress...
-        console.log(snapshot);
+        // console.log(snapshot);
         const progress = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
         );
@@ -46,7 +46,7 @@ class StorageUpload extends Component {
           .child(image.name)
           .getDownloadURL()
           .then(url => {
-            console.log(url);
+            // console.log(url);
             this.setState({ url });
           });
       }

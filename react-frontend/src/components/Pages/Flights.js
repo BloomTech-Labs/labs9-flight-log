@@ -63,7 +63,7 @@ class Flights extends Component {
         `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
       )
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({ airplanes: response.data });
       });
     axios
@@ -71,7 +71,7 @@ class Flights extends Component {
         `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
       )
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         this.setState({ instructors: response.data });
       });
 

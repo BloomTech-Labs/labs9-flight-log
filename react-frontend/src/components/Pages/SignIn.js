@@ -70,7 +70,7 @@ class SignIn extends React.Component {
         this.state.user.password
       )
       .then(result => {
-        console.log(result);
+        // console.log(result);
         
       })
       .catch(function (error) {
