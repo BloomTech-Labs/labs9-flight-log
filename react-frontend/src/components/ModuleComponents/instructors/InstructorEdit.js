@@ -77,7 +77,7 @@ class InstructorEdit extends Component {
     axios
       .put(`${URL}/instructors/${this.state.id}`, updatedInstructor)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           open: false,
           name: "",
