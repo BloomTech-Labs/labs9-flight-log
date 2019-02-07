@@ -45,6 +45,7 @@ module.exports = {
       query = db("airplanes")
         .where("airplanes.id", id)
         .join("flights", "flights.airplanesID", "=", "airplanes.id")
+        .select("airplanes.imageName")
         .sum({
           totalTakeOffs: "flights.numOfTakeOffs"
         })

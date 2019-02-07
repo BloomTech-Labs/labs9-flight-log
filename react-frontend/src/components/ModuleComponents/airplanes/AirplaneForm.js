@@ -68,27 +68,11 @@ class AirplaneForm extends Component {
   }
 
   handleImage = e => {
-    // let files = [];
-    // let imageName = "";
-    // files = e.map(file => {
-    //   return file;
-    // });
-    // if (files) {
-    //   imageName = files.map(image => {
-    //     return image.name;
-    //   });
-    //   this.setState({ files, imageName });
-    // }
     if (e[0]) {
       this.setState({ image: e[0] });
     }
   };
-  // handleImage = e => {
-  //   console.log(e.target.files[0]);
-  //   if (e.target.files[0]) {
-  //     this.setState({ image: e.target.files[0] });
-  //   }
-  // };
+
   editFormHandler = e => {
     console.log(e.target.name, e.target.value);
     this.setState({
@@ -118,26 +102,7 @@ class AirplaneForm extends Component {
     console.log(UID);
     console.log("this.state.files", this.state.files);
     console.log("this.state.imageName", this.state.imageName);
-    // if (this.state.files) {
-    //   const files = this.state.files;
-    //   files.forEach(image => {
-    //     storage
-    //       .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
-    //       .put(image)
-    //       .on(
-    //         "state_changed",
-    //         snapshot => {
-    //           console.log(snapshot);
-    //         },
-    //         error => {
-    //           console.log(error);
-    //         },
-    //         () => {
-    //           console.log("complete");
-    //         }
-    //       );
-    //   });
-    // }
+
     if (this.state.image) {
       const image = this.state.image;
       const uploadTask = storage.ref(`${UID}/${image.name}`).put(image);
@@ -273,9 +238,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                {/* <Grid item sm={12}>
-                  <input name="image" type="file" onChange={this.handleImage} />
-                </Grid> */}
+
                 <Grid item sm={12}>
                   <DropzoneArea
                     onChange={this.handleImage}
