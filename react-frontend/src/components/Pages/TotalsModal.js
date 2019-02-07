@@ -6,6 +6,7 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import { Transition, animated } from "react-spring";
 import axios from "axios";
+// import { Divider } from "@material-ui/core";
 
 const styles = theme => ({
   root: {
@@ -63,6 +64,18 @@ const styles = theme => ({
   },
   button: {
     marginRight: theme.spacing.unit
+  },
+  viewDesktop: {
+    display: "none",
+    [theme.breakpoints.up("sm")]: {
+      display: "flex"
+    }
+  },
+  viewMobile: {
+    display: "flex",
+    [theme.breakpoints.up("sm")]: {
+      display: "none"
+    }
   }
 });
 
@@ -83,9 +96,11 @@ class TotalsModal extends Component {
       totalAsInstructor: "",
       totalDualReceived: "",
       totalPilotInCommand: "",
-      totalHours: ""
+      totalHours: "",
+      open: false
     };
   }
+
   handleClickOpen = () => {
     // const UID = localStorage.getItem("userID");
     const UID = this.props.UID;
@@ -115,23 +130,30 @@ class TotalsModal extends Component {
       });
     // this.setState({ ...this.props.instructor, open: true });
   };
+
   handleClose = () => {
     this.setState({ open: false });
   };
+
   render() {
     const { classes } = this.props;
 
     return (
       <div className={classes.root}>
-        <Button
-          variant="contained"
-          className={classes.button}
-          color="primary"
-          aria-label="Add"
-          onClick={this.handleClickOpen}
-        >
+        <div className={classes.viewDesktop}>
+          <Button
+            variant="contained"
+            className={classes.button}
+            color="primary"
+            aria-label="Total Hours"
+            onClick={this.handleClickOpen}
+          >
+            View Total Hours
+          </Button>
+        </div>
+        <div className={classes.viewMobile}>
           View Total Hours
-        </Button>
+        </div>
 
         <Dialog
           open={this.state.open}
