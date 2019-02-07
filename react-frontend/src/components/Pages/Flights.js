@@ -92,15 +92,17 @@ class Flights extends Component {
 
     return (
       <React.Fragment>
-        <Layout UID={this.props.UID}>
-          <div style={{ marginTop: "16px" }}>
+
+        <Layout>
+          {/* <div style={{ marginTop: "16px" }}> */}
+
             <Grid
               container
               className={classes.root}
               justify="flex-start"
               alignItems="flex-start"
               direction="row"
-              spacing={16}
+              spacing={8}
             >
               <Grid item lg={3} md={4} sm={6} xs={12}>
                 <FlightForm
@@ -227,7 +229,7 @@ class Flights extends Component {
                 </Grid>
               ))}
             </Grid>
-          </div>
+          {/* </div> */}
         </Layout>
       </React.Fragment>
     );

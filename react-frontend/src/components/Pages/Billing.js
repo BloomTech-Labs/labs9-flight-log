@@ -21,16 +21,16 @@ class Billing extends Component {
   }
 
   render(props) {
-    const { classes } = this.props;
+    // const { classes } = this.props;
 
     return (
       <Layout>
         <StripeProvider apiKey={process.env.REACT_APP_STRIPE_API_KEY}>
-          <div className={classes.root}>
+          {/* <div className={classes.root}> */}
             <Elements>
               <BillingForm {...props} id={this.props.id} />
             </Elements>
-          </div>
+          {/* </div> */}
         </StripeProvider>
       </Layout>
     );
