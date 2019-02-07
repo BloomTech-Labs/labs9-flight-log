@@ -9,8 +9,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Typography from "@material-ui/core/Typography";
@@ -230,18 +228,20 @@ class FlightForm extends Component {
               alignItems="stretch"
             >
               <Grid item sm={8} xs={12}>
-                <FormControl required fullWidth>
-                  <InputLabel>Flight Name</InputLabel>
-                  <OutlinedInput
-                    type="string"
-                    name="flightName"
-                    value={this.state.flightName}
-                    onChange={this.editFormHandler}
-                  />
-                  <FormHelperText id="my-helper-text1">
-                    This field is required.
-                  </FormHelperText>
-                </FormControl>
+                {/* <FormControl required fullWidth> */}
+                <TextField
+                  autoFocus
+                  type="string"
+                  margin="dense"
+                  name="flightName"
+                  label="Flight Name:"
+                  value={this.state.flightName}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  variant="outlined"
+                  fullWidth
+                />
+                {/* </FormControl> */}
               </Grid>
               <Grid item sm={4} xs={6}>
                 <TextField
