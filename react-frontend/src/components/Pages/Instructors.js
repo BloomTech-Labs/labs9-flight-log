@@ -2,9 +2,14 @@ import React, { Component } from "react";
 import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
+import Card from "@material-ui/core/Card";
+import CardContent from "@material-ui/core/CardContent";
+import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
+
 import InstructorForm from "../ModuleComponents/instructors/InstructorForm.js";
-import InstructorCard from "../ModuleComponents/instructors/instructorCard";
+import InstructorEdit from "../ModuleComponents/instructors/InstructorEdit";
+import InstructorDelete from "../ModuleComponents/instructors/InstructorDelete";
 import PropTypes from "prop-types";
 
 const styles = theme => ({
@@ -78,7 +83,120 @@ class InstructorsList extends Component {
 
               {this.state.instructorsList.map(instructor => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
-                    <InstructorCard instructor={instructor}/>
+                  <Card className={classes.card}>
+                    <CardContent>
+                      <Grid
+                        container
+                        className={classes.root}
+                        justify="flex-start"
+                        alignItems="flex-start"
+                        direction="row"
+                        spacing={8}
+                      >
+                        <Grid item xs={12}>
+                          <TextField
+                            id="instructor-name"
+                            label="Name"
+                            defaultValue={instructor.name}
+                            className={classes.textField}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true,
+                              style: {fontSize: "24px"}
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={6}>
+                          <TextField
+                            id="instructor-license"
+                            label="License No."
+                            defaultValue={instructor.licenseNum}
+                            className={classes.textField}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={6}>
+                          <TextField
+                            id="instructor-ratings"
+                            label="Ratings"
+                            defaultValue={instructor.ratings}
+                            className={classes.textField}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            id="instructor-contact"
+                            label="Contact"
+                            defaultValue={instructor.contactInfo}
+                            className={classes.textField}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            multiline
+                            rows="2"
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <TextField
+                            id="instructor-notes"
+                            label="Notes"
+                            defaultValue={instructor.notes}
+                            className={classes.textField}
+                            margin="dense"
+                            InputProps={{
+                              readOnly: true
+                            }}
+                            variant="outlined"
+                            multiline
+                            rows="2"
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item xs={12}>
+                          <Grid
+                            container
+                            className={classes.root}
+                            justify="flex-start"
+                            alignItems="flex-start"
+                            direction="row"
+                            spacing={8}
+                          >
+                            <Grid item xs={6}>
+                              <InstructorEdit
+                                {...this.props}
+                                switcher={this.switcher}
+                                instructor={instructor}
+                              />
+                            </Grid>
+                            <Grid item xs={6}>
+                              <InstructorDelete
+                                id={instructor.id}
+                                switcher={this.switcher}
+                              />
+                            </Grid>
+                            <Grid item xs={6}>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                    </CardContent>
+                  </Card>
                 </Grid>
               ))}
             </Grid>
