@@ -59,27 +59,10 @@ class AirplaneEdit extends Component {
   }
 
   handleImage = e => {
-    // let files = [];
-    // let imageName = "";
-    // files = e.map(file => {
-    //   return file;
-    // });
-    // if (files) {
-    //   imageName = files.map(image => {
-    //     return image.name;
-    //   });
-    //   this.setState({ files, imageName });
-    // }
     if (e[0]) {
       this.setState({ image: e[0] });
     }
   };
-
-  // handleImage = e => {
-  //   if (e.target.files[0]) {
-  //     this.setState({ image: e.target.files[0] });
-  //   }
-  // };
 
   editFormHandler = e => {
     this.setState({
@@ -124,26 +107,7 @@ class AirplaneEdit extends Component {
         }
       );
     }
-    // if (this.state.files) {
-    //   const files = this.state.files;
-    //   files.forEach(image => {
-    //     storage
-    //       .ref(`${UID}/${this.state.tailNumber}/${image.name}`)
-    //       .put(image)
-    //       .on(
-    //         "state_changed",
-    //         snapshot => {
-    //           console.log(snapshot);
-    //         },
-    //         error => {
-    //           console.log(error);
-    //         },
-    //         () => {
-    //           console.log("complete");
-    //         }
-    //       );
-    //   });
-    // }
+
     const updatedAirplane = {
       make: this.state.make,
       model: this.state.model,
@@ -258,16 +222,6 @@ class AirplaneEdit extends Component {
                   </FormControl>
                 </Grid>
                 <Grid>
-                  {/* {this.state.imageName.map(image => {
-                    return (
-                      <img
-                        src={image.i}
-                        width="50"
-                        hieght="50"
-                        alt="imagelist"
-                      />
-                    );
-                  })} */}
                   <img
                     src={
                       this.state.imageName || "https://via.placeholder.com/50"
@@ -277,9 +231,7 @@ class AirplaneEdit extends Component {
                     width="50"
                   />
                 </Grid>
-                {/* <Grid item sm={12}>
-                  <input name="image" type="file" onChange={this.handleImage} />
-                </Grid> */}
+
                 <Grid item sm={12}>
                   <DropzoneArea
                     onChange={this.handleImage}
