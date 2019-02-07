@@ -2,15 +2,9 @@ import React, { Component } from "react";
 import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import FlightForm from "../ModuleComponents/flights/FlightsForm";
-import FlightEdit from "../ModuleComponents/flights/FlightEdit";
-import FlightDelete from "../ModuleComponents/flights/FlightDelete";
-import FlightView from "../ModuleComponents/flights/FlightView";
-import SkyVector from "../ModuleComponents/flights/SkyVector";
+import FlightCard from "../ModuleComponents/flights/FlightCard";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -47,8 +41,6 @@ class Flights extends Component {
     super();
     this.state = {
       flightsList: [],
-      airplanes: [],
-      instructors: []
     };
   }
   componentDidMount() {
@@ -58,22 +50,7 @@ class Flights extends Component {
     //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors
     // http://localhost:9000/pilots/access/${UID}/airplanes
     //http://localhost:9000/pilots/access/${UID}/instructors
-    axios
-      .get(
-        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ airplanes: response.data });
-      });
-    axios
-      .get(
-        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ instructors: response.data });
-      });
+
 
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
@@ -93,7 +70,7 @@ class Flights extends Component {
     return (
       <React.Fragment>
 
-        <Layout>
+        <Layout UID={this.props.UID}>
           {/* <div style={{ marginTop: "16px" }}> */}
 
             <Grid
@@ -116,116 +93,7 @@ class Flights extends Component {
 
               {this.state.flightsList.map(flight => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
-                  <Card className={classes.card}>
-                    <CardContent>
-                      <Grid
-                        container
-                        className={classes.root}
-                        justify="center"
-                        alignItems="center"
-                        direction="row"
-                        spacing={16}
-                      >
-                        <Grid item xs={12}>
-                          <TextField
-                            id="flight-name"
-                            value={flight.flightName}
-                            margin="dense"
-                            InputProps={{
-                              readOnly: true,
-                              style: { fontSize: "24px" }
-                            }}
-                            variant="outlined"
-                            fullWidth
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <TextField
-                            id="flight-airports"
-                            label="Airports"
-                            value={flight.airports}
-                            margin="dense"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                            fullWidth
-                          />
-                        </Grid>
-                        <Grid item xs={6}>
-                          <TextField
-                            id="flight-date"
-                            label="Date"
-                            value={flight.flightDate.substring(0, 10)}
-                            margin="dense"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                            fullWidth
-                          />
-                        </Grid>
-                        <Grid item xs={12}>
-                          <SkyVector
-                            id={flight.id}
-                            skyVector={flight.skyVector}
-                            className={classes.skyVector}
-                          />
-                        </Grid>
-                        <Grid item xs={6} />
-                        <Grid item xs={6}>
-                          <TextField
-                            id="flight-date"
-                            label="Total"
-                            value={flight.total}
-                            margin="dense"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                            fullWidth
-                          />
-                        </Grid>
-                        {/* BUTTON ROW*/}
-                        <Grid item xs={12}>
-                          {" "}
-                          {/* Start Button Row*/}
-                          <Grid
-                            container
-                            className={classes.root}
-                            justify="flex-start"
-                            alignItems="flex-start"
-                            direction="row"
-                            spacing={8}
-                          >
-                            <Grid item xs={4}>
-                              <FlightEdit
-                                {...this.props}
-                                airplanes={this.state.airplanes}
-                                instructors={this.state.instructors}
-                                switcher={this.switcher}
-                                flight={flight}
-                              />
-                            </Grid>
-                            <Grid item xs={4}>
-                              <FlightDelete
-                                id={flight.id}
-                                switcher={this.switcher}
-                              />
-                            </Grid>
-                            <Grid item xs={4}>
-                              <FlightView
-                                airplanes={this.state.airplanes}
-                                instructors={this.state.instructors}
-                                flight={flight}
-                              />
-                            </Grid>
-                          </Grid>
-                        </Grid>{" "}
-                        {/* End Button Row*/}
-                      </Grid>
-                    </CardContent>
-                  </Card>
+                    <FlightCard flight = {flight} UID= {this.props.UID}/>
                 </Grid>
               ))}
             </Grid>
