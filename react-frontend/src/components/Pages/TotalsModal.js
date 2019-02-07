@@ -126,8 +126,11 @@ class TotalsModal extends Component {
           totalDualReceived: data.totalDualReceived,
           totalPilotInCommand: data.totalPilotInCommand,
           totalHours: data.totalHours
-        });
-      });
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      });    
     // this.setState({ ...this.props.instructor, open: true });
   };
 
@@ -151,9 +154,7 @@ class TotalsModal extends Component {
             View Total Hours
           </Button>
         </div>
-        <div className={classes.viewMobile}>
-          View Total Hours
-        </div>
+        <div className={classes.viewMobile}>View Total Hours</div>
 
         <Dialog
           open={this.state.open}
