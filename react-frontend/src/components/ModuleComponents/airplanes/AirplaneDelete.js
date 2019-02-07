@@ -69,7 +69,7 @@ class AirplaneDelete extends Component {
     const UID = this.props.UID;
     const desertRef = storage
       .ref(`${UID}`)
-      .child(`${this.props.airplane.imageName}`);
+      .child(`${this.state.airplane.imageName}`);
     desertRef
       .delete()
       .then(() => {
