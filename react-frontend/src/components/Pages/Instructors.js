@@ -2,14 +2,8 @@ import React, { Component } from "react";
 import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-
 import InstructorForm from "../ModuleComponents/instructors/InstructorForm.js";
-import InstructorEdit from "../ModuleComponents/instructors/InstructorEdit";
-import InstructorDelete from "../ModuleComponents/instructors/InstructorDelete";
 import InstructorCard from "../ModuleComponents/instructors/instructorCard";
 import PropTypes from "prop-types";
 
