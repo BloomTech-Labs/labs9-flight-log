@@ -57,7 +57,10 @@ const styles = theme => ({
   },
   drawerPaper: {
     width: drawerWidth,
-    background: "default"
+    background: "default",
+    [theme.breakpoints.down("xs")]: {
+      width: drawerWidth * 2,
+    }
   },
   content: {
     flexGrow: 1,
@@ -128,20 +131,7 @@ class Layout extends React.Component {
         transformOrigin={{ vertical: "top", horizontal: "right" }}
         open={isMobileMenuOpen}
         onClose={this.handleMobileMenuClose}
-      >
-        <MenuItem onClick={this.handleMobileMenuClose}>
-          <TotalsModal className={classes.totalsModal} UID={this.props.UID}/>
-        </MenuItem>
-        <MenuItem onClick={this.signOut}>
-          <IconButton color="inherit">
-            <AccountCircle />
-            Sign Out
-          </IconButton>
-          {/* <Button variant="outlined" onClick={this.signOut}>
-            Sign Out
-          </Button> */}
-        </MenuItem>
-      </Menu>
+      />
     );
 
     const drawer = (
@@ -175,7 +165,6 @@ class Layout extends React.Component {
       </div>
     );
 
-
     if (this.state.signOut) {
       return <Redirect to="/" />;
     }
@@ -207,12 +196,15 @@ class Layout extends React.Component {
             </Typography>
 
             <div className={classes.sectionDesktop}>
-              <TotalsModal className={classes.totalsModal} UID={this.props.UID}/>
+              <TotalsModal
+                className={classes.totalsModal}
+                UID={this.props.UID}
+              />
               <Button variant="outlined" onClick={this.signOut}>
                 Sign Out
               </Button>
             </div>
-            <div className={classes.sectionMobile}>
+            {/* <div className={classes.sectionMobile}>
               <IconButton
                 aria-haspopup="true"
                 onClick={this.handleMobileMenuOpen}
@@ -220,8 +212,7 @@ class Layout extends React.Component {
               >
                 <MoreIcon />
               </IconButton>
-            </div>
-
+            </div> */}
           </Toolbar>
           {renderMobileMenu}
         </AppBar>
@@ -239,6 +230,18 @@ class Layout extends React.Component {
               }}
             >
               {drawer}
+              <MenuItem onClick={this.handleMobileMenuClose}>
+                <TotalsModal
+                  className={classes.totalsModal}
+                  UID={this.props.UID}
+                />
+              </MenuItem>
+              <Divider />
+              <MenuItem onClick={this.signOut}>
+                  Sign Out
+              </MenuItem>
+              <Divider />
+
             </Drawer>
           </Hidden>
           <Hidden xsDown implementation="css">
