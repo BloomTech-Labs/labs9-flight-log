@@ -70,7 +70,7 @@ class Flights extends Component {
     return (
       <React.Fragment>
 
-        <Layout>
+        <Layout UID={this.props.UID}>
           {/* <div style={{ marginTop: "16px" }}> */}
 
             <Grid
