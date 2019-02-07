@@ -1,5 +1,3 @@
-// import Navigation from "./Navigations";
-// import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
@@ -9,13 +7,13 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import MoreIcon from "@material-ui/icons/MoreVert";
 import { Menu, MenuItem, MenuList } from "@material-ui/core";
-// import { List, ListItem, ListItemText } from "@material-ui/core";
+import Hidden from "@material-ui/core/Hidden";
 import Divider from "@material-ui/core/Divider";
 import Drawer from "@material-ui/core/Drawer";
 import IconButton from "@material-ui/core/IconButton";
-// import LibraryAdd from "@material-ui/icons/LibraryAdd";
 import AccountCircle from "@material-ui/icons/AccountCircle";
 import MenuIcon from "@material-ui/icons/Menu";
+import { withTheme } from "@material-ui/core/styles";
 import { NavLink } from "react-router-dom";
 
 // import from '@material-ui/icons'
@@ -44,19 +42,29 @@ const styles = theme => ({
     zIndex: theme.zIndex.drawer + 1,
     position: "fixed"
   },
+  menuButton: {
+    marginRight: 20,
+    [theme.breakpoints.up("sm")]: {
+      display: "none"
+    }
+  },
   drawer: {
     [theme.breakpoints.up("sm")]: {
       width: drawerWidth,
-      flexShrink: 0
+      flexShrink: 0,
+      display: "flex"
     }
   },
   drawerPaper: {
-    width: drawerWidth
+    width: drawerWidth,
+    background: "default"
   },
   content: {
     flexGrow: 1,
-    marginLeft: drawerWidth,
-    padding: theme.spacing.unit
+    padding: theme.spacing.unit,
+    [theme.breakpoints.up("sm")]: {
+      marginLeft: drawerWidth
+    }
   },
   toolbar: theme.mixins.toolbar,
   toolbarTitle: {
@@ -137,7 +145,6 @@ class Layout extends React.Component {
 
     const drawer = (
       <div>
-        <div className={classes.toolbar} />
         <MenuList className={classes.root} elevation={1}>
           <NavLink to="/" style={{ textDecoration: "none" }}>
             <MenuItem className={classes.button}>Flights</MenuItem>
@@ -186,7 +193,7 @@ class Layout extends React.Component {
             </IconButton>
             <ReactSVG
               src="./shield-airplane-outline.svg"
-              svgStyle={{ width: 40, height: 40 }}
+              svgStyle={{ width: 35, height: 35, marginTop: 5 }}
             />
             <Typography
               variant="h4"
@@ -215,15 +222,35 @@ class Layout extends React.Component {
           {renderMobileMenu}
         </AppBar>
 
-        <Drawer
-          className={classes.drawer}
-          variant="permanent"
-          classes={{
-            paper: classes.drawerPaper
-          }}
-        >
-          {drawer}
-        </Drawer>
+        <nav className={classes.drawer}>
+          <Hidden smUp implementation="css">
+            <Drawer
+              container={this.props.container}
+              variant="temporary"
+              anchor={this.props.theme.direction === "rtl" ? "right" : "left"}
+              open={this.state.mobileOpen}
+              onClose={this.handleDrawerToggle}
+              classes={{
+                paper: classes.drawerPaper
+              }}
+            >
+              {drawer}
+            </Drawer>
+          </Hidden>
+          <Hidden xsDown implementation="css">
+            <Drawer
+              classes={{
+                paper: classes.drawerPaper
+              }}
+              variant="permanent"
+              open
+            >
+              <div className={classes.toolbar} />
+              {drawer}
+            </Drawer>
+          </Hidden>
+        </nav>
+
         <main className={classes.content}>
           <div className={classes.toolbar} />
           {this.props.children}
@@ -236,4 +263,5 @@ class Layout extends React.Component {
 Layout.propTypes = {
   classes: PropTypes.object.isRequired
 };
-export default withStyles(styles)(Layout);
+
+export default withStyles(styles)(withTheme()(Layout));
