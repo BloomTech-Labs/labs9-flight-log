@@ -54,8 +54,8 @@ class BillingForm extends Component {
   }
 
   setAmount = ev => {
-    console.log("setAmount", ev.target.value);
-    console.log("billing pilotid", this.state.pilotID);
+    //console.log("setAmount", ev.target.value);
+    //console.log("billing pilotid", this.state.pilotID);
     this.setState({ value: ev.target.value });
   };
 
@@ -71,12 +71,10 @@ class BillingForm extends Component {
         body: JSON.stringify({ token: token.id, amount })
       }
     );
-    console.log("inside billing form pilot id:", this.state.pilotID);
-    console.log(
-      "url",
-      `https://labs9-flight-log.herokuapp.com/pilots/${this.state.pilotID}`
-    );
 
+    //console.log("inside billing form pilot id:", this.state.pilotID);
+    //console.log("url", `https://labs9-flight-log.herokuapp.com/pilots/${this.state.pilotID}`)
+    
     if (response.ok) {
       this.setState({ complete: true, isPaid: true });
       let pilot = {
@@ -92,10 +90,10 @@ class BillingForm extends Component {
         )
         .then(response => {
           console.log(response);
-          console.log("isPaid status 89", this.state.isPaid);
+          //console.log("isPaid status 89", this.state.isPaid)
         })
         .catch(error => {
-          console.log(error);
+          console.log(error)
         });
     }
   }
