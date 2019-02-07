@@ -118,6 +118,7 @@ class Layout extends React.Component {
   render() {
     const { mobileMoreAnchorEl } = this.state;
     const { classes } = this.props;
+
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
     const renderMobileMenu = (
@@ -174,6 +175,7 @@ class Layout extends React.Component {
       </div>
     );
 
+
     if (this.state.signOut) {
       return <Redirect to="/" />;
     }
@@ -203,8 +205,9 @@ class Layout extends React.Component {
             >
               Flytelog
             </Typography>
+
             <div className={classes.sectionDesktop}>
-              <TotalsModal className={classes.totalsModal} />
+              <TotalsModal className={classes.totalsModal} UID={this.props.UID}/>
               <Button variant="outlined" onClick={this.signOut}>
                 Sign Out
               </Button>
@@ -218,6 +221,7 @@ class Layout extends React.Component {
                 <MoreIcon />
               </IconButton>
             </div>
+
           </Toolbar>
           {renderMobileMenu}
         </AppBar>
