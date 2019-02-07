@@ -81,9 +81,10 @@ class BillingForm extends Component {
       };
       axios
         .put(
-          //http://localhost:9000/pilots/${this.state.id}
+          //http://localhost:9000/pilots/${this.state.pilotID}
           //https://labs9-flight-log.herokuapp.com/pilots/${this.state.id}
-          `https://labs9-flight-log.herokuapp.com/pilots/${this.state.pilotID}`,
+          //`http://localhost:9000/pilots/${this.state.pilotID}`,
+         `https://labs9-flight-log.herokuapp.com/pilots/${this.state.pilotID}`,
           pilot
         )
         .then(response => {

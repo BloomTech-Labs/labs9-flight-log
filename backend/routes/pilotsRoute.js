@@ -106,7 +106,7 @@ router.post("/", decode, async (req, res) => {
 //put route
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  const { firstName, lastName, isPaid } = req.body;
+  //const { firstName, lastName, isPaid } = req.body;
   // if (!firstName) {
   //   return res.status(400).json({ error: "please input firstName" });
   // }
@@ -114,15 +114,15 @@ router.put("/:id", async (req, res) => {
   //   return res.status(400).json({ error: "please input lastName" });
   // }
   try {
-    const pilot = await pilotsDb.update(id, { firstName, lastName, isPaid });
+    const pilot = await pilotsDb.update(id, req.body);
     if (!pilot) {
       res
         .status(404)
         .json({ error: "the pilot with the specified id does not exist" });
     }
-    res.status(200).json({ firstName, lastName, isPaid });
+    res.status(200).json( req.body );
   } catch (error) {
-    res.status(500).json({ error: "there was an error in updating the pilot" });
+    res.status(500).json({ error: "there was an error in updating the pilot", err });
   }
 });
 //delete route
