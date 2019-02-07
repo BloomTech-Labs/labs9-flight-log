@@ -41,6 +41,8 @@ class Flights extends Component {
     super();
     this.state = {
       flightsList: [],
+      airplanes:[],
+      instructors: []
     };
   }
   componentDidMount() {
@@ -57,7 +59,24 @@ class Flights extends Component {
       .then(response => {
         console.table(response.data);
         this.setState({ flightsList: response.data });
+      })
+      axios
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
+      )
+      .then(response => {
+        console.log(response.data);
+        this.setState({ airplanes: response.data });
       });
+    axios
+      .get(
+        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
+      )
+      .then(response => {
+        console.log(response.data);
+        this.setState({ instructors: response.data });
+      });
+
   }
   switcher = () => {
     console.log("fired");
