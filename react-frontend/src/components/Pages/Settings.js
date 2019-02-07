@@ -5,6 +5,7 @@ import { withStyles } from "@material-ui/core";
 import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import Grid from "@material-ui/core/Grid"
 import { Spring } from "react-spring";
 // import Grid from "@material-ui/core/Grid";
 // import axios from "axios";
@@ -25,20 +26,24 @@ const styles = theme => ({
   mainContainer: {
     width: "80%",
     marginTop: 15,
-    display: "flex"
-    // justifyContent: "center"
+    display: "flex",
+    justify: "center"
+
   },
   innerContainer: {
-    padding: 90
+    padding: 25,
+
   },
   paper: {
     padding: 20
   },
   text: {
-    paddingBottom: 70
+    paddingBottom: 70,
+    fontSize: "22px"
   },
   textTitle: {
-    paddingBottom: 20
+    paddingBottom: 20,
+    fontSize: "22px"
   },
   button: {
     padding: 15,
@@ -90,37 +95,45 @@ class Settings extends Component {
     return (
       <Layout>
         <Spring
-          from={{ opacity: 0, padding: -1000 }}
-          to={{ opacity: 1, padding: 0 }}
+          from={{ opacity: 0, margin: -1000 }}
+          to={{ opacity: 1, margin: 0 }}
         >
           {props => (
             <div style={props}>
               {/* <div className={classes.mainContainer}> */}
-                <Paper className="paper">
-                  <div className={classes.innerContainer}>
-                    <Typography className={classes.textTitle} variant="title">
-                      Name:
-                    </Typography>
-                    <Typography className={classes.text} variant="h4">
-                      {this.state.user.name}
-                    </Typography>
-                    <Typography className={classes.textTitle} variant="title">
-                      Email:
-                    </Typography>
-                    <Typography className={classes.text} variant="h4">
-                      {this.state.user.email}
-                    </Typography>
-                    {/* <Typography className={classes.text} variant="title">Password reset:</Typography> */}
-                    <Button
-                      className={classes.button}
-                      color="secondary"
-                      variant="outlined"
-                      onClick={this.sendResetEmail}
-                    >
-                      Reset Password
-                    </Button>
-                  </div>
-                </Paper>
+              <Grid 
+                   container
+                   className={classes.grid}
+                   spacing={12}
+                   >
+                  <Grid item md={6} sm={12} xs={12}>
+                    <Paper className="paper">
+                      <div className={classes.innerContainer}>
+                        <Typography className={classes.textTitle} variant="title">
+                          Name:
+                        </Typography>
+                        <Typography className={classes.text} variant="h4">
+                          {this.state.user.name}
+                        </Typography>
+                        <Typography className={classes.textTitle} variant="title">
+                          Email:
+                        </Typography>
+                        <Typography className={classes.text} variant="h4">
+                          {this.state.user.email}
+                        </Typography>
+                        {/* <Typography className={classes.text} variant="title">Password reset:</Typography> */}
+                        <Button
+                          className={classes.button}
+                          color="secondary"
+                          variant="outlined"
+                          onClick={this.sendResetEmail}
+                        >
+                          Reset Password
+                        </Button>
+                      </div>
+                    </Paper>
+                  </Grid>
+                </Grid>
               {/* </div> */}
             </div>
           )}
