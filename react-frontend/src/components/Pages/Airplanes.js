@@ -49,33 +49,40 @@ class AirplanesList extends Component {
 
   componentDidMount() {
     const UID = this.props.UID;
-    console.log("from airplanes", this.props.UID);
+    //console.log("from airplanes", this.props.UID);
 
     axios.get(`https://labs9-flight-log.herokuapp.com/pilots/access/${UID}`).then(response => {
-      console.log("pilot response.data in airplane", response.data[0].isPaid);
+      //console.log("pilot response.data in airplane", response.data[0].isPaid);
       this.setState({ isPaid: response.data[0].isPaid });
       // if (response.data[0].isPaid === 1) {
       //   this.setState({
       //     isPaid: true
       //   });
       // }
+    })
+    .catch(error => {
+      console.log(error)
     });
+
     //http://localhost:9000/airplanes/${UID}
     axios
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}`)
       .then(response => {
-        console.table("response.data to get airplanes image", response.data);
+        //console.table("response.data to get airplanes image", response.data);
         let alteredList = response.data;
         alteredList.map(airplane => {
           const imagesRef = storage.ref(`${UID}`).child(airplane.imageName);
           return imagesRef.getDownloadURL().then(url => {
-            console.log("url", url);
+            //console.log("url", url);
             airplane.imageName = url;
             this.setState({
               airplanesList: alteredList
               // refreshed: !this.state.refreshed
             });
-            console.log("alteredList", alteredList);
+            //console.log("alteredList", alteredList);
+          })
+          .catch(error => {
+            console.log(error)
           });
         });
       });
@@ -112,7 +119,7 @@ class AirplanesList extends Component {
     //   });
   }
   switcher = () => {
-    console.log("fired from airplanes");
+    //console.log("fired from airplanes");
     this.componentDidMount();
   };
 
