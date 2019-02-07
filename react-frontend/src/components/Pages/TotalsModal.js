@@ -83,9 +83,11 @@ class TotalsModal extends Component {
       totalAsInstructor: "",
       totalDualReceived: "",
       totalPilotInCommand: "",
-      totalHours: ""
+      totalHours: "",
+      open: false
     };
   }
+
   handleClickOpen = () => {
     // const UID = localStorage.getItem("userID");
     const UID = this.props.UID;
@@ -115,9 +117,11 @@ class TotalsModal extends Component {
       });
     // this.setState({ ...this.props.instructor, open: true });
   };
+
   handleClose = () => {
     this.setState({ open: false });
   };
+
   render() {
     const { classes } = this.props;
 
@@ -127,7 +131,7 @@ class TotalsModal extends Component {
           variant="contained"
           className={classes.button}
           color="primary"
-          aria-label="Add"
+          aria-label="Total Hours"
           onClick={this.handleClickOpen}
         >
           View Total Hours

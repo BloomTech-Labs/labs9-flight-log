@@ -130,9 +130,9 @@ class Layout extends React.Component {
         onClose={this.handleMobileMenuClose}
       >
         <MenuItem onClick={this.handleMobileMenuClose}>
-          <TotalsModal className={classes.totalsModal} />
+          <TotalsModal className={classes.totalsModal} UID={this.props.UID}/>
         </MenuItem>
-        <MenuItem onClick={this.handleMobileMenuClose}>
+        <MenuItem onClick={this.signOut}>
           <IconButton color="inherit">
             <AccountCircle />
             Sign Out
