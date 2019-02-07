@@ -49,25 +49,27 @@ class FlightCard extends Component {
         }
     }
     componentDidMount(){
-        const UID= this.props.UID;
-        axios
+      const UID= this.props.UID;
+      axios
         .get(
           `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
         )
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           this.setState({ airplanes: response.data });
-        });
+        })
+        .catch(err => console.log(err));
       axios
         .get(
           `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
         )
         .then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           this.setState({ instructors: response.data });
-        });
-  
+        })
+        .catch(err => console.log(err));
     }
+
     render(){
         const {classes}=this.props
         return (
@@ -143,7 +145,7 @@ class FlightCard extends Component {
                         </Grid>
                         {/* BUTTON ROW*/}
                         <Grid item xs={12}>
-                          {" "}
+                          {/* {" "} */}
                           {/* Start Button Row*/}
                           <Grid
                             container
