@@ -2,16 +2,9 @@ import React, { Component } from "react";
 import Layout from "../HeaderComponents/Layout";
 import axios from "axios";
 import FlightForm from "../ModuleComponents/flights/FlightsForm";
-import FlightEdit from "../ModuleComponents/flights/FlightEdit";
-import FlightDelete from "../ModuleComponents/flights/FlightDelete";
-import FlightView from "../ModuleComponents/flights/FlightView";
-import SkyVector from "../ModuleComponents/flights/SkyVector";
 import FlightCard from "../ModuleComponents/flights/FlightCard";
 import PropTypes from "prop-types";
 import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 
 const styles = theme => ({
@@ -48,8 +41,6 @@ class Flights extends Component {
     super();
     this.state = {
       flightsList: [],
-      airplanes: [],
-      instructors: []
     };
   }
   componentDidMount() {
@@ -59,22 +50,7 @@ class Flights extends Component {
     //https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors
     // http://localhost:9000/pilots/access/${UID}/airplanes
     //http://localhost:9000/pilots/access/${UID}/instructors
-    axios
-      .get(
-        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/airplanes`
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ airplanes: response.data });
-      });
-    axios
-      .get(
-        `https://labs9-flight-log.herokuapp.com/pilots/access/${UID}/instructors`
-      )
-      .then(response => {
-        console.log(response.data);
-        this.setState({ instructors: response.data });
-      });
+
 
     axios
       .get(`https://labs9-flight-log.herokuapp.com/flights/${UID}`)
