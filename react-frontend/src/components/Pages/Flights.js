@@ -92,8 +92,10 @@ class Flights extends Component {
 
     return (
       <React.Fragment>
+
         <Layout>
           {/* <div style={{ marginTop: "16px" }}> */}
+
             <Grid
               container
               className={classes.root}
@@ -131,14 +133,14 @@ class Flights extends Component {
                             margin="dense"
                             InputProps={{
                               readOnly: true,
-                              style: {fontSize: "24px"}
+                              style: { fontSize: "24px" }
                             }}
                             variant="outlined"
                             fullWidth
                           />
                         </Grid>
                         <Grid item xs={6}>
-                        <TextField
+                          <TextField
                             id="flight-airports"
                             label="Airports"
                             value={flight.airports}
@@ -151,7 +153,7 @@ class Flights extends Component {
                           />
                         </Grid>
                         <Grid item xs={6}>
-                        <TextField
+                          <TextField
                             id="flight-date"
                             label="Date"
                             value={flight.flightDate.substring(0, 10)}
@@ -172,7 +174,7 @@ class Flights extends Component {
                         </Grid>
                         <Grid item xs={6} />
                         <Grid item xs={6}>
-                        <TextField
+                          <TextField
                             id="flight-date"
                             label="Total"
                             value={flight.total}
@@ -184,10 +186,10 @@ class Flights extends Component {
                             fullWidth
                           />
                         </Grid>
-
                         {/* BUTTON ROW*/}
-
-                        <Grid item xs={12}> {/* Start Button Row*/}
+                        <Grid item xs={12}>
+                          {" "}
+                          {/* Start Button Row*/}
                           <Grid
                             container
                             className={classes.root}
@@ -219,7 +221,8 @@ class Flights extends Component {
                               />
                             </Grid>
                           </Grid>
-                        </Grid> {/* End Button Row*/}
+                        </Grid>{" "}
+                        {/* End Button Row*/}
                       </Grid>
                     </CardContent>
                   </Card>
