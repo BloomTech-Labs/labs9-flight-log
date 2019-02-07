@@ -52,6 +52,8 @@ class Layout extends React.Component {
   render() {
     const { classes } = this.props;
     // const Layout = (props) => {
+    console.log("this.props in layout", this.props);
+    console.log("UID in layout", this.props.UID);
     if (this.state.signOut) {
       return <Redirect to="/" />;
     }
@@ -72,7 +74,7 @@ class Layout extends React.Component {
             >
               Flytelog
             </Typography>
-            <TotalsModal className={classes.totalsModal} />
+            <TotalsModal className={classes.totalsModal} UID={this.props.UID} />
             <Button variant="outlined" onClick={this.signOut}>
               Sign Out
             </Button>
