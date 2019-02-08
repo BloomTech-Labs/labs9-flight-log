@@ -80,11 +80,6 @@ class InstructorsList extends Component {
                 UID={this.props.UID}
               />
             </Grid>
-      
-            {/* {this.state.instructorsList.map(instructor => (
-              <Grid item lg={3} md={4} sm={6} xs={12}>
-                <InstructorCard instructor={instructor} />
-              </Grid> */}
 
               {this.state.instructorsList.map(instructor => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
@@ -197,14 +192,23 @@ class InstructorsList extends Component {
                             </Grid>
                             <Grid item xs={6}>
                             </Grid>
+
                           </Grid>
+                          <Grid item xs={6}>
+                            <InstructorDelete
+                              id={instructor.id}
+                              switcher={this.switcher}
+                            />
+                          </Grid>
+                          <Grid item xs={6} />
                         </Grid>
                       </Grid>
-                    </CardContent>
-                  </Card>
-                </Grid>
-              ))}
-            </Grid>
+                   
+                  </CardContent>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
 
           {/* </div> */}
         </Layout>
