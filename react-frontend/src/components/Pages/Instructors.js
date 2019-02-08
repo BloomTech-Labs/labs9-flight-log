@@ -203,7 +203,7 @@ class InstructorsList extends Component {
                           <Grid item xs={6} />
                         </Grid>
                       </Grid>
-                    </Grid>
+                   
                   </CardContent>
                 </Card>
               </Grid>
