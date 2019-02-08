@@ -85,6 +85,9 @@ class AirplanesList extends Component {
               console.log(error);
             });
         });
+      })
+      .catch(error => {
+        console.log(error);
       });
   }
   switcher = () => {
