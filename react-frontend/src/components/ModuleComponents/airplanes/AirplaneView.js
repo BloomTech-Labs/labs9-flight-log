@@ -103,7 +103,7 @@ class AirplaneView extends Component {
     axios
       .get(`https://labs9-flight-log.herokuapp.com/airplanes/${UID}/${id}`)
       .then(response => {
-        console.log("response.data", response.data[0]);
+        // console.log("response.data", response.data[0]);
         const data = response.data[0];
         this.setState({
           ...this.props.airplane,

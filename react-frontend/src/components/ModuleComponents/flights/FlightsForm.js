@@ -94,7 +94,7 @@ class FlightForm extends Component {
   }
 
   editFormHandler = e => {
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -103,33 +103,33 @@ class FlightForm extends Component {
     this.setState({ [name]: event.target.value });
   };
   handleClickOpen = () => {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     this.setState({ ...this.props, open: true });
   };
   handleClose = () => {
     this.setState({ open: false });
   };
   handleOpenAir = () => {
-    console.log("airplanes");
+    // console.log("airplanes");
     this.setState({ openAir: true });
   };
   handleCloseAir = () => {
     this.setState({ openAir: false });
   };
   handleOpenIns = () => {
-    console.log("instructors");
+    // console.log("instructors");
     this.setState({ openIns: true });
   };
   handleCloseIns = () => {
     this.setState({ openIns: false });
   };
   handleAirplane = airplane => () => {
-    console.log(airplane);
+    // console.log(airplane);
     this.setState({ airplane: airplane });
     this.handleCloseAir();
   };
   handleInstructor = instructor => () => {
-    console.log(instructor);
+    // console.log(instructor);
     this.setState({ instructor: instructor });
     this.handleCloseIns();
   };

@@ -146,7 +146,7 @@ class FlightEdit extends Component {
         updatedFlight
       )
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           open: false,
           flightDate: "",
