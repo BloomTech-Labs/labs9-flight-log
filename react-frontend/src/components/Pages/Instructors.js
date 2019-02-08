@@ -60,7 +60,8 @@ class InstructorsList extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, headerIsHidden, ...other } = this.props;
+
     return (
       <React.Fragment>
         <Layout UID={this.props.UID}>
@@ -73,16 +74,16 @@ class InstructorsList extends Component {
             direction="row"
             spacing={8}
           >
-            <Grid item lg={3} md={4} sm={6} xs={12}>
+            <Grid item xl={2} lg={3} md={4} sm={6} xs={12}>
               <InstructorForm
-                {...this.props}
+                {...other}
                 switcher={this.switcher}
                 UID={this.props.UID}
               />
             </Grid>
 
             {this.state.instructorsList.map(instructor => (
-              <Grid item lg={3} md={4} sm={6} xs={12}>
+              <Grid item xl={2} lg={3} md={4} sm={6} xs={12}>
                 <Card className={classes.card}>
                   <CardContent>
                     <Grid
@@ -179,7 +180,7 @@ class InstructorsList extends Component {
                         >
                           <Grid item xs={6}>
                             <InstructorEdit
-                              {...this.props}
+                              {...other}
                               switcher={this.switcher}
                               instructor={instructor}
                             />

@@ -35,6 +35,9 @@ const styles = theme => ({
     display: "flex",
     flexWrap: "wrap"
   },
+  card: {
+    height: 403
+  },
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit
@@ -182,7 +185,7 @@ class AirplaneForm extends Component {
                 justify="space-between"
                 alignItems="stretch"
               >
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Tail Number</InputLabel>
                     <OutlinedInput
@@ -196,7 +199,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Make</InputLabel>
                     <OutlinedInput
@@ -210,7 +213,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Model</InputLabel>
                     <OutlinedInput
@@ -224,7 +227,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Category</InputLabel>
                     <OutlinedInput

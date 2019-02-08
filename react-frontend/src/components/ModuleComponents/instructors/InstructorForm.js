@@ -39,6 +39,9 @@ const styles = theme => ({
   menu: {
     width: 200
   },
+  card: {
+    height: 403
+  },
   addCardContent: {
     textAlign: "center",
     marginTop: "40%"
