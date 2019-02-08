@@ -91,6 +91,8 @@ class App extends Component {
     //console.log("this.state.refresh", this.state.refresh);
     //console.log("this.state.id inside app", this.state.id);
     if (this.state.refresh) {
+      // const { classes, headerIsHidden, ...other } = this.props;
+
       return (
         <div className="App">
           <Route

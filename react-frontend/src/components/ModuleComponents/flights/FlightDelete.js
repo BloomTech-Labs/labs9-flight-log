@@ -70,7 +70,7 @@ class FlightDelete extends Component {
     return (
       <Fragment>
         <Button
-          variant="contained"
+          variant="outlined"
           className={classes.button}
           color="secondary"
           aria-label="Delete Flight"

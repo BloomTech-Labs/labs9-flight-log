@@ -13,6 +13,8 @@ import FormControl from "@material-ui/core/FormControl";
 import InputLabel from "@material-ui/core/InputLabel";
 import OutlinedInput from "@material-ui/core/OutlinedInput";
 import FormHelperText from "@material-ui/core/FormHelperText";
+import CardMedia from "@material-ui/core/CardMedia";
+
 import fire from "../../../components/Config/fire";
 const storage = fire.storage();
 
@@ -40,7 +42,12 @@ const styles = theme => ({
   },
   menu: {
     width: 200
-  }
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+    borderRadius: 5
+  },
 });
 
 class AirplaneEdit extends Component {
@@ -165,7 +172,7 @@ class AirplaneEdit extends Component {
                 justify="space-between"
                 alignItems="stretch"
               >
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Tail Number</InputLabel>
                     <OutlinedInput
@@ -179,7 +186,7 @@ class AirplaneEdit extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Make</InputLabel>
                     <OutlinedInput
@@ -193,7 +200,7 @@ class AirplaneEdit extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Model</InputLabel>
                     <OutlinedInput
@@ -207,7 +214,7 @@ class AirplaneEdit extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Category</InputLabel>
                     <OutlinedInput
@@ -221,14 +228,11 @@ class AirplaneEdit extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid>
-                  <img
-                    src={
-                      this.state.imageName || "https://via.placeholder.com/50"
-                    }
-                    alt="airplaneImage"
-                    height="50"
-                    width="50"
+                <Grid item xs={12}>
+                  <CardMedia
+                    className={classes.media}
+                    image={`${this.state.imageName}`}
+                    title="Picture of airplane"
                   />
                 </Grid>
 

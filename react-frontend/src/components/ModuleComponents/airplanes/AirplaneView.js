@@ -5,6 +5,8 @@ import Dialog from "@material-ui/core/Dialog";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import Grid from "@material-ui/core/Grid";
+import CardMedia from "@material-ui/core/CardMedia";
+
 import TextField from "@material-ui/core/TextField";
 import { Transition, animated } from "react-spring";
 import axios from "axios";
@@ -28,9 +30,7 @@ const styles = theme => ({
     marginBottom: 15,
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    // border: "1px solid black",
     borderRadius: 3
-    // boxShadow: "3px 3px 5px 6px #ccc"
   },
   topDiv: {
     width: "100%",
@@ -43,10 +43,13 @@ const styles = theme => ({
     marginBottom: 15,
     display: "flex",
     justifyContent: "center"
-    // boxShadow: "3px 3px 5px 6px #ccc"
+  },
+  media: {
+    height: 0,
+    paddingTop: "56.25%", // 16:9
+    borderRadius: 5
   },
   dialogContent: {
-    // width: "85%",
     display: "flex",
     justifyContent: "center"
   },
@@ -61,8 +64,8 @@ const styles = theme => ({
     maxWidth: 345
   },
   Total: {
-    padding: 15,
-    marginTop: 10
+    // padding: 15,
+    // marginTop: 10
   }
 });
 
@@ -135,7 +138,7 @@ class AirplaneView extends Component {
     return (
       <Fragment>
         <Button
-          variant="contained"
+          variant="outlined"
           className={classes.button}
           color="primary"
           aria-label="View Airplane"
@@ -168,315 +171,247 @@ class AirplaneView extends Component {
                   </DialogTitle>
 
                   <DialogContent className={classes.dialogContent}>
-                    <div style={{ padding: 10 }}>
-                      <Grid
-                        container
-                        className={classes.root}
-                        spacing={16}
-                        direction="row"
-                        // justify="space-between"
-                        // alignItems="stretch"
-                      >
-                        <div className={classes.topDiv}>
-                          <Grid className={classes.textField} sm={5}>
-                            <TextField
-                              id="outlined-read-only-input"
-                              label="Tail Number:"
-                              defaultValue={this.state.tailNumber}
-                              // className={classes.textField}
-                              margin="normal"
-                              InputProps={{
-                                readOnly: true
-                              }}
-                              variant="outlined"
-                            />
-                            {/* <Typography variant="subtitle2">Tail Number:</Typography>
-                  <Typography variant="h6">{this.state.tailNumber}</Typography> */}
-                          </Grid>
-                          <Grid className={classes.textField} sm={5}>
-                            <TextField
-                              id="outlined-read-only-input"
-                              label="Airplane Type:"
-                              defaultValue={this.state.category}
-                              // className={classes.textField}
-                              margin="normal"
-                              InputProps={{
-                                readOnly: true
-                              }}
-                              variant="outlined"
-                            />
-                            {/* <Typography variant="subtitle2">Airplane Type:</Typography>
-                  <Typography variant="h6">{this.state.category}</Typography> */}
-                          </Grid>
-                          <Grid className={classes.textField} sm={5}>
-                            <TextField
-                              id="outlined-read-only-input"
-                              label="Airplane make:"
-                              defaultValue={this.state.make}
-                              // className={classes.textField}
-                              margin="normal"
-                              InputProps={{
-                                readOnly: true
-                              }}
-                              variant="outlined"
-                            />
-                            {/* <Typography variant="subtitle2">Airplane make:</Typography>
-                  <Typography variant="h6">{this.state.make}</Typography> */}
-                          </Grid>
-                          <Grid className={classes.textField} sm={5}>
-                            <TextField
-                              id="outlined-read-only-input"
-                              label="Airplane Model:"
-                              defaultValue={this.state.model}
-                              // className={classes.textField}
-                              margin="normal"
-                              InputProps={{
-                                readOnly: true
-                              }}
-                              variant="outlined"
-                            />
-                            {/* <Typography variant="subtitle2">Airplane Model:</Typography>
-                  <Typography variant="h6">{this.state.model}</Typography> */}
-                          </Grid>
-                          <Grid className={classes.image} lg={12}>
-                            <img
-                              src={this.state.imageName}
-                              height="250"
-                              width="250"
-                              alt="airplaneImage"
-                            />
-                          </Grid>
-                        </div>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="SEL:"
-                            defaultValue={this.state.totalSEL}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">SEL:</Typography>
-                  <Typography variant="h6">{this.state.totalSEL}</Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="MEL:"
-                            defaultValue={this.state.totalMEL}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">MEL:</Typography>
-                  <Typography variant="h6">{this.state.totalMEL}</Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Take Off's:"
-                            defaultValue={this.state.totalTakeOffs}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">Take Offs:</Typography>
-                  <Typography variant="h6">
-                    {this.state.totalTakeOffs}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Landings:"
-                            defaultValue={this.state.totalLandings}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">Landings: </Typography>
-                  <Typography variant="h6">
-                    {this.state.totalLandings}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Day:"
-                            defaultValue={this.state.totalDay}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">
-                    Day: 
-                  </Typography>
-                  <Typography variant="h6">
-                  {this.state.totalDay}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Night:"
-                            defaultValue={this.state.totalNight}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">
-                  Night:
-                  </Typography>
-                  <Typography variant="h6">
-                  {this.state.totalNight}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Actual Instruments:"
-                            defaultValue={this.state.totalActInstruments}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">
-                    Actual Inststruments: 
-                  </Typography>
-                  <Typography variant="h6">
-                  {this.state.totalActInstruments}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Simulated Instruments:"
-                            defaultValue={this.state.totalSimInstruments}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">
-                    Simulated Instruments: 
-                  </Typography>
-                  <Typography variant="h6">
-                  {this.state.totalSimInstruments}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Cross Country:"
-                            defaultValue={this.state.totalCrossCountry}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Dual Recieved:"
-                            defaultValue={this.state.totalDualReceived}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">
-                    CrossCountry: {this.state.totalCrossCountry}, Dual Received:{" "}
-                    {this.state.totalDualReceived}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="PIC:"
-                            defaultValue={this.state.totalPilotInCommand}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="As Instructor:"
-                            defaultValue={this.state.totalAsInstructor}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            id="outlined-read-only-input"
-                            label="Ground Trainer:"
-                            defaultValue={this.state.totalGroundTrainer}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                          {/* <Typography variant="subtitle2">
-                    PIC:{this.state.totalPilotInCommand}, As Instructor:{" "}
-                    {this.state.totalAsInstructor} Ground Trainer:
-                    {this.state.totalGroundTrainer}
-                  </Typography> */}
-                        </Grid>
-                        <Grid className={classes.textField} sm={2}>
-                          <TextField
-                            error
-                            id="outlined-read-only-input"
-                            label="Total Hours:"
-                            defaultValue={this.state.totalHours}
-                            // className={classes.textField}
-                            margin="normal"
-                            InputProps={{
-                              readOnly: true
-                            }}
-                            variant="outlined"
-                          />
-                        </Grid>
+                    <Grid
+                      container
+                      spacing={8}
+                      direction="row"
+                      justify="space-between"
+                      alignItems="stretch"
+                    >
+                      <Grid item xs={12}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Tail Number:"
+                          defaultValue={this.state.tailNumber}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true,
+                            style: { fontSize: "24px" }
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
                       </Grid>
-                    </div>
+                      <Grid item sm={6} xs={12}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Airplane make:"
+                          defaultValue={
+                            this.state.make + " " + this.state.model
+                          }
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={6} xs={12}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Airplane Type:"
+                          defaultValue={this.state.category}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <CardMedia
+                          className={classes.media}
+                          image={`${this.state.imageName}`}
+                          title="Picture of airplane"
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="SEL:"
+                          defaultValue={this.state.totalSEL}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="MEL:"
+                          defaultValue={this.state.totalMEL}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="TO's:"
+                          defaultValue={this.state.totalTakeOffs}
+                          // className={classes.textField}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Landings:"
+                          defaultValue={this.state.totalLandings}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Day:"
+                          defaultValue={this.state.totalDay}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Night:"
+                          defaultValue={this.state.totalNight}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Act. Inst.:"
+                          defaultValue={this.state.totalActInstruments}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Sim. Inst.:"
+                          defaultValue={this.state.totalSimInstruments}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="X-Cntry:"
+                          defaultValue={this.state.totalCrossCountry}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Dual Rec.:"
+                          defaultValue={this.state.totalDualReceived}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="PIC:"
+                          defaultValue={this.state.totalPilotInCommand}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="As Inst.:"
+                          defaultValue={this.state.totalAsInstructor}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          id="outlined-read-only-input"
+                          label="Grnd Trn:"
+                          defaultValue={this.state.totalGroundTrainer}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item sm={3} xs={6}>
+                        <TextField
+                          error
+                          id="outlined-read-only-input"
+                          label="Tot. Hrs:"
+                          defaultValue={this.state.totalHours}
+                          margin="dense"
+                          InputProps={{
+                            readOnly: true
+                          }}
+                          variant="outlined"
+                          fullWidth
+                        />
+                      </Grid>
+                    </Grid>
                   </DialogContent>
                 </animated.div>
               ))

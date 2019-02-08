@@ -7,7 +7,7 @@ import AirplaneDelete from "../ModuleComponents/airplanes/AirplaneDelete";
 import AirplaneView from "../ModuleComponents/airplanes/AirplaneView";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
@@ -28,7 +28,7 @@ const styles = theme => ({
     height: 403
   },
   media: {
-    height: "43%"
+    height: "47%"
   },
   addCardContent: {
     textAlign: "center",
@@ -96,7 +96,7 @@ class AirplanesList extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, headerIsHidden, ...other } = this.props;
     return (
       <Fragment>
         <Layout UID={this.props.UID}>
@@ -121,19 +121,20 @@ class AirplanesList extends Component {
                 </Card>
               ) : (
                 <AirplaneForm
-                  {...this.props}
+                  {...other}
                   switcher={this.switcher}
                   UID={this.props.UID}
                 />
               )}
             </Grid>
             {this.state.airplanesList.map(airplane => (
-              <Grid item xl={2} lg={3} md={4} sm={6} xs={12}>
+              <Grid item xl={2} lg={3} md={4} sm={6} xs={12} key={airplane.id}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.media}
                     image={
-                      airplane.imageName || "https://via.placeholder.com/100"
+                      airplane.imageName ||
+                      "https://via.placeholder.com/450x300"
                     }
                     title="airplane image"
                   />
@@ -145,9 +146,8 @@ class AirplanesList extends Component {
                       justify="flex-start"
                       alignItems="flex-start"
                       direction="row"
-                      spacing={16}
+                      spacing={8}
                     >
-                      {/* <Grid item xs={1}>{airplane.id}</Grid> */}
                       <Grid item xs={12}>
                         <TextField
                           id="airplane-tailnumber"
@@ -160,9 +160,6 @@ class AirplanesList extends Component {
                           variant="outlined"
                           fullWidth
                         />
-                        {/* <Typography gutterBottom variant="h4" component="h2">
-                            {airplane.tailNumber}
-                          </Typography> */}
                       </Grid>
                       <Grid item xs={8}>
                         <TextField
@@ -175,9 +172,6 @@ class AirplanesList extends Component {
                           variant="outlined"
                           fullWidth
                         />
-                        {/* <Typography gutterBottom variant="h5" component="h2">
-                            {airplane.make} {airplane.model}
-                          </Typography> */}
                       </Grid>
                       <Grid item xs={4}>
                         <TextField
@@ -190,9 +184,6 @@ class AirplanesList extends Component {
                           variant="outlined"
                           fullWidth
                         />
-                        {/* <Typography gutterBottom variant="h5" component="h2">
-                            {airplane.category}
-                          </Typography> */}
                       </Grid>
                       {/* BUTTON ROW*/}
                       <Grid item xs={12}>
@@ -206,14 +197,14 @@ class AirplanesList extends Component {
                         >
                           <Grid item xs={4}>
                             <AirplaneEdit
-                              {...this.props}
+                              {...other}
                               switcher={this.switcher}
                               airplane={airplane}
                             />
                           </Grid>
                           <Grid item xs={4}>
                             <AirplaneDelete
-                              {...this.props}
+                              {...other}
                               UID={this.state.UID}
                               id={airplane.id}
                               switcher={this.switcher}
@@ -237,8 +228,8 @@ class AirplanesList extends Component {
   }
 }
 
-AirplanesList.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// AirplanesList.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(AirplanesList);

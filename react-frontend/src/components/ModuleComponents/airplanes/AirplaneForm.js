@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
@@ -34,6 +34,9 @@ const styles = theme => ({
   container: {
     display: "flex",
     flexWrap: "wrap"
+  },
+  card: {
+    height: 403
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -182,7 +185,7 @@ class AirplaneForm extends Component {
                 justify="space-between"
                 alignItems="stretch"
               >
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Tail Number</InputLabel>
                     <OutlinedInput
@@ -196,7 +199,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Make</InputLabel>
                     <OutlinedInput
@@ -210,7 +213,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Model</InputLabel>
                     <OutlinedInput
@@ -224,7 +227,7 @@ class AirplaneForm extends Component {
                     </FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid sm={12}>
+                <Grid item sm={12}>
                   <FormControl required fullWidth>
                     <InputLabel>Airplane Category</InputLabel>
                     <OutlinedInput
@@ -259,8 +262,8 @@ class AirplaneForm extends Component {
     );
   }
 }
-AirplaneForm.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// AirplaneForm.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(AirplaneForm);

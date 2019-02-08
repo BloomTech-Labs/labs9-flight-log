@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -38,6 +38,9 @@ const styles = theme => ({
   },
   menu: {
     width: 200
+  },
+  card: {
+    height: 403
   },
   addCardContent: {
     textAlign: "center",
@@ -139,7 +142,7 @@ class InstructorForm extends Component {
                     name="name"
                     id="instructor-name"
                     label="Name"
-                    defaultValue="Name"
+                    // defaultValue="Name"
                     value={this.state.name}
                     onChange={this.editFormHandler}
                     className={classes.textField}
@@ -154,7 +157,7 @@ class InstructorForm extends Component {
                     name="licenseNum"
                     id="instructor-license"
                     label="License No."
-                    defaultValue="License No."
+                    // defaultValue="License No."
                     value={this.state.licenseNum}
                     onChange={this.editFormHandler}
                     className={classes.textField}
@@ -220,8 +223,8 @@ class InstructorForm extends Component {
   }
 }
 
-InstructorForm.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// InstructorForm.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(InstructorForm);
