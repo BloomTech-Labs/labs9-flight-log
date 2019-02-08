@@ -412,7 +412,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="numOfTakeOffs"
-                  label="number of take offs"
+                  label="Number Of Take Offs"
                   value={this.state.numOfTakeOffs}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -426,7 +426,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="numOfLandings"
-                  label="number of landings"
+                  label="Number Of Landings"
                   value={this.state.numOfLandings}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -468,7 +468,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="dayHours"
-                  label="day hours"
+                  label="Day Hours"
                   value={this.state.dayHours}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -482,7 +482,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="nightHours"
-                  label="night hours"
+                  label="Night Hours"
                   value={this.state.nightHours}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -496,7 +496,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="actInstruments"
-                  label="actual Instruments"
+                  label="Actual Instruments"
                   value={this.state.actInstruments}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -510,7 +510,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="simInstruments"
-                  label="simulated Instruments"
+                  label="Simulated Instruments"
                   value={this.state.simInstruments}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -524,7 +524,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="groundTrainer"
-                  label="ground trainer"
+                  label="Ground Trainer"
                   value={this.state.groundTrainer}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -538,7 +538,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="crossCountry"
-                  label="cross country"
+                  label="Cross Country"
                   value={this.state.crossCountry}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -552,7 +552,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="asInstructor"
-                  label="as instructor"
+                  label="As Instructor"
                   value={this.state.asInstructor}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -566,7 +566,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="dualReceived"
-                  label="dual"
+                  label="Dual"
                   value={this.state.dualReceived}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -594,7 +594,7 @@ class FlightForm extends Component {
                   type="number"
                   margin="dense"
                   name="total"
-                  label="total hours"
+                  label="Total Hours"
                   value={this.state.total}
                   onChange={this.editFormHandler}
                   className={classes.textField}
