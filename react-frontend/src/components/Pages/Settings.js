@@ -68,6 +68,7 @@ class Settings extends Component {
       .sendPasswordResetEmail(email)
       .then(function() {
         console.log("email sent");
+        // These should be viewable by the user
       })
       .catch(function(error) {
         console.log("Please try again");
@@ -85,12 +86,12 @@ class Settings extends Component {
       });
     }
     const name = localStorage.getItem("userName");
-    console.log("name", name);
+    // console.log("name", name);
     this.setState({ name });
-    console.log("settings");
+    // console.log("settings");
   }
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { classes } = this.props;
     return (
       <Layout>
