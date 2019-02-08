@@ -59,7 +59,7 @@ class InstructorDelete extends Component {
     axios
       .delete(`${URL}/instructors/${this.props.id}`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           open: false
         });

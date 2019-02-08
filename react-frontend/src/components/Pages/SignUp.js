@@ -80,7 +80,7 @@ class SignUp extends React.Component {
       .then(function (idToken) {
         // Send token to your backend via HTTPS
         // ...
-        console.log(idToken);
+        // console.log(idToken);
       })
       .catch(function (error) {
         // Handle error
@@ -92,17 +92,17 @@ class SignUp extends React.Component {
       .auth()
       .signInWithPopup(facebook)
       .then(result => {
-        console.log("hey it works", result);
+        // console.log("hey it works", result);
         if (result) {
           // Router.push("/Settings");
           // history.push("/Settings")
-          console.log("firebase facebook");
+          // console.log("firebase facebook");
         }
       })
       .catch(() => console.log("you are death, start over"));
   }
   signUpWithGoogle = () => {
-    console.log("this in google modal", this);
+    // console.log("this in google modal", this);
     const provider = new firebase.auth.GoogleAuthProvider();
     const history = this.props.history;
     let name;
@@ -111,14 +111,14 @@ class SignUp extends React.Component {
       .signInWithPopup(provider)
       .then(function (result) {
         if (result) {
-          console.log("result", result);
+          // console.log("result", result);
           name = result.user.displayName;
-          console.log(name);
+          // console.log(name);
           fire
             .auth()
             .currentUser.getIdToken(/* forceRefresh */ true)
             .then(function (idToken) {
-              console.log(idToken, name);
+              // console.log(idToken, name);
               const body = { token: idToken, firstName: name };
               axios.post("https://labs9-flight-log.herokuapp.com/pilots", body);
               history.push("/Flights");

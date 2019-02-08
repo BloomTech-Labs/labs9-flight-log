@@ -56,7 +56,7 @@ class FlightDelete extends Component {
     axios
       .delete(`${URL}/flights/${this.props.id}`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           open: false
         });

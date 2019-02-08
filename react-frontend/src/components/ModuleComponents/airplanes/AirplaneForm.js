@@ -74,13 +74,13 @@ class AirplaneForm extends Component {
   };
 
   editFormHandler = e => {
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
   };
   handleChange = name => event => {
-    console.log(name, event);
+    // console.log(name, event);
     this.setState({ [name]: event.target.value });
   };
   handleClickOpen = () => {
@@ -90,18 +90,18 @@ class AirplaneForm extends Component {
     this.setState({ open: false });
   };
   handleChange(files) {
-    console.log("files", files);
+    // console.log("files", files);
     this.setState({
       files: files
     });
-    console.log(this.state.files);
+    // console.log(this.state.files);
   }
 
   submitAddForm = () => {
     const UID = this.props.UID;
-    console.log(UID);
-    console.log("this.state.files", this.state.files);
-    console.log("this.state.imageName", this.state.imageName);
+    // console.log(UID);
+    // console.log("this.state.files", this.state.files);
+    // console.log("this.state.imageName", this.state.imageName);
 
     if (this.state.image) {
       const image = this.state.image;
@@ -109,13 +109,13 @@ class AirplaneForm extends Component {
       uploadTask.on(
         "state_changed",
         snapshot => {
-          console.log(snapshot);
+          // console.log(snapshot);
         },
         error => {
           console.log(error);
         },
         () => {
-          console.log("complete");
+          // console.log("complete");
         }
       );
     }
@@ -132,7 +132,7 @@ class AirplaneForm extends Component {
     axios
       .post("https://labs9-flight-log.herokuapp.com/airplanes", newAirplane)
       .then(response => {
-        console.log(response);
+        console.log("inside airplane post");
         this.setState({
           open: false,
           files: [],

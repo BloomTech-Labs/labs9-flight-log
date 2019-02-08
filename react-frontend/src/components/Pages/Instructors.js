@@ -44,18 +44,18 @@ class InstructorsList extends Component {
 
   componentDidMount() {
     const UID = this.props.UID;
-    console.log("from instructor", UID);
+    // console.log("from instructor", UID);
     //http://localhost:9000/instructors/${UID}
     //https://labs9-flight-log.herokuapp.com/instructors/${UID}
     axios
       .get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`)
       .then(response => {
-        console.table(response.data); //only shows if an instructor(s) exists
+        // console.table(response.data); //only shows if an instructor(s) exists
         this.setState({ instructorsList: response.data });
       });
   }
   switcher = () => {
-    console.log("fired");
+    // console.log("fired");
     this.componentDidMount();
   };
 
@@ -80,6 +80,11 @@ class InstructorsList extends Component {
                 UID={this.props.UID}
               />
             </Grid>
+      
+            {/* {this.state.instructorsList.map(instructor => (
+              <Grid item lg={3} md={4} sm={6} xs={12}>
+                <InstructorCard instructor={instructor} />
+              </Grid> */}
 
               {this.state.instructorsList.map(instructor => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
