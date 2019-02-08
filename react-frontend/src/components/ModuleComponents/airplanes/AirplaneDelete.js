@@ -54,7 +54,7 @@ class AirplaneDelete extends Component {
     axios
       .get(`${URL}/airplanes/${this.props.UID}/${this.props.id}`)
       .then(response => {
-        console.log(response.data[0]);
+        // console.log(response.data[0]);
         let airplane = response.data[0];
         this.setState({ ...airplane, open: true });
       })
@@ -72,15 +72,15 @@ class AirplaneDelete extends Component {
     desertRef
       .delete()
       .then(() => {
-        console.log("image Deleted successfully");
+        // console.log("image Deleted successfully");
       })
       .catch(() => {
-        console.log("error deleting image");
+        // console.log("error deleting image");
       });
     axios
       .delete(`${URL}/airplanes/${this.props.id}`)
       .then(response => {
-        console.log(response);
+        // console.log(response);
         this.setState({
           open: false
         });

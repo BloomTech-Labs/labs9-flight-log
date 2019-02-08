@@ -9,8 +9,6 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import Fab from "@material-ui/core/Fab";
-import OutlinedInput from "@material-ui/core/OutlinedInput";
-import InputLabel from "@material-ui/core/InputLabel";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Typography from "@material-ui/core/Typography";
@@ -96,7 +94,7 @@ class FlightForm extends Component {
   }
 
   editFormHandler = e => {
-    console.log(e.target.name, e.target.value);
+    // console.log(e.target.name, e.target.value);
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -105,33 +103,33 @@ class FlightForm extends Component {
     this.setState({ [name]: event.target.value });
   };
   handleClickOpen = () => {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     this.setState({ ...this.props, open: true });
   };
   handleClose = () => {
     this.setState({ open: false });
   };
   handleOpenAir = () => {
-    console.log("airplanes");
+    // console.log("airplanes");
     this.setState({ openAir: true });
   };
   handleCloseAir = () => {
     this.setState({ openAir: false });
   };
   handleOpenIns = () => {
-    console.log("instructors");
+    // console.log("instructors");
     this.setState({ openIns: true });
   };
   handleCloseIns = () => {
     this.setState({ openIns: false });
   };
   handleAirplane = airplane => () => {
-    console.log(airplane);
+    // console.log(airplane);
     this.setState({ airplane: airplane });
     this.handleCloseAir();
   };
   handleInstructor = instructor => () => {
-    console.log(instructor);
+    // console.log(instructor);
     this.setState({ instructor: instructor });
     this.handleCloseIns();
   };
@@ -230,18 +228,20 @@ class FlightForm extends Component {
               alignItems="stretch"
             >
               <Grid item sm={8} xs={12}>
-                <FormControl required fullWidth>
-                  <InputLabel>Flight Name</InputLabel>
-                  <OutlinedInput
-                    type="string"
-                    name="flightName"
-                    value={this.state.flightName}
-                    onChange={this.editFormHandler}
-                  />
-                  <FormHelperText id="my-helper-text1">
-                    This field is required.
-                  </FormHelperText>
-                </FormControl>
+                {/* <FormControl required fullWidth> */}
+                <TextField
+                  autoFocus
+                  type="string"
+                  margin="dense"
+                  name="flightName"
+                  label="Flight Name:"
+                  value={this.state.flightName}
+                  onChange={this.editFormHandler}
+                  className={classes.textField}
+                  variant="outlined"
+                  fullWidth
+                />
+                {/* </FormControl> */}
               </Grid>
               <Grid item sm={4} xs={6}>
                 <TextField

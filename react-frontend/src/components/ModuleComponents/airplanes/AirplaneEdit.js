@@ -75,7 +75,7 @@ class AirplaneEdit extends Component {
   };
 
   handleClickOpen = () => {
-    console.log("this.props", this.props);
+    // console.log("this.props", this.props);
     this.setState({ ...this.props.airplane, open: true });
   };
 
@@ -97,13 +97,13 @@ class AirplaneEdit extends Component {
       uploadTask.on(
         "state_changed",
         snapshot => {
-          console.log(snapshot);
+          // console.log(snapshot);
         },
         error => {
           console.log(error);
         },
         () => {
-          console.log("complete");
+          // console.log("complete");
         }
       );
     }
@@ -121,7 +121,7 @@ class AirplaneEdit extends Component {
         updatedAirplane
       )
       .then(response => {
-        console.log("response", response);
+        // console.log("response", response);
         this.setState({
           open: false,
           files: [],

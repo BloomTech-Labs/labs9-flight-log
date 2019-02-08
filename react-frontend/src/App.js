@@ -36,7 +36,7 @@ class App extends Component {
       .auth()
       .currentUser.getIdToken(/* forceRefresh */ true)
       .then(function(idToken) {
-        //console.log(idToken);
+        // console.log("App.js componentWillMount");
         const body = { token: idToken };
         //http://localhost:9000
         //https://labs9-flight-log.herokuapp.com

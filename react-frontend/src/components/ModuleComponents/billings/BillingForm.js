@@ -88,7 +88,7 @@ class BillingForm extends Component {
           pilot
         )
         .then(response => {
-          console.log(response);
+          // console.log(response);
           //console.log("isPaid status 89", this.state.isPaid)
         })
         .catch(error => {
