@@ -61,33 +61,27 @@ router.post("/", async (req, res) => {
 //put route
 router.put("/:id", async (req, res) => {
   const id = req.params.id;
-  const { make, model, tailNumber, category } = req.body;
-  if (!tailNumber) {
+  // const { make, model, tailNumber, category } = req.body;
+  if (!req.body.tailNumber) {
     return res.status(400).json({ error: "please input tail number" });
   }
-  if (!make) {
+  if (!req.body.make) {
     return res.status(400).json({ error: "please input make" });
   }
-  if (!model) {
+  if (!req.body.model) {
     return res.status(400).json({ error: "please input model" });
   }
-  if (!category) {
+  if (!req.body.category) {
     return res.status(400).json({ error: "please input category" });
   }
   try {
-    const airplane = await airplanesDb.update(id, {
-      make,
-      model,
-      tailNumber,
-      category,
-      imageName
-    });
+    const airplane = await airplanesDb.update(id, req.body);
     if (!airplane) {
       res
         .status(400)
         .json({ error: "the airplane with the specified id does not exist" });
     }
-    res.status(200).json({ make, model, tailNumber, imageName });
+    res.status(200).json(req.body);
   } catch (error) {
     res
       .status(500)

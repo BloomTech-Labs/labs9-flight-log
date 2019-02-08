@@ -91,7 +91,7 @@ class AirplanesList extends Component {
       });
   }
   switcher = () => {
-    //console.log("fired from airplanes");
+    console.log("fired from airplanes");
     this.componentDidMount();
   };
 

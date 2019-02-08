@@ -66,10 +66,9 @@ class AirplaneDelete extends Component {
   };
 
   handleDelete = () => {
+    console.log("delete", this.props.UID, this.state);
     const UID = this.props.UID;
-    const desertRef = storage
-      .ref(`${UID}`)
-      .child(`${this.state.airplane.imageName}`);
+    const desertRef = storage.ref(`${UID}/${this.state.imageName}`);
     desertRef
       .delete()
       .then(() => {
@@ -92,6 +91,7 @@ class AirplaneDelete extends Component {
 
   render() {
     const { classes } = this.props;
+    console.log("this.state in delete modal", this.state);
     return (
       <Fragment>
         <Button
