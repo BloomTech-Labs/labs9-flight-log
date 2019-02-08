@@ -10,11 +10,11 @@ class Headers extends Component {
 
 
   render() {
-    const { classes, headerIsHidden, ...other } = this.props;
+    // const { classes, headerIsHidden, ...other } = this.props;
 
     return (
       <div>
-        <Route exact path="/" render={({...other}) => <Landing {...other} />} />
+        <Route exact path="/" render={props => <Landing {...props} />} />
         <Route
           exact
           path="/SignIn"

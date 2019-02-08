@@ -91,38 +91,38 @@ class App extends Component {
     //console.log("this.state.refresh", this.state.refresh);
     //console.log("this.state.id inside app", this.state.id);
     if (this.state.refresh) {
-      const { classes, headerIsHidden, ...other } = this.props;
+      // const { classes, headerIsHidden, ...other } = this.props;
 
       return (
         <div className="App">
           <Route
             exact
             path="/Airplanes"
-            render={({...other}) => <Airplanes {...other} UID={this.state.UID} />}
+            render={props => <Airplanes {...props} UID={this.state.UID} />}
           />
 
           <Route
             exact
             path="/Billing"
-            render={({...other}) => (
-              <Billing {...other} UID={this.state.UID} id={this.state.id} />
+            render={props => (
+              <Billing {...props} UID={this.state.UID} id={this.state.id} />
             )}
           />
 
           <Route
             exact
             path="/Instructors"
-            render={({...other}) => <Instructors {...other} UID={this.state.UID} />}
+            render={props => <Instructors {...props} UID={this.state.UID} />}
           />
           <Route
             exact
             path="/Settings"
-            render={({...other}) => <Settings {...other} UID={this.state.UID} />}
+            render={props => <Settings {...props} UID={this.state.UID} />}
           />
           <Route
             exact
             path="/"
-            render={({...other}) => <Flights {...other} UID={this.state.UID} />}
+            render={props => <Flights {...props} UID={this.state.UID} />}
           />
         </div>
       );
@@ -132,7 +132,7 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={({...other}) => <Flights {...other} UID={this.state.UID} />}
+          render={props => <Flights {...props} UID={this.state.UID} />}
         />
       </div>
     );
