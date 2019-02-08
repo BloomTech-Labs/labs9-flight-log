@@ -88,7 +88,7 @@ class Flights extends Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes, headerIsHidden, ...other } = this.props;
 
     return (
       <React.Fragment>
@@ -106,7 +106,7 @@ class Flights extends Component {
             >
               <Grid item lg={3} md={4} sm={6} xs={12}>
                 <FlightForm
-                  {...this.props}
+                  {...other}
                   airplanes={this.state.airplanes}
                   instructors={this.state.instructors}
                   switcher={this.switcher}
@@ -115,7 +115,7 @@ class Flights extends Component {
               </Grid>
 
               {this.state.flightsList.map(flight => (
-                <Grid item lg={3} md={4} sm={6} xs={12}>
+                <Grid item lg={3} md={4} sm={6} xs={12} key={flight.id}>
                   <Card className={classes.card}>
                     <CardContent>
                       <Grid
@@ -200,7 +200,7 @@ class Flights extends Component {
                           >
                             <Grid item xs={4}>
                               <FlightEdit
-                                {...this.props}
+                                {...other}
                                 airplanes={this.state.airplanes}
                                 instructors={this.state.instructors}
                                 switcher={this.switcher}

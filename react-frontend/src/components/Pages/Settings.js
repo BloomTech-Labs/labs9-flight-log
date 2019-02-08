@@ -105,7 +105,7 @@ class Settings extends Component {
               <Grid 
                    container
                    className={classes.grid}
-                   spacing={12}
+                   spacing={8}
                    >
                   <Grid item md={6} sm={12} xs={12}>
                     <Paper className="paper">

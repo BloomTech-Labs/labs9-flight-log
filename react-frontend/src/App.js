@@ -91,36 +91,38 @@ class App extends Component {
     //console.log("this.state.refresh", this.state.refresh);
     //console.log("this.state.id inside app", this.state.id);
     if (this.state.refresh) {
+      const { classes, headerIsHidden, ...other } = this.props;
+
       return (
         <div className="App">
           <Route
             exact
             path="/Airplanes"
-            render={props => <Airplanes {...props} UID={this.state.UID} />}
+            render={({...other}) => <Airplanes {...other} UID={this.state.UID} />}
           />
 
           <Route
             exact
             path="/Billing"
-            render={props => (
-              <Billing {...props} UID={this.state.UID} id={this.state.id} />
+            render={({...other}) => (
+              <Billing {...other} UID={this.state.UID} id={this.state.id} />
             )}
           />
 
           <Route
             exact
             path="/Instructors"
-            render={props => <Instructors {...props} UID={this.state.UID} />}
+            render={({...other}) => <Instructors {...other} UID={this.state.UID} />}
           />
           <Route
             exact
             path="/Settings"
-            render={props => <Settings {...props} UID={this.state.UID} />}
+            render={({...other}) => <Settings {...other} UID={this.state.UID} />}
           />
           <Route
             exact
             path="/"
-            render={props => <Flights {...props} UID={this.state.UID} />}
+            render={({...other}) => <Flights {...other} UID={this.state.UID} />}
           />
         </div>
       );
@@ -130,7 +132,7 @@ class App extends Component {
         <Route
           exact
           path="/"
-          render={props => <Flights {...props} UID={this.state.UID} />}
+          render={({...other}) => <Flights {...other} UID={this.state.UID} />}
         />
       </div>
     );

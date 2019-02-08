@@ -7,14 +7,14 @@ class Headers extends Component {
     super(props);
     this.state = {};
   }
-  // componentDidMount() {
-  //   console.log("props", this.history);
-  //   console.log("properties", this.properties);
-  // }
+
+
   render() {
+    const { classes, headerIsHidden, ...other } = this.props;
+
     return (
       <div>
-        <Route exact path="/" render={props => <Landing {...props} />} />
+        <Route exact path="/" render={({...other}) => <Landing {...other} />} />
         <Route
           exact
           path="/SignIn"
