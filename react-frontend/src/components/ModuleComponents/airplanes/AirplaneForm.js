@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { DropzoneArea } from "material-ui-dropzone";
 import Button from "@material-ui/core/Button";
 import Fab from "@material-ui/core/Fab";
@@ -262,8 +262,8 @@ class AirplaneForm extends Component {
     );
   }
 }
-AirplaneForm.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// AirplaneForm.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(AirplaneForm);

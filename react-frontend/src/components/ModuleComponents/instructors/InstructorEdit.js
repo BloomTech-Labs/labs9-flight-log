@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -127,7 +127,7 @@ class InstructorEdit extends Component {
                   name="name"
                   id="instructor-name"
                   label="Name"
-                  defaultValue="Name"
+                  // defaultValue="Name"
                   value={this.state.name}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -142,7 +142,7 @@ class InstructorEdit extends Component {
                   name="licenseNum"
                   id="instructor-license"
                   label="License No."
-                  defaultValue="License No."
+                  // defaultValue="License No."
                   value={this.state.licenseNum}
                   onChange={this.editFormHandler}
                   className={classes.textField}
@@ -207,8 +207,8 @@ class InstructorEdit extends Component {
   }
 }
 
-InstructorEdit.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// InstructorEdit.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(InstructorEdit);

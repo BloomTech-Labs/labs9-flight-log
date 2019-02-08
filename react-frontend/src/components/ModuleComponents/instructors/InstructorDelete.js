@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -73,7 +73,7 @@ class InstructorDelete extends Component {
     return (
       <Fragment>
         <Button
-          variant="contained"
+          variant="outlined"
           className={classes.button}
           color="secondary"
           aria-label="Delete Instructor"
@@ -106,8 +106,8 @@ class InstructorDelete extends Component {
   }
 }
 
-InstructorDelete.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// InstructorDelete.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(InstructorDelete);

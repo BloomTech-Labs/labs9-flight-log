@@ -7,7 +7,7 @@ import AirplaneDelete from "../ModuleComponents/airplanes/AirplaneDelete";
 import AirplaneView from "../ModuleComponents/airplanes/AirplaneView";
 import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import TextField from "@material-ui/core/TextField";
@@ -133,7 +133,8 @@ class AirplanesList extends Component {
                   <CardMedia
                     className={classes.media}
                     image={
-                      airplane.imageName || "https://via.placeholder.com/450x300"
+                      airplane.imageName ||
+                      "https://via.placeholder.com/450x300"
                     }
                     title="airplane image"
                   />
@@ -227,8 +228,8 @@ class AirplanesList extends Component {
   }
 }
 
-AirplanesList.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// AirplanesList.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(AirplanesList);

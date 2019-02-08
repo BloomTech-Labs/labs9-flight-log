@@ -38,7 +38,7 @@ const styles = theme => ({
     flexWrap: "wrap"
   },
   card: {
-    height: 503
+    height: 472
   },
   textField: {
     marginLeft: theme.spacing.unit,

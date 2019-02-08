@@ -83,7 +83,15 @@ class InstructorsList extends Component {
             </Grid>
 
             {this.state.instructorsList.map(instructor => (
-              <Grid item xl={2} lg={3} md={4} sm={6} xs={12}>
+              <Grid
+                item
+                xl={2}
+                lg={3}
+                md={4}
+                sm={6}
+                xs={12}
+                key={instructor.id}
+              >
                 <Card className={classes.card}>
                   <CardContent>
                     <Grid

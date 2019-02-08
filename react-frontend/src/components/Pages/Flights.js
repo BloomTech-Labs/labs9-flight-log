@@ -21,7 +21,7 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   card: {
-    height: 503
+    height: 472
   },
   buttonrow: {
     width: "100%",
@@ -114,7 +114,7 @@ class Flights extends Component {
             </Grid>
 
             {this.state.flightsList.map(flight => (
-              <Grid item xl={2} lg={3} md={4} sm={6} xs={12}>
+              <Grid item xl={2} lg={3} md={4} sm={6} xs={12} key={flight.id}>
                 <Card className={classes.card}>
                   <CardContent>
                     <Grid
@@ -123,7 +123,7 @@ class Flights extends Component {
                       justify="center"
                       alignItems="center"
                       direction="row"
-                      spacing={16}
+                      spacing={8}
                     >
                       <Grid item xs={12}>
                         <TextField

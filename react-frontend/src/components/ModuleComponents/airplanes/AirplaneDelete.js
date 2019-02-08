@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import Dialog from "@material-ui/core/Dialog";
@@ -127,8 +127,8 @@ class AirplaneDelete extends Component {
   }
 }
 
-AirplaneDelete.propTypes = {
-  classes: PropTypes.object.isRequired
-};
+// AirplaneDelete.propTypes = {
+//   classes: PropTypes.object.isRequired
+// };
 
 export default withStyles(styles)(AirplaneDelete);
