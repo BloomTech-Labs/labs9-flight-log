@@ -28,7 +28,6 @@ const styles = theme => ({
     justifyContent: "space-evenly"
   },
   dialog: {
-      paddingTop: 30
     // width: 600,
     // display: "flex",
     // flexWrap: "wrap"
