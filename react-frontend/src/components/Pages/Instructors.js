@@ -50,7 +50,7 @@ class InstructorsList extends Component {
     axios
       .get(`https://labs9-flight-log.herokuapp.com/instructors/${UID}`)
       .then(response => {
-        console.table(response.data);
+        console.table(response.data); //only shows if an instructor(s) exists
         this.setState({ instructorsList: response.data });
       });
   }
@@ -80,11 +80,6 @@ class InstructorsList extends Component {
                 UID={this.props.UID}
               />
             </Grid>
-
-            {this.state.instructorsList.map(instructor => (
-              <Grid item lg={3} md={4} sm={6} xs={12}>
-                <InstructorCard instructor={instructor} />
-              </Grid>
 
               {this.state.instructorsList.map(instructor => (
                 <Grid item lg={3} md={4} sm={6} xs={12}>
